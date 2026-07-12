@@ -30,7 +30,7 @@
     <main>
       <div class="about-grid">
         <div>
-          <h1 class="page-title">I'm Chris Breuer. Passionately obsessed over developer tooling.</h1>
+          <h1 class="page-title">Passionately obsessed over developer tooling.</h1>
           <div class="prose">
             <p>
               Ever since I was young, I've loved to explore, learn, and create, especially
@@ -45,16 +45,15 @@
               from my desk.
             </p>
             <p>
-              I spent the last 10+ years working on personal and private projects, ranging
+              I spent the last 15+ years working on personal and private projects, ranging
               from small apps to large enterprise services, which caused my obsession with
-              building scalable and serverless systems. I dove deep into data storage and
+              building scalable systems. I dove deep into data storage and
               transfer, and distributed and decentralized compute techniques. That was a
               core reason I started working on Stacks.
             </p>
             <p>
-              Today, I'm the founder of <a href="https://stacksjs.com">Stacks</a> and a
-              founding member of the <a href="https://ow3.org">Open Web Foundation</a>.
-              It's exciting to work on the future of web technologies and application
+              Today, I'm the founder of <a href="https://stacksjs.com">Stacks</a> and its broader ecosystem.
+              It's exciting to work on the future of web technologies and application / software
               development. Follow along on <a href="https://github.com/chrisbbreuer">GitHub</a>
               for the latest updates.
             </p>
