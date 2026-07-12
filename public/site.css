@@ -145,6 +145,12 @@ main { padding: 3.5rem 0 2rem; }
   letter-spacing: -0.02em;
   line-height: 1.12;
 }
+/* Evens out the two headline lines at desktop; mobile wraps naturally. */
+.title-break { display: none; }
+@media (min-width: 640px) {
+  .title-break { display: inline; }
+}
+
 .page-lead {
   margin: 0 0 2.5rem;
   max-width: 38rem;

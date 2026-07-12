@@ -60,7 +60,7 @@ const posts = fs.readdirSync(blogDir)
     </header>
 
     <main>
-      <h1 class="page-title">Software engineer, founder, and dog person</h1>
+      <h1 class="page-title">Software engineer, founder, <br class="title-break">and dog person</h1>
       <p class="page-lead">
         I build developer tooling: <a href="https://stacksjs.com">Stacks</a>, a TypeScript
         framework, and the open-source tools around it. This is where I write.
