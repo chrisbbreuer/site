@@ -1,0 +1,322 @@
+/*
+ * chrisbreuer.me - bare monochrome site styles (stx pages).
+ * Mirrors content/blog/.theme.css so /blog and the stx pages read as one site.
+ * Light and dark via [data-theme] on <html> (set pre-paint by /assets/scripts/theme.js,
+ * which follows prefers-color-scheme until the visitor picks a mode).
+ */
+
+:root,
+:root[data-theme='light'] {
+  --bg: #fafafa;
+  --bg-soft: #f0f0f0;
+  --text-1: #111111;
+  --text-2: #444444;
+  --text-3: #767676;
+  --divider: #e4e4e4;
+  --code-bg: #efefef;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0a0a0a;
+  --bg-soft: #161616;
+  --text-1: #ededed;
+  --text-2: #a8a8a8;
+  --text-3: #6f6f6f;
+  --divider: #242424;
+  --code-bg: #1a1a1a;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  background: var(--bg);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-1);
+  background: var(--bg);
+}
+
+.mono {
+  font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.shell {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+a { color: var(--text-1); }
+
+/* ── Masthead ───────────────────────────────────────────────────────────── */
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+  padding: 1.5rem 0 0;
+}
+.masthead .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-1);
+  text-decoration: none;
+}
+.masthead .brand img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: block;
+}
+.masthead nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
+  font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.8rem;
+}
+.masthead nav a {
+  color: var(--text-2);
+  text-decoration: none;
+}
+.masthead nav a:hover,
+.masthead nav a[aria-current='page'] {
+  color: var(--text-1);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.theme-btn {
+  border: 1px solid var(--divider);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-2);
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+  padding: 0;
+}
+.theme-btn:hover { color: var(--text-1); border-color: var(--text-3); }
+
+/* ── Page basics ────────────────────────────────────────────────────────── */
+main { padding: 3.5rem 0 2rem; }
+
+.page-title {
+  margin: 0 0 0.6rem;
+  font-size: clamp(1.7rem, 4vw, 2.3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+}
+.page-lead {
+  margin: 0 0 2.5rem;
+  max-width: 38rem;
+  color: var(--text-2);
+}
+.page-lead a,
+.prose a {
+  color: var(--text-1);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--text-3);
+}
+.page-lead a:hover,
+.prose a:hover { text-decoration-color: var(--text-1); }
+
+.prose p { margin: 0 0 1.1rem; color: var(--text-2); }
+.prose strong { color: var(--text-1); }
+
+.section-label {
+  margin: 2.75rem 0 0.75rem;
+  font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+/* ── Post list (home) ───────────────────────────────────────────────────── */
+.post-list { list-style: none; margin: 0; padding: 0; }
+.post-list li { border-top: 1px solid var(--divider); }
+.post-list li:first-child { border-top: 0; }
+.post-list a {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 0.8rem 0;
+  text-decoration: none;
+  color: var(--text-1);
+}
+.post-list .post-title { font-weight: 550; line-height: 1.4; }
+.post-list a:hover .post-title { text-decoration: underline; text-underline-offset: 3px; }
+.post-list .post-date {
+  flex: 0 0 auto;
+  font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+  color: var(--text-3);
+}
+
+/* ── Row list (projects, work) ──────────────────────────────────────────── */
+.row-list { list-style: none; margin: 0; padding: 0; }
+.row-list li {
+  display: grid;
+  grid-template-columns: 12rem 1fr;
+  gap: 0.35rem 1.5rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--divider);
+}
+.row-list li:first-child { border-top: 0; }
+.row-list .row-name {
+  font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.row-list .row-name a { text-decoration: none; }
+.row-list .row-name a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.row-list .row-desc { color: var(--text-2); font-size: 0.95rem; line-height: 1.55; }
+.row-list .row-meta {
+  font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+  color: var(--text-3);
+}
+
+@media (max-width: 640px) {
+  .row-list li { grid-template-columns: 1fr; gap: 0.15rem; }
+}
+
+/* ── Subscribe ──────────────────────────────────────────────────────────── */
+.subscribe {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--divider);
+}
+.subscribe h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+.subscribe p {
+  margin: 0 0 1rem;
+  color: var(--text-2);
+  font-size: 0.95rem;
+}
+.subscribe form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.subscribe input[type='email'] {
+  flex: 1 1 14rem;
+  min-width: 0;
+  padding: 0.55rem 0.8rem;
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--text-1);
+  background: var(--bg);
+  border: 1px solid var(--divider);
+  border-radius: 6px;
+}
+.subscribe input[type='email']::placeholder { color: var(--text-3); }
+.subscribe input[type='email']:focus {
+  outline: 2px solid var(--text-1);
+  outline-offset: 1px;
+  border-color: var(--text-1);
+}
+.subscribe button {
+  padding: 0.55rem 1.1rem;
+  font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--bg);
+  background: var(--text-1);
+  border: 1px solid var(--text-1);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.subscribe button:hover { opacity: 0.85; }
+.subscribe button:active { transform: translateY(1px); }
+.subscribe .form-note {
+  width: 100%;
+  margin: 0.2rem 0 0;
+  font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.8rem;
+  color: var(--text-2);
+  min-height: 1.2em;
+}
+
+/* ── Footer ─────────────────────────────────────────────────────────────── */
+.site-footer {
+  margin-top: 3.5rem;
+  padding: 1.25rem 0 2.5rem;
+  border-top: 1px solid var(--divider);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  align-items: center;
+  font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+  color: var(--text-3);
+}
+.site-footer a {
+  color: var(--text-2);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.site-footer a:hover { color: var(--text-1); }
+.site-footer .spacer { margin-left: auto; }
+
+/* ── About page ─────────────────────────────────────────────────────────── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 15rem;
+  gap: 2.5rem;
+  align-items: start;
+}
+.about-grid .portrait img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--divider);
+  display: block;
+}
+@media (max-width: 720px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .about-grid .portrait { order: -1; max-width: 15rem; }
+}
+
+.photo-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+.photo-row img {
+  width: 100%;
+  aspect-ratio: 9 / 10;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--divider);
+  display: block;
+}
+@media (max-width: 640px) {
+  .photo-row { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+}

@@ -1,0 +1,96 @@
+<script server>
+const projects = [
+  { name: 'Stacks', description: 'For full-stack Web Artisans. Develop framework-agnostic apps, clouds & libraries, faster.', url: 'https://stacksjs.org', label: 'stacksjs.org' },
+  { name: 'rpx', description: 'A modern, fast reverse proxy. For a better local development environment.', url: 'https://github.com/stacksjs/rpx', label: 'stacksjs/rpx' },
+  { name: 'tlsx', description: 'A TLS library with automation & HTTPS by default.', url: 'https://github.com/stacksjs/tlsx', label: 'stacksjs/tlsx' },
+  { name: 'dtsx', description: 'Extremely fast & configurable DTS emitter.', url: 'https://github.com/stacksjs/dtsx', label: 'stacksjs/dtsx' },
+  { name: 'bunfig', description: 'Lightweight & smart Bun configuration loader.', url: 'https://github.com/stacksjs/bunfig', label: 'stacksjs/bunfig' },
+  { name: 'localtunnels', description: 'A simple and smart tunneling alternative. With or without self-hosting.', url: 'https://github.com/stacksjs/localtunnels', label: 'stacksjs/localtunnels' },
+  { name: 'ts-collect', description: 'A powerful, yet lightweight, Laravel-like collections library for TypeScript.', url: 'https://github.com/stacksjs/ts-collect', label: 'stacksjs/ts-collect' },
+  { name: 'httx', description: 'A modern, user-friendly command-line & library HTTP client for the API era.', url: 'https://github.com/stacksjs/httx', label: 'stacksjs/httx' },
+  { name: 'dnsx', description: 'A command-line & library DNS client. Like dig & dog, but for TypeScript.', url: 'https://github.com/stacksjs/dnsx', label: 'stacksjs/dnsx' },
+  { name: 'clarity', description: 'Modern debugging & logging for browser & server.', url: 'https://github.com/stacksjs/clarity', label: 'stacksjs/clarity' },
+  { name: 'imgx', description: 'Make your images load faster. A better save for the web.', url: 'https://github.com/stacksjs/imgx', label: 'stacksjs/imgx' },
+  { name: 'vidx', description: 'Make your videos load faster. A better save for the web.', url: 'https://github.com/stacksjs/vidx', label: 'stacksjs/vidx' },
+  { name: 'audiox', description: 'Powerful audio processing for your workflows.', url: 'https://github.com/stacksjs/audiox', label: 'stacksjs/audiox' },
+  { name: 'qrx', description: 'QR & bar code generating & reading. Lightweight & powerful.', url: 'https://github.com/stacksjs/qrx', label: 'stacksjs/qrx' },
+  { name: 'post', description: 'The Post. A modern mail server & utilities with a CLI, library, and UI.', url: 'https://github.com/stacksjs/post', label: 'stacksjs/post' },
+  { name: 'vite-plugin-local', description: 'Pretty development URLs and HTTPS. Zero config, zero setup.', url: 'https://github.com/stacksjs/vite-plugin-local', label: 'stacksjs/vite-plugin-local' },
+  { name: 'bun-plugin-dtsx', description: 'Automatically generate your TypeScript DTS files with Bun\'s bundler.', url: 'https://github.com/stacksjs/bun-plugin-dtsx', label: 'stacksjs/bun-plugin-dtsx' },
+  { name: 'bun-plugin-auto-imports', description: 'Auto-imports support for Bun.', url: 'https://github.com/stacksjs/bun-plugin-auto-imports', label: 'stacksjs/bun-plugin-auto-imports' },
+  { name: 'bun-git-hooks', description: 'A simple git hooks manager for all-sized Bun projects.', url: 'https://github.com/stacksjs/bun-git-hooks', label: 'stacksjs/bun-git-hooks' },
+  { name: 'ts-spreadsheets', description: 'Easily generate spreadsheets, like CSVs and Excel files.', url: 'https://github.com/stacksjs/ts-spreadsheets', label: 'stacksjs/ts-spreadsheets' },
+  { name: 'ts-svg', description: 'Powerful developer toolkit for working with SVGs.', url: 'https://github.com/stacksjs/ts-svg', label: 'stacksjs/ts-svg' },
+  { name: 'ts-gif', description: 'Performant TypeScript implementation of a GIF encoder & decoder.', url: 'https://github.com/stacksjs/ts-gif', label: 'stacksjs/ts-gif' },
+  { name: 'ts-ndarray', description: 'Multidimensional arrays for JavaScript & TypeScript.', url: 'https://github.com/stacksjs/ts-ndarray', label: 'stacksjs/ts-ndarray' },
+  { name: 'jpgx', description: 'A TypeScript JPEG encoder & decoder for Bun & Node.js.', url: 'https://github.com/stacksjs/jpgx', label: 'stacksjs/jpgx' },
+  { name: 'pngx', description: 'Modern PNG encoder & decoder.', url: 'https://github.com/stacksjs/pngx', label: 'stacksjs/pngx' },
+  { name: 'ts-avif', description: 'High quality & small file sizes.', url: 'https://github.com/stacksjs/ts-avif', label: 'stacksjs/ts-avif' },
+  { name: 'ts-webp', description: 'A modern image format for the web.', url: 'https://github.com/stacksjs/ts-webp', label: 'stacksjs/ts-webp' },
+  { name: 'Open Web', description: 'At the intersection of tech & humanity, a community that builds toward a better future.', url: 'https://ow3.org', label: 'ow3.org' },
+  { name: 'Meema', description: 'Media management as a service. The easy way to manage, distribute and scale your media.', url: 'https://github.com/meemalabs', label: 'github.com/meemalabs' },
+  { name: 'CBM Skills', description: 'Helping each student master math & reading through high-quality educational content.', url: 'https://cbmskills.com', label: 'cbmskills.com' },
+  { name: 'Greenline', description: 'A napkin sketch that became a fully integrated cloud POS & management system for dry cleaners.', url: 'https://greenlinedcs.com', label: 'greenlinedcs.com' },
+  { name: 'JWI Enterprises', description: 'A custom contact & order management system, tracking millions of USD.', url: 'https://jwienterprises.com', label: 'jwienterprises.com' },
+  { name: 'DataSix', description: 'A big data analytics tool for Facebook advertising costs and insights across your market.', url: 'https://mutesix.com/datasix-dashboard', label: 'DataSix Dashboard' },
+]
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects - Chris Breuer</title>
+  <meta name="description" content="Things Chris Breuer has made: developer tools, frameworks, and products. Most of them open source.">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script src="/assets/scripts/theme.js"></script>
+  <link rel="stylesheet" href="/site.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="masthead">
+      <a class="brand" href="/">
+        <img src="/images/avatar.png" alt="Chris Breuer" width="28" height="28">
+        chris breuer
+      </a>
+      <nav aria-label="Site">
+        <a href="/blog">Blog</a>
+        <a href="/about">About</a>
+        <a href="/projects" aria-current="page">Projects</a>
+        <a href="/uses">Uses</a>
+        <a href="https://github.com/chrisbbreuer" rel="me">GitHub</a>
+        <button class="theme-btn" type="button" onclick="siteTheme()" aria-label="Toggle theme">◐</button>
+      </nav>
+    </header>
+
+    <main>
+      <h1 class="page-title">Things I've made.</h1>
+      <p class="page-lead">
+        I've worked on tons of little projects over the years; these are the ones I'm most
+        proud of. Many are open source, so if something piques your interest, check out the
+        code and contribute.
+      </p>
+
+      <ul class="row-list">
+        @foreach (projects as project)
+          <li>
+            <span class="row-name"><a href="{{ project.url }}">{{ project.name }}</a></span>
+            <span class="row-desc">{{ project.description }} <span class="row-meta">{{ project.label }}</span></span>
+          </li>
+        @endforeach
+      </ul>
+    </main>
+
+    <footer class="site-footer">
+      <a href="https://github.com/chrisbbreuer" rel="me">github</a>
+      <a href="https://bsky.app/profile/chrisbreuer.dev" rel="me">bluesky</a>
+      <a href="https://www.linkedin.com/in/%F0%9F%8C%B1-chris-breuer-33231765/">linkedin</a>
+      <a href="/blog/feed.xml">rss</a>
+      <span class="spacer"></span>
+      <span>built with <a href="https://stacksjs.com">stacks</a></span>
+    </footer>
+  </div>
+</body>
+</html>
