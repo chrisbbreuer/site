@@ -8,7 +8,7 @@ export const core = [
     desc: 'Independent open source developer, builder in the Stacks ecosystem.',
     links: [
       { icon: 'github', link: 'https://github.com/chrisbbreuer' },
-      { icon: 'bluesky', link: 'https://bsky.app/profile/chrisbreuer.dev' },
+      { icon: 'bluesky', link: 'https://bsky.app/profile/chrisbreuer.me' },
       { icon: 'twitter', link: 'https://twitter.com/chrisbbreuer' },
     ],
     sponsor: 'https://github.com/sponsors/chrisbbreuer',

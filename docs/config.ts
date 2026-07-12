@@ -661,7 +661,7 @@ export default {
       },
       socialLinks: [
         { icon: SocialLinkIcon.Twitter, link: 'https://twitter.com/stacksjs' },
-        { icon: SocialLinkIcon.Bluesky, link: 'https://bsky.app/profile/chrisbreuer.dev' },
+        { icon: SocialLinkIcon.Bluesky, link: 'https://bsky.app/profile/chrisbreuer.me' },
         { icon: SocialLinkIcon.GitHub, link: 'https://github.com/stacksjs/stacks' },
         { icon: SocialLinkIcon.Discord, link: 'https://discord.gg/stacksjs' },
       ],

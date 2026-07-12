@@ -13,8 +13,8 @@ const sections = [
     title: 'Development',
     tools: [
       { name: 'Ghostty', text: 'A fast, feature-rich, cross-platform terminal emulator that uses platform-native UI and GPU acceleration.' },
-      { name: 'Stacks', text: 'The Stacks Dashboard app is key to my productivity. It supercharges my local development experience and automates management of all my resources.' },
-      { name: 'VS Code & Cursor', text: 'VS Code is an amazing code editor. Cursor is great for some AI tasks.' },
+      { name: 'Stacks', text: 'The Stacks ecosystem is key to my productivity. It streamlines my local development experience and automates management of all my resources.' },
+      { name: 'Zed', text: 'Zed is an amazing code editor! Reminds me a little of Sublime Text.' },
       { name: 'TablePlus', text: 'Over the years I have used many database tools, and TablePlus is the one that stuck. Great tool for working with databases.' },
       { name: 'GitHub Desktop', text: 'My trusty sidekick for most git needs. No shame.' },
     ],
@@ -29,9 +29,10 @@ const sections = [
     title: 'Productivity',
     tools: [
       { name: 'Raycast', text: 'Makes it simple, fast, and delightful to control my tools. I love assigning custom keyboard shortcuts to anything I use frequently.' },
-      { name: '1Password', text: 'Go-to password manager.' },
+      { name: 'Apple Passwords', text: 'Go-to password manager.' },
       { name: 'SavvyCal', text: 'Great tool for scheduling meetings while protecting my calendar.' },
       { name: 'Muzzle', text: 'Automatically blocks incoming notifications when I\'m in meetings.' },
+      { name: 'Caffeine', text: 'Automatically keeps my computer awake when it should not be sleeping.' },
     ],
   },
 ]
@@ -89,7 +90,7 @@ const sections = [
 
     <footer class="site-footer">
       <a href="https://github.com/chrisbbreuer" rel="me">github</a>
-      <a href="https://bsky.app/profile/chrisbreuer.dev" rel="me">bluesky</a>
+      <a href="https://bsky.app/profile/chrisbreuer.me" rel="me">bluesky</a>
       <a href="https://www.linkedin.com/in/%F0%9F%8C%B1-chris-breuer-33231765/">linkedin</a>
       <a href="/blog/feed.xml">rss</a>
       <span class="spacer"></span>

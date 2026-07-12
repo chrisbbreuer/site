@@ -99,7 +99,7 @@
               <span class="entry-desc">Code, most days of the week.</span>
             </li>
             <li>
-              <span class="entry-name"><a href="https://bsky.app/profile/chrisbreuer.dev" rel="me">Bluesky</a></span>
+              <span class="entry-name"><a href="https://bsky.app/profile/chrisbreuer.me" rel="me">Bluesky</a></span>
               <span class="entry-desc">Shorter thoughts on tooling and the web.</span>
             </li>
             <li>
@@ -126,7 +126,7 @@
 
     <footer class="site-footer">
       <a href="https://github.com/chrisbbreuer" rel="me">github</a>
-      <a href="https://bsky.app/profile/chrisbreuer.dev" rel="me">bluesky</a>
+      <a href="https://bsky.app/profile/chrisbreuer.me" rel="me">bluesky</a>
       <a href="https://www.linkedin.com/in/%F0%9F%8C%B1-chris-breuer-33231765/">linkedin</a>
       <a href="/blog/feed.xml">rss</a>
       <span class="spacer"></span>
