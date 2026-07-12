@@ -5,6 +5,27 @@
  * which follows prefers-color-scheme until the visitor picks a mode).
  */
 
+/* Lilex (OFL, https://github.com/mishamyrt/Lilex) — the site's one typeface.
+ * Variable weight 100-700, self-hosted, swap so text never blocks on it. */
+@font-face {
+  font-family: 'Lilex';
+  src: url('/fonts/lilex/Lilex-var.woff2') format('woff2');
+  font-weight: 100 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Lilex';
+  src: url('/fonts/lilex/Lilex-Italic-var.woff2') format('woff2');
+  font-weight: 100 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --font-mono: 'Lilex', ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+}
+
 :root,
 :root[data-theme='light'] {
   --bg: #fafafa;
@@ -36,15 +57,15 @@ html {
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  font-size: 1rem;
-  line-height: 1.7;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  line-height: 1.75;
   color: var(--text-1);
   background: var(--bg);
 }
 
 .mono {
-  font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font-mono);
 }
 
 .shell {
@@ -67,7 +88,7 @@ a { color: var(--text-1); }
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--text-1);
@@ -85,7 +106,7 @@ a { color: var(--text-1); }
   align-items: center;
   gap: 1rem;
   margin-left: auto;
-  font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 0.8rem;
 }
 .masthead nav a {
@@ -144,7 +165,7 @@ main { padding: 3.5rem 0 2rem; }
 
 .section-label {
   margin: 2.75rem 0 0.75rem;
-  font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.06em;
@@ -169,7 +190,7 @@ main { padding: 3.5rem 0 2rem; }
 .post-list a:hover .post-title { text-decoration: underline; text-underline-offset: 3px; }
 .post-list .post-date {
   flex: 0 0 auto;
-  font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 0.78rem;
   color: var(--text-3);
 }
@@ -185,7 +206,7 @@ main { padding: 3.5rem 0 2rem; }
 }
 .entry-list li:first-child { border-top: 0; }
 .entry-list .entry-name {
-  font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 0.85rem;
   font-weight: 600;
 }
@@ -193,7 +214,7 @@ main { padding: 3.5rem 0 2rem; }
 .entry-list .entry-name a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .entry-list .entry-desc { color: var(--text-2); font-size: 0.95rem; line-height: 1.55; }
 .entry-list .entry-meta {
-  font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 0.78rem;
   color: var(--text-3);
 }
@@ -252,7 +273,7 @@ main { padding: 3.5rem 0 2rem; }
 }
 .subscribe button {
   padding: 0.55rem 1.1rem;
-  font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--bg);
@@ -266,7 +287,7 @@ main { padding: 3.5rem 0 2rem; }
 .subscribe .form-note {
   width: 100%;
   margin: 0.2rem 0 0;
-  font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 0.8rem;
   color: var(--text-2);
   min-height: 1.2em;
@@ -281,7 +302,7 @@ main { padding: 3.5rem 0 2rem; }
   flex-wrap: wrap;
   gap: 0.5rem 1.25rem;
   align-items: center;
-  font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 0.78rem;
   color: var(--text-3);
 }

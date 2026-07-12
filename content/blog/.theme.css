@@ -49,9 +49,26 @@
   --vp-code-block-bg: #101010;
 }
 
+/* Lilex (OFL, https://github.com/mishamyrt/Lilex) — the site's one typeface,
+ * served from the main app's public/fonts. Variable weight 100-700. */
+@font-face {
+  font-family: 'Lilex';
+  src: url('/fonts/lilex/Lilex-var.woff2') format('woff2');
+  font-weight: 100 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Lilex';
+  src: url('/fonts/lilex/Lilex-Italic-var.woff2') format('woff2');
+  font-weight: 100 700;
+  font-style: italic;
+  font-display: swap;
+}
+
 :root {
-  --font-body: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --font-mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  --font-body: 'Lilex', ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  --font-mono: 'Lilex', ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 /* ── Base ───────────────────────────────────────────────────────────────── */
@@ -82,7 +99,7 @@ body {
 
 .bp-doc {
   font-family: var(--font-body);
-  font-size: 1.0325rem;
+  font-size: 0.95rem;
   line-height: 1.75;
 }
 .bp-doc h1, .bp-doc h2, .bp-doc h3, .bp-doc h4 {

@@ -7,6 +7,7 @@
   <meta name="description" content="I'm Chris Breuer, a software engineer passionately obsessed over developer tooling.">
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/lilex/Lilex-var.woff2" as="font" type="font/woff2" crossorigin>
   <script src="/assets/scripts/theme.js"></script>
   <link rel="stylesheet" href="/site.css">
 </head>
@@ -66,10 +67,6 @@
               <span class="entry-desc">Founder <span class="entry-meta">2024 to present</span></span>
             </li>
             <li>
-              <span class="entry-name">Open Web Foundation</span>
-              <span class="entry-desc">Board Member <span class="entry-meta">2022 to present</span></span>
-            </li>
-            <li>
               <span class="entry-name">Bixolon</span>
               <span class="entry-desc">Consultant <span class="entry-meta">2020 to 2024</span></span>
             </li>
@@ -84,10 +81,6 @@
             <li>
               <span class="entry-name">Eliinova</span>
               <span class="entry-desc">Engineering Lead <span class="entry-meta">2018 to present</span></span>
-            </li>
-            <li>
-              <span class="entry-name">CION</span>
-              <span class="entry-desc">Founder <span class="entry-meta">2016 to present</span></span>
             </li>
           </ul>
 
