@@ -11,7 +11,7 @@ import { env } from '@stacksjs/env'
 export default {
   from: {
     name: env.MAIL_FROM_NAME || 'Chris Breuer',
-    address: env.MAIL_FROM_ADDRESS || `chris@${env.MAIL_DOMAIN || 'chrisbreuer.me'}`,
+    address: env.MAIL_FROM_ADDRESS || `hi@${env.MAIL_DOMAIN || 'chrisbreuer.me'}`,
   },
 
   domain: env.MAIL_DOMAIN || 'chrisbreuer.me',
@@ -29,8 +29,14 @@ export default {
    * - Objects: [{ email: 'chris', password: '...' }]
    */
   mailboxes: [
-    'chris',
+    'hi',
+    'chris', // forwarding shell; everything sent here lands in hi@ (see forwards)
   ],
+
+  /** Auto-forwarding: anything sent to chris@ lands in the hi@ mailbox. */
+  forwards: {
+    'chris@chrisbreuer.me': ['hi@chrisbreuer.me'],
+  },
 
   url: env.APP_URL || 'https://chrisbreuer.me',
   charset: 'UTF-8',
