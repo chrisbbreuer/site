@@ -1,18 +1,19 @@
 import type { DnsConfig } from '@stacksjs/types'
-import { env } from '@stacksjs/env'
 
 /**
  * **DNS Options**
  *
- * This configuration defines all of your DNS options. Because Stacks is fully-typed, you
- * may hover any of the options below and the definitions will be provided. In case you
- * have any questions, feel free to reach out via Discord or GitHub Discussions.
+ * Declarative DNS for chrisbreuer.me. NOTE: the authoritative DNS for this
+ * domain lives at PORKBUN (not Route 53), pointing at the shared Hetzner box
+ * (stacks-production-app, 178.156.x — see config/cloud.ts attachTo). This file
+ * documents the desired records; `buddy dns` reconciliation against Route 53
+ * is a no-op for this project (no AWS credentials / hosted zone).
  */
 export default {
   a: [
     {
-      name: env.APP_URL || '', // Hostname (root domain)
-      address: '10.0.0.1', // IPv4 address
+      name: 'chrisbreuer.me', // Hostname (root domain)
+      address: '178.105.248.188', // shared Hetzner box (stacks-production-app)
       ttl: 300, // Time-to-live in seconds
     },
 
@@ -27,7 +28,5 @@ export default {
   mx: [],
   txt: [],
 
-  nameservers: ['ns-1731.awsdns-24.co.uk', 'ns-355.awsdns-44.com', 'ns-536.awsdns-03.net', 'ns-1395.awsdns-46.org'],
-
-  // redirects: ['stacksjs.com', 'buddy.sh'],
+  nameservers: ['curitiba.ns.porkbun.com', 'fortaleza.ns.porkbun.com', 'maceio.ns.porkbun.com', 'salvador.ns.porkbun.com'],
 } satisfies DnsConfig

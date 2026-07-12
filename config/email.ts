@@ -10,29 +10,29 @@ import { env } from '@stacksjs/env'
  */
 export default {
   from: {
-    name: env.MAIL_FROM_NAME || 'Stacks',
-    address: env.MAIL_FROM_ADDRESS || `hello@${env.MAIL_DOMAIN || 'stacksjs.com'}`,
+    name: env.MAIL_FROM_NAME || 'Chris Breuer',
+    address: env.MAIL_FROM_ADDRESS || `chris@${env.MAIL_DOMAIN || 'chrisbreuer.me'}`,
   },
 
-  domain: env.MAIL_DOMAIN || 'stacksjs.com',
+  domain: env.MAIL_DOMAIN || 'chrisbreuer.me',
 
   /**
    * Mailbox users for IMAP/SMTP access.
    * Passwords are automatically looked up from MAIL_PASSWORD_<USERNAME> env vars.
-   * After first deploy, passwords are synced to AWS Secrets Manager.
+   * A mailbox is only provisioned when its password is explicitly supplied
+   * (config object or MAIL_PASSWORD_<LOCALPART> env), so declaring it here is
+   * safe on every deploy.
    *
    * Supported formats:
    * - Simple usernames: ['chris', 'blake'] -> chris@{domain}, blake@{domain}
-   * - Full emails: ['chris@stacksjs.com']
+   * - Full emails: ['chris@chrisbreuer.me']
    * - Objects: [{ email: 'chris', password: '...' }]
    */
   mailboxes: [
     'chris',
-    'blake',
-    'glenn',
   ],
 
-  url: env.APP_URL || 'https://stacksjs.com',
+  url: env.APP_URL || 'https://chrisbreuer.me',
   charset: 'UTF-8',
 
   server: {
