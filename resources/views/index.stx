@@ -66,16 +66,23 @@ const posts = fs.readdirSync(blogDir)
       </p>
 
       <h2 class="section-label">Writing</h2>
-      <ul class="post-list">
-        @foreach (posts as post)
-          <li>
-            <a href="/blog/{{ post.slug }}">
-              <span class="post-title">{{ post.title }}</span>
-              <span class="post-date">{{ post.shortDate }}</span>
-            </a>
-          </li>
-        @endforeach
-      </ul>
+      @if (posts.length > 0)
+        <ul class="post-list">
+          @foreach (posts as post)
+            <li>
+              <a href="/blog/{{ post.slug }}">
+                <span class="post-title">{{ post.title }}</span>
+                <span class="post-date">{{ post.shortDate }}</span>
+              </a>
+            </li>
+          @endforeach
+        </ul>
+      @else
+        <p class="empty-note">
+          Nothing published yet. The first post is in the works; subscribe below
+          and it lands in your inbox the moment it ships.
+        </p>
+      @endif
 
       <section class="subscribe" aria-labelledby="subscribe-heading">
         <h2 id="subscribe-heading">Get new posts by email</h2>

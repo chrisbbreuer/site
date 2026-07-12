@@ -19,6 +19,10 @@ export interface BlogConfig {
   defaultTheme?: 'colored' | 'light' | 'dark'
   /** Raw HTML for the blog footer colophon line. */
   colophon?: string
+  /** Empty-state heading shown when no posts exist yet. */
+  emptyTitle?: string
+  /** Empty-state copy shown under the heading (plain text). */
+  emptyText?: string
   social: {
     twitter?: string
     github?: string
@@ -51,6 +55,8 @@ const config: BlogConfig = {
   themes: ['light', 'dark'],
   defaultTheme: 'light',
   colophon: 'Chris Breuer · Built with <a href="https://stacksjs.com">Stacks</a> · <a href="/blog/feed.xml">RSS</a>',
+  emptyTitle: 'The first post is in the works',
+  emptyText: 'Notes on developer tooling, TypeScript, and Bun. Drop your email and new posts land in your inbox the moment they ship.',
   social: {
     twitter: 'stacksjs',
     github: 'chrisbbreuer',

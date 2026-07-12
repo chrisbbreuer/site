@@ -202,6 +202,14 @@ main { padding: 3.5rem 0 2rem; }
   .entry-list li { grid-template-columns: 1fr; gap: 0.15rem; }
 }
 
+.empty-note {
+  margin: 0;
+  max-width: 38rem;
+  color: var(--text-2);
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
 /* ── Subscribe ──────────────────────────────────────────────────────────── */
 .subscribe {
   margin-top: 3rem;

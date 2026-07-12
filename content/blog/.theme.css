@@ -235,6 +235,55 @@ body {
 .bp-doc .blog-listing-head h1,
 .bp-doc .blog-post-head h1 { border-top: 0; padding-top: 0; }
 
+/* ── Empty state (email capture) ────────────────────────────────────────── */
+.blog-empty { max-width: 34rem; padding: 0.5rem 0 1rem; }
+.bp-doc .blog-empty h2 {
+  margin: 0 0 0.5rem; border-top: 0; padding-top: 0;
+  font-size: 1.25rem; font-weight: 650; letter-spacing: -0.01em;
+  color: var(--vp-c-text-1);
+}
+.blog-empty p { margin: 0 0 1.25rem; color: var(--vp-c-text-2); line-height: 1.6; }
+.blog-subscribe { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.blog-subscribe input[type='email'] {
+  flex: 1 1 14rem;
+  min-width: 0;
+  padding: 0.55rem 0.8rem;
+  font: inherit;
+  /* 16px floor: anything smaller makes iOS Safari zoom the page on focus */
+  font-size: 1rem;
+  color: var(--vp-c-text-1);
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 6px;
+}
+.blog-subscribe input[type='email']::placeholder { color: var(--vp-c-text-3); }
+.blog-subscribe input[type='email']:focus {
+  outline: 2px solid var(--vp-c-text-1);
+  outline-offset: 1px;
+  border-color: var(--vp-c-text-1);
+}
+.blog-subscribe button {
+  padding: 0.55rem 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--vp-c-bg);
+  background: var(--vp-c-text-1);
+  border: 1px solid var(--vp-c-text-1);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.blog-subscribe button:hover { opacity: 0.85; }
+.blog-subscribe button:active { transform: translateY(1px); }
+.blog-subscribe .blog-form-note {
+  width: 100%;
+  margin: 0.2rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--vp-c-text-2);
+  min-height: 1.2em;
+}
+
 /* ── Post footer: share + read-next ─────────────────────────────────────── */
 .blog-share {
   display: flex; flex-wrap: wrap; align-items: center; gap: 1rem;
