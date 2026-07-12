@@ -3,10 +3,10 @@ const sections = [
   {
     title: 'Workstation',
     tools: [
-      { name: '14" MacBook M3 Pro', text: 'I was using an Intel-based MacBook Pro before this and the difference was stunning. These days a MacBook Air on Apple Silicon is more than powerful enough for the latest dev tooling, and that\'s great.' },
+      { name: '14" MacBook M3 Pro', text: 'My trusty sidekick for most dev needs.' },
       { name: 'Apple Studio Display', text: 'Coming from LG\'s 27" UltraFine 5K IPS monitor, I have enjoyed the transition to the Apple Studio Display.' },
-      { name: 'MX Keys for Mac', text: 'Love the travel time of this keyboard. Feels similar to the MacBooks, but with a little more travel. Designed to work seamlessly with Macs and iPads.' },
-      { name: 'MX Master 3S', text: 'I used the MX Master 3 for years and it was always great. The 3S feels similar with a few minor improvements, like the clicks. The scroll wheel is great as always.' },
+      { name: 'MX Mechanical', text: 'Love the travel time and sound of this keyboard.' },
+      { name: 'MX Master 3S', text: 'Long-time MX Master user.' },
     ],
   },
   {
@@ -22,7 +22,7 @@ const sections = [
   {
     title: 'Design',
     tools: [
-      { name: 'Figma', text: 'We started using Figma as just a design tool, but it has become our virtual whiteboard for everything.' },
+      { name: 'Figma', text: 'We started using Figma as just a design tool, but now we dump much more into it.' },
     ],
   },
   {
