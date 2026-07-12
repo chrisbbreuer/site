@@ -175,31 +175,31 @@ main { padding: 3.5rem 0 2rem; }
 }
 
 /* ── Row list (projects, work) ──────────────────────────────────────────── */
-.row-list { list-style: none; margin: 0; padding: 0; }
-.row-list li {
+.entry-list { list-style: none; margin: 0; padding: 0; }
+.entry-list li {
   display: grid;
   grid-template-columns: 12rem 1fr;
   gap: 0.35rem 1.5rem;
   padding: 0.85rem 0;
   border-top: 1px solid var(--divider);
 }
-.row-list li:first-child { border-top: 0; }
-.row-list .row-name {
+.entry-list li:first-child { border-top: 0; }
+.entry-list .entry-name {
   font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 0.85rem;
   font-weight: 600;
 }
-.row-list .row-name a { text-decoration: none; }
-.row-list .row-name a:hover { text-decoration: underline; text-underline-offset: 3px; }
-.row-list .row-desc { color: var(--text-2); font-size: 0.95rem; line-height: 1.55; }
-.row-list .row-meta {
+.entry-list .entry-name a { text-decoration: none; }
+.entry-list .entry-name a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.entry-list .entry-desc { color: var(--text-2); font-size: 0.95rem; line-height: 1.55; }
+.entry-list .entry-meta {
   font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 0.78rem;
   color: var(--text-3);
 }
 
 @media (max-width: 640px) {
-  .row-list li { grid-template-columns: 1fr; gap: 0.15rem; }
+  .entry-list li { grid-template-columns: 1fr; gap: 0.15rem; }
 }
 
 /* ── Subscribe ──────────────────────────────────────────────────────────── */
@@ -229,7 +229,8 @@ main { padding: 3.5rem 0 2rem; }
   min-width: 0;
   padding: 0.55rem 0.8rem;
   font: inherit;
-  font-size: 0.95rem;
+  /* 16px floor: anything smaller makes iOS Safari zoom the page on focus */
+  font-size: 1rem;
   color: var(--text-1);
   background: var(--bg);
   border: 1px solid var(--divider);

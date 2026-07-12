@@ -61,54 +61,54 @@
           </div>
 
           <h2 class="section-label">Work</h2>
-          <ul class="row-list">
+          <ul class="entry-list">
             <li>
-              <span class="row-name">Stacks.js, Inc.</span>
-              <span class="row-desc">Founder <span class="row-meta">2024 to present</span></span>
+              <span class="entry-name">Stacks.js, Inc.</span>
+              <span class="entry-desc">Founder <span class="entry-meta">2024 to present</span></span>
             </li>
             <li>
-              <span class="row-name">Open Web Foundation</span>
-              <span class="row-desc">Board Member <span class="row-meta">2022 to present</span></span>
+              <span class="entry-name">Open Web Foundation</span>
+              <span class="entry-desc">Board Member <span class="entry-meta">2022 to present</span></span>
             </li>
             <li>
-              <span class="row-name">Bixolon</span>
-              <span class="row-desc">Consultant <span class="row-meta">2020 to 2024</span></span>
+              <span class="entry-name">Bixolon</span>
+              <span class="entry-desc">Consultant <span class="entry-meta">2020 to 2024</span></span>
             </li>
             <li>
-              <span class="row-name">University of Oregon</span>
-              <span class="row-desc">Consultant <span class="row-meta">2020 to 2021</span></span>
+              <span class="entry-name">University of Oregon</span>
+              <span class="entry-desc">Consultant <span class="entry-meta">2020 to 2021</span></span>
             </li>
             <li>
-              <span class="row-name">Girlgaze</span>
-              <span class="row-desc">Consultant <span class="row-meta">2019 to 2020</span></span>
+              <span class="entry-name">Girlgaze</span>
+              <span class="entry-desc">Consultant <span class="entry-meta">2019 to 2020</span></span>
             </li>
             <li>
-              <span class="row-name">Eliinova</span>
-              <span class="row-desc">Engineering Lead <span class="row-meta">2018 to present</span></span>
+              <span class="entry-name">Eliinova</span>
+              <span class="entry-desc">Engineering Lead <span class="entry-meta">2018 to present</span></span>
             </li>
             <li>
-              <span class="row-name">CION</span>
-              <span class="row-desc">Founder <span class="row-meta">2016 to present</span></span>
+              <span class="entry-name">CION</span>
+              <span class="entry-desc">Founder <span class="entry-meta">2016 to present</span></span>
             </li>
           </ul>
 
           <h2 class="section-label">Elsewhere</h2>
-          <ul class="row-list">
+          <ul class="entry-list">
             <li>
-              <span class="row-name"><a href="https://github.com/chrisbbreuer" rel="me">GitHub</a></span>
-              <span class="row-desc">Code, most days of the week.</span>
+              <span class="entry-name"><a href="https://github.com/chrisbbreuer" rel="me">GitHub</a></span>
+              <span class="entry-desc">Code, most days of the week.</span>
             </li>
             <li>
-              <span class="row-name"><a href="https://bsky.app/profile/chrisbreuer.dev" rel="me">Bluesky</a></span>
-              <span class="row-desc">Shorter thoughts on tooling and the web.</span>
+              <span class="entry-name"><a href="https://bsky.app/profile/chrisbreuer.dev" rel="me">Bluesky</a></span>
+              <span class="entry-desc">Shorter thoughts on tooling and the web.</span>
             </li>
             <li>
-              <span class="row-name"><a href="https://www.linkedin.com/in/%F0%9F%8C%B1-chris-breuer-33231765/">LinkedIn</a></span>
-              <span class="row-desc">The professional trail.</span>
+              <span class="entry-name"><a href="https://www.linkedin.com/in/%F0%9F%8C%B1-chris-breuer-33231765/">LinkedIn</a></span>
+              <span class="entry-desc">The professional trail.</span>
             </li>
             <li>
-              <span class="row-name"><a href="mailto:chris@stacksjs.org">Email</a></span>
-              <span class="row-desc">chris@stacksjs.org</span>
+              <span class="entry-name"><a href="mailto:hi@chrisbreuer.me">Email</a></span>
+              <span class="entry-desc">hi@chrisbreuer.me</span>
             </li>
           </ul>
         </div>

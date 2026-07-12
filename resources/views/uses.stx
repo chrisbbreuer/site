@@ -76,11 +76,11 @@ const sections = [
 
       @foreach (sections as section)
         <h2 class="section-label">{{ section.title }}</h2>
-        <ul class="row-list">
+        <ul class="entry-list">
           @foreach (section.tools as tool)
             <li>
-              <span class="row-name">{{ tool.name }}</span>
-              <span class="row-desc">{{ tool.text }}</span>
+              <span class="entry-name">{{ tool.name }}</span>
+              <span class="entry-desc">{{ tool.text }}</span>
             </li>
           @endforeach
         </ul>

@@ -327,3 +327,33 @@ body {
 @media (max-width: 640px) {
   .blog-listing-head { margin-bottom: 2rem; }
 }
+
+/* ── Mobile nav ─────────────────────────────────────────────────────────── */
+/* BunPress's base theme hides .BPNavBarMenu on small screens (it expects a
+ * hamburger that the 'page' layout doesn't render), which strands mobile
+ * visitors on /blog with no navigation. Force a compact wrapped menu that
+ * matches the stx pages' masthead instead. */
+@media (max-width: 768px) {
+  .BPNavBar {
+    flex-wrap: wrap;
+    row-gap: 0.25rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    height: auto;
+    min-height: 0;
+  }
+  .BPNavBarStart { flex: 1 1 100%; }
+  .BPNavBarEnd { flex: 1 1 100%; }
+  .BPNavBarMenu {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 0.35rem 1rem;
+  }
+  .BPNavBarMenu-link {
+    display: inline-block;
+    padding: 0;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    line-height: 1.8;
+  }
+}
