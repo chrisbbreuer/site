@@ -1,76 +1,98 @@
 /**
  * Rebuilds public/images/gallery + content/gallery.json from a folder of
- * source photos (HEIC/JPEG/PNG). Everything is homegrown: optimization is
- * imgx (ts-images). HEIC decoding currently shims through macOS `sips`
- * until @stacksjs/ts-heic lands its HEVC decoder, at which point the shim
- * drops out and this runs anywhere.
+ * source photos. Everything is homegrown: decoding, resizing, format choice,
+ * and the SplatHash placeholder all come from ts-images.
  *
- * Run: bun scripts/build-gallery.ts <source-dir>
+ * For each source it emits two variants — `sm` (masonry thumbnail) and `lg`
+ * (lightbox source) — each in the smallest of AVIF / WebP that clears a
+ * quality gate (falling back to JPEG), plus a 16-byte SplatHash placeholder
+ * that the browser paints before any image byte arrives.
+ *
+ * Run: bun scripts/build-gallery.ts [source-dir]
+ * With no source-dir it re-optimizes the existing note-*.jpg in the gallery
+ * folder in place (handy when the originals aren't on this machine).
  */
 import { execSync } from 'node:child_process'
 import { mkdirSync, readdirSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { processImage } from 'ts-images'
-
-const sourceDir = process.argv[2]
-if (!sourceDir) {
-  console.error('Usage: bun scripts/build-gallery.ts <source-dir>')
-  process.exit(1)
-}
+import { generatePictureSet } from 'ts-images'
 
 const outDir = join(import.meta.dir, '../public/images/gallery')
 const manifestPath = join(import.meta.dir, '../content/gallery.json')
-const workDir = join(tmpdir(), `gallery-work-${process.pid}`)
 mkdirSync(outDir, { recursive: true })
+
+const sourceDir = process.argv[2] ?? outDir
+const workDir = join(tmpdir(), `gallery-work-${process.pid}`)
 mkdirSync(workDir, { recursive: true })
 
-/** TEMPORARY: decode HEIC via the OS until ts-heic can. */
+/** TEMPORARY: decode HEIC via the OS until ts-heic lands its HEVC decoder. */
 function decodeHeicToJpeg(input: string, output: string): void {
   execSync(`sips -s format jpeg "${input}" --out "${output}"`, { stdio: 'pipe' })
 }
 
-function imageSize(file: string): { width: number, height: number } {
-  const out = execSync(`sips -g pixelWidth -g pixelHeight "${file}"`, { encoding: 'utf8' })
-  const width = Number(out.match(/pixelWidth: (\d+)/)?.[1])
-  const height = Number(out.match(/pixelHeight: (\d+)/)?.[1])
-  return { width, height }
-}
-
 const sources = readdirSync(sourceDir)
-  .filter(f => /\.(heic|jpe?g|png|dat)$/i.test(f))
+  .filter(f => /^note-\d+\.(?:heic|jpe?g|png)$/i.test(f))
   .sort((a, b) => {
     const na = Number(a.match(/\d+/)?.[0] ?? 0)
     const nb = Number(b.match(/\d+/)?.[0] ?? 0)
     return na - nb || a.localeCompare(b)
   })
 
-const manifest: { src: string, width: number, height: number }[] = []
+interface Entry {
+  sm: string
+  lg: string
+  width: number
+  height: number
+  smWidth: number
+  smHeight: number
+  hash: string
+}
+
+const manifest: Entry[] = []
 let i = 0
 for (const file of sources) {
   i++
   const n = String(i).padStart(2, '0')
-  const sourcePath = join(sourceDir, file)
-  const kind = execSync(`file -b --mime-type "${sourcePath}"`, { encoding: 'utf8' }).trim()
+  const name = `note-${n}`
+  let input = join(sourceDir, file)
 
-  // Normalize everything to a full-size JPEG first (HEIC via the shim).
-  let fullJpeg = sourcePath
-  if (kind === 'image/heic' || kind === 'image/heif') {
-    fullJpeg = join(workDir, `${n}.jpg`)
-    decodeHeicToJpeg(sourcePath, fullJpeg)
+  if (/\.(?:heic|heif)$/i.test(file)) {
+    const jpg = join(workDir, `${n}.jpg`)
+    decodeHeicToJpeg(input, jpg)
+    input = jpg
   }
 
-  const output = join(outDir, `note-${n}.jpg`)
-  const result = await processImage({
-    input: fullJpeg,
-    output,
-    quality: 78,
-    resize: { width: 700 },
+  const set = await generatePictureSet({
+    input,
+    outDir,
+    name,
+    widths: [
+      { label: 'sm', width: 460 },
+      { label: 'lg', width: 1600 },
+    ],
+    formats: ['avif', 'webp'],
+    quality: 72,
+    minPsnr: 34,
   })
 
-  const { width, height } = imageSize(output)
-  manifest.push({ src: `/images/gallery/note-${n}.jpg`, width, height })
-  console.log(`note-${n}.jpg ${width}x${height} (${Math.round(result.outputSize / 1024)}KB, saved ${result.savedPercentage.toFixed(0)}%)`)
+  const sm = set.variants.find(v => v.label === 'sm')!
+  const lg = set.variants.find(v => v.label === 'lg')!
+  manifest.push({
+    sm: `/images/gallery/${sm.path.split('/').pop()}`,
+    lg: `/images/gallery/${lg.path.split('/').pop()}`,
+    width: lg.width,
+    height: lg.height,
+    smWidth: sm.width,
+    smHeight: sm.height,
+    hash: set.splatHash,
+  })
+  console.log(`${name}: sm ${sm.format} ${(sm.size / 1024).toFixed(1)}KB (${sm.psnr.toFixed(0)}dB) · lg ${lg.format} ${(lg.size / 1024).toFixed(1)}KB`)
+}
+
+// Drop the old single-size note-NN.jpg files now that variants exist.
+for (const file of readdirSync(outDir)) {
+  if (/^note-\d+\.j(?:pe?)g$/i.test(file)) rmSync(join(outDir, file))
 }
 
 writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`)

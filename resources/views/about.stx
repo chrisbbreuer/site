@@ -7,8 +7,12 @@ const description = 'I\'m Chris Breuer, a software engineer passionately obsesse
 const activeNav = 'about'
 const pagePath = '/about'
 
-// Photo rail: built by `bun scripts/build-gallery.ts` from my photo dump.
+// Photos: built by `bun scripts/build-gallery.ts` from my photo dump.
+// The first few ride alongside the bio in the right rail; the rest flow
+// into the full-width masonry below.
 const gallery = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'content/gallery.json'), 'utf-8'))
+const railPhotos = gallery.slice(0, 20)
+const restPhotos = gallery.slice(20)
 
 const work = [
   { name: 'Stacks.js, Inc.', role: 'Founder', period: '2024 to present' },
@@ -82,11 +86,30 @@ const elsewhere = [
 
     <div class="portrait">
       <img src="/images/chris.jpg" alt="Chris Breuer" width="480" height="480">
+      <p class="portrait-note">Los Angeles based. Usually outside with the dogs when I'm not at the keyboard.</p>
       <div class="photo-rail">
-        @foreach (gallery as photo)
-          <img src="{{ photo.src }}" alt="" width="{{ photo.width }}" height="{{ photo.height }}" loading="lazy">
+        @foreach (railPhotos as photo)
+          <button type="button" class="gallery-item" data-full="{{ photo.lg }}" data-hash="{{ photo.hash }}" style="aspect-ratio: {{ photo.width }} / {{ photo.height }}" aria-label="Open photograph">
+            <img src="{{ photo.sm }}" alt="" width="{{ photo.smWidth }}" height="{{ photo.smHeight }}" loading="lazy" decoding="async">
+          </button>
         @endforeach
       </div>
     </div>
   </div>
+
+  <section class="gallery-section" aria-label="More photographs">
+    <h2 class="section-label">Photographs <span class="label-meta">{{ gallery.length }}</span></h2>
+    <div class="gallery-masonry">
+      @foreach (restPhotos as photo)
+        <button type="button" class="gallery-item" data-full="{{ photo.lg }}" data-hash="{{ photo.hash }}" style="aspect-ratio: {{ photo.width }} / {{ photo.height }}" aria-label="Open photograph">
+          <img src="{{ photo.sm }}" alt="" width="{{ photo.smWidth }}" height="{{ photo.smHeight }}" loading="lazy" decoding="async">
+        </button>
+      @endforeach
+    </div>
+  </section>
 @endsection
+
+@push('scripts')
+  <script src="/assets/scripts/splathash.js"></script>
+  <script src="/assets/scripts/gallery.js"></script>
+@endpush

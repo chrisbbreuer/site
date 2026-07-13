@@ -340,43 +340,157 @@ main { padding: 3.5rem 0 2rem; }
 .site-footer .spacer { margin-left: auto; }
 
 /* ── About page ─────────────────────────────────────────────────────────── */
+/* Same narrow shell as every other page. The bio and the photo rail split it
+ * in half: two photo columns sit beside the text at the SAME image size as
+ * the four-column masonry below, so the rail flows straight into it. */
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 15rem;
-  gap: 2.5rem;
+  /* Bio and photo rail split the shell in half. The rail's two columns are
+   * the SAME width as two of the four columns in the masonry below, so the
+   * rail's right edge and both column gutters line straight up with the
+   * full-width grid — the 2-up simply gains two more columns and becomes the
+   * 4-up. minmax(0, ...) keeps the halves equal regardless of content. */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
   align-items: start;
 }
-.about-grid .portrait img {
+/* The portrait fills the rail so it's exactly as wide as the 2-up masonry
+ * that continues beneath it. */
+.about-grid .portrait > img {
   width: 100%;
   height: auto;
-  border-radius: 8px;
+  border-radius: 6px;
   border: 1px solid var(--divider);
   display: block;
 }
 @media (max-width: 720px) {
   .about-grid { grid-template-columns: 1fr; }
-  /* Bio reads first on mobile; the portrait + photo rail follow it. */
-  .about-grid .portrait img:first-child { max-width: 15rem; }
+  .about-grid .portrait > img { max-width: 15rem; }
 }
 
-/* The side photo rail: a two-column masonry of everything in
- * content/gallery.json, natural aspect ratios, lazy-loaded. */
+.portrait-note {
+  margin: 0.9rem 0 0;
+  color: var(--text-3);
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+/* Right-column rail: the first photos beside the bio as a 2-up masonry, at
+ * the SAME column width as the full masonry below so the two read as one
+ * continuous flow (2 columns here, 4 columns underneath). */
 .photo-rail {
-  columns: 2;
-  column-gap: 0.6rem;
+  columns: 9rem;
+  column-gap: 0.5rem;
   margin-top: 1rem;
 }
-.photo-rail img {
+.photo-rail .gallery-item { margin-bottom: 0.5rem; }
+
+@media (max-width: 720px) {
+  .about-grid .portrait { max-width: 100%; }
+  .about-grid .portrait > img { max-width: 15rem; }
+  .photo-rail { margin-top: 1rem; }
+}
+
+/* ── Photographs: full-width masonry below the bio ───────────────────────── */
+/* Same column-width as the rail → four columns at full width, continuing the
+ * rail's two columns at the same image size. */
+.gallery-section { margin-top: 2.5rem; }
+.gallery-masonry {
+  columns: 9rem;
+  column-gap: 0.5rem;
+  margin-top: 1.1rem;
+}
+@media (max-width: 560px) {
+  .gallery-masonry, .photo-rail { columns: 7.5rem; column-gap: 0.4rem; }
+  .gallery-item { margin-bottom: 0.4rem; }
+}
+
+.gallery-item {
+  display: block;
+  width: 100%;
+  margin: 0 0 0.55rem;
+  padding: 0;
+  border: 1px solid var(--divider);
+  border-radius: 6px;
+  overflow: hidden;
+  break-inside: avoid;
+  cursor: zoom-in;
+  background-color: var(--bg-soft);
+  background-size: cover;
+  background-position: center;
+  /* SplatHash placeholder is a 32px source; smooth it while it stands in. */
+  image-rendering: auto;
+  line-height: 0;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+}
+.gallery-item:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); }
+.gallery-item:focus-visible { outline: 2px solid var(--text-1); outline-offset: 2px; }
+.gallery-item img {
   width: 100%;
   height: auto;
   display: block;
-  margin-bottom: 0.6rem;
-  border-radius: 6px;
-  border: 1px solid var(--divider);
-  break-inside: avoid;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
-@media (max-width: 720px) {
-  /* On mobile the rail moves below the text; three columns keep it compact. */
-  .photo-rail { columns: 3; column-gap: 0.5rem; }
-  .photo-rail img { margin-bottom: 0.5rem; }
+.gallery-item.is-loaded img { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .gallery-item, .gallery-item img { transition: none; }
+  .gallery-item:hover { transform: none; }
+}
+
+/* ── Lightbox (Medium-style zoom) ────────────────────────────────────────── */
+body.lightbox-open { overflow: hidden; }
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.28s ease, visibility 0.28s ease;
+}
+.lightbox.is-open { opacity: 1; visibility: visible; }
+.lightbox-stage {
+  margin: 0;
+  max-width: min(100%, 1100px);
+  max-height: 100%;
+  transform: scale(0.96);
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.lightbox.is-open .lightbox-stage { transform: scale(1); }
+.lightbox-stage img {
+  display: block;
+  max-width: 100%;
+  max-height: 88vh;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  cursor: zoom-out;
+}
+.lightbox-close {
+  position: absolute;
+  top: clamp(0.6rem, 2vw, 1.2rem);
+  right: clamp(0.6rem, 2vw, 1.2rem);
+  width: 2.2rem;
+  height: 2.2rem;
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--text-1);
+  background: var(--bg);
+  border: 1px solid var(--divider);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.lightbox-close:hover { background: var(--bg-soft); }
+@media (prefers-reduced-motion: reduce) {
+  .lightbox, .lightbox-stage { transition: opacity 0.2s ease; }
+  .lightbox-stage { transform: none; }
 }
