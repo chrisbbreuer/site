@@ -2,6 +2,11 @@
 const fs = require('node:fs')
 const path = require('node:path')
 
+const title = 'Projects - Chris Breuer'
+const description = 'Every public repo Chris Breuer authored or maintains, across stacksjs, zig-utils, meemalabs, and more.'
+const activeNav = 'projects'
+const pagePath = '/projects'
+
 // content/projects.json is regenerated from the GitHub API by
 // `bun scripts/fetch-projects.ts` (every public non-fork repo across my
 // account and orgs). The page just groups it per org.
@@ -20,65 +25,25 @@ const orgCount = groups.length
 const generatedAt = data.generatedAt
 </script>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Projects - Chris Breuer</title>
-  <meta name="description" content="Every public repo Chris Breuer authored or maintains, across stacksjs, zig-utils, meemalabs, and more.">
-  <link rel="icon" href="/favicon.ico" sizes="32x32">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="preload" href="/fonts/lilex/Lilex-var.woff2" as="font" type="font/woff2" crossorigin>
-  <script src="/assets/scripts/theme.js"></script>
-  <link rel="stylesheet" href="/site.css">
-</head>
-<body>
-  <div class="shell">
-    <header class="masthead">
-      <a class="brand" href="/">
-        <img src="/images/avatar.png" alt="Chris Breuer" width="28" height="28">
-        chris breuer
-      </a>
-      <nav aria-label="Site">
-        <a href="/blog">Blog</a>
-        <a href="/about">About</a>
-        <a href="/projects" aria-current="page">Projects</a>
-        <a href="/uses">Uses</a>
-        <a href="https://github.com/chrisbbreuer" rel="me">GitHub</a>
-        <button class="theme-btn" type="button" onclick="siteTheme()" aria-label="Toggle theme">◐</button>
-      </nav>
-    </header>
+@layout('layouts/site')
 
-    <main>
-      <h1 class="page-title">Things I've made.</h1>
-      <p class="page-lead">
-        {{ repoCount }} public repos across {{ orgCount }} orgs, most of them open source.
-        If something piques your interest, check out the code and contribute.
-        Synced from GitHub on {{ generatedAt }}.
-      </p>
+@section('content')
+  <h1 class="page-title">Things I've made.</h1>
+  <p class="page-lead">
+    {{ repoCount }} public repos across {{ orgCount }} orgs, most of them open source.
+    If something piques your interest, check out the code and contribute.
+    Synced from GitHub on {{ generatedAt }}.
+  </p>
 
-      @foreach (groups as group)
-        <h2 class="section-label">{{ group.org }}</h2>
-        <ul class="entry-list">
-          @foreach (group.repos as repo)
-            <li>
-              <span class="entry-name"><a href="{{ repo.url }}">{{ repo.name }}</a></span>
-              <span class="entry-desc">{{ repo.description }} <span class="entry-meta">{{ repo.starLabel }}</span></span>
-            </li>
-          @endforeach
-        </ul>
+  @foreach (groups as group)
+    <h2 class="section-label">{{ group.org }}</h2>
+    <ul class="entry-list">
+      @foreach (group.repos as repo)
+        <li>
+          <span class="entry-name"><a href="{{ repo.url }}">{{ repo.name }}</a></span>
+          <span class="entry-desc">{{ repo.description }} <span class="entry-meta">{{ repo.starLabel }}</span></span>
+        </li>
       @endforeach
-    </main>
-
-    <footer class="site-footer">
-      <a href="https://github.com/chrisbbreuer" rel="me">github</a>
-      <a href="https://bsky.app/profile/chrisbreuer.me" rel="me">bluesky</a>
-      <a href="https://www.linkedin.com/in/%F0%9F%8C%B1-chris-breuer-33231765/">linkedin</a>
-      <a href="/blog/feed.xml">rss</a>
-      <span class="spacer"></span>
-      <span>built with <a href="https://stacksjs.com">stacks</a></span>
-    </footer>
-  </div>
-</body>
-</html>
+    </ul>
+  @endforeach
+@endsection

@@ -1,0 +1,8 @@
+<footer class="site-footer">
+  <a href="https://github.com/chrisbbreuer" rel="me">github</a>
+  <a href="https://bsky.app/profile/chrisbreuer.me" rel="me">bluesky</a>
+  <a href="https://www.linkedin.com/in/%F0%9F%8C%B1-chris-breuer-33231765/">linkedin</a>
+  <a href="/blog/feed.xml">rss</a>
+  <span class="spacer"></span>
+  <span>built with <a href="https://stacksjs.com">stacks</a></span>
+</footer>

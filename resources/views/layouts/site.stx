@@ -1,0 +1,43 @@
+<script server>
+// Fallback page meta. Every page overrides these from its own server script
+// (page values win; this stub only fills the gaps).
+const title = 'Chris Breuer - Software engineer and founder'
+const description = 'Chris Breuer is a software engineer and founder of Stacks. Notes on developer tooling, TypeScript, and Bun.'
+const activeNav = ''
+const siteUrl = 'https://chrisbreuer.me'
+const ogImage = `${siteUrl}/images/chris.jpg`
+// pagePath comes from the page's server script; guard for pages that omit it.
+const canonicalUrl = `${siteUrl}${typeof pagePath === 'string' ? pagePath : ''}`
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }}</title>
+  <link rel="canonical" href="{{ canonicalUrl }}">
+  <meta property="og:url" content="{{ canonicalUrl }}">
+  <meta property="og:site_name" content="Chris Breuer">
+  <meta property="og:image" content="{{ ogImage }}">
+  <meta name="twitter:image" content="{{ ogImage }}">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  @stack('head')
+  <link rel="preload" href="/fonts/lilex/Lilex-var.woff2" as="font" type="font/woff2" crossorigin>
+  <script src="/assets/scripts/theme.js"></script>
+  <link rel="stylesheet" href="/site.css">
+</head>
+<body>
+  <div class="shell">
+    @include('../partials/masthead.stx')
+
+    <main>
+      @yield('content')
+    </main>
+
+    @include('../partials/footer.stx')
+  </div>
+  @stack('scripts')
+</body>
+</html>

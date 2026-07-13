@@ -1,129 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>About - Chris Breuer</title>
-  <meta name="description" content="I'm Chris Breuer, a software engineer passionately obsessed over developer tooling.">
-  <link rel="icon" href="/favicon.ico" sizes="32x32">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="preload" href="/fonts/lilex/Lilex-var.woff2" as="font" type="font/woff2" crossorigin>
-  <script src="/assets/scripts/theme.js"></script>
-  <link rel="stylesheet" href="/site.css">
-</head>
-<body>
-  <div class="shell">
-    <header class="masthead">
-      <a class="brand" href="/">
-        <img src="/images/avatar.png" alt="Chris Breuer" width="28" height="28">
-        chris breuer
-      </a>
-      <nav aria-label="Site">
-        <a href="/blog">Blog</a>
-        <a href="/about" aria-current="page">About</a>
-        <a href="/projects">Projects</a>
-        <a href="/uses">Uses</a>
-        <a href="https://github.com/chrisbbreuer" rel="me">GitHub</a>
-        <button class="theme-btn" type="button" onclick="siteTheme()" aria-label="Toggle theme">◐</button>
-      </nav>
-    </header>
+<script server>
+const title = 'About - Chris Breuer'
+const description = 'I\'m Chris Breuer, a software engineer passionately obsessed over developer tooling.'
+const activeNav = 'about'
+const pagePath = '/about'
 
-    <main>
-      <div class="about-grid">
-        <div>
-          <h1 class="page-title">Passionately obsessed over developer tooling.</h1>
-          <div class="prose">
-            <p>
-              Ever since I was young, I've loved to explore, learn, and create, especially
-              while using tech. When I was 12 years old, I wrote my first SaaS app, and to
-              my surprise it turned out quite successful and brought in several hundred
-              dollars monthly via Google AdSense.
-            </p>
-            <p>
-              The only thing I loved more than computers as a kid was sports and the
-              outdoors. Almost 20 years later, not much has changed: going on hikes with my
-              dogs and playing soccer are still some of the few things that peel me away
-              from my desk.
-            </p>
-            <p>
-              I spent the last 15+ years working on personal and private projects, ranging
-              from small apps to large enterprise services, which caused my obsession with
-              building scalable systems. I dove deep into data storage and
-              transfer, and distributed and decentralized compute techniques. That was a
-              core reason I started working on Stacks.
-            </p>
-            <p>
-              Today, I'm the founder of <a href="https://stacksjs.com">Stacks</a> and its broader ecosystem.
-              It's exciting to work on the future of web technologies and application / software
-              development. Follow along on <a href="https://github.com/chrisbbreuer">GitHub</a>
-              for the latest updates.
-            </p>
-          </div>
+const work = [
+  { name: 'Stacks.js, Inc.', role: 'Founder', period: '2024 to present' },
+  { name: 'Open Web Foundation', role: 'Board Member', period: '2022 to present' },
+  { name: 'Bixolon', role: 'Consultant', period: '2020 to 2024' },
+  { name: 'University of Oregon', role: 'Consultant', period: '2020 to 2021' },
+  { name: 'Girlgaze', role: 'Consultant', period: '2019 to 2020' },
+  { name: 'Eliinova', role: 'Engineering Lead', period: '2018 to present' },
+  { name: 'CION', role: 'Founder', period: '2016 to present' },
+]
 
-          <h2 class="section-label">Work</h2>
-          <ul class="entry-list">
-            <li>
-              <span class="entry-name">Stacks.js, Inc.</span>
-              <span class="entry-desc">Founder <span class="entry-meta">2024 to present</span></span>
-            </li>
-            <li>
-              <span class="entry-name">Bixolon</span>
-              <span class="entry-desc">Consultant <span class="entry-meta">2020 to 2024</span></span>
-            </li>
-            <li>
-              <span class="entry-name">University of Oregon</span>
-              <span class="entry-desc">Consultant <span class="entry-meta">2020 to 2021</span></span>
-            </li>
-            <li>
-              <span class="entry-name">Girlgaze</span>
-              <span class="entry-desc">Consultant <span class="entry-meta">2019 to 2020</span></span>
-            </li>
-            <li>
-              <span class="entry-name">Eliinova</span>
-              <span class="entry-desc">Engineering Lead <span class="entry-meta">2018 to present</span></span>
-            </li>
-          </ul>
+const elsewhere = [
+  { name: 'GitHub', url: 'https://github.com/chrisbbreuer', text: 'Code, most days of the week.' },
+  { name: 'Bluesky', url: 'https://bsky.app/profile/chrisbreuer.me', text: 'Shorter thoughts on tooling and the web.' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/%F0%9F%8C%B1-chris-breuer-33231765/', text: 'The "professional" trail.' },
+  { name: 'Email', url: 'mailto:hi@chrisbreuer.me', text: 'hi@chrisbreuer.me' },
+]
+</script>
 
-          <h2 class="section-label">Elsewhere</h2>
-          <ul class="entry-list">
-            <li>
-              <span class="entry-name"><a href="https://github.com/chrisbbreuer" rel="me">GitHub</a></span>
-              <span class="entry-desc">Code, most days of the week.</span>
-            </li>
-            <li>
-              <span class="entry-name"><a href="https://bsky.app/profile/chrisbreuer.me" rel="me">Bluesky</a></span>
-              <span class="entry-desc">Shorter thoughts on tooling and the web.</span>
-            </li>
-            <li>
-              <span class="entry-name"><a href="https://www.linkedin.com/in/%F0%9F%8C%B1-chris-breuer-33231765/">LinkedIn</a></span>
-              <span class="entry-desc">The "professional" trail.</span>
-            </li>
-            <li>
-              <span class="entry-name"><a href="mailto:hi@chrisbreuer.me">Email</a></span>
-              <span class="entry-desc">hi@chrisbreuer.me</span>
-            </li>
-          </ul>
-        </div>
+@layout('layouts/site')
 
-        <div class="portrait">
-          <img src="/images/chris.jpg" alt="Chris Breuer" width="480" height="480">
-          <div class="photo-row">
-            <img src="/images/photos/image-1.jpeg" alt="Chris hiking" width="200" height="222" loading="lazy">
-            <img src="/images/photos/image-3.jpeg" alt="Out with the dogs" width="200" height="222" loading="lazy">
-            <img src="/images/photos/image-5.jpeg" alt="On the trail" width="200" height="222" loading="lazy">
-          </div>
-        </div>
+@section('content')
+  <div class="about-grid">
+    <div>
+      <h1 class="page-title">Passionately obsessed over developer tooling.</h1>
+      <div class="prose">
+        <p>
+          Ever since I was young, I've loved to explore, learn, and create, especially
+          while using tech. When I was 12 years old, I wrote my first SaaS app, and to
+          my surprise it turned out quite successful and brought in several hundred
+          dollars monthly via Google AdSense.
+        </p>
+        <p>
+          The only thing I loved more than computers as a kid was sports and the
+          outdoors. Almost 20 years later, not much has changed: going on hikes with my
+          dogs and playing soccer are still some of the few things that peel me away
+          from my desk.
+        </p>
+        <p>
+          I spent the last 15+ years working on personal and private projects, ranging
+          from small apps to large enterprise services, which caused my obsession with
+          building scalable systems. I dove deep into data storage and
+          transfer, and distributed and decentralized compute techniques. That was a
+          core reason I started working on Stacks.
+        </p>
+        <p>
+          Today, I'm the founder of <a href="https://stacksjs.com">Stacks</a> and its broader ecosystem.
+          It's exciting to work on the future of web technologies and application / software
+          development. Follow along on <a href="https://github.com/chrisbbreuer">GitHub</a>
+          for the latest updates.
+        </p>
       </div>
-    </main>
 
-    <footer class="site-footer">
-      <a href="https://github.com/chrisbbreuer" rel="me">github</a>
-      <a href="https://bsky.app/profile/chrisbreuer.me" rel="me">bluesky</a>
-      <a href="https://www.linkedin.com/in/%F0%9F%8C%B1-chris-breuer-33231765/">linkedin</a>
-      <a href="/blog/feed.xml">rss</a>
-      <span class="spacer"></span>
-      <span>built with <a href="https://stacksjs.com">stacks</a></span>
-    </footer>
+      <h2 class="section-label">Work</h2>
+      <ul class="entry-list">
+        @foreach (work as job)
+          <li>
+            <span class="entry-name">{{ job.name }}</span>
+            <span class="entry-desc">{{ job.role }} <span class="entry-meta">{{ job.period }}</span></span>
+          </li>
+        @endforeach
+      </ul>
+
+      <h2 class="section-label">Elsewhere</h2>
+      <ul class="entry-list">
+        @foreach (elsewhere as place)
+          <li>
+            <span class="entry-name"><a href="{{ place.url }}" rel="me">{{ place.name }}</a></span>
+            <span class="entry-desc">{{ place.text }}</span>
+          </li>
+        @endforeach
+      </ul>
+    </div>
+
+    <div class="portrait">
+      <img src="/images/chris.jpg" alt="Chris Breuer" width="480" height="480">
+      <div class="photo-row">
+        <img src="/images/photos/image-1.jpeg" alt="Chris hiking" width="200" height="222" loading="lazy">
+        <img src="/images/photos/image-3.jpeg" alt="Out with the dogs" width="200" height="222" loading="lazy">
+        <img src="/images/photos/image-5.jpeg" alt="On the trail" width="200" height="222" loading="lazy">
+      </div>
+    </div>
   </div>
-</body>
-</html>
+@endsection

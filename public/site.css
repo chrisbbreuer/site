@@ -139,11 +139,11 @@ a { color: var(--text-1); }
 main { padding: 3.5rem 0 2rem; }
 
 .page-title {
-  margin: 0 0 0.6rem;
+  margin: 0 0 1rem;
   font-size: clamp(1.7rem, 4vw, 2.3rem);
   font-weight: 700;
   letter-spacing: -0.02em;
-  line-height: 1.12;
+  line-height: 1.18;
 }
 /* Evens out the two headline lines at desktop; mobile wraps naturally. */
 .title-break { display: none; }

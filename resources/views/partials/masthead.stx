@@ -1,0 +1,14 @@
+<header class="masthead">
+  <a class="brand" href="/">
+    <img src="/images/avatar.png" alt="Chris Breuer" width="28" height="28">
+    chris breuer
+  </a>
+  <nav aria-label="Site">
+    <a href="/blog">Blog</a>
+    <a href="/about"@if (activeNav === 'about') aria-current="page"@endif>About</a>
+    <a href="/projects"@if (activeNav === 'projects') aria-current="page"@endif>Projects</a>
+    <a href="/uses"@if (activeNav === 'uses') aria-current="page"@endif>Uses</a>
+    <a href="https://github.com/chrisbbreuer" rel="me">GitHub</a>
+    <button class="theme-btn" type="button" onclick="siteTheme()" aria-label="Toggle theme">◐</button>
+  </nav>
+</header>

@@ -1,0 +1,9 @@
+<section class="subscribe" aria-labelledby="subscribe-heading">
+  <h2 id="subscribe-heading">Get new posts by email</h2>
+  <p>No schedule, no spam. Unsubscribe any time.</p>
+  <form data-subscribe="homepage" action="/api/email/subscribe" method="POST">
+    <input type="email" name="email" placeholder="you@example.com" autocomplete="email" aria-label="Email address" required>
+    <button type="submit">Subscribe</button>
+    <p class="form-note" role="status" aria-live="polite"></p>
+  </form>
+</section>

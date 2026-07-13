@@ -2,6 +2,11 @@
 const fs = require('node:fs')
 const path = require('node:path')
 
+const title = 'Chris Breuer - Software engineer and founder'
+const description = 'Chris Breuer is a software engineer and founder of Stacks. Notes on developer tooling, TypeScript, and Bun.'
+const activeNav = ''
+const pagePath = '/'
+
 // Read post frontmatter straight from content/blog (same source /blog renders).
 const blogDir = path.join(process.cwd(), 'content/blog')
 const posts = fs.readdirSync(blogDir)
@@ -28,83 +33,41 @@ const posts = fs.readdirSync(blogDir)
   .map(p => ({ ...p, shortDate: p.date.slice(0, 7) }))
 </script>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Chris Breuer - Software engineer and founder</title>
-  <meta name="description" content="Chris Breuer is a software engineer and founder of Stacks. Notes on developer tooling, TypeScript, and Bun.">
-  <link rel="icon" href="/favicon.ico" sizes="32x32">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+@layout('layouts/site')
+
+@push('head')
   <link rel="alternate" type="application/rss+xml" title="Chris Breuer" href="/blog/feed.xml">
-  <link rel="preload" href="/fonts/lilex/Lilex-var.woff2" as="font" type="font/woff2" crossorigin>
-  <script src="/assets/scripts/theme.js"></script>
-  <link rel="stylesheet" href="/site.css">
-</head>
-<body>
-  <div class="shell">
-    <header class="masthead">
-      <a class="brand" href="/">
-        <img src="/images/avatar.png" alt="Chris Breuer" width="28" height="28">
-        chris breuer
-      </a>
-      <nav aria-label="Site">
-        <a href="/blog">Blog</a>
-        <a href="/about">About</a>
-        <a href="/projects">Projects</a>
-        <a href="/uses">Uses</a>
-        <a href="https://github.com/chrisbbreuer" rel="me">GitHub</a>
-        <button class="theme-btn" type="button" onclick="siteTheme()" aria-label="Toggle theme">◐</button>
-      </nav>
-    </header>
+@endpush
 
-    <main>
-      <h1 class="page-title">Software engineer, founder, <br class="title-break">and dog person</h1>
-      <p class="page-lead">
-        I build developer tooling: <a href="https://stacksjs.com">Stacks</a>, a TypeScript
-        framework, and the open-source tools around it. This is where I write.
-      </p>
+@section('content')
+  <h1 class="page-title">Software engineer, <br class="title-break">founder, &amp; dog person</h1>
+  <p class="page-lead">
+    I build developer tooling: <a href="https://stacksjs.com">Stacks</a>, a TypeScript
+    framework, and the open-source tools around it. This is where I write.
+  </p>
 
-      <h2 class="section-label">Writing</h2>
-      @if (posts.length > 0)
-        <ul class="post-list">
-          @foreach (posts as post)
-            <li>
-              <a href="/blog/{{ post.slug }}">
-                <span class="post-title">{{ post.title }}</span>
-                <span class="post-date">{{ post.shortDate }}</span>
-              </a>
-            </li>
-          @endforeach
-        </ul>
-      @else
-        <p class="empty-note">
-          Nothing published yet. The first post is in the works; subscribe below
-          and it lands in your inbox the moment it ships.
-        </p>
-      @endif
+  <h2 class="section-label">Writing</h2>
+  @if (posts.length > 0)
+    <ul class="post-list">
+      @foreach (posts as post)
+        <li>
+          <a href="/blog/{{ post.slug }}">
+            <span class="post-title">{{ post.title }}</span>
+            <span class="post-date">{{ post.shortDate }}</span>
+          </a>
+        </li>
+      @endforeach
+    </ul>
+  @else
+    <p class="empty-note">
+      Nothing published yet. The first post is in the works; subscribe below
+      and it lands in your inbox the moment it ships.
+    </p>
+  @endif
 
-      <section class="subscribe" aria-labelledby="subscribe-heading">
-        <h2 id="subscribe-heading">Get new posts by email</h2>
-        <p>No schedule, no spam. Unsubscribe any time.</p>
-        <form data-subscribe="homepage" action="/api/email/subscribe" method="POST">
-          <input type="email" name="email" placeholder="you@example.com" autocomplete="email" aria-label="Email address" required>
-          <button type="submit">Subscribe</button>
-          <p class="form-note" role="status" aria-live="polite"></p>
-        </form>
-      </section>
-    </main>
+  @include('../partials/subscribe.stx')
+@endsection
 
-    <footer class="site-footer">
-      <a href="https://github.com/chrisbbreuer" rel="me">github</a>
-      <a href="https://bsky.app/profile/chrisbreuer.me" rel="me">bluesky</a>
-      <a href="https://www.linkedin.com/in/%F0%9F%8C%B1-chris-breuer-33231765/">linkedin</a>
-      <a href="/blog/feed.xml">rss</a>
-      <span class="spacer"></span>
-      <span>built with <a href="https://stacksjs.com">stacks</a></span>
-    </footer>
-  </div>
+@push('scripts')
   <script src="/assets/scripts/subscribe.js" defer></script>
-</body>
-</html>
+@endpush
