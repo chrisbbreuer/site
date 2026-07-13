@@ -42,8 +42,8 @@ const posts = fs.readdirSync(blogDir)
 @section('content')
   <h1 class="page-title">Software engineer, <br class="title-break">founder &amp; dog person</h1>
   <p class="page-lead">
-    I build developer tooling: <a href="https://stacksjs.com">Stacks</a>, a TypeScript
-    framework, and the open-source tools around it. This is where I write.
+    I build developer tooling. Stuff like <a href="https://stacksjs.com">Stacks</a>, a TypeScript
+    framework, and the open-source tooling surrounding and accompanying it. This is where I write.
   </p>
 
   <h2 class="section-label">Writing</h2>
