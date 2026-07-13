@@ -636,7 +636,7 @@ export default new Action({
         },
         {
           signature: 'buddy generate:types',
-          description: 'Generates types for your components, functions, & views',
+          description: 'Generates types for your components, functions & views',
           notes: '',
           synopsis: 'buddy generate:types',
           aliases: [],
@@ -645,7 +645,7 @@ export default new Action({
         },
         {
           signature: 'buddy generate:entries',
-          description: 'Generates entry files for components, functions, & views',
+          description: 'Generates entry files for components, functions & views',
           notes: '',
           synopsis: 'buddy generate:entries',
           aliases: [],
@@ -699,7 +699,7 @@ export default new Action({
         },
         {
           signature: 'buddy types:generate',
-          description: 'Generates types for your components, functions, & views',
+          description: 'Generates types for your components, functions & views',
           notes: '',
           synopsis: 'buddy types:generate',
           aliases: [],
@@ -708,7 +708,7 @@ export default new Action({
         },
         {
           signature: 'buddy types:fix',
-          description: 'Auto-fixes types for your components, functions, & views',
+          description: 'Auto-fixes types for your components, functions & views',
           notes: '',
           synopsis: 'buddy types:fix',
           aliases: [],

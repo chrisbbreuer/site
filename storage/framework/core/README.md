@@ -311,7 +311,7 @@ Convention over configuration, while staying wholly configurable. _No more boile
 - 💅 **Linter & Formatter** _auto-configured & built into your IDE_
 - 💪🏼 **Type Strong** _built-in e2e type-safety_
 - ✨ **Git Workflows** _committing with ease_
-- 🚗 **Auto Imports** _your components & functions, including date, string, array, & object helpers_
+- 🚗 **Auto Imports** _your components & functions, including date, string, array & object helpers_
 - ⏩ **Code Snippets** _goodbye to the boilerplate code—thank you Sarah Drasner_
 - 🔤 **Spell Checker** _be notified once there are typos_
 - 🛠️ **Essential Utilities** _powers at your fingertips. Collections, VueUse, and more_

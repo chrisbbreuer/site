@@ -197,8 +197,8 @@ buddy example:web-components # runs the Web Component example
 
 # you likely won’t need to run these commands as they are auto-triggered, but they are available
 buddy generate  # prompts you to select which generator to run
-buddy generate:types # generates types for your components, functions, & views
-buddy generate:entries # generates entry files for components, functions, & views
+buddy generate:types # generates types for your components, functions & views
+buddy generate:entries # generates entry files for components, functions & views
 buddy generate:web-types # generates Web Component types
 buddy generate:vscode-custom-data # generates VSCode custom data
 buddy generate:ide-helpers # generates IDE helpers
@@ -209,8 +209,8 @@ buddy generate:all # runs all generators
 buddy key:generate # generates your application key
 
 # generate your TypeScript declarations
-buddy types:generate # generates types for your components, functions, & views
-buddy types:fix # auto-fixes types for your components, functions, & views
+buddy types:generate # generates types for your components, functions & views
+buddy types:fix # auto-fixes types for your components, functions & views
 
 buddy domains # alias for `buddy domains:list`
 buddy domains:add stacksjs.com # adds a domain
@@ -311,7 +311,7 @@ Convention over configuration, while staying wholly configurable. _No more boile
 - 💅 **Linter & Formatter** _auto-configured & built into your IDE_
 - 💪🏼 **Type Strong** _built-in e2e type-safety_
 - ✨ **Git Workflows** _committing with ease_
-- 🚗 **Auto Imports** _your components & functions, including date, string, array, & object helpers_
+- 🚗 **Auto Imports** _your components & functions, including date, string, array & object helpers_
 - ⏩ **Code Snippets** _goodbye to the boilerplate code—thank you Sarah Drasner_
 - 🔤 **Spell Checker** _be notified once there are typos_
 - 🛠️ **Essential Utilities** _powers at your fingertips. Collections, VueUse, and more_
