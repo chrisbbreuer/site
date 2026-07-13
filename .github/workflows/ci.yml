@@ -182,16 +182,34 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keygen -y -f ~/.ssh/id_ed25519 > ~/.ssh/id_ed25519.pub
           chmod 644 ~/.ssh/id_ed25519.pub
+          ssh-keyscan -H 178.105.248.188 >> ~/.ssh/known_hosts 2>/dev/null
 
       - name: Deploy ${{ env.DEPLOY_ENVIRONMENT }}
         run: ./buddy deploy "$DEPLOY_FLAG" --yes
         env:
           APP_ENV: ${{ env.DEPLOY_ENVIRONMENT }}
-          DOTENV_PRIVATE_KEY_PRODUCTION: ${{ secrets.DOTENV_PRIVATE_KEY_PRODUCTION }}
-          DOTENV_PRIVATE_KEY_STAGING: ${{ secrets.DOTENV_PRIVATE_KEY_STAGING }}
-          DOTENV_PRIVATE_KEY_DEVELOPMENT: ${{ secrets.DOTENV_PRIVATE_KEY_DEVELOPMENT }}
+          APP_URL: chrisbreuer.me
+          APP_KEY: ${{ secrets.APP_KEY }}
+          HCLOUD_TOKEN: ${{ secrets.HCLOUD_TOKEN }}
+          PORKBUN_API_KEY: ${{ secrets.PORKBUN_API_KEY }}
+          PORKBUN_SECRET_KEY: ${{ secrets.PORKBUN_SECRET_KEY }}
+          MAIL_PASSWORD_HI: ${{ secrets.MAIL_PASSWORD_HI }}
+          MAIL_PASSWORD_CHRIS: ${{ secrets.MAIL_PASSWORD_CHRIS }}
+          # Pins the management-dashboard htpasswd so deploys don't rotate it.
+          TS_CLOUD_UI_PASSWORD: ${{ secrets.TS_CLOUD_UI_PASSWORD }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COPYFILE_DISABLE: '1'
+
+      - name: Verify the live site
+        if: env.DEPLOY_ENVIRONMENT == 'production'
+        run: |
+          set -e
+          for p in / /about /projects /uses /blog; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 "https://chrisbreuer.me$p")
+            echo "$p -> $code"
+            [ "$code" = "200" ]
+          done
+          curl -s --max-time 30 https://chrisbreuer.me/ | grep -q 'chris breuer'
 
   publish-commit:
     if: github.event_name == 'pull_request'
