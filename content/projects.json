@@ -268,13 +268,6 @@
       "url": "https://github.com/stacksjs/logsmith"
     },
     {
-      "name": "post",
-      "org": "stacksjs",
-      "description": "📫 The Post. A modern mail server & utilities. Ships with a CLI, library, and UI. ",
-      "stars": 7,
-      "url": "https://github.com/stacksjs/post"
-    },
-    {
       "name": "ts-http",
       "org": "stacksjs",
       "description": "🤖 A modern command-line & library HTTP client, \"for the API era.\" Like httpie, written in & for TypeScript.",
@@ -527,13 +520,6 @@
       "url": "https://github.com/stacksjs/contributing"
     },
     {
-      "name": "bun-vue",
-      "org": "stacksjs",
-      "description": "Performant bundling for Vue component declarations.",
-      "stars": 0,
-      "url": "https://github.com/stacksjs/bun-vue"
-    },
-    {
       "name": "homebrew-tap",
       "org": "stacksjs",
       "description": "Homebrew tap for Stacks packages",
@@ -702,81 +688,11 @@
       "url": "https://github.com/meemalabs/laravel-media-recognition"
     },
     {
-      "name": "laravel-meema",
-      "org": "meemalabs",
-      "description": "🐏 A blazing-fast Laravel adapter for the official Meema API.  An API each Laravel developer will feel welcome to.",
-      "stars": 5,
-      "url": "https://github.com/meemalabs/laravel-meema"
-    },
-    {
-      "name": "meema-client-php",
-      "org": "meemalabs",
-      "description": "⚡️ A fully-featured & blazing-fast PHP API client to interact with all of Meema's functionalities. 🐑",
-      "stars": 5,
-      "url": "https://github.com/meemalabs/meema-client-php"
-    },
-    {
-      "name": "flysystem-meema",
-      "org": "meemalabs",
-      "description": "✈️ A flysystem driver/adapter to allow you to easily integrate your own Meema filesystem. Upload a file this way, manage it immediately in the Media Manager.",
-      "stars": 4,
-      "url": "https://github.com/meemalabs/flysystem-meema"
-    },
-    {
-      "name": "meema-elements",
-      "org": "meemalabs",
-      "description": "🧩 The easiest way to integrate Meema into your frontend in order to create a blazing-fast & powerful media delivery & management strategy.",
-      "stars": 1,
-      "url": "https://github.com/meemalabs/meema-elements"
-    },
-    {
-      "name": "react-meema",
-      "org": "meemalabs",
-      "description": "Coming soon. The official Meema adapter for React.js",
-      "stars": 1,
-      "url": "https://github.com/meemalabs/react-meema"
-    },
-    {
-      "name": "renovate-config",
-      "org": "meemalabs",
-      "description": "🤖 Custom Meema Labs presets for the Renovate bot.",
-      "stars": 1,
-      "url": "https://github.com/meemalabs/renovate-config"
-    },
-    {
-      "name": "statamic-plugin",
-      "org": "meemalabs",
-      "description": "Coming soon. Meema's official Statamic plugin.",
-      "stars": 1,
-      "url": "https://github.com/meemalabs/statamic-plugin"
-    },
-    {
-      "name": "vue-meema",
-      "org": "meemalabs",
-      "description": "Coming soon. The official Meema adapter for Vue.",
-      "stars": 1,
-      "url": "https://github.com/meemalabs/vue-meema"
-    },
-    {
-      "name": "wordpress-plugin",
-      "org": "meemalabs",
-      "description": "Coming soon. Meema's official WordPress plugin.",
-      "stars": 1,
-      "url": "https://github.com/meemalabs/wordpress-plugin"
-    },
-    {
       "name": "web-components-starter",
       "org": "ow3org",
       "description": "🏝 Web Components Starter template to help kick-start development of a framework-agnostic component library.",
       "stars": 19,
       "url": "https://github.com/ow3org/web-components-starter"
-    },
-    {
-      "name": "cardano-stake-pool-aws",
-      "org": "ow3org",
-      "description": "🐋 Manage a highly secure, durable & available Cardano Stake Pool environment based on industry best practices, deployed into AWS.",
-      "stars": 7,
-      "url": "https://github.com/ow3org/cardano-stake-pool-aws"
     },
     {
       "name": "ts-starter",
@@ -791,13 +707,6 @@
       "description": "Easily remove all refs from an object using the `deepUnref`-composable.",
       "stars": 4,
       "url": "https://github.com/ow3org/deep-unref-vue"
-    },
-    {
-      "name": "vue-starter",
-      "org": "ow3org",
-      "description": "🏖 Vue Component Library Starter kit to help kick-start development of your next library.",
-      "stars": 4,
-      "url": "https://github.com/ow3org/vue-starter"
     },
     {
       "name": "composable-starter",
@@ -833,13 +742,6 @@
       "description": "A safe, performant & modern operating system. Currently in development.",
       "stars": 3,
       "url": "https://github.com/home-lang/home-os"
-    },
-    {
-      "name": "generals",
-      "org": "home-lang",
-      "description": "Command & Conquer: Generals – Zero Hour. Written in Home.",
-      "stars": 2,
-      "url": "https://github.com/home-lang/generals"
     },
     {
       "name": "crosswind",
@@ -903,34 +805,6 @@
       "description": "United States National Park Service inspired Open Source fonts.",
       "stars": 72,
       "url": "https://github.com/national-park-service/fonts"
-    },
-    {
-      "name": "laravel-log-reader",
-      "org": "ci-on",
-      "description": "UI Reader for laravel logs",
-      "stars": 8,
-      "url": "https://github.com/ci-on/laravel-log-reader"
-    },
-    {
-      "name": "laravel-inspirational-quotes",
-      "org": "ci-on",
-      "description": "php artisan inspire on steroids",
-      "stars": 5,
-      "url": "https://github.com/ci-on/laravel-inspirational-quotes"
-    },
-    {
-      "name": "laravel-cloudflare",
-      "org": "ci-on",
-      "description": "This package is a WIP and a wrapper for commonly used Cloudflare API functionality.",
-      "stars": 1,
-      "url": "https://github.com/ci-on/laravel-cloudflare"
-    },
-    {
-      "name": "eslint-example",
-      "org": "ci-on",
-      "description": "eslint-example",
-      "stars": 0,
-      "url": "https://github.com/ci-on/eslint-example"
     }
   ]
 }
