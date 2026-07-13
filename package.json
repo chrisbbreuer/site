@@ -71,6 +71,8 @@
   },
   "dependencies": {
     "@stacksjs/stx": "^0.2.87",
+    "@stacksjs/ts-avif": "^0.1.2",
+    "@stacksjs/ts-webp": "^0.1.1",
     "bun-plugin-stx": "^0.2.87",
     "stacks": "workspace:*",
     "stx-router": "^0.2.87"
@@ -78,6 +80,10 @@
   "devDependencies": {
     "better-dx": "^0.2.17",
     "ts-images": "^0.1.9"
+  },
+  "overrides": {
+    "@stacksjs/ts-avif": "^0.1.2",
+    "@stacksjs/ts-webp": "^0.1.1"
   },
   "workspaces": [
     "storage/framework",

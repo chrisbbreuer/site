@@ -31,8 +31,12 @@ function decodeHeicToJpeg(input: string, output: string): void {
   execSync(`sips -s format jpeg "${input}" --out "${output}"`, { stdio: 'pipe' })
 }
 
+// Accept any source images (heic/jpeg/png, plus Apple Notes `.dat` exports
+// which are jpeg internally — ts-images detects format by magic bytes, not
+// extension). Skip our own -sm/-lg outputs so re-running in place is safe.
+// Sorted by the first number in the filename so ordering is stable.
 const sources = readdirSync(sourceDir)
-  .filter(f => /^note-\d+\.(?:heic|jpe?g|png)$/i.test(f))
+  .filter(f => /\.(?:heic|jpe?g|png|dat)$/i.test(f) && !/-(?:sm|lg)\./i.test(f))
   .sort((a, b) => {
     const na = Number(a.match(/\d+/)?.[0] ?? 0)
     const nb = Number(b.match(/\d+/)?.[0] ?? 0)
@@ -57,7 +61,11 @@ for (const file of sources) {
   const name = `note-${n}`
   let input = join(sourceDir, file)
 
-  if (/\.(?:heic|heif)$/i.test(file)) {
+  // Detect format by content, not extension (Apple Notes exports are `.dat`
+  // and may be jpeg OR heic). HEIC still decodes via the OS `sips` shim until
+  // @stacksjs/ts-heic lands its HEVC decoder; everything else decodes natively.
+  const kind = execSync(`file -b --mime-type "${input}"`, { encoding: 'utf8' }).trim()
+  if (kind === 'image/heic' || kind === 'image/heif') {
     const jpg = join(workDir, `${n}.jpg`)
     decodeHeicToJpeg(input, jpg)
     input = jpg
