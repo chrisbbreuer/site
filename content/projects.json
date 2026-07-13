@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-12",
+  "generatedAt": "2026-07-13",
   "repos": [
     {
       "name": "stacks",
@@ -11,14 +11,14 @@
     {
       "name": "dtsx",
       "org": "stacksjs",
-      "description": "⚡ Extremely fast, smart & configurable DTS emitter.",
-      "stars": 172,
+      "description": "Extremely fast, smart & configurable DTS emitter.",
+      "stars": 173,
       "url": "https://github.com/stacksjs/dtsx"
     },
     {
       "name": "ts-spreadsheets",
       "org": "stacksjs",
-      "description": "📊 Easily manage & generate spreadsheets. CSV & Excel files supported.",
+      "description": "Easily manage & generate spreadsheets. CSV & Excel files supported.",
       "stars": 84,
       "url": "https://github.com/stacksjs/ts-spreadsheets"
     },
@@ -32,21 +32,21 @@
     {
       "name": "tlsx",
       "org": "stacksjs",
-      "description": "🔐 A modern & lightweight TLS library & CLI. Built for automation—HTTPS by default. Similar to mkcert.",
+      "description": "A modern & lightweight TLS library & CLI. Built for automation—HTTPS by default. Similar to mkcert.",
       "stars": 47,
       "url": "https://github.com/stacksjs/tlsx"
     },
     {
       "name": "ts-collect",
       "org": "stacksjs",
-      "description": "💨 Lightweight & powerful Laravel-like Collections written for TypeScript.",
+      "description": "Lightweight & powerful Laravel-like Collections written for TypeScript.",
       "stars": 34,
       "url": "https://github.com/stacksjs/ts-collect"
     },
     {
       "name": "vite-plugin-local",
       "org": "stacksjs",
-      "description": "🎨 Pretty development URLs, and HTTPS. Zero config, zero setup.",
+      "description": "Pretty development URLs, and HTTPS. Zero config, zero setup.",
       "stars": 32,
       "url": "https://github.com/stacksjs/vite-plugin-local"
     },
@@ -67,7 +67,7 @@
     {
       "name": "localtunnels",
       "org": "stacksjs",
-      "description": "🚇 A simple and smart tunneling alternative. Without or with self-hosting.",
+      "description": "A simple and smart tunneling alternative. Without or with self-hosting.",
       "stars": 22,
       "url": "https://github.com/stacksjs/localtunnels"
     },
@@ -88,28 +88,28 @@
     {
       "name": "bun-git-hooks",
       "org": "stacksjs",
-      "description": "🪝 Think of `simple-git-hooks` but optimized for all-sized Bun projects.",
+      "description": "Think of `simple-git-hooks` but optimized for all-sized Bun projects.",
       "stars": 18,
       "url": "https://github.com/stacksjs/bun-git-hooks"
     },
     {
       "name": "bunfig",
       "org": "stacksjs",
-      "description": "⚙️ Lightweight & smart Bun & Browser configuration loader.",
+      "description": "Lightweight & smart Bun & Browser configuration loader.",
       "stars": 16,
       "url": "https://github.com/stacksjs/bunfig"
     },
     {
       "name": "ts-qr-codes",
       "org": "stacksjs",
-      "description": "🔒 QR & Bar Code generating & reading. Lightweight & powerful.",
+      "description": "QR & Bar Code generating & reading. Lightweight & powerful.",
       "stars": 15,
       "url": "https://github.com/stacksjs/ts-qr-codes"
     },
     {
       "name": "barista",
       "org": "stacksjs",
-      "description": "☕ A lightweight macOS utility that serves up a perfectly organized menubar. #caffeinated",
+      "description": "A lightweight macOS utility that serves up a perfectly organized menubar. #caffeinated",
       "stars": 14,
       "url": "https://github.com/stacksjs/barista"
     },
@@ -130,28 +130,28 @@
     {
       "name": "bunpress",
       "org": "stacksjs",
-      "description": "📝 Documentation, faster.",
+      "description": "Documentation, faster.",
       "stars": 13,
       "url": "https://github.com/stacksjs/bunpress"
     },
     {
       "name": "table",
       "org": "stacksjs",
-      "description": "🔎 The modern way to work with tables. Blazing fast facet-filtering, sorting, and searching.",
+      "description": "The modern way to work with tables. Blazing fast facet-filtering, sorting, and searching.",
       "stars": 13,
       "url": "https://github.com/stacksjs/table"
     },
     {
       "name": "bun-plugin-dotenvx",
       "org": "stacksjs",
-      "description": "🔐 A powerful loader for your dotenv files, powered by dotenvx.",
+      "description": "A powerful loader for your dotenv files, powered by dotenvx.",
       "stars": 12,
       "url": "https://github.com/stacksjs/bun-plugin-dotenvx"
     },
     {
       "name": "ts-images",
       "org": "stacksjs",
-      "description": "🏞️ Make your images load faster. A better save for the web.",
+      "description": "Make your images load faster. A better save for the web.",
       "stars": 12,
       "url": "https://github.com/stacksjs/ts-images"
     },
@@ -165,7 +165,7 @@
     {
       "name": "ts-cache",
       "org": "stacksjs",
-      "description": "⚡ A fast, type-safe, and feature-rich caching library for modern applications.",
+      "description": "A fast, type-safe, and feature-rich caching library for modern applications.",
       "stars": 11,
       "url": "https://github.com/stacksjs/ts-cache"
     },
@@ -186,21 +186,21 @@
     {
       "name": "awesome-stacks",
       "org": "stacksjs",
-      "description": "🎉 A curated list of awesome things related to Stacks.js. ",
+      "description": "A curated list of awesome things related to Stacks.js.",
       "stars": 10,
       "url": "https://github.com/stacksjs/awesome-stacks"
     },
     {
       "name": "ts-dns",
       "org": "stacksjs",
-      "description": "🌐 A command-line & library DNS client. Like dig & dog, but for TypeScript.",
+      "description": "A command-line & library DNS client. Like dig & dog, but for TypeScript.",
       "stars": 10,
       "url": "https://github.com/stacksjs/ts-dns"
     },
     {
       "name": "buddy-bot",
       "org": "stacksjs",
-      "description": "🐶 Automated & optimized dependency updates for JavaScript & TypeScript projects. Like Renovate & Dependabot.",
+      "description": "Automated & optimized dependency updates for JavaScript & TypeScript projects. Like Renovate & Dependabot.",
       "stars": 9,
       "url": "https://github.com/stacksjs/buddy-bot"
     },
@@ -214,14 +214,14 @@
     {
       "name": "bun-router",
       "org": "stacksjs",
-      "description": "🌐 A powerful yet lightweight router for your Bun server.",
+      "description": "A powerful yet lightweight router for your Bun server.",
       "stars": 9,
       "url": "https://github.com/stacksjs/bun-router"
     },
     {
       "name": "date-picker",
       "org": "stacksjs",
-      "description": "📆 The modern, beautifully-designed open source date picker. Airbnb-style theme & more.",
+      "description": "The modern, beautifully-designed open source date picker. Airbnb-style theme & more.",
       "stars": 9,
       "url": "https://github.com/stacksjs/date-picker"
     },
@@ -235,42 +235,42 @@
     {
       "name": "ts-maps",
       "org": "stacksjs",
-      "description": "🗺️ Modern & lightweight TypeScript library for creating interactive vector maps.",
+      "description": "Modern & lightweight TypeScript library for creating interactive vector maps.",
       "stars": 9,
       "url": "https://github.com/stacksjs/ts-maps"
     },
     {
       "name": "vite-plugin-layouts",
       "org": "stacksjs",
-      "description": "🧩 Router-based layouts for your application.",
+      "description": "Router-based layouts for your application.",
       "stars": 9,
       "url": "https://github.com/stacksjs/vite-plugin-layouts"
     },
     {
       "name": "ts-audio",
       "org": "stacksjs",
-      "description": "🎵 Powerful audio processing for your media workflows. ",
+      "description": "Powerful audio processing for your media workflows.",
       "stars": 8,
       "url": "https://github.com/stacksjs/ts-audio"
     },
     {
       "name": "ts-security",
       "org": "stacksjs",
-      "description": "🔐 Modern cryptography primitives & utilities with a focus on type safety, security, performance & best practices.",
+      "description": "Modern cryptography primitives & utilities with a focus on type safety, security, performance & best practices.",
       "stars": 8,
       "url": "https://github.com/stacksjs/ts-security"
     },
     {
       "name": "logsmith",
       "org": "stacksjs",
-      "description": "📝 Forge beautiful changelogs from your commits. ",
+      "description": "Forge beautiful changelogs from your commits.",
       "stars": 7,
       "url": "https://github.com/stacksjs/logsmith"
     },
     {
       "name": "ts-http",
       "org": "stacksjs",
-      "description": "🤖 A modern command-line & library HTTP client, \"for the API era.\" Like httpie, written in & for TypeScript.",
+      "description": "A modern command-line & library HTTP client, \"for the API era.\" Like httpie, written in & for TypeScript.",
       "stars": 7,
       "url": "https://github.com/stacksjs/ts-http"
     },
@@ -291,14 +291,14 @@
     {
       "name": "hush",
       "org": "stacksjs",
-      "description": "🤫 Hush.app ensures your notifications are suppressed during your screen-shared meetings.",
+      "description": "Hush.app ensures your notifications are suppressed during your screen-shared meetings.",
       "stars": 6,
       "url": "https://github.com/stacksjs/hush"
     },
     {
       "name": "pomodoro",
       "org": "stacksjs",
-      "description": "🍅 A minimal, functional, yet simple Pomodoro menubar app, to help stay focussed.",
+      "description": "A minimal, functional, yet simple Pomodoro menubar app, to help stay focussed.",
       "stars": 6,
       "url": "https://github.com/stacksjs/pomodoro"
     },
@@ -319,7 +319,7 @@
     {
       "name": "ts-punycode",
       "org": "stacksjs",
-      "description": "🔃 A TypeScript Punycode converter. RFC 3492 & RFC 5891 supported.",
+      "description": "A TypeScript Punycode converter. RFC 3492 & RFC 5891 supported.",
       "stars": 6,
       "url": "https://github.com/stacksjs/ts-punycode"
     },
@@ -333,7 +333,7 @@
     {
       "name": "action-releaser",
       "org": "stacksjs",
-      "description": "🛠️ A GitHub Action to attach files (e.g. binaries or app installers) to your releases.",
+      "description": "A GitHub Action to attach files (e.g. binaries or app installers) to your releases.",
       "stars": 5,
       "url": "https://github.com/stacksjs/action-releaser"
     },
@@ -361,7 +361,7 @@
     {
       "name": "clarity",
       "org": "stacksjs",
-      "description": "🔎  Modern debugging & logging library. For server & browser.",
+      "description": "Modern debugging & logging library. For server & browser.",
       "stars": 4,
       "url": "https://github.com/stacksjs/clarity"
     },
@@ -373,9 +373,16 @@
       "url": "https://github.com/stacksjs/ts-clone"
     },
     {
+      "name": "ts-countries",
+      "org": "stacksjs",
+      "description": "Modern & lightweight package for working with country data.",
+      "stars": 4,
+      "url": "https://github.com/stacksjs/ts-countries"
+    },
+    {
       "name": "ts-numbers",
       "org": "stacksjs",
-      "description": "🔢 Currencies, weights, and phone numbers. Localized & lightweight.",
+      "description": "Currencies, weights, and phone numbers. Localized & lightweight.",
       "stars": 4,
       "url": "https://github.com/stacksjs/ts-numbers"
     },
@@ -389,14 +396,14 @@
     {
       "name": "ts-vat",
       "org": "stacksjs",
-      "description": "🇪🇺 Simply handle EU MOSS / VAT tax regulations & calculations.",
+      "description": "Simply handle EU MOSS / VAT tax regulations & calculations.",
       "stars": 4,
       "url": "https://github.com/stacksjs/ts-vat"
     },
     {
       "name": "ts-videos",
       "org": "stacksjs",
-      "description": "📹  Make your videos load faster. A better save for the web.",
+      "description": "Make your videos load faster. A better save for the web.",
       "stars": 4,
       "url": "https://github.com/stacksjs/ts-videos"
     },
@@ -417,14 +424,14 @@
     {
       "name": "dynamodb-tooling",
       "org": "stacksjs",
-      "description": "🛠️ A simple local DynamoDB API. Without the need for Docker.",
+      "description": "A simple local DynamoDB API. Without the need for Docker.",
       "stars": 3,
       "url": "https://github.com/stacksjs/dynamodb-tooling"
     },
     {
       "name": "everything",
       "org": "stacksjs",
-      "description": "📊 Every actively maintained package by the Stacks community.",
+      "description": "Every actively maintained package by the Stacks community.",
       "stars": 3,
       "url": "https://github.com/stacksjs/everything"
     },
@@ -450,13 +457,6 @@
       "url": "https://github.com/stacksjs/projects"
     },
     {
-      "name": "ts-countries",
-      "org": "stacksjs",
-      "description": "🌐 Modern & lightweight package for working with country data.",
-      "stars": 3,
-      "url": "https://github.com/stacksjs/ts-countries"
-    },
-    {
       "name": "ts-inputs",
       "org": "stacksjs",
       "description": "Modern input masking.",
@@ -466,21 +466,21 @@
     {
       "name": "ts-jpeg",
       "org": "stacksjs",
-      "description": "🌄 A modern JPEG encoder & decoder. For server & browser.",
+      "description": "A modern JPEG encoder & decoder. For server & browser.",
       "stars": 3,
       "url": "https://github.com/stacksjs/ts-jpeg"
     },
     {
       "name": "ts-ndarray",
       "org": "stacksjs",
-      "description": "🌀 Multidimensional arrays for JavaScript & TypeScript.",
+      "description": "Multidimensional arrays for JavaScript & TypeScript.",
       "stars": 3,
       "url": "https://github.com/stacksjs/ts-ndarray"
     },
     {
       "name": "ts-png",
       "org": "stacksjs",
-      "description": "🏞️ Modern PNG decoding & encoding.",
+      "description": "Modern PNG decoding & encoding.",
       "stars": 3,
       "url": "https://github.com/stacksjs/ts-png"
     },
@@ -515,7 +515,7 @@
     {
       "name": "contributing",
       "org": "stacksjs",
-      "description": "🤝 Are you interested in helping contribute? Get started here.",
+      "description": "Are you interested in helping contribute? Get started here.",
       "stars": 1,
       "url": "https://github.com/stacksjs/contributing"
     },
@@ -532,6 +532,13 @@
       "description": "The Stacks backers & sponsors.",
       "stars": 0,
       "url": "https://github.com/stacksjs/sponsors"
+    },
+    {
+      "name": "dotfiles",
+      "org": "chrisbbreuer",
+      "description": "My dotfiles. Get started with your own.",
+      "stars": 2,
+      "url": "https://github.com/chrisbbreuer/dotfiles"
     },
     {
       "name": "very-good-adblock",
@@ -662,42 +669,42 @@
     {
       "name": "laravel-media-converter",
       "org": "meemalabs",
-      "description": "🎥 This package allows you to easily integrate with AWS MediaConvert.",
+      "description": "This package allows you to easily integrate with AWS MediaConvert.",
       "stars": 57,
       "url": "https://github.com/meemalabs/laravel-media-converter"
     },
     {
       "name": "laravel-text-to-speech",
       "org": "meemalabs",
-      "description": "💬 A wrapper for popular TTS services to create a more simple & uniform API. Currently, only AWS Polly is supported.",
+      "description": "A wrapper for popular TTS services to create a more simple & uniform API. Currently, only AWS Polly is supported.",
       "stars": 42,
       "url": "https://github.com/meemalabs/laravel-text-to-speech"
     },
     {
       "name": "laravel-cloudfront",
       "org": "meemalabs",
-      "description": "☁️ This package allows you to easily integrate with AWS CloudFront for commonly used methods to interact with.",
+      "description": "This package allows you to easily integrate with AWS CloudFront for commonly used methods to interact with.",
       "stars": 30,
       "url": "https://github.com/meemalabs/laravel-cloudfront"
     },
     {
       "name": "laravel-media-recognition",
       "org": "meemalabs",
-      "description": "👀 A wrapper to easily & quickly integrate popular image & video recognition libraries. Currently supports AWS Rekognition.",
+      "description": "A wrapper to easily & quickly integrate popular image & video recognition libraries. Currently supports AWS Rekognition.",
       "stars": 22,
       "url": "https://github.com/meemalabs/laravel-media-recognition"
     },
     {
       "name": "web-components-starter",
       "org": "ow3org",
-      "description": "🏝 Web Components Starter template to help kick-start development of a framework-agnostic component library.",
+      "description": "Web Components Starter template to help kick-start development of a framework-agnostic component library.",
       "stars": 19,
       "url": "https://github.com/ow3org/web-components-starter"
     },
     {
       "name": "ts-starter",
       "org": "ow3org",
-      "description": "🛫  TypeScript Starter template to simplify creating & distributing your next npm package.",
+      "description": "TypeScript Starter template to simplify creating & distributing your next npm package.",
       "stars": 7,
       "url": "https://github.com/ow3org/ts-starter"
     },
@@ -711,14 +718,14 @@
     {
       "name": "composable-starter",
       "org": "ow3org",
-      "description": "🌳 Composable Starter Kit to simplify creating & distributing your next npm package/s.",
+      "description": "Composable Starter Kit to simplify creating & distributing your next npm package/s.",
       "stars": 3,
       "url": "https://github.com/ow3org/composable-starter"
     },
     {
       "name": "renovate-config",
       "org": "ow3org",
-      "description": "🤖 Open Web / Stacks preset for the Renovate bot.",
+      "description": "Open Web / Stacks preset for the Renovate bot.",
       "stars": 1,
       "url": "https://github.com/ow3org/renovate-config"
     },

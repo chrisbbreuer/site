@@ -170,6 +170,9 @@ main { padding: 3.5rem 0 2rem; }
 .prose strong { color: var(--text-1); }
 
 .section-label {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
   margin: 2.75rem 0 0.75rem;
   font-family: var(--font-mono);
   font-size: 0.78rem;
@@ -177,6 +180,22 @@ main { padding: 3.5rem 0 2rem; }
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text-3);
+}
+.section-label a {
+  color: var(--text-3);
+  text-decoration: none;
+}
+.section-label a:hover {
+  color: var(--text-1);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.section-label .label-meta {
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--text-3);
+  opacity: 0.75;
 }
 
 /* ── Post list (home) ───────────────────────────────────────────────────── */
@@ -336,23 +355,28 @@ main { padding: 3.5rem 0 2rem; }
 }
 @media (max-width: 720px) {
   .about-grid { grid-template-columns: 1fr; }
-  .about-grid .portrait { order: -1; max-width: 15rem; }
+  /* Bio reads first on mobile; the portrait + photo rail follow it. */
+  .about-grid .portrait img:first-child { max-width: 15rem; }
 }
 
-.photo-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.75rem;
+/* The side photo rail: a two-column masonry of everything in
+ * content/gallery.json, natural aspect ratios, lazy-loaded. */
+.photo-rail {
+  columns: 2;
+  column-gap: 0.6rem;
   margin-top: 1rem;
 }
-.photo-row img {
+.photo-rail img {
   width: 100%;
-  aspect-ratio: 9 / 10;
-  object-fit: cover;
+  height: auto;
+  display: block;
+  margin-bottom: 0.6rem;
   border-radius: 6px;
   border: 1px solid var(--divider);
-  display: block;
+  break-inside: avoid;
 }
-@media (max-width: 640px) {
-  .photo-row { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+@media (max-width: 720px) {
+  /* On mobile the rail moves below the text; three columns keep it compact. */
+  .photo-rail { columns: 3; column-gap: 0.5rem; }
+  .photo-rail img { margin-bottom: 0.5rem; }
 }

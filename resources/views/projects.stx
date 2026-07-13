@@ -8,19 +8,29 @@ const activeNav = 'projects'
 const pagePath = '/projects'
 
 // content/projects.json is regenerated from the GitHub API by
-// `bun scripts/fetch-projects.ts` (every public non-fork repo across my
-// account and orgs). The page just groups it per org.
+// `bun scripts/fetch-projects.ts`. Curation (exclusions, pinned repos like
+// dotfiles, emoji stripping) lives in that script, so a resync keeps it.
 const data = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'content/projects.json'), 'utf-8'))
+
+const withLabels = data.repos.map(r => ({ ...r, starLabel: r.stars > 0 ? `${r.stars} stars` : '' }))
+
+// Highlights: the most-starred work across every org.
+const highlights = [...withLabels].sort((a, b) => b.stars - a.stars).slice(0, 6)
+
+// Everything, grouped per org (the JSON is already in display order).
 const groups = []
-for (const repo of data.repos) {
+for (const repo of withLabels) {
   let group = groups[groups.length - 1]
   if (!group || group.org !== repo.org) {
-    group = { org: repo.org, repos: [] }
+    group = { org: repo.org, orgUrl: `https://github.com/${repo.org}`, repos: [] }
     groups.push(group)
   }
-  group.repos.push({ ...repo, starLabel: repo.stars > 0 ? `${repo.stars} stars` : '' })
+  group.repos.push(repo)
 }
-const repoCount = data.repos.length
+for (const group of groups)
+  group.countLabel = group.repos.length === 1 ? '1 repo' : `${group.repos.length} repos`
+
+const repoCount = withLabels.length
 const orgCount = groups.length
 const generatedAt = data.generatedAt
 </script>
@@ -31,12 +41,26 @@ const generatedAt = data.generatedAt
   <h1 class="page-title">Things I've made.</h1>
   <p class="page-lead">
     {{ repoCount }} public repos across {{ orgCount }} orgs, most of them open source.
-    If something piques your interest, check out the code and contribute.
+    If something piques your interest, check out the code and contribute. My
+    <a href="https://github.com/chrisbbreuer/dotfiles">dotfiles</a> are public too.
     Synced from GitHub on {{ generatedAt }}.
   </p>
 
+  <h2 class="section-label">Highlights</h2>
+  <ul class="entry-list">
+    @foreach (highlights as repo)
+      <li>
+        <span class="entry-name"><a href="{{ repo.url }}">{{ repo.org }}/{{ repo.name }}</a></span>
+        <span class="entry-desc">{{ repo.description }} <span class="entry-meta">{{ repo.starLabel }}</span></span>
+      </li>
+    @endforeach
+  </ul>
+
   @foreach (groups as group)
-    <h2 class="section-label">{{ group.org }}</h2>
+    <h2 class="section-label">
+      <a href="{{ group.orgUrl }}">{{ group.org }}</a>
+      <span class="label-meta">{{ group.countLabel }}</span>
+    </h2>
     <ul class="entry-list">
       @foreach (group.repos as repo)
         <li>
