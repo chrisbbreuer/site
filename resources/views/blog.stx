@@ -1,0 +1,68 @@
+<script server>
+const fs = require('node:fs')
+const path = require('node:path')
+const { parseMarkdownWithFrontmatter } = require('@stacksjs/ts-md')
+
+const title = 'Blog - Chris Breuer'
+const description = 'Notes on developer tooling, TypeScript, Bun, and building Stacks.'
+const activeNav = 'blog'
+const pagePath = '/blog'
+
+// The blog is stx-native: posts are markdown files in content/blog/*.md,
+// parsed with our homegrown @stacksjs/ts-md (frontmatter + render). No
+// BunPress. The framework yields /blog to this view because it exists.
+const blogDir = path.join(process.cwd(), 'content/blog')
+const posts = (fs.existsSync(blogDir) ? fs.readdirSync(blogDir) : [])
+  .filter(f => f.endsWith('.md'))
+  .map((f) => {
+    const raw = fs.readFileSync(path.join(blogDir, f), 'utf-8')
+    const { data } = parseMarkdownWithFrontmatter(raw)
+    return {
+      slug: f.replace(/\.md$/, ''),
+      title: data.title,
+      date: data.date,
+      excerpt: data.excerpt || '',
+      shortDate: typeof data.date === 'string' ? data.date.slice(0, 7) : '',
+    }
+  })
+  .filter(p => p.title && p.date)
+  .sort((a, b) => String(b.date).localeCompare(String(a.date)))
+</script>
+
+@layout('layouts/site')
+
+@push('head')
+  <link rel="alternate" type="application/rss+xml" title="Chris Breuer" href="/blog/feed.xml">
+@endpush
+
+@section('content')
+  <h1 class="page-title">Writing</h1>
+  <p class="page-lead">
+    Notes on developer tooling, TypeScript, Bun, and building
+    <a href="https://stacksjs.com">Stacks</a>.
+  </p>
+
+  @if (posts.length > 0)
+    <ul class="post-list">
+      @foreach (posts as post)
+        <li>
+          <a href="/blog/{{ post.slug }}">
+            <span class="post-title">{{ post.title }}</span>
+            <span class="post-date">{{ post.shortDate }}</span>
+          </a>
+        </li>
+      @endforeach
+    </ul>
+  @else
+    <p class="empty-note">
+      Nothing published yet. The first post is in the works; subscribe below
+      and it lands in your inbox the moment it ships.
+    </p>
+  @endif
+
+  @include('../partials/subscribe.stx')
+@endsection
+
+@push('scripts')
+  <script src="/assets/scripts/subscribe.js" defer></script>
+@endpush

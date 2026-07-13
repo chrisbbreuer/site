@@ -1,0 +1,50 @@
+<script server>
+const fs = require('node:fs')
+const path = require('node:path')
+const { parseMarkdownWithFrontmatter } = require('@stacksjs/ts-md')
+
+// Dynamic route: /blog/<slug> → content/blog/<slug>.md, rendered with our
+// homegrown @stacksjs/ts-md. `params.slug` is threaded in from the request.
+const slug = String((typeof params === 'object' && params && params.slug) || '').replace(/[^a-z0-9-]/gi, '')
+const file = path.join(process.cwd(), 'content/blog', `${slug}.md`)
+
+let post = null
+if (slug && fs.existsSync(file)) {
+  const { data, html } = parseMarkdownWithFrontmatter(fs.readFileSync(file, 'utf-8'))
+  post = {
+    title: data.title || slug,
+    date: typeof data.date === 'string' ? data.date : '',
+    excerpt: data.excerpt || '',
+    html,
+  }
+}
+
+const title = post ? `${post.title} - Chris Breuer` : 'Not found - Chris Breuer'
+const description = post ? (post.excerpt || `${post.title} — Chris Breuer`) : 'Post not found.'
+const activeNav = 'blog'
+const pagePath = `/blog/${slug}`
+</script>
+
+@layout('layouts/site')
+
+@section('content')
+  @if (post)
+    <article class="post">
+      <header class="post-header">
+        <a class="post-back" href="/blog">← Writing</a>
+        <h1 class="page-title">{{ post.title }}</h1>
+        @if (post.date)
+          <p class="post-meta"><time datetime="{{ post.date }}">{{ post.date }}</time></p>
+        @endif
+      </header>
+      <div class="prose post-body">
+        {!! post.html !!}
+      </div>
+    </article>
+  @else
+    <h1 class="page-title">Not found</h1>
+    <p class="empty-note">
+      That post doesn't exist (yet). Head back to <a href="/blog">Writing</a>.
+    </p>
+  @endif
+@endsection

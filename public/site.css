@@ -169,6 +169,50 @@ main { padding: 3.5rem 0 2rem; }
 .prose p { margin: 0 0 1.1rem; color: var(--text-2); }
 .prose strong { color: var(--text-1); }
 
+/* ── Blog post ──────────────────────────────────────────────────────────── */
+.post { max-width: 40rem; }
+.post-back {
+  display: inline-block;
+  margin-bottom: 1.25rem;
+  font-size: 0.8rem;
+  color: var(--text-3);
+  text-decoration: none;
+}
+.post-back:hover { color: var(--text-1); }
+.post-meta {
+  margin: 0.4rem 0 2rem;
+  font-size: 0.8rem;
+  color: var(--text-3);
+}
+.post-body { font-size: 1rem; line-height: 1.75; }
+.post-body h2 { margin: 2.2rem 0 0.75rem; font-size: 1.3rem; font-weight: 650; letter-spacing: -0.01em; }
+.post-body h3 { margin: 1.8rem 0 0.5rem; font-size: 1.1rem; font-weight: 600; }
+.post-body ul, .post-body ol { margin: 0 0 1.1rem; padding-left: 1.4rem; color: var(--text-2); }
+.post-body li { margin: 0.3rem 0; }
+.post-body pre {
+  margin: 0 0 1.3rem;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  background: var(--code-bg);
+  border: 1px solid var(--divider);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+.post-body :not(pre) > code {
+  padding: 0.1rem 0.35rem;
+  background: var(--code-bg);
+  border-radius: 4px;
+  font-size: 0.88em;
+}
+.post-body img { max-width: 100%; height: auto; border-radius: 8px; }
+.post-body blockquote {
+  margin: 0 0 1.2rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--divider);
+  color: var(--text-3);
+}
+
 .section-label {
   display: flex;
   align-items: baseline;
