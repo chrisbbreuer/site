@@ -18,7 +18,7 @@ const sections = [
     title: 'Development',
     tools: [
       { name: 'Ghostty', text: 'A fast, feature-rich, cross-platform terminal emulator that uses platform-native UI and GPU acceleration.' },
-      { name: 'Stacks', text: 'The Stacks ecosystem is key to my productivity. It streamlines my local development experience and automates management of all my resources.' },
+      { name: 'Stacks', text: 'The Stacks.js ecosystem is key to my productivity. It streamlines my local development experience and automates management of all my resources.' },
       { name: 'Zed', text: 'Zed is an amazing code editor! Reminds me a little of Sublime Text.' },
       { name: 'TablePlus', text: 'Over the years I have used many database tools, and TablePlus is the one that stuck. Great tool for working with databases.' },
       { name: 'GitHub Desktop', text: 'My trusty sidekick for most git needs. No shame.' },

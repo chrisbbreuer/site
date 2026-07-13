@@ -6,12 +6,9 @@ const pagePath = '/about'
 
 const work = [
   { name: 'Stacks.js, Inc.', role: 'Founder', period: '2024 to present' },
-  { name: 'Open Web Foundation', role: 'Board Member', period: '2022 to present' },
   { name: 'Bixolon', role: 'Consultant', period: '2020 to 2024' },
   { name: 'University of Oregon', role: 'Consultant', period: '2020 to 2021' },
   { name: 'Girlgaze', role: 'Consultant', period: '2019 to 2020' },
-  { name: 'Eliinova', role: 'Engineering Lead', period: '2018 to present' },
-  { name: 'CION', role: 'Founder', period: '2016 to present' },
 ]
 
 const elsewhere = [
