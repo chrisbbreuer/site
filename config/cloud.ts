@@ -92,17 +92,10 @@ export const tsCloud: TsCloudConfig = {
       },
     },
 
-    // Blog (BunPress static build of content/blog). NO start/port ⇒
-    // server-static: `build` runs locally, the built root ships to
-    // /var/www/chrisbreuerBlog, and rpx serves it at /blog.
-    chrisbreuerBlog: {
-      deploy: 'server',
-      root: 'dist/blog',
-      path: '/blog',
-      domain: 'chrisbreuer.me',
-      build: 'bun -e "const {buildBlog}=await import(\'./storage/framework/core/actions/src/blog\'); await buildBlog({outDir:\'./dist/blog\', baseUrl:\'https://chrisbreuer.me\'})"',
-      pathRewriteStyle: 'directory',
-    },
+    // The blog is stx-native now (resources/views/blog.stx + blog/[slug].stx,
+    // markdown from content/blog rendered by @stacksjs/ts-md). It is served by
+    // the main app at /blog — no separate static BunPress build, no rpx /blog
+    // route — so the blog shares the app's layout, theme and SPA routing.
 
     // www → apex redirect (gateway answers with a 301; nothing is shipped).
     chrisbreuerWww: { domain: 'www.chrisbreuer.me', redirect: 'https://chrisbreuer.me' },

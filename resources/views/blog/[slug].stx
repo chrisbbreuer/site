@@ -14,13 +14,13 @@ if (slug && fs.existsSync(file)) {
   post = {
     title: data.title || slug,
     date: typeof data.date === 'string' ? data.date : '',
-    excerpt: data.excerpt || '',
+    excerpt: data.excerpt || data.description || '',
     html,
   }
 }
 
 const title = post ? `${post.title} - Chris Breuer` : 'Not found - Chris Breuer'
-const description = post ? (post.excerpt || `${post.title} — Chris Breuer`) : 'Post not found.'
+const description = post ? (post.excerpt || `${post.title}, by Chris Breuer`) : 'Post not found.'
 const activeNav = 'blog'
 const pagePath = `/blog/${slug}`
 </script>
