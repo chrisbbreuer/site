@@ -31,6 +31,10 @@ const posts = (fs.existsSync(blogDir) ? fs.readdirSync(blogDir) : [])
 
 @layout('layouts/site')
 
+@push('head')
+  <link rel="alternate" type="application/rss+xml" title="Chris Breuer" href="/blog/feed.xml">
+@endpush
+
 @section('content')
   <h1 class="page-title">Writing</h1>
   <p class="page-lead">

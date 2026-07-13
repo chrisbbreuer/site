@@ -70,9 +70,10 @@
     "sqlite": "^3.47.2"
   },
   "dependencies": {
-    "@stacksjs/stx": "^0.2.86",
+    "@stacksjs/stx": "^0.2.87",
+    "bun-plugin-stx": "^0.2.87",
     "stacks": "workspace:*",
-    "stx-router": "^0.2.86"
+    "stx-router": "^0.2.87"
   },
   "devDependencies": {
     "better-dx": "^0.2.17",
