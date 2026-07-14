@@ -1,817 +1,1283 @@
 {
-  "generatedAt": "2026-07-13",
+  "generatedAt": "2026-07-14",
   "repos": [
     {
       "name": "stacks",
       "org": "stacksjs",
       "description": "Modern, performant & for the age of AI. Develop powerful apps, clouds & framework-agnostic libraries—faster.",
       "stars": 620,
-      "url": "https://github.com/stacksjs/stacks"
+      "url": "https://github.com/stacksjs/stacks",
+      "tags": [
+        "TypeScript",
+        "AI",
+        "Cloud",
+        "Desktop",
+        "Framework",
+        "Library",
+        "Mobile"
+      ]
     },
     {
       "name": "dtsx",
       "org": "stacksjs",
       "description": "Extremely fast, smart & configurable DTS emitter.",
       "stars": 173,
-      "url": "https://github.com/stacksjs/dtsx"
+      "url": "https://github.com/stacksjs/dtsx",
+      "tags": [
+        "TypeScript"
+      ]
     },
     {
       "name": "ts-spreadsheets",
       "org": "stacksjs",
       "description": "Easily manage & generate spreadsheets. CSV & Excel files supported.",
       "stars": 84,
-      "url": "https://github.com/stacksjs/ts-spreadsheets"
+      "url": "https://github.com/stacksjs/ts-spreadsheets",
+      "tags": [
+        "TypeScript",
+        "Bun",
+        "Library"
+      ]
     },
     {
       "name": "bun-queue",
       "org": "stacksjs",
       "description": "A modern & powerful Queue / Messaging system. Optimized for Bun usage. UI coming soon.",
       "stars": 67,
-      "url": "https://github.com/stacksjs/bun-queue"
+      "url": "https://github.com/stacksjs/bun-queue",
+      "tags": [
+        "TypeScript",
+        "Bun",
+        "Queue"
+      ]
     },
     {
       "name": "tlsx",
       "org": "stacksjs",
       "description": "A modern & lightweight TLS library & CLI. Built for automation—HTTPS by default. Similar to mkcert.",
       "stars": 47,
-      "url": "https://github.com/stacksjs/tlsx"
+      "url": "https://github.com/stacksjs/tlsx",
+      "tags": [
+        "TypeScript",
+        "Library"
+      ]
     },
     {
       "name": "ts-collect",
       "org": "stacksjs",
       "description": "Lightweight & powerful Laravel-like Collections written for TypeScript.",
       "stars": 34,
-      "url": "https://github.com/stacksjs/ts-collect"
+      "url": "https://github.com/stacksjs/ts-collect",
+      "tags": [
+        "TypeScript",
+        "Laravel"
+      ]
     },
     {
       "name": "vite-plugin-local",
       "org": "stacksjs",
       "description": "Pretty development URLs, and HTTPS. Zero config, zero setup.",
       "stars": 32,
-      "url": "https://github.com/stacksjs/vite-plugin-local"
+      "url": "https://github.com/stacksjs/vite-plugin-local",
+      "tags": [
+        "TypeScript",
+        "Proxy"
+      ]
     },
     {
       "name": "bun-plugin-dtsx",
       "org": "stacksjs",
       "description": "Automatically generate your TypeScript .d.ts files, using Bun's bundler. Very fast.",
       "stars": 30,
-      "url": "https://github.com/stacksjs/bun-plugin-dtsx"
+      "url": "https://github.com/stacksjs/bun-plugin-dtsx",
+      "tags": [
+        "TypeScript",
+        "Bun"
+      ]
     },
     {
       "name": "rpx",
       "org": "stacksjs",
       "description": "A modern, smart reverse proxy. For a pretty and powerful local DX.",
       "stars": 29,
-      "url": "https://github.com/stacksjs/rpx"
+      "url": "https://github.com/stacksjs/rpx",
+      "tags": [
+        "TypeScript",
+        "Bun",
+        "CLI",
+        "Proxy"
+      ]
     },
     {
       "name": "localtunnels",
       "org": "stacksjs",
       "description": "A simple and smart tunneling alternative. Without or with self-hosting.",
       "stars": 22,
-      "url": "https://github.com/stacksjs/localtunnels"
+      "url": "https://github.com/stacksjs/localtunnels",
+      "tags": [
+        "TypeScript",
+        "Tunneling"
+      ]
     },
     {
       "name": "ts-rate-limiter",
       "org": "stacksjs",
       "description": "A high-performance, flexible rate limiting library for TypeScript.",
       "stars": 21,
-      "url": "https://github.com/stacksjs/ts-rate-limiter"
+      "url": "https://github.com/stacksjs/ts-rate-limiter",
+      "tags": [
+        "TypeScript",
+        "Bun",
+        "Library"
+      ]
     },
     {
       "name": "stx",
       "org": "stacksjs",
       "description": "A performant & powerful UI templating language.",
       "stars": 19,
-      "url": "https://github.com/stacksjs/stx"
+      "url": "https://github.com/stacksjs/stx",
+      "tags": [
+        "TypeScript",
+        "Bun",
+        "Components",
+        "CSS",
+        "Templating"
+      ]
     },
     {
       "name": "bun-git-hooks",
       "org": "stacksjs",
       "description": "Think of `simple-git-hooks` but optimized for all-sized Bun projects.",
       "stars": 18,
-      "url": "https://github.com/stacksjs/bun-git-hooks"
+      "url": "https://github.com/stacksjs/bun-git-hooks",
+      "tags": [
+        "TypeScript",
+        "Bun",
+        "CLI",
+        "Library"
+      ]
     },
     {
       "name": "bunfig",
       "org": "stacksjs",
       "description": "Lightweight & smart Bun & Browser configuration loader.",
       "stars": 16,
-      "url": "https://github.com/stacksjs/bunfig"
+      "url": "https://github.com/stacksjs/bunfig",
+      "tags": [
+        "TypeScript",
+        "Bun",
+        "Config",
+        "Library"
+      ]
     },
     {
       "name": "ts-qr-codes",
       "org": "stacksjs",
       "description": "QR & Bar Code generating & reading. Lightweight & powerful.",
       "stars": 15,
-      "url": "https://github.com/stacksjs/ts-qr-codes"
+      "url": "https://github.com/stacksjs/ts-qr-codes",
+      "tags": [
+        "TypeScript"
+      ]
     },
     {
       "name": "barista",
       "org": "stacksjs",
       "description": "A lightweight macOS utility that serves up a perfectly organized menubar. #caffeinated",
       "stars": 14,
-      "url": "https://github.com/stacksjs/barista"
+      "url": "https://github.com/stacksjs/barista",
+      "tags": [
+        "TypeScript",
+        "macOS",
+        "Swift"
+      ]
     },
     {
       "name": "bun-plugin-unocss",
       "org": "stacksjs",
       "description": "Bun plugin for UnoCSS support.",
       "stars": 14,
-      "url": "https://github.com/stacksjs/bun-plugin-unocss"
+      "url": "https://github.com/stacksjs/bun-plugin-unocss",
+      "tags": [
+        "TypeScript",
+        "Bun"
+      ]
     },
     {
       "name": "clapp",
       "org": "stacksjs",
       "description": "⌘ A modern framework to build powerful & pretty CLI applications.",
       "stars": 14,
-      "url": "https://github.com/stacksjs/clapp"
+      "url": "https://github.com/stacksjs/clapp",
+      "tags": [
+        "TypeScript",
+        "CLI",
+        "Library",
+        "Zig"
+      ]
     },
     {
       "name": "bunpress",
       "org": "stacksjs",
       "description": "Documentation, faster.",
       "stars": 13,
-      "url": "https://github.com/stacksjs/bunpress"
+      "url": "https://github.com/stacksjs/bunpress",
+      "tags": [
+        "TypeScript",
+        "Bun"
+      ]
     },
     {
       "name": "table",
       "org": "stacksjs",
       "description": "The modern way to work with tables. Blazing fast facet-filtering, sorting, and searching.",
       "stars": 13,
-      "url": "https://github.com/stacksjs/table"
+      "url": "https://github.com/stacksjs/table",
+      "tags": [
+        "TypeScript",
+        "Vue"
+      ]
     },
     {
       "name": "bun-plugin-dotenvx",
       "org": "stacksjs",
       "description": "A powerful loader for your dotenv files, powered by dotenvx.",
       "stars": 12,
-      "url": "https://github.com/stacksjs/bun-plugin-dotenvx"
+      "url": "https://github.com/stacksjs/bun-plugin-dotenvx",
+      "tags": [
+        "TypeScript",
+        "Bun"
+      ]
     },
     {
       "name": "ts-images",
       "org": "stacksjs",
       "description": "Make your images load faster. A better save for the web.",
       "stars": 12,
-      "url": "https://github.com/stacksjs/ts-images"
+      "url": "https://github.com/stacksjs/ts-images",
+      "tags": [
+        "TypeScript"
+      ]
     },
     {
       "name": "bun-plugin-auto-imports",
       "org": "stacksjs",
       "description": "Auto Imports support for Bun.",
       "stars": 11,
-      "url": "https://github.com/stacksjs/bun-plugin-auto-imports"
+      "url": "https://github.com/stacksjs/bun-plugin-auto-imports",
+      "tags": [
+        "TypeScript",
+        "Bun"
+      ]
     },
     {
       "name": "ts-cache",
       "org": "stacksjs",
       "description": "A fast, type-safe, and feature-rich caching library for modern applications.",
       "stars": 11,
-      "url": "https://github.com/stacksjs/ts-cache"
+      "url": "https://github.com/stacksjs/ts-cache",
+      "tags": [
+        "TypeScript",
+        "Bun",
+        "Cache",
+        "Library",
+        "Node"
+      ]
     },
     {
       "name": "ts-starter",
       "org": "stacksjs",
       "description": "Quickly bootstrap your next TypeScript / Bun project.",
       "stars": 11,
-      "url": "https://github.com/stacksjs/ts-starter"
+      "url": "https://github.com/stacksjs/ts-starter",
+      "tags": [
+        "TypeScript",
+        "Bun",
+        "CLI",
+        "Testing"
+      ]
     },
     {
       "name": "vite-plugin-dotenvx",
       "org": "stacksjs",
       "description": "A Vite plugin to seamlessly work with with dotenvx.",
       "stars": 11,
-      "url": "https://github.com/stacksjs/vite-plugin-dotenvx"
+      "url": "https://github.com/stacksjs/vite-plugin-dotenvx",
+      "tags": [
+        "TypeScript"
+      ]
     },
     {
       "name": "awesome-stacks",
       "org": "stacksjs",
       "description": "A curated list of awesome things related to Stacks.js.",
       "stars": 10,
-      "url": "https://github.com/stacksjs/awesome-stacks"
+      "url": "https://github.com/stacksjs/awesome-stacks",
+      "tags": []
     },
     {
       "name": "ts-dns",
       "org": "stacksjs",
       "description": "A command-line & library DNS client. Like dig & dog, but for TypeScript.",
       "stars": 10,
-      "url": "https://github.com/stacksjs/ts-dns"
+      "url": "https://github.com/stacksjs/ts-dns",
+      "tags": [
+        "TypeScript",
+        "CLI",
+        "Library"
+      ]
     },
     {
       "name": "buddy-bot",
       "org": "stacksjs",
       "description": "Automated & optimized dependency updates for JavaScript & TypeScript projects. Like Renovate & Dependabot.",
       "stars": 9,
-      "url": "https://github.com/stacksjs/buddy-bot"
+      "url": "https://github.com/stacksjs/buddy-bot",
+      "tags": [
+        "TypeScript",
+        "PHP",
+        "Zig"
+      ]
     },
     {
       "name": "bumpx",
       "org": "stacksjs",
       "description": "Bump your package.json versions & dependencies automatically.",
       "stars": 9,
-      "url": "https://github.com/stacksjs/bumpx"
+      "url": "https://github.com/stacksjs/bumpx",
+      "tags": [
+        "TypeScript",
+        "Zig"
+      ]
     },
     {
       "name": "bun-router",
       "org": "stacksjs",
       "description": "A powerful yet lightweight router for your Bun server.",
       "stars": 9,
-      "url": "https://github.com/stacksjs/bun-router"
+      "url": "https://github.com/stacksjs/bun-router",
+      "tags": [
+        "TypeScript",
+        "Bun",
+        "Laravel"
+      ]
     },
     {
       "name": "date-picker",
       "org": "stacksjs",
       "description": "The modern, beautifully-designed open source date picker. Airbnb-style theme & more.",
       "stars": 9,
-      "url": "https://github.com/stacksjs/date-picker"
+      "url": "https://github.com/stacksjs/date-picker",
+      "tags": [
+        "TypeScript",
+        "Vue"
+      ]
     },
     {
       "name": "ts-datetime",
       "org": "stacksjs",
       "description": "Modern datetime tooling. A Carbon-like API for TypeScript.",
       "stars": 9,
-      "url": "https://github.com/stacksjs/ts-datetime"
+      "url": "https://github.com/stacksjs/ts-datetime",
+      "tags": [
+        "TypeScript",
+        "Library"
+      ]
     },
     {
       "name": "ts-maps",
       "org": "stacksjs",
       "description": "Modern & lightweight TypeScript library for creating interactive vector maps.",
       "stars": 9,
-      "url": "https://github.com/stacksjs/ts-maps"
+      "url": "https://github.com/stacksjs/ts-maps",
+      "tags": [
+        "TypeScript",
+        "Library",
+        "React",
+        "Vue"
+      ]
     },
     {
       "name": "vite-plugin-layouts",
       "org": "stacksjs",
       "description": "Router-based layouts for your application.",
       "stars": 9,
-      "url": "https://github.com/stacksjs/vite-plugin-layouts"
+      "url": "https://github.com/stacksjs/vite-plugin-layouts",
+      "tags": [
+        "TypeScript",
+        "Vue"
+      ]
     },
     {
       "name": "ts-audio",
       "org": "stacksjs",
       "description": "Powerful audio processing for your media workflows.",
       "stars": 8,
-      "url": "https://github.com/stacksjs/ts-audio"
+      "url": "https://github.com/stacksjs/ts-audio",
+      "tags": [
+        "TypeScript",
+        "Bun",
+        "CLI",
+        "Library"
+      ]
     },
     {
       "name": "ts-security",
       "org": "stacksjs",
       "description": "Modern cryptography primitives & utilities with a focus on type safety, security, performance & best practices.",
       "stars": 8,
-      "url": "https://github.com/stacksjs/ts-security"
+      "url": "https://github.com/stacksjs/ts-security",
+      "tags": [
+        "TypeScript",
+        "Library"
+      ]
     },
     {
       "name": "logsmith",
       "org": "stacksjs",
       "description": "Forge beautiful changelogs from your commits.",
       "stars": 7,
-      "url": "https://github.com/stacksjs/logsmith"
+      "url": "https://github.com/stacksjs/logsmith",
+      "tags": [
+        "TypeScript"
+      ]
     },
     {
       "name": "ts-http",
       "org": "stacksjs",
       "description": "A modern command-line & library HTTP client, \"for the API era.\" Like httpie, written in & for TypeScript.",
       "stars": 7,
-      "url": "https://github.com/stacksjs/ts-http"
+      "url": "https://github.com/stacksjs/ts-http",
+      "tags": [
+        "TypeScript",
+        "CLI",
+        "Library"
+      ]
     },
     {
       "name": "ts-slug",
       "org": "stacksjs",
       "description": "Lightweight slug generation. Browser & Bun / Node.js compatible.",
       "stars": 7,
-      "url": "https://github.com/stacksjs/ts-slug"
+      "url": "https://github.com/stacksjs/ts-slug",
+      "tags": [
+        "TypeScript",
+        "Bun",
+        "Library",
+        "Node"
+      ]
     },
     {
       "name": "besting",
       "org": "stacksjs",
       "description": "A modern & extremely performant testing framework. Browser, CLI, API testing-ready.",
       "stars": 6,
-      "url": "https://github.com/stacksjs/besting"
+      "url": "https://github.com/stacksjs/besting",
+      "tags": [
+        "TypeScript",
+        "CLI",
+        "Framework",
+        "Library",
+        "Testing"
+      ]
     },
     {
       "name": "hush",
       "org": "stacksjs",
       "description": "Hush.app ensures your notifications are suppressed during your screen-shared meetings.",
       "stars": 6,
-      "url": "https://github.com/stacksjs/hush"
+      "url": "https://github.com/stacksjs/hush",
+      "tags": [
+        "Swift",
+        "macOS"
+      ]
     },
     {
       "name": "pomodoro",
       "org": "stacksjs",
       "description": "A minimal, functional, yet simple Pomodoro menubar app, to help stay focussed.",
       "stars": 6,
-      "url": "https://github.com/stacksjs/pomodoro"
+      "url": "https://github.com/stacksjs/pomodoro",
+      "tags": [
+        "Swift",
+        "macOS"
+      ]
     },
     {
       "name": "ts-aax",
       "org": "stacksjs",
       "description": "A library to work with Audible's .aax files. Cross-platform app coming soon.",
       "stars": 6,
-      "url": "https://github.com/stacksjs/ts-aax"
+      "url": "https://github.com/stacksjs/ts-aax",
+      "tags": [
+        "TypeScript",
+        "Library"
+      ]
     },
     {
       "name": "ts-gif",
       "org": "stacksjs",
       "description": "TypeScript implementation of a performant GIF encoder & decoder.",
       "stars": 6,
-      "url": "https://github.com/stacksjs/ts-gif"
+      "url": "https://github.com/stacksjs/ts-gif",
+      "tags": [
+        "TypeScript"
+      ]
     },
     {
       "name": "ts-punycode",
       "org": "stacksjs",
       "description": "A TypeScript Punycode converter. RFC 3492 & RFC 5891 supported.",
       "stars": 6,
-      "url": "https://github.com/stacksjs/ts-punycode"
+      "url": "https://github.com/stacksjs/ts-punycode",
+      "tags": [
+        "TypeScript",
+        "Library"
+      ]
     },
     {
       "name": "ts-validation",
       "org": "stacksjs",
       "description": "Lightweight & performant form & request data validation library.",
       "stars": 6,
-      "url": "https://github.com/stacksjs/ts-validation"
+      "url": "https://github.com/stacksjs/ts-validation",
+      "tags": [
+        "TypeScript",
+        "Laravel"
+      ]
     },
     {
       "name": "action-releaser",
       "org": "stacksjs",
       "description": "A GitHub Action to attach files (e.g. binaries or app installers) to your releases.",
       "stars": 5,
-      "url": "https://github.com/stacksjs/action-releaser"
+      "url": "https://github.com/stacksjs/action-releaser",
+      "tags": [
+        "TypeScript"
+      ]
     },
     {
       "name": "fonts",
       "org": "stacksjs",
       "description": "A hand-picked collection of beautiful fonts, distributed on npm.",
       "stars": 5,
-      "url": "https://github.com/stacksjs/fonts"
+      "url": "https://github.com/stacksjs/fonts",
+      "tags": [
+        "CSS",
+        "Fonts"
+      ]
     },
     {
       "name": "ts-medium-editor",
       "org": "stacksjs",
       "description": "A modern, minimal & performant Medium-like rich text editor.",
       "stars": 5,
-      "url": "https://github.com/stacksjs/ts-medium-editor"
+      "url": "https://github.com/stacksjs/ts-medium-editor",
+      "tags": [
+        "TypeScript"
+      ]
     },
     {
       "name": "vite-plugin-tauri",
       "org": "stacksjs",
       "description": "Easily build cross-platform apps using Tauri & Vite.",
       "stars": 5,
-      "url": "https://github.com/stacksjs/vite-plugin-tauri"
+      "url": "https://github.com/stacksjs/vite-plugin-tauri",
+      "tags": [
+        "TypeScript",
+        "Desktop",
+        "Mobile"
+      ]
     },
     {
       "name": "clarity",
       "org": "stacksjs",
       "description": "Modern debugging & logging library. For server & browser.",
       "stars": 4,
-      "url": "https://github.com/stacksjs/clarity"
+      "url": "https://github.com/stacksjs/clarity",
+      "tags": [
+        "TypeScript",
+        "Library"
+      ]
     },
     {
       "name": "ts-clone",
       "org": "stacksjs",
       "description": "Deeply clone arbitrary objects using TypeScript.",
       "stars": 4,
-      "url": "https://github.com/stacksjs/ts-clone"
+      "url": "https://github.com/stacksjs/ts-clone",
+      "tags": [
+        "TypeScript",
+        "Library"
+      ]
     },
     {
       "name": "ts-countries",
       "org": "stacksjs",
       "description": "Modern & lightweight package for working with country data.",
       "stars": 4,
-      "url": "https://github.com/stacksjs/ts-countries"
+      "url": "https://github.com/stacksjs/ts-countries",
+      "tags": [
+        "TypeScript",
+        "Library"
+      ]
     },
     {
       "name": "ts-numbers",
       "org": "stacksjs",
       "description": "Currencies, weights, and phone numbers. Localized & lightweight.",
       "stars": 4,
-      "url": "https://github.com/stacksjs/ts-numbers"
+      "url": "https://github.com/stacksjs/ts-numbers",
+      "tags": [
+        "TypeScript"
+      ]
     },
     {
       "name": "ts-starter-monorepo",
       "org": "stacksjs",
       "description": "Same as our `ts-starter` but optimized for workspaces / monorepos.",
       "stars": 4,
-      "url": "https://github.com/stacksjs/ts-starter-monorepo"
+      "url": "https://github.com/stacksjs/ts-starter-monorepo",
+      "tags": [
+        "TypeScript"
+      ]
     },
     {
       "name": "ts-vat",
       "org": "stacksjs",
       "description": "Simply handle EU MOSS / VAT tax regulations & calculations.",
       "stars": 4,
-      "url": "https://github.com/stacksjs/ts-vat"
+      "url": "https://github.com/stacksjs/ts-vat",
+      "tags": [
+        "TypeScript",
+        "Library"
+      ]
     },
     {
       "name": "ts-videos",
       "org": "stacksjs",
       "description": "Make your videos load faster. A better save for the web.",
       "stars": 4,
-      "url": "https://github.com/stacksjs/ts-videos"
+      "url": "https://github.com/stacksjs/ts-videos",
+      "tags": [
+        "TypeScript",
+        "CLI",
+        "Library"
+      ]
     },
     {
       "name": "bench-review",
       "org": "stacksjs",
       "description": "Like Glassdoor but for the judiciary. Written by clerks, so users can get a glimpse into the inner workings of the court system.",
       "stars": 3,
-      "url": "https://github.com/stacksjs/bench-review"
+      "url": "https://github.com/stacksjs/bench-review",
+      "tags": [
+        "TypeScript"
+      ]
     },
     {
       "name": "devtools",
       "org": "stacksjs",
       "description": "Stacks Devtools.",
       "stars": 3,
-      "url": "https://github.com/stacksjs/devtools"
+      "url": "https://github.com/stacksjs/devtools",
+      "tags": [
+        "Vue"
+      ]
     },
     {
       "name": "dynamodb-tooling",
       "org": "stacksjs",
       "description": "A simple local DynamoDB API. Without the need for Docker.",
       "stars": 3,
-      "url": "https://github.com/stacksjs/dynamodb-tooling"
+      "url": "https://github.com/stacksjs/dynamodb-tooling",
+      "tags": [
+        "TypeScript",
+        "Bun"
+      ]
     },
     {
       "name": "everything",
       "org": "stacksjs",
       "description": "Every actively maintained package by the Stacks community.",
       "stars": 3,
-      "url": "https://github.com/stacksjs/everything"
+      "url": "https://github.com/stacksjs/everything",
+      "tags": [
+        "TypeScript"
+      ]
     },
     {
       "name": "gitit",
       "org": "stacksjs",
       "description": "A simple way to download templates stored using git.",
       "stars": 3,
-      "url": "https://github.com/stacksjs/gitit"
+      "url": "https://github.com/stacksjs/gitit",
+      "tags": [
+        "TypeScript"
+      ]
     },
     {
       "name": "gitlint",
       "org": "stacksjs",
       "description": "Minimal & fast Git commit message linting & formatting.",
       "stars": 3,
-      "url": "https://github.com/stacksjs/gitlint"
+      "url": "https://github.com/stacksjs/gitlint",
+      "tags": [
+        "TypeScript",
+        "CLI",
+        "Library",
+        "Linting"
+      ]
     },
     {
       "name": "projects",
       "org": "stacksjs",
       "description": "A minimal, personal portfolio template.",
       "stars": 3,
-      "url": "https://github.com/stacksjs/projects"
+      "url": "https://github.com/stacksjs/projects",
+      "tags": [
+        "TypeScript"
+      ]
     },
     {
       "name": "ts-inputs",
       "org": "stacksjs",
       "description": "Modern input masking.",
       "stars": 3,
-      "url": "https://github.com/stacksjs/ts-inputs"
+      "url": "https://github.com/stacksjs/ts-inputs",
+      "tags": [
+        "TypeScript"
+      ]
     },
     {
       "name": "ts-jpeg",
       "org": "stacksjs",
       "description": "A modern JPEG encoder & decoder. For server & browser.",
       "stars": 3,
-      "url": "https://github.com/stacksjs/ts-jpeg"
+      "url": "https://github.com/stacksjs/ts-jpeg",
+      "tags": [
+        "TypeScript"
+      ]
     },
     {
       "name": "ts-ndarray",
       "org": "stacksjs",
       "description": "Multidimensional arrays for JavaScript & TypeScript.",
       "stars": 3,
-      "url": "https://github.com/stacksjs/ts-ndarray"
+      "url": "https://github.com/stacksjs/ts-ndarray",
+      "tags": [
+        "TypeScript",
+        "Library"
+      ]
     },
     {
       "name": "ts-png",
       "org": "stacksjs",
       "description": "Modern PNG decoding & encoding.",
       "stars": 3,
-      "url": "https://github.com/stacksjs/ts-png"
+      "url": "https://github.com/stacksjs/ts-png",
+      "tags": [
+        "TypeScript",
+        "Library"
+      ]
     },
     {
       "name": "ts-tokens",
       "org": "stacksjs",
       "description": "Fungible or non-fungible. Choose your network.",
       "stars": 3,
-      "url": "https://github.com/stacksjs/ts-tokens"
+      "url": "https://github.com/stacksjs/ts-tokens",
+      "tags": [
+        "TypeScript"
+      ]
     },
     {
       "name": "raycast",
       "org": "stacksjs",
       "description": "Stacks integrated into Raycast.",
       "stars": 2,
-      "url": "https://github.com/stacksjs/raycast"
+      "url": "https://github.com/stacksjs/raycast",
+      "tags": [
+        "TypeScript"
+      ]
     },
     {
       "name": "tpc-license",
       "org": "stacksjs",
       "description": "The People's Code (TPC) License.",
       "stars": 2,
-      "url": "https://github.com/stacksjs/tpc-license"
+      "url": "https://github.com/stacksjs/tpc-license",
+      "tags": []
     },
     {
       "name": "white-paper",
       "org": "stacksjs",
       "description": "Stacks White Paper WIP.",
       "stars": 2,
-      "url": "https://github.com/stacksjs/white-paper"
+      "url": "https://github.com/stacksjs/white-paper",
+      "tags": [
+        "TypeScript"
+      ]
     },
     {
       "name": "contributing",
       "org": "stacksjs",
       "description": "Are you interested in helping contribute? Get started here.",
       "stars": 1,
-      "url": "https://github.com/stacksjs/contributing"
+      "url": "https://github.com/stacksjs/contributing",
+      "tags": []
     },
     {
       "name": "homebrew-tap",
       "org": "stacksjs",
       "description": "Homebrew tap for Stacks packages",
       "stars": 0,
-      "url": "https://github.com/stacksjs/homebrew-tap"
+      "url": "https://github.com/stacksjs/homebrew-tap",
+      "tags": [
+        "Ruby"
+      ]
     },
     {
       "name": "sponsors",
       "org": "stacksjs",
       "description": "The Stacks backers & sponsors.",
       "stars": 0,
-      "url": "https://github.com/stacksjs/sponsors"
+      "url": "https://github.com/stacksjs/sponsors",
+      "tags": [
+        "TypeScript"
+      ]
     },
     {
       "name": "dotfiles",
       "org": "chrisbbreuer",
       "description": "My dotfiles. Get started with your own.",
       "stars": 2,
-      "url": "https://github.com/chrisbbreuer/dotfiles"
+      "url": "https://github.com/chrisbbreuer/dotfiles",
+      "tags": [
+        "Shell"
+      ]
     },
     {
       "name": "very-good-adblock",
       "org": "chrisbbreuer",
       "description": "Removes ads, pop-ups, and YouTube and Twitch interruptions at the source. Fast, private, no telemetry.",
       "stars": 2,
-      "url": "https://github.com/chrisbbreuer/very-good-adblock"
+      "url": "https://github.com/chrisbbreuer/very-good-adblock",
+      "tags": [
+        "TypeScript"
+      ]
     },
     {
       "name": "averyhill",
       "org": "chrisbbreuer",
       "description": "Avery's personal & professional portfolio.",
       "stars": 1,
-      "url": "https://github.com/chrisbbreuer/averyhill"
+      "url": "https://github.com/chrisbbreuer/averyhill",
+      "tags": [
+        "JavaScript"
+      ]
     },
     {
       "name": "pact-act",
       "org": "chrisbbreuer",
       "description": "This repository contains the text of the two bills (S.3373 & H.R.3967). Review the non-difference here.",
       "stars": 1,
-      "url": "https://github.com/chrisbbreuer/pact-act"
+      "url": "https://github.com/chrisbbreuer/pact-act",
+      "tags": []
     },
     {
       "name": "site",
       "org": "chrisbbreuer",
       "description": "chrisbreuer.me",
       "stars": 1,
-      "url": "https://github.com/chrisbbreuer/site"
+      "url": "https://github.com/chrisbbreuer/site",
+      "tags": [
+        "TypeScript"
+      ]
     },
     {
       "name": "zig-regex",
       "org": "zig-utils",
       "description": "A modern, performant regular expression library for Zig.",
       "stars": 28,
-      "url": "https://github.com/zig-utils/zig-regex"
+      "url": "https://github.com/zig-utils/zig-regex",
+      "tags": [
+        "Zig"
+      ]
     },
     {
       "name": "zig-test-framework",
       "org": "zig-utils",
       "description": "A modern, feature-rich testing framework for Zig inspired by Jest, Vitest, and Bun's test runner.",
       "stars": 6,
-      "url": "https://github.com/zig-utils/zig-test-framework"
+      "url": "https://github.com/zig-utils/zig-test-framework",
+      "tags": [
+        "Zig",
+        "Bun"
+      ]
     },
     {
       "name": "zig-benchmarks",
       "org": "zig-utils",
       "description": "A modern, performant, and beautiful benchmark framework for Zig.",
       "stars": 5,
-      "url": "https://github.com/zig-utils/zig-benchmarks"
+      "url": "https://github.com/zig-utils/zig-benchmarks",
+      "tags": [
+        "Zig",
+        "Testing"
+      ]
     },
     {
       "name": "zig-config",
       "org": "zig-utils",
       "description": "A zero-dependency, smart configuration loader for Zig.",
       "stars": 5,
-      "url": "https://github.com/zig-utils/zig-config"
+      "url": "https://github.com/zig-utils/zig-config",
+      "tags": [
+        "Zig",
+        "Config"
+      ]
     },
     {
       "name": "zig-js",
       "org": "zig-utils",
       "description": "A JavaScript engine in pure Zig.",
       "stars": 5,
-      "url": "https://github.com/zig-utils/zig-js"
+      "url": "https://github.com/zig-utils/zig-js",
+      "tags": [
+        "Zig",
+        "JavaScript"
+      ]
     },
     {
       "name": "zig-cli",
       "org": "zig-utils",
       "description": "A modern, feature-rich CLI library for Zig.",
       "stars": 2,
-      "url": "https://github.com/zig-utils/zig-cli"
+      "url": "https://github.com/zig-utils/zig-cli",
+      "tags": [
+        "Zig"
+      ]
     },
     {
       "name": "zig-error-handling",
       "org": "zig-utils",
       "description": "A type-safe error handling library for Zig inspired by Rust's Result<T, E> and TypeScript's neverthrow.",
       "stars": 2,
-      "url": "https://github.com/zig-utils/zig-error-handling"
+      "url": "https://github.com/zig-utils/zig-error-handling",
+      "tags": [
+        "Zig",
+        "Rust"
+      ]
     },
     {
       "name": "zig-faker",
       "org": "zig-utils",
       "description": "A high-performance, lightweight fake data generator. Generate realistic fake data for testing, prototyping, and development.",
       "stars": 2,
-      "url": "https://github.com/zig-utils/zig-faker"
+      "url": "https://github.com/zig-utils/zig-faker",
+      "tags": [
+        "Zig",
+        "Library"
+      ]
     },
     {
       "name": "zig-starter",
       "org": "zig-utils",
       "description": "A production-ready Zig starter template for building libraries and CLI applications.",
       "stars": 2,
-      "url": "https://github.com/zig-utils/zig-starter"
+      "url": "https://github.com/zig-utils/zig-starter",
+      "tags": [
+        "Zig",
+        "CLI"
+      ]
     },
     {
       "name": "zig-tls",
       "org": "zig-utils",
       "description": "Pure Zig TLS 1.3 & 1.2 implementation and more.",
       "stars": 2,
-      "url": "https://github.com/zig-utils/zig-tls"
+      "url": "https://github.com/zig-utils/zig-tls",
+      "tags": [
+        "Zig"
+      ]
     },
     {
       "name": "zig-bump",
       "org": "zig-utils",
       "description": "A simple, fast version bumping tool for Zig projects.",
       "stars": 1,
-      "url": "https://github.com/zig-utils/zig-bump"
+      "url": "https://github.com/zig-utils/zig-bump",
+      "tags": [
+        "Zig"
+      ]
     },
     {
       "name": "zig-changelog",
       "org": "zig-utils",
       "description": "A Zig library and CLI tool for generating beautiful changelogs from conventional commits.",
       "stars": 1,
-      "url": "https://github.com/zig-utils/zig-changelog"
+      "url": "https://github.com/zig-utils/zig-changelog",
+      "tags": [
+        "Zig",
+        "CLI",
+        "Library"
+      ]
     },
     {
       "name": "zig-gc",
       "org": "zig-utils",
       "description": "A precise, non-moving, tri-color mark-sweep garbage collector in pure Zig, generic over an embedder binding.",
       "stars": 1,
-      "url": "https://github.com/zig-utils/zig-gc"
+      "url": "https://github.com/zig-utils/zig-gc",
+      "tags": [
+        "Zig"
+      ]
     },
     {
       "name": "zig-search-engine",
       "org": "zig-utils",
       "description": "Search-engine integrations for Zig services.",
       "stars": 1,
-      "url": "https://github.com/zig-utils/zig-search-engine"
+      "url": "https://github.com/zig-utils/zig-search-engine",
+      "tags": [
+        "Zig"
+      ]
     },
     {
       "name": "laravel-media-converter",
       "org": "meemalabs",
       "description": "This package allows you to easily integrate with AWS MediaConvert.",
       "stars": 57,
-      "url": "https://github.com/meemalabs/laravel-media-converter"
+      "url": "https://github.com/meemalabs/laravel-media-converter",
+      "tags": [
+        "PHP",
+        "Laravel"
+      ]
     },
     {
       "name": "laravel-text-to-speech",
       "org": "meemalabs",
       "description": "A wrapper for popular TTS services to create a more simple & uniform API. Currently, only AWS Polly is supported.",
       "stars": 42,
-      "url": "https://github.com/meemalabs/laravel-text-to-speech"
+      "url": "https://github.com/meemalabs/laravel-text-to-speech",
+      "tags": [
+        "PHP",
+        "Laravel"
+      ]
     },
     {
       "name": "laravel-cloudfront",
       "org": "meemalabs",
       "description": "This package allows you to easily integrate with AWS CloudFront for commonly used methods to interact with.",
       "stars": 30,
-      "url": "https://github.com/meemalabs/laravel-cloudfront"
+      "url": "https://github.com/meemalabs/laravel-cloudfront",
+      "tags": [
+        "PHP",
+        "Cache",
+        "Laravel"
+      ]
     },
     {
       "name": "laravel-media-recognition",
       "org": "meemalabs",
       "description": "A wrapper to easily & quickly integrate popular image & video recognition libraries. Currently supports AWS Rekognition.",
       "stars": 22,
-      "url": "https://github.com/meemalabs/laravel-media-recognition"
+      "url": "https://github.com/meemalabs/laravel-media-recognition",
+      "tags": [
+        "PHP",
+        "Laravel"
+      ]
     },
     {
       "name": "web-components-starter",
       "org": "ow3org",
       "description": "Web Components Starter template to help kick-start development of a framework-agnostic component library.",
       "stars": 19,
-      "url": "https://github.com/ow3org/web-components-starter"
+      "url": "https://github.com/ow3org/web-components-starter",
+      "tags": [
+        "JavaScript",
+        "Library",
+        "TypeScript",
+        "Vue"
+      ]
     },
     {
       "name": "ts-starter",
       "org": "ow3org",
       "description": "TypeScript Starter template to simplify creating & distributing your next npm package.",
       "stars": 7,
-      "url": "https://github.com/ow3org/ts-starter"
+      "url": "https://github.com/ow3org/ts-starter",
+      "tags": [
+        "JavaScript",
+        "TypeScript"
+      ]
     },
     {
       "name": "deep-unref-vue",
       "org": "ow3org",
       "description": "Easily remove all refs from an object using the `deepUnref`-composable.",
       "stars": 4,
-      "url": "https://github.com/ow3org/deep-unref-vue"
+      "url": "https://github.com/ow3org/deep-unref-vue",
+      "tags": [
+        "TypeScript",
+        "Vue"
+      ]
     },
     {
       "name": "composable-starter",
       "org": "ow3org",
       "description": "Composable Starter Kit to simplify creating & distributing your next npm package/s.",
       "stars": 3,
-      "url": "https://github.com/ow3org/composable-starter"
+      "url": "https://github.com/ow3org/composable-starter",
+      "tags": [
+        "JavaScript",
+        "Library"
+      ]
     },
     {
       "name": "renovate-config",
       "org": "ow3org",
       "description": "Open Web / Stacks preset for the Renovate bot.",
       "stars": 1,
-      "url": "https://github.com/ow3org/renovate-config"
+      "url": "https://github.com/ow3org/renovate-config",
+      "tags": []
     },
     {
       "name": "craft",
       "org": "home-lang",
       "description": "Performant, native desktop & mobile apps with web languages.",
       "stars": 13,
-      "url": "https://github.com/home-lang/craft"
+      "url": "https://github.com/home-lang/craft",
+      "tags": [
+        "Zig",
+        "CSS",
+        "JavaScript",
+        "TypeScript"
+      ]
     },
     {
       "name": "home",
       "org": "home-lang",
       "description": "There is no language like Home.",
       "stars": 13,
-      "url": "https://github.com/home-lang/home"
+      "url": "https://github.com/home-lang/home",
+      "tags": [
+        "Zig",
+        "Desktop",
+        "Mobile"
+      ]
     },
     {
       "name": "home-os",
       "org": "home-lang",
       "description": "A safe, performant & modern operating system. Currently in development.",
       "stars": 3,
-      "url": "https://github.com/home-lang/home-os"
+      "url": "https://github.com/home-lang/home-os",
+      "tags": [
+        "Shell"
+      ]
     },
     {
       "name": "crosswind",
       "org": "cwcss",
       "description": "A Tailwind & UnoCSS-like utility-first, atomic CSS framework.",
       "stars": 5,
-      "url": "https://github.com/cwcss/crosswind"
+      "url": "https://github.com/cwcss/crosswind",
+      "tags": [
+        "TypeScript",
+        "Bun",
+        "Framework"
+      ]
     },
     {
       "name": "zig-crosswind",
       "org": "cwcss",
       "description": "A high-performance Tailwind CSS & UnoCSS alternative built with Zig.",
       "stars": 2,
-      "url": "https://github.com/cwcss/zig-crosswind"
+      "url": "https://github.com/cwcss/zig-crosswind",
+      "tags": [
+        "Zig",
+        "CLI",
+        "Library"
+      ]
     },
     {
       "name": "pantry",
       "org": "pantry-pm",
       "description": "An extremely performant & universal dependency manager that just works.",
       "stars": 9,
-      "url": "https://github.com/pantry-pm/pantry"
+      "url": "https://github.com/pantry-pm/pantry",
+      "tags": [
+        "TypeScript",
+        "Zig"
+      ]
     },
     {
       "name": "den",
       "org": "den-shell",
       "description": "Den is where you feel at home.",
       "stars": 3,
-      "url": "https://github.com/den-shell/den"
+      "url": "https://github.com/den-shell/den",
+      "tags": [
+        "Zig",
+        "Shell",
+        "TypeScript"
+      ]
     },
     {
       "name": "mail",
       "org": "mail-os",
       "description": "A performant & secure SMTP server implementation, designed for self-hosting email infrastructure.",
       "stars": 8,
-      "url": "https://github.com/mail-os/mail"
+      "url": "https://github.com/mail-os/mail",
+      "tags": [
+        "Zig",
+        "CLI",
+        "Library"
+      ]
     },
     {
       "name": "bughq-laravel",
       "org": "bughq",
       "description": "bughq error tracking — Laravel integration",
       "stars": 1,
-      "url": "https://github.com/bughq/bughq-laravel"
+      "url": "https://github.com/bughq/bughq-laravel",
+      "tags": [
+        "PHP"
+      ]
     },
     {
       "name": "sdk",
       "org": "bughq",
       "description": "bughq error-tracking SDKs — core, Vue, Nuxt, Stacks/stx",
       "stars": 1,
-      "url": "https://github.com/bughq/sdk"
+      "url": "https://github.com/bughq/sdk",
+      "tags": [
+        "TypeScript"
+      ]
     },
     {
       "name": "bughq-php",
       "org": "bughq",
       "description": "bughq error tracking — PHP SDK",
       "stars": 0,
-      "url": "https://github.com/bughq/bughq-php"
+      "url": "https://github.com/bughq/bughq-php",
+      "tags": [
+        "PHP"
+      ]
     },
     {
       "name": "fonts",
       "org": "national-park-service",
       "description": "United States National Park Service inspired Open Source fonts.",
       "stars": 72,
-      "url": "https://github.com/national-park-service/fonts"
+      "url": "https://github.com/national-park-service/fonts",
+      "tags": [
+        "TypeScript",
+        "Fonts"
+      ]
     }
   ]
 }

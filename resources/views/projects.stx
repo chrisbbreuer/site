@@ -12,28 +12,12 @@ const pagePath = '/projects'
 // dotfiles, emoji stripping) lives in that script, so a resync keeps it.
 const data = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'content/projects.json'), 'utf-8'))
 
-// Tags derived from the repo name + description (GitHub's synced data carries
-// no language/topics), so filtering has category chips, not just orgs.
-function tagsFor(r) {
-  const desc = r.description || ''
-  const nd = `${r.name} ${desc}`
-  const tags = []
-  if (/^ts-/.test(r.name) || /typescript|\bts\b/i.test(desc)) tags.push('TypeScript')
-  if (/\blibrar/i.test(desc)) tags.push('Library')
-  if (r.org === 'zig-utils' || /\bzig\b/i.test(nd)) tags.push('Zig')
-  if (/bun/i.test(r.name) || /\bbun\b/i.test(desc)) tags.push('Bun')
-  if (/\bcli\b|command[- ]line/i.test(desc)) tags.push('CLI')
-  if (/framework/i.test(desc)) tags.push('Framework')
-  if (/laravel/i.test(nd)) tags.push('Laravel')
-  if (/config/i.test(nd)) tags.push('Config')
-  return tags
-}
-
 const withLabels = data.repos.map(r => ({
   ...r,
+  // r.tags comes from GitHub language + topics (see scripts/fetch-projects.ts).
+  tags: r.tags || [],
   starLabel: r.stars > 0 ? `${r.stars} stars` : '',
   filterText: `${r.name} ${r.description || ''}`.toLowerCase(),
-  tags: tagsFor(r),
 }))
 
 // Highlights: the most-starred work across every org.
@@ -58,7 +42,7 @@ const orgList = groups.map(g => g.org)
 const tagCounts = {}
 for (const r of withLabels)
   for (const t of r.tags) tagCounts[t] = (tagCounts[t] || 0) + 1
-const tagList = Object.keys(tagCounts).filter(t => tagCounts[t] >= 3).sort((a, b) => tagCounts[b] - tagCounts[a])
+const tagList = Object.keys(tagCounts).filter(t => tagCounts[t] >= 4).sort((a, b) => tagCounts[b] - tagCounts[a])
 
 const repoCount = withLabels.length
 const orgCount = groups.length

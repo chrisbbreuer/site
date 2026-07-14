@@ -17,6 +17,86 @@ interface Repo {
   description: string
   stars: number
   url: string
+  tags: string[]
+}
+
+/**
+ * Canonical display labels for the GitHub languages + topics worth filtering
+ * by. Only mapped values become tags, so noise topics (repo names, "awesome",
+ * one-offs) are dropped and the chip vocabulary stays curated and consistent.
+ * The primary language is fed through the same map as a topic.
+ */
+const TAG_LABELS: Record<string, string> = {
+  // languages
+  typescript: 'TypeScript',
+  javascript: 'JavaScript',
+  vue: 'Vue',
+  react: 'React',
+  zig: 'Zig',
+  rust: 'Rust',
+  go: 'Go',
+  python: 'Python',
+  php: 'PHP',
+  swift: 'Swift',
+  ruby: 'Ruby',
+  shell: 'Shell',
+  // runtimes
+  bun: 'Bun',
+  node: 'Node',
+  nodejs: 'Node',
+  deno: 'Deno',
+  // categories
+  cli: 'CLI',
+  library: 'Library',
+  framework: 'Framework',
+  orm: 'ORM',
+  api: 'API',
+  database: 'Database',
+  config: 'Config',
+  configuration: 'Config',
+  fonts: 'Fonts',
+  font: 'Fonts',
+  ai: 'AI',
+  llm: 'AI',
+  laravel: 'Laravel',
+  'templating-engine': 'Templating',
+  templating: 'Templating',
+  components: 'Components',
+  css: 'CSS',
+  desktop: 'Desktop',
+  mobile: 'Mobile',
+  macos: 'macOS',
+  cloud: 'Cloud',
+  proxy: 'Proxy',
+  'reverse-proxy': 'Proxy',
+  tunnel: 'Tunneling',
+  tunneling: 'Tunneling',
+  testing: 'Testing',
+  linter: 'Linting',
+  linting: 'Linting',
+  eslint: 'Linting',
+  payments: 'Payments',
+  auth: 'Auth',
+  authentication: 'Auth',
+  queue: 'Queue',
+  cache: 'Cache',
+  security: 'Security',
+}
+
+/** Curated tags for a repo, language first, then topics; deduped by label. */
+function tagsFor(language: string | null | undefined, topics: string[] = []): string[] {
+  const out: string[] = []
+  const seen = new Set<string>()
+  for (const raw of [language, ...topics]) {
+    if (!raw)
+      continue
+    const label = TAG_LABELS[raw.toLowerCase()]
+    if (label && !seen.has(label)) {
+      seen.add(label)
+      out.push(label)
+    }
+  }
+  return out
 }
 
 /** Org display order; anything not listed lands at the end alphabetically. */
@@ -110,6 +190,7 @@ for (const owner of [...orgs, me]) {
       description: stripEmoji(r.description),
       stars: r.stargazers_count,
       url: r.html_url,
+      tags: tagsFor(r.language, r.topics),
     })
   }
 }
@@ -126,6 +207,7 @@ for (const pin of PINNED) {
     description: stripEmoji(pin.description || r.description || ''),
     stars: r.stargazers_count,
     url: r.html_url,
+    tags: tagsFor(r.language, r.topics),
   })
 }
 
