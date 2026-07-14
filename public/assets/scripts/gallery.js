@@ -105,9 +105,10 @@
     port.style.left = 'auto'; port.style.width = (2 * colW + GAP) + 'px'
     masonry.classList.add('is-laid-out')
 
-    var BELOW = 16 // breathing room under the text/portrait before photos begin
-    var bioH = bio.offsetHeight + BELOW
-    var portH = port.offsetHeight + BELOW
+    // Breathing room before photos begin: a generous gap under the bio text,
+    // a smaller one under the portrait/note.
+    var bioH = bio.offsetHeight + 48
+    var portH = port.offsetHeight + 16
     var heights = [bioH, bioH, bioH, bioH, portH, portH]
     items.forEach(function (it) {
       var min = 0
