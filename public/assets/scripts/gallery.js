@@ -94,9 +94,13 @@
 
     var cols = 6
     var colW = (W - (cols - 1) * GAP) / cols
-    // Bio spans the left four columns, portrait the right two.
+    // Bio spans the left four columns, portrait the right two. The bio gets an
+    // inset on its right so the text keeps clear of the right-hand photo
+    // columns (box-sizing: border-box, so the 4-col box width is unchanged and
+    // the grid stays aligned — only the text reflows narrower).
     bio.style.position = 'absolute'; bio.style.top = '0'; bio.style.left = '0'
     bio.style.width = (4 * colW + 3 * GAP) + 'px'
+    bio.style.paddingRight = '28px'
     port.style.position = 'absolute'; port.style.top = '0'; port.style.right = '0'
     port.style.left = 'auto'; port.style.width = (2 * colW + GAP) + 'px'
     masonry.classList.add('is-laid-out')
