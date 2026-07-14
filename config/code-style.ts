@@ -87,6 +87,10 @@ const config: PickierOptions = {
     '**/docs/deps/**',
     // Generated scaffolds copied into pantry — out of project control
     '**/pantry/**',
+    // Hand-written browser scripts served verbatim from public/ (incl. the
+    // vendored SplatHash decoder) — not part of the TS build graph, and
+    // pickier lints but won't --fix them.
+    '**/public/assets/scripts/**',
   ],
 }
 
