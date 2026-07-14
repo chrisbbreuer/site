@@ -12,7 +12,11 @@ const pagePath = '/projects'
 // dotfiles, emoji stripping) lives in that script, so a resync keeps it.
 const data = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'content/projects.json'), 'utf-8'))
 
-const withLabels = data.repos.map(r => ({ ...r, starLabel: r.stars > 0 ? `${r.stars} stars` : '' }))
+const withLabels = data.repos.map(r => ({
+  ...r,
+  starLabel: r.stars > 0 ? `${r.stars} stars` : '',
+  filterText: `${r.name} ${r.description || ''}`.toLowerCase(),
+}))
 
 // Highlights: the most-starred work across every org.
 const highlights = [...withLabels].sort((a, b) => b.stars - a.stars).slice(0, 6)
@@ -30,6 +34,8 @@ for (const repo of withLabels) {
 for (const group of groups)
   group.countLabel = group.repos.length === 1 ? '1 repo' : `${group.repos.length} repos`
 
+const orgList = groups.map(g => g.org)
+
 const repoCount = withLabels.length
 const orgCount = groups.length
 const generatedAt = data.generatedAt
@@ -46,28 +52,44 @@ const generatedAt = data.generatedAt
     Synced from GitHub on {{ generatedAt }}.
   </p>
 
-  <h2 class="section-label">Highlights</h2>
-  <ul class="entry-list">
-    @foreach (highlights as repo)
-      <li>
-        <span class="entry-name"><a href="{{ repo.url }}">{{ repo.org }}/{{ repo.name }}</a></span>
-        <span class="entry-desc">{{ repo.description }} <span class="entry-meta">{{ repo.starLabel }}</span></span>
-      </li>
-    @endforeach
-  </ul>
+  <div class="proj-filter">
+    <input type="search" class="proj-search" placeholder="Filter by name or description" aria-label="Filter projects" autocomplete="off">
+    <div class="proj-orgs" role="group" aria-label="Filter by org">
+      <button type="button" class="proj-chip is-active" data-org="" aria-pressed="true">All</button>
+      @foreach (orgList as org)
+        <button type="button" class="proj-chip" data-org="{{ org }}" aria-pressed="false">{{ org }}</button>
+      @endforeach
+    </div>
+  </div>
 
-  @foreach (groups as group)
-    <h2 class="section-label">
-      <a href="{{ group.orgUrl }}">{{ group.org }}</a>
-      <span class="label-meta">{{ group.countLabel }}</span>
-    </h2>
+  <section class="proj-section proj-highlights">
+    <h2 class="section-label">Highlights</h2>
     <ul class="entry-list">
-      @foreach (group.repos as repo)
+      @foreach (highlights as repo)
         <li>
-          <span class="entry-name"><a href="{{ repo.url }}">{{ repo.name }}</a></span>
+          <span class="entry-name"><a href="{{ repo.url }}">{{ repo.org }}/{{ repo.name }}</a></span>
           <span class="entry-desc">{{ repo.description }} <span class="entry-meta">{{ repo.starLabel }}</span></span>
         </li>
       @endforeach
     </ul>
+  </section>
+
+  <p class="proj-empty" hidden>No projects match that filter.</p>
+
+  @foreach (groups as group)
+    <section class="proj-section proj-group">
+      <h2 class="section-label">
+        <a href="{{ group.orgUrl }}">{{ group.org }}</a>
+        <span class="label-meta">{{ group.countLabel }}</span>
+      </h2>
+      <ul class="entry-list">
+        @foreach (group.repos as repo)
+          <li data-org="{{ repo.org }}" data-text="{{ repo.filterText }}">
+            <span class="entry-name"><a href="{{ repo.url }}">{{ repo.name }}</a></span>
+            <span class="entry-desc">{{ repo.description }} <span class="entry-meta">{{ repo.starLabel }}</span></span>
+          </li>
+        @endforeach
+      </ul>
+    </section>
   @endforeach
 @endsection
