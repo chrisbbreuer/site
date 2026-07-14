@@ -92,11 +92,11 @@
       return
     }
 
-    var cols = 5
+    var cols = 6
     var colW = (W - (cols - 1) * GAP) / cols
-    // Bio spans the left three columns, portrait the right two.
+    // Bio spans the left four columns, portrait the right two.
     bio.style.position = 'absolute'; bio.style.top = '0'; bio.style.left = '0'
-    bio.style.width = (3 * colW + 2 * GAP) + 'px'
+    bio.style.width = (4 * colW + 3 * GAP) + 'px'
     port.style.position = 'absolute'; port.style.top = '0'; port.style.right = '0'
     port.style.left = 'auto'; port.style.width = (2 * colW + GAP) + 'px'
     masonry.classList.add('is-laid-out')
@@ -104,7 +104,7 @@
     var BELOW = 16 // breathing room under the text/portrait before photos begin
     var bioH = bio.offsetHeight + BELOW
     var portH = port.offsetHeight + BELOW
-    var heights = [bioH, bioH, bioH, portH, portH]
+    var heights = [bioH, bioH, bioH, bioH, portH, portH]
     items.forEach(function (it) {
       var min = 0
       for (var c = 1; c < cols; c++) { if (heights[c] < heights[min]) min = c }
