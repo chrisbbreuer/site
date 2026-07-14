@@ -384,27 +384,23 @@ main { padding: 3.5rem 0 2rem; }
 .site-footer .spacer { margin-left: auto; }
 
 /* ── Projects filter ────────────────────────────────────────────────────── */
-.proj-filter {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem 0.9rem;
-  align-items: center;
-  margin: 1.4rem 0 2rem;
-}
+.proj-filter { margin: 1.4rem 0 2rem; }
 .proj-search {
+  display: block;
+  width: 100%;
+  max-width: 24rem;
   font: inherit;
   color: var(--text-1);
   background: var(--bg-soft);
   border: 1px solid var(--divider);
   border-radius: 6px;
-  padding: 0.45rem 0.7rem;
-  min-width: 13rem;
-  flex: 1 1 13rem;
-  max-width: 22rem;
+  padding: 0.55rem 0.75rem;
+  margin-bottom: 1.6rem;
 }
 .proj-search::placeholder { color: var(--text-3); }
 .proj-search:focus { outline: none; border-color: var(--text-3); }
-.proj-orgs { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.proj-facets { display: flex; flex-direction: column; gap: 0.55rem; }
+.proj-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .proj-chip {
   font: inherit;
   font-size: 0.78rem;

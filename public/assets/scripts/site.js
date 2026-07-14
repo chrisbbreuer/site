@@ -29,22 +29,23 @@
     if (!bar || bar.__wired) return
     bar.__wired = true
     var search = bar.querySelector('.proj-search')
-    var chips = Array.prototype.slice.call(bar.querySelectorAll('.proj-chip'))
     var items = Array.prototype.slice.call(document.querySelectorAll('.proj-group .entry-list li'))
     var groups = Array.prototype.slice.call(document.querySelectorAll('.proj-group'))
     var highlights = document.querySelector('.proj-highlights')
     var empty = document.querySelector('.proj-empty')
     var activeOrg = ''
+    var activeTag = ''
 
     function apply() {
       var q = (search.value || '').trim().toLowerCase()
-      var filtering = q !== '' || activeOrg !== ''
+      var filtering = q !== '' || activeOrg !== '' || activeTag !== ''
       if (highlights) highlights.hidden = filtering
       var shown = 0
       items.forEach(function (li) {
         var okOrg = activeOrg === '' || li.getAttribute('data-org') === activeOrg
+        var okTag = activeTag === '' || (' ' + (li.getAttribute('data-tags') || '') + ' ').indexOf(' ' + activeTag + ' ') !== -1
         var okText = q === '' || (li.getAttribute('data-text') || '').indexOf(q) !== -1
-        var ok = okOrg && okText
+        var ok = okOrg && okTag && okText
         li.hidden = !ok
         if (ok) shown++
       })
@@ -54,16 +55,22 @@
       if (empty) empty.hidden = !filtering || shown !== 0
     }
 
-    search.addEventListener('input', apply)
-    chips.forEach(function (chip) {
-      chip.addEventListener('click', function () {
-        chips.forEach(function (c) { c.classList.remove('is-active'); c.setAttribute('aria-pressed', 'false') })
-        chip.classList.add('is-active')
-        chip.setAttribute('aria-pressed', 'true')
-        activeOrg = chip.getAttribute('data-org') || ''
-        apply()
+    // Each chip group (tags, orgs) is single-select; clicking one clears its
+    // own group's selection first, then applies across both facets + search.
+    Array.prototype.slice.call(bar.querySelectorAll('.proj-chips')).forEach(function (group) {
+      var chips = Array.prototype.slice.call(group.querySelectorAll('.proj-chip'))
+      chips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          chips.forEach(function (c) { c.classList.remove('is-active'); c.setAttribute('aria-pressed', 'false') })
+          chip.classList.add('is-active')
+          chip.setAttribute('aria-pressed', 'true')
+          if (chip.hasAttribute('data-tag')) activeTag = chip.getAttribute('data-tag') || ''
+          else activeOrg = chip.getAttribute('data-org') || ''
+          apply()
+        })
       })
     })
+    search.addEventListener('input', apply)
     apply()
   }
 
