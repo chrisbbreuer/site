@@ -389,13 +389,14 @@ main { padding: 3.5rem 0 2rem; }
  * the four-column masonry below, so the rail flows straight into it. */
 .about-grid {
   display: grid;
-  /* Bio and photo rail split the shell in half. The rail's two columns are
-   * the SAME width as two of the four columns in the masonry below, so the
-   * rail's right edge and both column gutters line straight up with the
-   * full-width grid — the 2-up simply gains two more columns and becomes the
-   * 4-up. minmax(0, ...) keeps the halves equal regardless of content. */
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.5rem;
+  /* Text gets 3/5 of the shell, the photo rail 2/5. Those 2/5 hold exactly two
+   * masonry columns at the SAME width as two of the FIVE columns in the
+   * full-width masonry below — so the rail's columns line straight up with the
+   * grid's rightmost two, and the 2-up simply gains three more columns on the
+   * left and becomes the 5-up. The 0.5rem gap matches the column-gap so the
+   * gutters align. minmax(0, ...) keeps the tracks honest under long content. */
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: 0.5rem;
   align-items: start;
 }
 /* The portrait fills the rail so it's exactly as wide as the 2-up masonry
@@ -421,11 +422,11 @@ main { padding: 3.5rem 0 2rem; }
 
 /* Right-column rail: the first photos beside the bio as a 2-up masonry, at
  * the SAME column width as the full masonry below so the two read as one
- * continuous flow (2 columns here, 4 columns underneath). */
+ * continuous flow (2 columns here, 5 columns underneath). */
 .photo-rail {
-  columns: 9rem;
+  column-count: 2;
   column-gap: 0.5rem;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 .photo-rail .gallery-item { margin-bottom: 0.5rem; }
 
@@ -436,16 +437,21 @@ main { padding: 3.5rem 0 2rem; }
 }
 
 /* ── Photographs: full-width masonry below the bio ───────────────────────── */
-/* Same column-width as the rail → four columns at full width, continuing the
- * rail's two columns at the same image size. */
-.gallery-section { margin-top: 2.5rem; }
+/* Five columns at full width, continuing the rail's rightmost two at the same
+ * image size so the rail flows straight into the grid. */
+.gallery-section { margin-top: 1.75rem; }
 .gallery-masonry {
-  columns: 9rem;
+  column-count: 5;
   column-gap: 0.5rem;
   margin-top: 1.1rem;
 }
-@media (max-width: 560px) {
-  .gallery-masonry, .photo-rail { columns: 7.5rem; column-gap: 0.4rem; }
+/* Stacked layouts: rail and masonry are both full width, so they share a count. */
+@media (max-width: 720px) {
+  .gallery-masonry, .photo-rail { column-count: 4; column-gap: 0.45rem; }
+  .gallery-item { margin-bottom: 0.45rem; }
+}
+@media (max-width: 480px) {
+  .gallery-masonry, .photo-rail { column-count: 3; column-gap: 0.4rem; }
   .gallery-item { margin-bottom: 0.4rem; }
 }
 

@@ -53,6 +53,12 @@ const ogImage = `${siteUrl}/images/og/${ogSlugs.includes(ogSeg) ? ogSeg : 'home'
 
     @include('../partials/footer.stx')
   </div>
+  <!-- Gallery placeholder + lightbox scripts load on every page so their
+       `stx:load` listeners survive SPA navigation (the router doesn't execute
+       page-pushed <script> tags on client-side nav). Both no-op off the About
+       page. -->
+  <script src="/assets/scripts/splathash.js"></script>
+  <script src="/assets/scripts/gallery.js"></script>
   @stack('scripts')
 </body>
 </html>
