@@ -5,9 +5,13 @@ const title = 'Chris Breuer - Software engineer and founder'
 const description = 'Chris Breuer is a software engineer and founder of Stacks. Notes on developer tooling, TypeScript, and Bun.'
 const activeNav = ''
 const siteUrl = 'https://chrisbreuer.me'
-const ogImage = `${siteUrl}/images/chris.jpg`
 // pagePath comes from the page's server script; guard for pages that omit it.
 const canonicalUrl = `${siteUrl}${typeof pagePath === 'string' ? pagePath : ''}`
+// Per-page OG card, derived from the path. Blog posts fall back to the blog
+// card; anything unmapped uses the home card.
+const ogSlugs = ['about', 'projects', 'uses', 'blog']
+const ogSeg = typeof pagePath === 'string' && pagePath !== '/' ? pagePath.split('/')[1] : 'home'
+const ogImage = `${siteUrl}/images/og/${ogSlugs.includes(ogSeg) ? ogSeg : 'home'}.jpg`
 </script>
 
 <!DOCTYPE html>
@@ -16,10 +20,21 @@ const canonicalUrl = `${siteUrl}${typeof pagePath === 'string' ? pagePath : ''}`
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ title }}</title>
+  <meta name="description" content="{{ description }}">
   <link rel="canonical" href="{{ canonicalUrl }}">
+  <meta property="og:type" content="website">
   <meta property="og:url" content="{{ canonicalUrl }}">
   <meta property="og:site_name" content="Chris Breuer">
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ description }}">
   <meta property="og:image" content="{{ ogImage }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@chrisbbreuer">
+  <meta name="twitter:creator" content="@chrisbbreuer">
+  <meta name="twitter:title" content="{{ title }}">
+  <meta name="twitter:description" content="{{ description }}">
   <meta name="twitter:image" content="{{ ogImage }}">
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
