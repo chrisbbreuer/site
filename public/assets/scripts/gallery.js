@@ -66,6 +66,61 @@
     if (lastFocus) lastFocus.focus()
   }
 
+  // Wrap-around masonry: one 5-column grid where the left three columns start
+  // below the bio and the right two below the portrait, so photos fill beside
+  // and under the text as a single seamless flow. Tile heights come from known
+  // aspect ratios (data-w/data-h), so there's no reflow as images load.
+  function layoutMasonry() {
+    var wrap = document.querySelector('.about-wrap')
+    if (!wrap) return
+    var masonry = wrap.querySelector('.photo-masonry')
+    var bio = wrap.querySelector('.bio-col')
+    var port = wrap.querySelector('.portrait-col')
+    if (!masonry || !bio || !port) return
+    var items = masonry.querySelectorAll('.gallery-item')
+    var W = wrap.clientWidth
+    var GAP = 8 // 0.5rem
+
+    // Narrow viewports: hand layout back to the CSS multi-column fallback.
+    // (The shell is ~664px on desktop, so the wrap engages below that.)
+    if (W <= 600) {
+      masonry.classList.remove('is-laid-out')
+      masonry.style.height = ''
+      bio.style.cssText = ''
+      port.style.cssText = ''
+      items.forEach(function (it) { it.style.left = ''; it.style.top = ''; it.style.width = '' })
+      return
+    }
+
+    var cols = 5
+    var colW = (W - (cols - 1) * GAP) / cols
+    // Bio spans the left three columns, portrait the right two.
+    bio.style.position = 'absolute'; bio.style.top = '0'; bio.style.left = '0'
+    bio.style.width = (3 * colW + 2 * GAP) + 'px'
+    port.style.position = 'absolute'; port.style.top = '0'; port.style.right = '0'
+    port.style.left = 'auto'; port.style.width = (2 * colW + GAP) + 'px'
+    masonry.classList.add('is-laid-out')
+
+    var BELOW = 16 // breathing room under the text/portrait before photos begin
+    var bioH = bio.offsetHeight + BELOW
+    var portH = port.offsetHeight + BELOW
+    var heights = [bioH, bioH, bioH, portH, portH]
+    items.forEach(function (it) {
+      var min = 0
+      for (var c = 1; c < cols; c++) { if (heights[c] < heights[min]) min = c }
+      var w = parseFloat(it.getAttribute('data-w')) || 4
+      var h = parseFloat(it.getAttribute('data-h')) || 3
+      it.style.width = colW + 'px'
+      it.style.left = (min * (colW + GAP)) + 'px'
+      it.style.top = heights[min] + 'px'
+      heights[min] += (colW * (h / w)) + GAP
+    })
+    var maxH = 0
+    for (var c = 0; c < cols; c++) { if (heights[c] > maxH) maxH = heights[c] }
+    masonry.style.height = maxH + 'px'
+  }
+  window.__galleryLayout = layoutMasonry
+
   function initGallery() {
     var items = Array.prototype.slice.call(document.querySelectorAll('.gallery-item'))
     if (!items.length) return
@@ -88,6 +143,8 @@
       }
       item.addEventListener('click', function () { open(item) })
     })
+
+    layoutMasonry()
   }
 
   window.__galleryInit = initGallery
@@ -107,4 +164,13 @@
     })
     mo.observe(document.documentElement, { childList: true, subtree: true })
   }
+
+  // The bio height (and so the masonry offsets) depends on the web font and the
+  // viewport width, so re-run layout once Lilex loads and on resize (debounced).
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(layoutMasonry)
+  var rt
+  window.addEventListener('resize', function () {
+    clearTimeout(rt)
+    rt = setTimeout(layoutMasonry, 120)
+  })
 })()

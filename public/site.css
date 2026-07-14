@@ -384,81 +384,52 @@ main { padding: 3.5rem 0 2rem; }
 .site-footer .spacer { margin-left: auto; }
 
 /* ── About page ─────────────────────────────────────────────────────────── */
-/* Same narrow shell as every other page. The bio and the photo rail split it
- * in half: two photo columns sit beside the text at the SAME image size as
- * the four-column masonry below, so the rail flows straight into it. */
-.about-grid {
-  display: grid;
-  /* Text gets 3/5 of the shell, the photo rail 2/5. Those 2/5 hold exactly two
-   * masonry columns at the SAME width as two of the FIVE columns in the
-   * full-width masonry below — so the rail's columns line straight up with the
-   * grid's rightmost two, and the 2-up simply gains three more columns on the
-   * left and becomes the 5-up. The 0.5rem gap matches the column-gap so the
-   * gutters align. minmax(0, ...) keeps the tracks honest under long content. */
-  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-  gap: 0.5rem;
-  align-items: start;
-}
-/* The portrait fills the rail so it's exactly as wide as the 2-up masonry
- * that continues beneath it. */
-.about-grid .portrait > img {
+/* One masonry wraps around the bio and portrait. The bio sits top-left over
+ * three columns, the portrait top-right over two; the 46 photos flow through a
+ * single 5-column masonry whose left three columns start below the bio and
+ * whose right two start below the portrait — so the right side runs unbroken
+ * to the bottom and the left three fill in beside it, one seamless grid. The
+ * geometry (column widths, x/y of every tile, container height) is computed in
+ * /assets/scripts/gallery.js; the rules below are just the paint + a graceful
+ * pre-JS / no-JS fallback (bio, portrait, then a plain multi-column masonry). */
+.about-wrap { position: relative; }
+.bio-col { min-width: 0; }
+.portrait-col > img {
   width: 100%;
   height: auto;
   border-radius: 6px;
   border: 1px solid var(--divider);
   display: block;
 }
-@media (max-width: 720px) {
-  .about-grid { grid-template-columns: 1fr; }
-  .about-grid .portrait > img { max-width: 15rem; }
-}
-
 .portrait-note {
   margin: 0.9rem 0 0;
   color: var(--text-3);
   font-size: 0.85rem;
   line-height: 1.55;
+  text-wrap: balance;
 }
 
-/* Right-column rail: the first photos beside the bio as a 2-up masonry, at
- * the SAME column width as the full masonry below so the two read as one
- * continuous flow (2 columns here, 5 columns underneath). */
-.photo-rail {
-  column-count: 2;
+.photo-masonry {
+  margin-top: 1.5rem;
+  column-count: 3;
   column-gap: 0.5rem;
-  margin-top: 0.5rem;
 }
-.photo-rail .gallery-item { margin-bottom: 0.5rem; }
+/* When JS takes over it sets .is-laid-out and positions every tile absolutely;
+ * the container then owns its height and the columns/gap above are inert. */
+.photo-masonry.is-laid-out {
+  column-count: initial;
+  margin-top: 0;
+}
+.photo-masonry.is-laid-out .gallery-item { position: absolute; top: 0; left: 0; margin: 0; }
 
-@media (max-width: 720px) {
-  .about-grid .portrait { max-width: 100%; }
-  .about-grid .portrait > img { max-width: 15rem; }
-  .photo-rail { margin-top: 1rem; }
-}
-
-/* ── Photographs: full-width masonry below the bio ───────────────────────── */
-/* Five columns at full width, continuing the rail's rightmost two at the same
- * image size so the rail flows straight into the grid. */
-.gallery-section { margin-top: 1.75rem; }
-.gallery-masonry {
-  column-count: 5;
-  column-gap: 0.5rem;
-  margin-top: 1.1rem;
-}
-/* Stacked layouts: rail and masonry are both full width, so they share a count. */
-@media (max-width: 720px) {
-  .gallery-masonry, .photo-rail { column-count: 4; column-gap: 0.45rem; }
-  .gallery-item { margin-bottom: 0.45rem; }
-}
 @media (max-width: 480px) {
-  .gallery-masonry, .photo-rail { column-count: 3; column-gap: 0.4rem; }
-  .gallery-item { margin-bottom: 0.4rem; }
+  .photo-masonry { column-count: 2; }
 }
 
 .gallery-item {
   display: block;
   width: 100%;
-  margin: 0 0 0.55rem;
+  margin: 0 0 0.5rem;
   padding: 0;
   border: 1px solid var(--divider);
   border-radius: 6px;
