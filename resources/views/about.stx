@@ -23,7 +23,7 @@ const work = [
 const elsewhere = [
   { name: 'GitHub', url: 'https://github.com/chrisbbreuer', text: 'Code, most days.' },
   { name: 'Bluesky', url: 'https://bsky.app/profile/chrisbreuer.me', text: 'Shorter thoughts.' },
-  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/%F0%9F%8C%B1-chris-breuer-33231765/', text: 'The "professional" trail.' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/%F0%9F%8C%B1-chris-breuer-33231765/' },
   { name: 'Email', url: 'mailto:hi@chrisbreuer.me', text: 'hi@chrisbreuer.me' },
 ]
 </script>
