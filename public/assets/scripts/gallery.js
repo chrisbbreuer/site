@@ -17,7 +17,8 @@
   window.__gallerySetup = true
 
   var overlay = null
-  var stageImg = null
+  var baseImg = null // small/thumb layer, shown instantly
+  var fullImg = null // large layer, fades in over the base once it loads
   var closeBtn = null
   var lastFocus = null
 
@@ -27,12 +28,13 @@
     overlay.className = 'lightbox'
     overlay.setAttribute('role', 'dialog')
     overlay.setAttribute('aria-modal', 'true')
-    overlay.innerHTML = '<button class="lightbox-close" aria-label="Close">×</button><figure class="lightbox-stage"><img alt=""></figure>'
+    overlay.innerHTML = '<button class="lightbox-close" aria-label="Close">×</button><figure class="lightbox-stage"><img class="lb-base" alt=""><img class="lb-full" alt=""></figure>'
     document.body.appendChild(overlay)
-    stageImg = overlay.querySelector('img')
+    baseImg = overlay.querySelector('.lb-base')
+    fullImg = overlay.querySelector('.lb-full')
     closeBtn = overlay.querySelector('.lightbox-close')
     overlay.addEventListener('click', function (e) {
-      if (e.target === overlay || e.target === closeBtn || e.target === stageImg) close()
+      if (e.target === overlay || e.target === closeBtn || e.target === baseImg || e.target === fullImg) close()
     })
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && overlay.classList.contains('is-open')) close()
@@ -44,19 +46,30 @@
     var hash = item.getAttribute('data-hash')
     var thumb = item.querySelector('img')
     lastFocus = item
-    // Show the placeholder (or the already-decoded thumb) instantly, then swap
-    // in the full-resolution source once it decodes.
+    // Reset the large layer so it can crossfade in fresh for this photo.
+    fullImg.classList.remove('is-shown')
+    fullImg.removeAttribute('src')
+    // Base layer: the SplatHash placeholder, upgraded to the decoded thumb —
+    // shown instantly so there's always something on screen.
+    var baseSrc = ''
     if (hash && window.splatHashToDataURL) {
-      try { stageImg.src = window.splatHashToDataURL(hash) } catch (e) { /* best effort */ }
+      try { baseSrc = window.splatHashToDataURL(hash) } catch (e) { /* best effort */ }
     }
-    if (thumb && thumb.currentSrc) stageImg.src = thumb.currentSrc
+    if (thumb && thumb.currentSrc) baseSrc = thumb.currentSrc
+    if (baseSrc) baseImg.src = baseSrc
     overlay.classList.add('is-open')
     document.body.classList.add('lightbox-open')
     closeBtn.focus()
+    // Load the full-resolution image, then fade it in over the base rather than
+    // swapping the source abruptly.
     if (full) {
-      var hi = new Image()
-      hi.onload = function () { stageImg.src = full }
-      hi.src = full
+      fullImg.onload = function () {
+        // Defer one tick so the opacity:0 start state is painted first, then
+        // the class flip transitions it in (setTimeout, not rAF, which some
+        // browsers throttle for offscreen/background frames).
+        setTimeout(function () { fullImg.classList.add('is-shown') }, 20)
+      }
+      fullImg.src = full
     }
   }
 
