@@ -31,6 +31,21 @@ export const tsCloud: TsCloudConfig = {
 
   mode: 'server',
 
+  infrastructure: {
+    compute: {
+      mode: 'server',
+      size: 'small',
+      runtime: 'bun',
+      webServer: 'rpx',
+      proxy: {
+        engine: 'rpx',
+        onDemandTls: true,
+        onDemandTlsEmail: 'hello@stacksjs.com',
+        onDemandTlsStaging: false,
+      },
+    },
+  },
+
   environments: {
     production: {
       type: 'production',
