@@ -1071,11 +1071,14 @@ async function runHetznerDeploy(args: {
   // export never blocks the app deploy. Set TS_CLOUD_UI_DISABLE=1 to opt out.
   try {
     const { ensureManagementDashboard } = (await import('@stacksjs/ts-cloud')) as any
-    if (typeof ensureManagementDashboard === 'function') {
+    if (!tsCloudConfig.cloud?.attachTo && typeof ensureManagementDashboard === 'function') {
       ensureManagementDashboard(tsCloudConfig, {
         cwd: process.cwd(),
         logger: { info: (m: string) => log.info(m), warn: (m: string) => log.warn(m) },
       })
+    }
+    else if (tsCloudConfig.cloud?.attachTo) {
+      log.info(`Management dashboard: using the '${tsCloudConfig.cloud.attachTo}' server owner's dashboard`)
     }
   }
   catch (err) {
