@@ -74,7 +74,7 @@ export const tsCloud: TsCloudConfig = {
       preStart: [
         'bun install',
         'mkdir -p storage/framework/runtime/production',
-        'bun build --production --conditions=development --target=bun --external=localtunnels/cloud --external=bun-queue --external=meilisearch --external=@stacksjs/tlsx app/ProductionServer.ts --outfile storage/framework/runtime/production/serve.js',
+        'bun build --production --conditions=development --target=bun --external=localtunnels --external=localtunnels/cloud --external=bun-queue --external=meilisearch --external=@stacksjs/tlsx app/ProductionServer.ts --outfile storage/framework/runtime/production/serve.js',
         'mkdir -p /var/lib/chrisbreuer',
         'bun --conditions development storage/framework/core/buddy/src/cli.ts migrate || true',
       ],
@@ -101,7 +101,7 @@ export const tsCloud: TsCloudConfig = {
       preStart: [
         'bun install',
         'mkdir -p storage/framework/runtime/production',
-        'bun build --production --conditions=development --target=bun --external=localtunnels/cloud --external=bun-queue --external=meilisearch --external=@stacksjs/tlsx storage/framework/core/actions/src/serve/api.ts --outfile storage/framework/runtime/production/api.js',
+        'bun build --production --conditions=development --target=bun --external=localtunnels --external=localtunnels/cloud --external=bun-queue --external=meilisearch --external=@stacksjs/tlsx storage/framework/core/actions/src/serve/api.ts --outfile storage/framework/runtime/production/api.js',
       ],
       env: {
         HOST: '127.0.0.1',
