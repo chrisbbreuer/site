@@ -1,5 +1,5 @@
 import process from 'node:process'
-import { cli } from '@stacksjs/cli'
+import { cli } from '../storage/framework/core/cli/src/cli'
 import { serve } from '../storage/framework/core/buddy/src/commands/serve'
 
 process.env.APP_ENV ||= 'production'

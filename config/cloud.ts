@@ -74,7 +74,7 @@ export const tsCloud: TsCloudConfig = {
       preStart: [
         'bun install',
         'mkdir -p storage/framework/runtime/production',
-        'bun build --production --conditions=development --target=bun --external=localtunnels --external=localtunnels/cloud --external=bun-queue --external=meilisearch --external=@stacksjs/tlsx app/ProductionServer.ts --outfile storage/framework/runtime/production/serve.js',
+        'bun build --production --splitting --conditions=development --target=bun --external=localtunnels --external=localtunnels/cloud --external=bun-queue --external=@stacksjs/bun-queue --external=meilisearch --external=@stacksjs/tlsx app/ProductionServer.ts --outdir storage/framework/runtime/production --entry-naming serve.js --chunk-naming chunks/[name]-[hash].js',
         'mkdir -p /var/lib/chrisbreuer',
         'bun --conditions development storage/framework/core/buddy/src/cli.ts migrate || true',
       ],
@@ -101,7 +101,7 @@ export const tsCloud: TsCloudConfig = {
       preStart: [
         'bun install',
         'mkdir -p storage/framework/runtime/production',
-        'bun build --production --conditions=development --target=bun --external=localtunnels --external=localtunnels/cloud --external=bun-queue --external=meilisearch --external=@stacksjs/tlsx storage/framework/core/actions/src/serve/api.ts --outfile storage/framework/runtime/production/api.js',
+        'bun build --production --splitting --conditions=development --target=bun --external=localtunnels --external=localtunnels/cloud --external=bun-queue --external=@stacksjs/bun-queue --external=meilisearch --external=@stacksjs/tlsx storage/framework/core/actions/src/serve/api.ts --outdir storage/framework/runtime/production --entry-naming api.js --chunk-naming chunks/[name]-[hash].js',
       ],
       env: {
         HOST: '127.0.0.1',
