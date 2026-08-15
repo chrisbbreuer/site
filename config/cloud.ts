@@ -69,14 +69,18 @@ export const tsCloud: TsCloudConfig = {
       root: '.',
       path: '/',
       domain: 'chrisbreuer.me',
-      start: 'bun storage/framework/runtime/production/serve.js',
+      // The published package ships this entry prebuilt, so nothing is
+      // compiled here. The previous command built app/ProductionServer.ts,
+      // which imported `../storage/framework/core/buddy/src/commands/serve` —
+      // a path that stopped existing when this project moved off the
+      // vendored core, and took the deploy down with it.
+      start: 'bun node_modules/@stacksjs/buddy/dist/serve-entry.js',
       port: 3040,
       preStart: [
         'bun install',
-        'mkdir -p storage/framework/runtime/production',
-        'bun build --production --splitting --conditions=development --target=bun --external=localtunnels --external=localtunnels/cloud --external=bun-queue --external=@stacksjs/bun-queue --external=meilisearch --external=@stacksjs/tlsx app/ProductionServer.ts --outdir storage/framework/runtime/production --entry-naming serve.js --chunk-naming chunks/[name]-[hash].js',
         'mkdir -p /var/lib/chrisbreuer',
-        'bun --conditions development storage/framework/core/buddy/src/cli.ts migrate || true',
+        // Same reason: the CLI comes from the installed package now.
+        'bun node_modules/@stacksjs/buddy/dist/cli.js migrate || true',
       ],
       env: {
         HOST: '127.0.0.1',
@@ -96,12 +100,11 @@ export const tsCloud: TsCloudConfig = {
     // exclusively through the :3040 app's /api proxy.
     chrisbreuerApi: {
       root: '.',
-      start: 'bun storage/framework/runtime/production/api.js',
+      // As above: @stacksjs/actions ships the API entry built.
+      start: 'bun node_modules/@stacksjs/actions/dist/serve/api.js',
       port: 3048,
       preStart: [
         'bun install',
-        'mkdir -p storage/framework/runtime/production',
-        'bun build --production --splitting --conditions=development --target=bun --external=localtunnels --external=localtunnels/cloud --external=bun-queue --external=@stacksjs/bun-queue --external=meilisearch --external=@stacksjs/tlsx storage/framework/core/actions/src/serve/api.ts --outdir storage/framework/runtime/production --entry-naming api.js --chunk-naming chunks/[name]-[hash].js',
       ],
       env: {
         HOST: '127.0.0.1',
