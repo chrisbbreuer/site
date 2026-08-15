@@ -39,37 +39,6 @@ jobs:
       - name: Install Dependencies
         run: bun install
 
-      # Build each publishable framework package's dist BEFORE publishing.
-      # We publish with `pantry --ignore-scripts` (skips prepublishOnly `tsc`
-      # steps that fail in-workspace), so dist must already exist here.
-      - name: Build framework packages
-        run: |
-          for dir in storage/framework/core/*/ storage/framework/core; do
-            pkg="${dir%/}/package.json"
-            [ -f "$pkg" ] || continue
-            grep -q '"private": *true' "$pkg" && continue
-            grep -q '"build"' "$pkg" || continue
-            echo "Building ${dir%/}"
-            (cd "${dir%/}" && bun run build) || echo "::warning::build failed for ${dir%/}"
-          done
-
-      # Publish the whole framework workspace via pantry: every core/* member
-      # AND the `stacks` meta-package (storage/framework/core) — the meta the
-      # old bash script never published. pantry resolves workspace:* → concrete
-      # versions, topo-orders, skips already-published versions, and
-      # authenticates via npm trusted publishing (OIDC; id-token: write above),
-      # falling back to NPM_TOKEN outside OIDC.
-      - name: Publish Framework
-        run: pantry publish --npm --access public --ignore-scripts 'storage/framework/core/*' 'storage/framework/core'
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Publish Dummy Libraries
-        run: ./storage/framework/scripts/publish-dummy-libs
-        env:
-          BUN_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       - name: Publish VS Code Extension
         continue-on-error: true
         run: |
@@ -86,27 +55,6 @@ jobs:
           version=${GITHUB_REF#refs/tags/}
           echo "VERSION=$version" >> "$GITHUB_ENV"
           echo "version=$version" >> "$GITHUB_OUTPUT"
-
-      - name: Build Buddy Release Assets
-        run: |
-          cd storage/framework/core/buddy
-          bun run compile:all
-          bun run zip:all
-
-      - name: Create GitHub Release
-        uses: home-lang/pantry/packages/action@main
-        with:
-          install: 'false'
-          release: 'true'
-          release-tag: ${{ steps.get_version.outputs.version }}
-          release-files: |
-            storage/framework/core/buddy/bin/buddy-linux-x64.zip
-            storage/framework/core/buddy/bin/buddy-linux-arm64.zip
-            storage/framework/core/buddy/bin/buddy-windows-x64.zip
-            storage/framework/core/buddy/bin/buddy-darwin-x64.zip
-            storage/framework/core/buddy/bin/buddy-darwin-arm64.zip
-          release-changelog: auto
-          release-token: ${{ secrets.GITHUB_TOKEN }}
 
   homebrew:
     needs: npm

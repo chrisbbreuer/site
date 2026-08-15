@@ -235,6 +235,3 @@ jobs:
 
       - name: Build
         run: bun run build
-
-      - name: Publish Commit
-        run: ./storage/framework/scripts/publish-commit

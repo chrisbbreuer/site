@@ -1,8 +1,12 @@
-import { confirmCardSetup, confirmPayment, loadCardElement, loadPaymentElement } from '@stacksjs/browser'
-
-const paymentStore = usePaymentStore()
+import { confirmCardSetup, confirmPayment, loadCardElement, loadPaymentElement } from '@stacksjs/browser/utils/billable'
+import { usePaymentStore } from '../../stores/payment'
 
 export function useBillable() {
+  // Imported modules own their dependencies. STX browser auto-imports are
+  // injected into the template script entry, not into every module the entry
+  // bundles.
+  const paymentStore = usePaymentStore()
+
   function convertUnixTimestampToDate(timestamp: number): string {
     // Create a Date object from the Unix timestamp
     const date = new Date(timestamp * 1000) // Multiply by 1000 to convert to milliseconds
