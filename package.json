@@ -71,20 +71,13 @@
     "sqlite": "^3.47.2"
   },
   "dependencies": {
-    "@stacksjs/ts-avif": "^0.1.3",
-    "@stacksjs/ts-cloud": "^0.7.126",
-    "@stacksjs/ts-webp": "^0.1.2",
-    "stacks": "^0.70.377"
+    "@stacksjs/ts-avif": "^0.1.4",
+    "@stacksjs/ts-webp": "^0.1.3",
+    "stacks": "^0.74.46"
   },
   "devDependencies": {
     "better-dx": "^0.2.22",
     "ts-images": "^0.1.11"
-  },
-  "overrides": {
-    "@stacksjs/ts-avif": "^0.1.2",
-    "@stacksjs/ts-webp": "^0.1.1",
-    "@stacksjs/stx": "^0.2.182",
-    "@stacksjs/ts-cloud": "^0.7.126"
   },
   "workspaces": [
     "storage/framework",
