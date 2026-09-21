@@ -1,3 +1,10 @@
+<!-- A hairline ridge closes every page: the divider rule above the footer,
+     drawn as an elevation profile instead of a straight border. Scales with
+     the shell (preserveAspectRatio="none"); non-scaling-stroke keeps it a
+     true 1px hairline at any width. -->
+<svg class="ridge" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+  <path d="M0 27 L180 27 L268 14 L312 19 L395 6 L452 17 L520 12 L596 22 L640 18 L742 4 L800 15 L858 11 L930 21 L1000 25 L1200 27" vector-effect="non-scaling-stroke" />
+</svg>
 <footer class="site-footer">
   <a href="https://github.com/chrisbbreuer" rel="me">github</a>
   <a href="https://bsky.app/profile/chrisbreuer.me" rel="me">bluesky</a>

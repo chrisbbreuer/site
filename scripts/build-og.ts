@@ -136,8 +136,12 @@ function html(c: Card): string {
     display: flex; align-items: center; justify-content: space-between;
     font-size: 21px; color: #5f5f5f; letter-spacing: 0.02em;
   }
+  /* The hairline between the two footer labels is an elevation profile — the
+     same ridge motif the site uses above its footer, at card scale. */
   .foot .rule {
-    height: 1px; background: #242424; flex: 1; margin: 0 24px;
+    flex: 1; margin: 0 24px; height: 22px;
+    fill: none; stroke: #242424; stroke-width: 1;
+    stroke-linecap: square; stroke-linejoin: miter;
   }
 </style>
 </head>
@@ -156,7 +160,7 @@ function html(c: Card): string {
     </div>
     <div class="foot">
       <span>chrisbreuer.me</span>
-      <span class="rule"></span>
+      <svg class="rule" viewBox="0 0 600 22" preserveAspectRatio="none" aria-hidden="true"><path d="M0 21 L90 21 L134 11 L156 14 L198 5 L226 13 L260 9 L298 17 L320 14 L371 4 L400 12 L429 9 L465 16 L500 19 L600 21" vector-effect="non-scaling-stroke" /></svg>
       <span>@chrisbbreuer</span>
     </div>
   </div>
