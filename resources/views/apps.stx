@@ -1,0 +1,70 @@
+<script server>
+const title = 'Apps - Chris Breuer'
+const description = 'The products I build: HQ.training, WildLoop, OpenFarm, the HQ suite, and more. Separate from the open-source developer tooling.'
+const activeNav = 'apps'
+const pagePath = '/apps'
+
+// Hand-curated rather than pulled from the GitHub API like /projects, because
+// these are products rather than repos: several are closed-source, and the
+// name people know them by is the domain, not the repository.
+//
+// Three lists, because "app" means two different things here. The first is
+// software for people, the second is software for the people who ship
+// software, and the third is the tooling underneath all of it.
+const apps = [
+  { name: 'HQ.training', url: 'https://hq.training', text: 'An operating system for modern gyms, coaches and athletes: memberships, billing, scheduling and check-in, with training analysis pulled from Oura, WHOOP, Garmin, Apple Health and the rest.' },
+  { name: 'WildLoop', url: 'https://wildloop.org', text: 'Trail discovery and GPS tracking with clubs, challenges and fastest known times — and a territory game underneath, where closing a loop claims the ground inside it.' },
+  { name: 'OpenFarm', url: 'https://openfarm.ing', text: 'Autonomous drone scouting and targeted treatment for farms.' },
+  { name: 'CommsHQ', url: 'https://commshq.com', text: 'Creator-first communications: publishing, automation and commerce marketing in one place.' },
+  { name: 'CampusHQ', url: 'https://campushq.org', text: 'Event management for independent schools — the calendar, the parent volunteers, the reminders nobody has time to send, and the spring gala with its silent auction.' },
+  { name: 'Very Good Adblock', url: 'https://very-good-adblock.org', text: 'A fast Manifest V3 ad blocker for Chrome, Firefox and Safari.' },
+  { name: 'System Cleaner', url: 'https://system-cleaner.app', text: 'A macOS cleaner that runs entirely on your Mac. Nothing is uploaded, no account is required, and every destructive action is reviewable first.' },
+]
+
+const devApps = [
+  { name: 'ReviewOS', url: 'https://reviewos.org', text: 'An open-source, self-hostable git forge built around code review.' },
+  { name: 'StatusHQ', url: 'https://statushq.org', text: 'Self-hostable status pages and uptime monitoring.' },
+  { name: 'BugHQ', url: 'https://bughq.org', text: 'Error tracking for people who ship.' },
+  { name: 'LogHQ', url: 'https://loghq.org', text: 'Log management for people who ship.' },
+]
+</script>
+
+@layout('layouts/site')
+
+@section('content')
+  <h1 class="page-title">Apps.</h1>
+  <p class="page-lead">
+    The products, as opposed to the packages. Most of them run on
+    <a href="https://stacksjs.com">Stacks</a>, which is the other half of the
+    story &mdash; that half lives on <a href="/projects">projects</a>.
+  </p>
+
+  <h2 class="section-label">For people</h2>
+  <ul class="entry-list">
+    @foreach (apps as app)
+      <li>
+        <span class="entry-name"><a href="{{ app.url }}">{{ app.name }}</a></span>
+        <span class="entry-desc">{{ app.text }}</span>
+      </li>
+    @endforeach
+  </ul>
+
+  <h2 class="section-label">For people who ship</h2>
+  <ul class="entry-list">
+    @foreach (devApps as app)
+      <li>
+        <span class="entry-name"><a href="{{ app.url }}">{{ app.name }}</a></span>
+        <span class="entry-desc">{{ app.text }}</span>
+      </li>
+    @endforeach
+  </ul>
+
+  <h2 class="section-label">The tooling underneath</h2>
+  <p class="empty-note">
+    <a href="https://stacksjs.com">Stacks</a> is the TypeScript framework all of
+    this is built on, and most of what it needs got written along the way &mdash;
+    a templating engine, a query builder, a deploy tool, a CSS engine, image and
+    video codecs, a good few dozen more. Every public repo is listed on
+    <a href="/projects">projects</a>.
+  </p>
+@endsection

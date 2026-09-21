@@ -29,6 +29,12 @@ const cards: Card[] = [
     desc: 'Obsessed with developer tooling and long days in the mountains. Los Angeles based.',
   },
   {
+    slug: 'apps',
+    path: '~/apps',
+    title: 'Apps',
+    desc: 'The products, as opposed to the packages. HQ.training, WildLoop, OpenFarm, and the HQ suite.',
+  },
+  {
     slug: 'projects',
     path: '~/projects',
     title: 'Projects',

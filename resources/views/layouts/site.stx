@@ -9,7 +9,7 @@ const siteUrl = 'https://chrisbreuer.me'
 const canonicalUrl = `${siteUrl}${typeof pagePath === 'string' ? pagePath : ''}`
 // Per-page OG card, derived from the path. Blog posts fall back to the blog
 // card; anything unmapped uses the home card.
-const ogSlugs = ['about', 'projects', 'uses', 'blog']
+const ogSlugs = ['about', 'apps', 'projects', 'uses', 'blog']
 const ogSeg = typeof pagePath === 'string' && pagePath !== '/' ? pagePath.split('/')[1] : 'home'
 const ogImage = `${siteUrl}/images/og/${ogSlugs.includes(ogSeg) ? ogSeg : 'home'}.jpg`
 </script>

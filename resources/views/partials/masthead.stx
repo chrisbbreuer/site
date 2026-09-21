@@ -6,6 +6,7 @@
   <nav aria-label="Site">
     <a href="/blog">Blog</a>
     <a href="/about"@if (activeNav === 'about') aria-current="page"@endif>About</a>
+    <a href="/apps"@if (activeNav === 'apps') aria-current="page"@endif>Apps</a>
     <a href="/projects"@if (activeNav === 'projects') aria-current="page"@endif>Projects</a>
     <a href="/uses"@if (activeNav === 'uses') aria-current="page"@endif>Uses</a>
     <a href="https://github.com/chrisbbreuer" rel="me">GitHub</a>
