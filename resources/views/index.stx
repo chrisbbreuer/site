@@ -3,7 +3,7 @@ const fs = require('node:fs')
 const path = require('node:path')
 
 const title = 'Chris Breuer - Software engineer, founder & skyrunner'
-const description = 'Chris Breuer builds developer tooling and skyruns long days in the mountains. Notes on TypeScript, Bun, Stacks, and the trails in between.'
+const description = 'Chris Breuer builds developer tooling — Stacks, HQ.training, WildLoop — and skyruns long days in the mountains. Notes on both.'
 const activeNav = ''
 const pagePath = '/'
 
@@ -42,11 +42,28 @@ const posts = fs.readdirSync(blogDir)
 @section('content')
   <h1 class="page-title">Software engineer, founder, <br class="title-break">skyrunner.</h1>
   <p class="page-lead">
-    I build developer tooling. Stuff like <a href="https://stacksjs.com">Stacks</a>, a TypeScript
-    framework, and the open-source tooling surrounding and accompanying it. The other half of my
-    life is spent skyrunning &mdash; long days in the mountains, usually with a dog somewhere
-    ahead of me on the trail. This is where I write about both.
+    I build developer tooling &mdash; <a href="https://stacksjs.com">Stacks</a>, a TypeScript
+    framework, and the open-source tooling around it &mdash; plus the apps that run on top of it.
+    The other half of my life is spent skyrunning: long days in the mountains, usually with a dog
+    somewhere ahead of me on the trail. The two halves keep pointing at each other. This is where
+    I write about both.
   </p>
+
+  <h2 class="section-label">Building</h2>
+  <ul class="entry-list">
+    <li>
+      <span class="entry-name"><a href="https://stacksjs.com">Stacks</a></span>
+      <span class="entry-desc">A TypeScript framework, and the open-source tooling around it.</span>
+    </li>
+    <li>
+      <span class="entry-name"><a href="https://hq.training">HQ.training</a></span>
+      <span class="entry-desc">An operating system for gyms, coaches and athletes &mdash; memberships, scheduling and billing, sitting next to the training data.</span>
+    </li>
+    <li>
+      <span class="entry-name"><a href="https://wildloop.org">WildLoop</a></span>
+      <span class="entry-desc">Trail discovery, GPS recording and a social feed, with a territory game underneath: close a loop and you claim what it encircles.</span>
+    </li>
+  </ul>
 
   <h2 class="section-label">Writing</h2>
   @if (posts.length > 0)

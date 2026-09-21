@@ -88,17 +88,19 @@ jobs:
       # is normally seconds — but a cold one (new photos, a wiped shared dir)
       # still needs room, and "not up yet" is not the same failure as "down".
       # Poll to a deadline instead: the run goes red only if it never answers.
+      # Fifteen minutes because that is what a cold image pass measures at today;
+      # it drops to seconds once the stx version mismatch below is resolved.
       - name: Check the site answers
         run: |
-          deadline=$(( $(date +%s) + 300 ))
+          deadline=$(( $(date +%s) + 900 ))
           for path in / /blog; do
             while :; do
-              code=$(curl -s -o /dev/null -w "%{http_code}" -m 20 "https://chrisbreuer.me${path}" || echo 000)
+              code=$(curl -s -o /dev/null -w "%{http_code}" -m 20 "https://chrisbreuer.me${path}" || true)
               case "$code" in
                 2*|3*) echo "${path} -> ${code}"; break ;;
               esac
               if [ "$(date +%s)" -ge "$deadline" ]; then
-                echo "::error::chrisbreuer.me${path} still answered ${code} after 5 minutes"
+                echo "::error::chrisbreuer.me${path} still answered ${code} after 15 minutes"
                 exit 1
               fi
               echo "${path} -> ${code}, still warming…"

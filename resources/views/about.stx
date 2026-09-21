@@ -3,7 +3,7 @@ const fs = require('node:fs')
 const path = require('node:path')
 
 const title = 'About - Chris Breuer'
-const description = 'I\'m Chris Breuer, a software engineer obsessed over developer tooling and a skyrunner. Los Angeles based.'
+const description = 'I\'m Chris Breuer, a software engineer obsessed over developer tooling and a skyrunner. Building Stacks, HQ.training and WildLoop. Los Angeles based.'
 const activeNav = 'about'
 const pagePath = '/about'
 
@@ -12,6 +12,15 @@ const pagePath = '/about'
 // layout is computed by /assets/scripts/gallery.js (aspect ratios are known
 // up front, so there's no reflow on load).
 const gallery = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'content/gallery.json'), 'utf-8'))
+
+// The apps, not the repos — /projects already lists everything public from the
+// GitHub API. HQ.training and WildLoop are here because they are where the two
+// halves of the bio meet: athlete software written by someone who needs it.
+const building = [
+  { name: 'Stacks', url: 'https://stacksjs.com', text: 'A TypeScript framework, and the open-source tooling around it.' },
+  { name: 'HQ.training', url: 'https://hq.training', text: 'An operating system for gyms, coaches and athletes.' },
+  { name: 'WildLoop', url: 'https://wildloop.org', text: 'Trails, GPS and a social feed — every closed loop claims territory.' },
+]
 
 const work = [
   { name: 'Stacks.js, Inc.', role: 'Founder', period: '2024 to present' },
@@ -49,6 +58,13 @@ const elsewhere = [
           still the one thing that reliably peels me away from my desk.
         </p>
         <p>
+          The next big one is the Pacific Crest Trail, north, at a 60-mile-a-day
+          average &mdash; 2,650 miles of finding out what holds up at that pace and
+          what doesn't. After that I stop training for nothing in particular and start
+          racing: lining up at actual events, against actual people, on the kind of
+          terrain that makes a flat marathon look like a warm-up.
+        </p>
+        <p>
           I spent the last 15+ years working on personal and private projects, ranging
           from small apps to large enterprise services, which caused my obsession with
           building scalable systems. I dove deep into data storage and
@@ -62,12 +78,24 @@ const elsewhere = [
           fair description of shipping software.
         </p>
         <p>
-          Today, I work on <a href="https://stacksjs.com">Stacks</a> and its broader ecosystem.
-          It's exciting to work on the future of web technologies and application / software
-          development. Follow along on <a href="https://github.com/chrisbbreuer">GitHub</a>
-          for the latest updates.
+          Today that is <a href="https://stacksjs.com">Stacks</a> and its broader ecosystem,
+          plus the apps built on top of it &mdash; lately
+          <a href="https://hq.training">HQ.training</a> and
+          <a href="https://wildloop.org">WildLoop</a>, both of which are athlete software
+          written by someone who needed it to exist. Follow along on
+          <a href="https://github.com/chrisbbreuer">GitHub</a> for the latest.
         </p>
       </div>
+
+      <h2 class="section-label">Building</h2>
+      <ul class="entry-list">
+        @foreach (building as project)
+          <li>
+            <span class="entry-name"><a href="{{ project.url }}">{{ project.name }}</a></span>
+            <span class="entry-desc">{{ project.text }}</span>
+          </li>
+        @endforeach
+      </ul>
 
       <h2 class="section-label">Work</h2>
       <ul class="entry-list">
