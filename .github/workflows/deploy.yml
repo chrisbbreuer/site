@@ -82,13 +82,26 @@ jobs:
           HCLOUD_TOKEN: ${{ secrets.HCLOUD_TOKEN }}
         run: ./buddy deploy --prod --yes
 
+      # A release warms its stx image caches before it can answer anything, and
+      # a single request right after the cutover judges the site on the worst
+      # moment of its life. Those caches live in shared/ now, so the warm pass
+      # is normally seconds — but a cold one (new photos, a wiped shared dir)
+      # still needs room, and "not up yet" is not the same failure as "down".
+      # Poll to a deadline instead: the run goes red only if it never answers.
       - name: Check the site answers
         run: |
+          deadline=$(( $(date +%s) + 300 ))
           for path in / /blog; do
-            code=$(curl -s -o /dev/null -w "%{http_code}" -m 30 "https://chrisbreuer.me${path}")
-            echo "${path} -> ${code}"
-            case "$code" in
-              2*|3*) ;;
-              *) echo "::error::chrisbreuer.me${path} answered ${code}"; exit 1 ;;
-            esac
+            while :; do
+              code=$(curl -s -o /dev/null -w "%{http_code}" -m 20 "https://chrisbreuer.me${path}" || echo 000)
+              case "$code" in
+                2*|3*) echo "${path} -> ${code}"; break ;;
+              esac
+              if [ "$(date +%s)" -ge "$deadline" ]; then
+                echo "::error::chrisbreuer.me${path} still answered ${code} after 5 minutes"
+                exit 1
+              fi
+              echo "${path} -> ${code}, still warming…"
+              sleep 10
+            done
           done

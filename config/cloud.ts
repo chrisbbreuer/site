@@ -87,7 +87,16 @@ export const tsCloud: TsCloudConfig = {
       // release on the first deploy that declares this, then symlinks it into
       // every release after, so the derivatives are generated once rather than
       // once per deploy. `.env` stays shared — ts-cloud always merges it in.
-      sharedPaths: ['storage/framework/stx/image-delivery'],
+      //
+      // image-placeholders.json is the other half of that boot work: stx calls
+      // warmImagePlaceholders() with it as an explicit cachePath, and requests
+      // wait on that pass, so an un-cached copy costs the same stall on every
+      // release. Both entries are caches keyed by source image — a new photo
+      // derives just its own entry, it does not invalidate the rest.
+      sharedPaths: [
+        'storage/framework/stx/image-delivery',
+        'storage/framework/stx/image-placeholders.json',
+      ],
       preStart: [
         'bun install',
         'mkdir -p /var/lib/chrisbreuer',
