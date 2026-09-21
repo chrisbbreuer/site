@@ -3,7 +3,7 @@ const fs = require('node:fs')
 const path = require('node:path')
 
 const title = 'About - Chris Breuer'
-const description = 'I\'m Chris Breuer, a software engineer passionately obsessed over developer tooling.'
+const description = 'I\'m Chris Breuer, a software engineer obsessed over developer tooling and a skyrunner. Los Angeles based.'
 const activeNav = 'about'
 const pagePath = '/about'
 
@@ -33,7 +33,7 @@ const elsewhere = [
 @section('content')
   <div class="about-wrap">
     <div class="bio-col">
-      <h1 class="page-title">Passionately obsessed over developer tooling.</h1>
+      <h1 class="page-title">Obsessed with developer tooling and steep trails.</h1>
       <div class="prose">
         <p>
           Ever since I was young, I've loved to explore, learn, and create, especially
@@ -43,9 +43,10 @@ const elsewhere = [
         </p>
         <p>
           The only thing I loved more than computers as a kid was sports and the
-          outdoors. Almost 20 years later, not much has changed: going on hikes with my
-          dogs and playing soccer are still some of the few things that peel me away
-          from my desk.
+          outdoors. Almost 20 years later, not much has changed &mdash; it just got
+          steeper. These days it is skyrunning: long days in the mountains, on trails
+          that go up far more than they go along, with my dog setting the pace. It is
+          still the one thing that reliably peels me away from my desk.
         </p>
         <p>
           I spent the last 15+ years working on personal and private projects, ranging
@@ -53,6 +54,12 @@ const elsewhere = [
           building scalable systems. I dove deep into data storage and
           transfer, and distributed and decentralized compute techniques. That was a
           core reason I started working on Stacks.
+        </p>
+        <p>
+          The two halves feed each other more than you would think. A long day in the
+          mountains is mostly about pacing, small decisions compounding, and being
+          honest with yourself about what is actually working &mdash; which is also a
+          fair description of shipping software.
         </p>
         <p>
           Today, I work on <a href="https://stacksjs.com">Stacks</a> and its broader ecosystem.
@@ -85,7 +92,7 @@ const elsewhere = [
 
     <aside class="portrait-col">
       <img src="/images/chris.jpg" alt="Chris Breuer" width="480" height="480">
-      <p class="portrait-note">Los Angeles based. Usually outside with the dogs when I'm not at the keyboard.</p>
+      <p class="portrait-note">Los Angeles based. Usually on a trail with the dogs when I'm not at the keyboard.</p>
     </aside>
 
     <div class="photo-masonry" aria-label="Photographs">

@@ -2,8 +2,8 @@
 const fs = require('node:fs')
 const path = require('node:path')
 
-const title = 'Chris Breuer - Software engineer and founder'
-const description = 'Chris Breuer is a software engineer and founder of Stacks. Notes on developer tooling, TypeScript, and Bun.'
+const title = 'Chris Breuer - Software engineer, founder & skyrunner'
+const description = 'Chris Breuer builds developer tooling and skyruns long days in the mountains. Notes on TypeScript, Bun, Stacks, and the trails in between.'
 const activeNav = ''
 const pagePath = '/'
 
@@ -40,10 +40,12 @@ const posts = fs.readdirSync(blogDir)
 @endpush
 
 @section('content')
-  <h1 class="page-title">Software engineer, <br class="title-break">founder &amp; dog person</h1>
+  <h1 class="page-title">Software engineer, founder, <br class="title-break">skyrunner.</h1>
   <p class="page-lead">
     I build developer tooling. Stuff like <a href="https://stacksjs.com">Stacks</a>, a TypeScript
-    framework, and the open-source tooling surrounding and accompanying it. This is where I write.
+    framework, and the open-source tooling surrounding and accompanying it. The other half of my
+    life is spent skyrunning &mdash; long days in the mountains, usually with a dog somewhere
+    ahead of me on the trail. This is where I write about both.
   </p>
 
   <h2 class="section-label">Writing</h2>

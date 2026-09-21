@@ -20,13 +20,13 @@ const cards: Card[] = [
     slug: 'home',
     path: '~',
     title: 'Chris Breuer',
-    desc: 'Software engineer and founder of Stacks. Notes on developer tooling, TypeScript, and Bun.',
+    desc: 'Software engineer, founder of Stacks, skyrunner. Notes on developer tooling and long days in the mountains.',
   },
   {
     slug: 'about',
     path: '~/about',
     title: 'About',
-    desc: 'Software engineer passionately obsessed over developer tooling. Los Angeles based.',
+    desc: 'Obsessed with developer tooling and long days in the mountains. Los Angeles based.',
   },
   {
     slug: 'projects',

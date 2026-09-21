@@ -1,8 +1,8 @@
 <script server>
 // Fallback page meta. Every page overrides these from its own server script
 // (page values win; this stub only fills the gaps).
-const title = 'Chris Breuer - Software engineer and founder'
-const description = 'Chris Breuer is a software engineer and founder of Stacks. Notes on developer tooling, TypeScript, and Bun.'
+const title = 'Chris Breuer - Software engineer, founder & skyrunner'
+const description = 'Chris Breuer builds developer tooling and skyruns long days in the mountains. Notes on TypeScript, Bun, Stacks, and the trails in between.'
 const activeNav = ''
 const siteUrl = 'https://chrisbreuer.me'
 // pagePath comes from the page's server script; guard for pages that omit it.
