@@ -76,6 +76,18 @@ export const tsCloud: TsCloudConfig = {
       // vendored core, and took the deploy down with it.
       start: 'bun node_modules/@stacksjs/buddy/dist/serve-entry.js',
       port: 3040,
+      // stx generates responsive image derivatives (7 widths x 2 formats) on
+      // first boot, and it does that work on the event loop — the server binds
+      // :3040 immediately but answers nothing until the pass finishes. For this
+      // site that is ~1,000 files and ~280MB, mostly the About gallery, which
+      // takes far longer than the liveness probe's three 5s checks. The probe
+      // restarts the unit, the release dir is fresh, the pass starts over, and
+      // the site never serves a byte. Keeping the output out of the atomic
+      // release dir breaks that loop: ts-cloud seeds shared/ from the live
+      // release on the first deploy that declares this, then symlinks it into
+      // every release after, so the derivatives are generated once rather than
+      // once per deploy. `.env` stays shared — ts-cloud always merges it in.
+      sharedPaths: ['storage/framework/stx/image-delivery'],
       preStart: [
         'bun install',
         'mkdir -p /var/lib/chrisbreuer',
