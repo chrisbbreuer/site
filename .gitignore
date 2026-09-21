@@ -96,3 +96,11 @@ storage/framework/**/storage/logs/
 # @stacksjs/defaults copies resources + app from storage/framework/defaults at build time
 storage/framework/core/defaults/resources/
 storage/framework/core/defaults/app/
+# stx build output, regenerated from resources/ and public/ on every boot.
+# image-delivery is ~2,000 files / ~280MB of responsive derivatives — only its
+# _stx subdirectory used to be ignored, so the rest sat untracked in `git
+# status` one `git add -A` away from the history.
+/storage/framework/stx/image-delivery/
+/storage/framework/stx/cache/
+/storage/framework/stx/image-placeholders.json
+/storage/framework/stx/layout-types.d.ts
