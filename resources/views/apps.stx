@@ -26,6 +26,7 @@ const devApps = [
   { name: 'StatusHQ', url: 'https://statushq.org', text: 'Self-hostable status pages and uptime monitoring.' },
   { name: 'BugHQ', url: 'https://bughq.org', text: 'Error tracking for people who ship.' },
   { name: 'LogHQ', url: 'https://loghq.org', text: 'Log management for people who ship.' },
+  { name: 'AnalyticsHQ', url: 'https://analyticshq.org', text: 'Privacy-first, cookieless web analytics — real-time visitors, sources and conversions, with no consent banner to apologise for.' },
 ]
 </script>
 
