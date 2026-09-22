@@ -1,13 +1,47 @@
 <script server>
+const fs = require('node:fs')
+const path = require('node:path')
+
 const title = 'Goals - Chris Breuer'
-const description = 'What I am actually trying to do: Stacks v1.0, Wildloop, and the Pacific Crest Trail at a 60-mile-a-day average.'
+const description = 'What I am actually trying to do: a billion npm downloads a month, Stacks v1.0, Wildloop, and the Pacific Crest Trail at 60 miles a day.'
 const activeNav = 'goals'
 const pagePath = '/goals'
+
+// The download goal reads its own scoreboard. content/projects.json is
+// resynced daily by .github/workflows/projects-sync.yml, so this number moves
+// on its own rather than being a figure I typed once and forgot.
+const projects = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'content/projects.json'), 'utf-8'))
+const monthly = projects.repos.reduce((sum, r) => sum + (r.downloads || 0), 0)
+const TARGET = 1000000000
+
+function compact(n) {
+  if (n >= 1000000000)
+    return `${(n / 1000000000).toFixed(2).replace(/\.?0+$/, '')}B`
+  if (n >= 1000000)
+    return `${(n / 1000000).toFixed(1).replace(/\.0$/, '')}M`
+  if (n >= 1000)
+    return `${Math.round(n / 1000)}k`
+  return String(n)
+}
+
+const monthlyLabel = compact(monthly)
+// A multiple is the honest way to say it. The percentage — 0.3% — is true and
+// tells you nothing; "325 times from here" tells you what kind of problem it is.
+const multiple = Math.round(TARGET / Math.max(monthly, 1))
+const sharePercent = ((monthly / TARGET) * 100).toFixed(2)
 
 // Deliberately short. A list of twenty goals is a list of none, and a goal
 // with no way to tell whether it happened is a mood. Each of these is
 // something someone else could check.
 const work = [
+  {
+    name: 'A billion downloads a month',
+    url: '/projects',
+    text: `The whole point of the tooling, stated as a number someone else can check. `
+      + `Today it is ${monthlyLabel} a month across ${projects.repos.filter(r => r.downloads).length} published packages — `
+      + `${sharePercent}% of the way, or about ${multiple}× from here. `
+      + `It resyncs daily, so this page marks its own homework.`,
+  },
   { name: 'Stacks v1.0', url: 'https://stacksjs.com', text: 'The framework stops being a moving target. A stable API, documentation that matches it, and a version number I am willing to ask other people to depend on.' },
   { name: 'Wildloop', url: 'https://wildloop.org', text: 'Ship the territory game properly: capture that holds up under a server-authoritative engine, clubs and challenges that people actually return for, and route records worth chasing.' },
   { name: 'HQ.training', url: 'https://hq.training', text: 'Make it the thing coaches reach for first — training analysis that earns its place next to the billing and the scheduling, rather than sitting in a separate tab.' },
@@ -27,7 +61,8 @@ const personal = [
   <p class="page-lead">
     Written down and put somewhere public, which is the only version of a goal
     that has ever worked for me. Two lists, same rule for both: something
-    another person could look at and tell whether it happened.
+    another person could look at and tell whether it happened. The first one
+    keeps its own score.
   </p>
 
   <h2 class="section-label">Work</h2>
