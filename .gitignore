@@ -100,6 +100,9 @@ storage/framework/core/defaults/app/
 # image-delivery is ~2,000 files / ~280MB of responsive derivatives — only its
 # _stx subdirectory used to be ignored, so the rest sat untracked in `git
 # status` one `git add -A` away from the history.
+# Framework build output, regenerated on boot from app/Models and the views.
+/storage/framework/database/
+/storage/framework/runtime/model-sources/
 /storage/framework/stx/image-delivery/
 /storage/framework/stx/cache/
 /storage/framework/stx/image-placeholders.json
