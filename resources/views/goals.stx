@@ -65,6 +65,15 @@ const personal = [
     keeps its own score.
   </p>
 
+  <blockquote class="pull-quote">
+    <p>
+      Be brave. Nothing on this page was a safe bet the day I wrote it down,
+      and that is the whole point &mdash; a goal you are certain of is not a
+      goal, it is a schedule. Taking the risk is the part that costs something.
+    </p>
+    <footer>&mdash; me, to myself, repeatedly</footer>
+  </blockquote>
+
   <h2 class="section-label">Work</h2>
   <ul class="entry-list">
     @foreach (work as goal)

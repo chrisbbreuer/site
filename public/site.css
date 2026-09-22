@@ -300,6 +300,28 @@ main { padding: 3.5rem 0 2rem; }
   line-height: 1.65;
 }
 
+/* ── Pull quote ─────────────────────────────────────────────────────────── */
+/* Same hairline vocabulary as every other divider on the site: the quote is
+ * set off by a rule rather than by a bigger, louder typeface. */
+.pull-quote {
+  margin: 0 0 2.5rem;
+  padding: 0.1rem 0 0.1rem 1.25rem;
+  border-left: 2px solid var(--divider);
+  max-width: 38rem;
+}
+.pull-quote p {
+  margin: 0;
+  color: var(--text-1);
+  font-size: 1.02rem;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+.pull-quote footer {
+  margin-top: 0.55rem;
+  font-size: 0.8rem;
+  color: var(--text-3);
+}
+
 /* ── Subscribe ──────────────────────────────────────────────────────────── */
 .subscribe {
   margin-top: 3rem;
