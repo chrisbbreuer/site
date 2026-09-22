@@ -16,7 +16,9 @@ const apps = [
   { name: 'Wildloop', url: 'https://wildloop.org', text: 'Trail discovery and GPS tracking with clubs, challenges and fastest known times — and a territory game underneath, where closing a loop claims the ground inside it.' },
   // { name: 'OpenFarm', url: 'https://openfarm.ing', text: 'Autonomous drone scouting and targeted treatment for farms. Find the problem acre before it spreads, and treat that acre rather than the whole field.' },
   { name: 'CommsHQ', url: 'https://commshq.com', text: 'Creator-first communications: publishing, automation and commerce marketing in one place.' },
-  { name: 'CampusHQ', url: 'https://campushq.org', text: 'Event management for independent schools — the calendar, the parent volunteers, the reminders nobody has time to send, and the spring gala with its silent auction.' },
+  // Commented out rather than deleted, so it comes back as one line when it
+  // is ready to be shown.
+  // { name: 'CampusHQ', url: 'https://campushq.org', text: 'Event management for independent schools — the calendar, the parent volunteers, the reminders nobody has time to send, and the spring gala with its silent auction.' },
   { name: 'Very Good Adblock', url: 'https://very-good-adblock.org', text: 'A fast Manifest V3 ad blocker for Chrome, Firefox and Safari.' },
   { name: 'System Cleaner', url: 'https://system-cleaner.app', text: 'A macOS cleaner that runs entirely on your Mac. Nothing is uploaded, no account is required, and every destructive action is reviewable first.' },
 ]

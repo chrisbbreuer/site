@@ -40,7 +40,7 @@ const posts = fs.readdirSync(blogDir)
 @endpush
 
 @section('content')
-  <h1 class="page-title">Software engineer,<br class="title-break">founder,<br class="title-break">skyrunner.</h1>
+  <h1 class="page-title">Software engineer, founder,<br class="title-break">skyrunner.</h1>
   <p class="page-lead">
     I build developer tooling &mdash; <a href="https://stacksjs.com">Stacks</a>, a TypeScript
     framework and the ecosystem around it &mdash; plus the apps that run on top of it.

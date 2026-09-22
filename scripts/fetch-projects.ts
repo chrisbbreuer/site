@@ -22,6 +22,8 @@ interface Repo {
   downloads?: number
   /** The npm package the downloads belong to, for the tooltip on the page. */
   pkg?: string
+  /** How many published packages that repo's total covers. */
+  pkgCount?: number
 }
 
 /**
@@ -283,42 +285,125 @@ async function registryRepo(pkg: string): Promise<string | null> {
 }
 
 /**
- * Downloads of the package a repo is named for — `bunfig` for stacksjs/bunfig,
- * `@stacksjs/stx` for stacksjs/stx — confirmed against the registry's own
- * record of where that package is published from.
+ * Every npm package name a repo might publish: its root manifest, plus every
+ * workspace manifest one level down.
  *
- * Two earlier shapes of this were worse. Reading the root package.json missed
- * every monorepo, because their roots are private and the real package lives in
- * `packages/<name>`. Crawling workspaces through the GitHub contents API fixed
- * that and introduced two new problems: it needed ~700 API calls, which
- * exhausted the hourly limit mid-run and produced a silently empty file, and it
- * credited the same @stacksjs/* packages to both `stacks` and `projects`, which
- * vendor the whole set — ~3.2M downloads counted twice.
+ * Reading only the root was wrong by an order of magnitude. Almost everything
+ * here is a monorepo whose root is private and whose real packages live in
+ * `packages/<name>` or `storage/framework/core/<name>` — stacks alone ships
+ * over eighty. Counting one package per repo reported 3.1M downloads a month
+ * when the true figure is several times that.
  *
- * So: one package per repo, the eponymous one, verified. It is the number a
- * reader expects to see next to a repo name, it costs two registry calls and no
- * GitHub quota, and it cannot double-count. A monorepo's other packages are not
- * summed in — that would answer a different question than the one the row asks.
+ * Globs resolve one level deep, which is the shape every one of these repos
+ * uses. Negations are skipped and anything more exotic resolves to nothing
+ * rather than being guessed at.
+ */
+function workspacePackages(fullName: string): string[] {
+  const names: string[] = []
+
+  const readManifest = (filePath: string): any => {
+    const res = gh(`repos/${fullName}/contents/${filePath}`)
+    if (!res || !res.content)
+      return null
+    try {
+      return JSON.parse(Buffer.from(res.content, 'base64').toString('utf8'))
+    }
+    catch {
+      return null
+    }
+  }
+
+  const collect = (manifest: any): void => {
+    if (manifest && manifest.private !== true && typeof manifest.name === 'string' && !names.includes(manifest.name))
+      names.push(manifest.name)
+  }
+
+  const root = readManifest('package.json')
+  if (!root)
+    return names
+  collect(root)
+
+  const globs: string[] = Array.isArray(root.workspaces)
+    ? root.workspaces
+    : Array.isArray(root.workspaces?.packages) ? root.workspaces.packages : []
+
+  for (const glob of globs) {
+    if (glob.startsWith('!'))
+      continue
+
+    const dir = glob.replace(/\/\*{1,2}$/, '')
+    if (dir === glob)
+      continue
+
+    const entries = gh(`repos/${fullName}/contents/${dir}`)
+    if (!Array.isArray(entries))
+      continue
+
+    for (const entry of entries) {
+      if (entry.type !== 'dir')
+        continue
+      collect(readManifest(`${dir}/${entry.name}/package.json`))
+    }
+  }
+
+  return names
+}
+
+/**
+ * Attribute every published package to the repo the registry says it comes
+ * from, and sum per repo.
+ *
+ * The registry decides ownership, not the checkout that happens to contain the
+ * file. Several of these repos vendor the whole @stacksjs/* set, and crediting
+ * each of them for it counted millions of downloads twice — which is how an
+ * earlier version of this produced a number larger than reality while a later
+ * one produced a number far smaller.
  */
 async function attachDownloads(list: Repo[]): Promise<void> {
-  const queue = [...list]
+  const known = new Map(list.map(repo => [`${repo.org}/${repo.name}`.toLowerCase(), repo]))
+
+  const candidates = new Set<string>()
+  for (const repo of list) {
+    for (const name of workspacePackages(`${repo.org}/${repo.name}`))
+      candidates.add(name)
+  }
+  console.log(`resolved ${candidates.size} candidate package name(s) across ${list.length} repos`)
+
+  const totals = new Map<Repo, { downloads: number, packages: string[] }>()
+  const queue = [...candidates]
+  // Two at a time. npm throttles a run that asks faster, and a throttled
+  // lookup is indistinguishable from "no such package" — which silently
+  // subtracts a whole repo's downloads from the total.
   const workers = Array.from({ length: 2 }, async () => {
-    for (let repo = queue.shift(); repo; repo = queue.shift()) {
-      const full = `${repo.org}/${repo.name}`.toLowerCase()
-      for (const candidate of [repo.name, `@${repo.org}/${repo.name}`, `@stacksjs/${repo.name}`]) {
-        const owner = await registryRepo(candidate)
-        if (!owner || owner.toLowerCase() !== full)
-          continue
-        const downloads = await monthlyDownloads(candidate)
-        if (downloads === null)
-          continue
-        repo.pkg = candidate
-        repo.downloads = downloads
-        break
-      }
+    for (let pkg = queue.shift(); pkg; pkg = queue.shift()) {
+      const owner = await registryRepo(pkg)
+      if (!owner)
+        continue
+
+      const repo = known.get(owner.toLowerCase())
+      if (!repo)
+        continue
+
+      const downloads = await monthlyDownloads(pkg)
+      if (downloads === null)
+        continue
+
+      const entry = totals.get(repo) ?? { downloads: 0, packages: [] }
+      entry.downloads += downloads
+      entry.packages.push(pkg)
+      totals.set(repo, entry)
     }
   })
   await Promise.all(workers)
+
+  for (const [repo, entry] of totals) {
+    repo.downloads = entry.downloads
+    // Shortest name first, deterministically: `stx` reads better than
+    // `@stacksjs/stx-loader` as the label for what a repo ships.
+    repo.pkg = entry.packages.sort((a, b) => a.length - b.length || a.localeCompare(b))[0]
+    if (entry.packages.length > 1)
+      repo.pkgCount = entry.packages.length
+  }
 }
 
 await attachDownloads(repos)
@@ -340,6 +425,7 @@ const out = join(import.meta.dir, '../content/projects.json')
 writeFileSync(out, `${JSON.stringify({ generatedAt: new Date().toISOString().slice(0, 10), repos }, null, 2)}\n`)
 const published = repos.filter(r => r.downloads !== undefined)
 console.log(`Wrote ${repos.length} repos from ${new Set(repos.map(r => r.org)).size} orgs to content/projects.json`)
-console.log(`${published.length} publish to npm, ${published.reduce((n, r) => n + (r.downloads || 0), 0).toLocaleString()} downloads in the last 30 days`)
+const packageTotal = published.reduce((n, r) => n + (r.pkgCount || 1), 0)
+console.log(`${published.length} repos publish ${packageTotal} package(s), ${published.reduce((n, r) => n + (r.downloads || 0), 0).toLocaleString()} downloads in the last 30 days`)
 if (lookupFailures > 0)
   console.warn(`${lookupFailures} registry lookup(s) gave up after retrying — some counts may be missing`)

@@ -87,6 +87,7 @@ const orgCount = groups.length
 const generatedAt = data.generatedAt
 const monthlyTotal = withLabels.reduce((sum, r) => sum + (r.downloads || 0), 0)
 const publishedCount = withLabels.filter(r => r.downloads > 0).length
+const packageCount = withLabels.reduce((sum, r) => sum + (r.downloads > 0 ? (r.pkgCount || 1) : 0), 0)
 const totalLabel = compact(monthlyTotal)
 </script>
 
@@ -96,8 +97,8 @@ const totalLabel = compact(monthlyTotal)
   <h1 class="page-title">Things I've made.</h1>
   <p class="page-lead">
     {{ repoCount }} public repos across {{ orgCount }} orgs, most of them open source.
-    {{ publishedCount }} of them ship to npm, {{ totalLabel }} downloads a month between
-    them. If something piques your interest, read the code and send a patch &mdash; my
+    {{ publishedCount }} of them ship {{ packageCount }} packages to npm, {{ totalLabel }}
+    downloads a month between them. If something piques your interest, read the code and send a patch &mdash; my
     <a href="https://github.com/chrisbbreuer/dotfiles">dotfiles</a> are public too.
     Stars and downloads resync daily; last on {{ generatedAt }}.
   </p>
