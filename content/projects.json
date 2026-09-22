@@ -555,7 +555,9 @@
         "TypeScript",
         "macOS",
         "Swift"
-      ]
+      ],
+      "pkg": "hushapp",
+      "downloads": 7
     },
     {
       "name": "pomodoro",
@@ -603,7 +605,9 @@
       "tags": [
         "TypeScript",
         "Laravel"
-      ]
+      ],
+      "pkg": "@stacksjs/ts-validation",
+      "downloads": 55170
     },
     {
       "name": "action-releaser",
@@ -649,9 +653,7 @@
       "url": "https://github.com/stacksjs/ts-medium-editor",
       "tags": [
         "TypeScript"
-      ],
-      "pkg": "ts-medium-editor",
-      "downloads": 772
+      ]
     },
     {
       "name": "vite-plugin-tauri",
@@ -699,7 +701,9 @@
       "url": "https://github.com/stacksjs/ts-numbers",
       "tags": [
         "TypeScript"
-      ]
+      ],
+      "pkg": "ts-numbers",
+      "downloads": 34
     },
     {
       "name": "ts-starter-monorepo",
@@ -787,7 +791,9 @@
       "url": "https://github.com/stacksjs/gitit",
       "tags": [
         "TypeScript"
-      ]
+      ],
+      "pkg": "@stacksjs/gitit",
+      "downloads": 24690
     },
     {
       "name": "gitlint",
@@ -1239,9 +1245,7 @@
       "tags": [
         "JavaScript",
         "TypeScript"
-      ],
-      "pkg": "@ow3/dummy-ts-pkg",
-      "downloads": 12
+      ]
     },
     {
       "name": "deep-unref-vue",
@@ -1252,9 +1256,7 @@
       "tags": [
         "TypeScript",
         "Vue"
-      ],
-      "pkg": "@ow3/deep-unref-vue",
-      "downloads": 2010
+      ]
     },
     {
       "name": "composable-starter",
@@ -1265,9 +1267,7 @@
       "tags": [
         "JavaScript",
         "Library"
-      ],
-      "pkg": "@ow3/dummy-composable",
-      "downloads": 21
+      ]
     },
     {
       "name": "renovate-config",
@@ -1275,9 +1275,7 @@
       "description": "Open Web / Stacks preset for the Renovate bot.",
       "stars": 1,
       "url": "https://github.com/ow3org/renovate-config",
-      "tags": [],
-      "pkg": "@ow3/renovate-config",
-      "downloads": 28
+      "tags": []
     },
     {
       "name": "home",
@@ -1377,69 +1375,6 @@
       "tags": [
         "TypeScript",
         "Fonts"
-      ]
-    },
-    {
-      "name": "craft",
-      "org": "craft-native",
-      "description": "Performant, native desktop & mobile apps with web languages.",
-      "stars": 19,
-      "url": "https://github.com/craft-native/craft",
-      "tags": [
-        "Zig",
-        "CSS",
-        "JavaScript",
-        "TypeScript"
-      ]
-    },
-    {
-      "name": "loghq-laravel",
-      "org": "loghqorg",
-      "description": "loghq log streaming - Laravel integration",
-      "stars": 0,
-      "url": "https://github.com/loghqorg/loghq-laravel",
-      "tags": [
-        "PHP"
-      ]
-    },
-    {
-      "name": "loghq-php",
-      "org": "loghqorg",
-      "description": "loghq log streaming - PHP SDK",
-      "stars": 0,
-      "url": "https://github.com/loghqorg/loghq-php",
-      "tags": [
-        "PHP"
-      ]
-    },
-    {
-      "name": "laravel",
-      "org": "ReportsHQ",
-      "description": "Send a Laravel application's own events to ReportsHQ, as the standard taxonomy.",
-      "stars": 0,
-      "url": "https://github.com/ReportsHQ/laravel",
-      "tags": [
-        "PHP"
-      ]
-    },
-    {
-      "name": "app",
-      "org": "ReviewOS",
-      "description": "A native desktop client for ReviewOS — review, stage and commit without leaving the machine. Built with stx and craft.",
-      "stars": 1,
-      "url": "https://github.com/ReviewOS/app",
-      "tags": [
-        "TypeScript"
-      ]
-    },
-    {
-      "name": "openfarm.ing",
-      "org": "theopenfarm",
-      "description": "Autonomous drone scouting for farms.",
-      "stars": 1,
-      "url": "https://github.com/theopenfarm/openfarm.ing",
-      "tags": [
-        "TypeScript"
       ]
     }
   ]
