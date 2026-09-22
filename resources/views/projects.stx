@@ -12,13 +12,34 @@ const pagePath = '/projects'
 // dotfiles, emoji stripping) lives in that script, so a resync keeps it.
 const data = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'content/projects.json'), 'utf-8'))
 
-const withLabels = data.repos.map(r => ({
-  ...r,
-  // r.tags comes from GitHub language + topics (see scripts/fetch-projects.ts).
-  tags: r.tags || [],
-  starLabel: r.stars > 0 ? `${r.stars} stars` : '',
-  filterText: `${r.name} ${r.description || ''}`.toLowerCase(),
-}))
+// 4-digit counts read fine in full; past that the digits stop carrying
+// meaning on a line of body text and a rounded 12.4k says the same thing.
+function compact(n) {
+  if (n >= 1000000)
+    return `${(n / 1000000).toFixed(1).replace(/\.0$/, '')}M`
+  if (n >= 10000)
+    return `${Math.round(n / 1000)}k`
+  if (n >= 1000)
+    return `${(n / 1000).toFixed(1).replace(/\.0$/, '')}k`
+  return String(n)
+}
+
+const withLabels = data.repos.map((r) => {
+  const parts = []
+  if (r.stars > 0)
+    parts.push(`${compact(r.stars)} ${r.stars === 1 ? 'star' : 'stars'}`)
+  // Only npm-published repos carry a download count; the Zig and app repos
+  // simply have nothing to say here, so they show stars alone.
+  if (r.downloads > 0)
+    parts.push(`${compact(r.downloads)}/mo`)
+  return {
+    ...r,
+    // r.tags comes from GitHub language + topics (see scripts/fetch-projects.ts).
+    tags: r.tags || [],
+    starLabel: parts.join(' · '),
+    filterText: `${r.name} ${r.description || ''}`.toLowerCase(),
+  }
+})
 
 // Highlights: the most-starred work across every org.
 const highlights = [...withLabels].sort((a, b) => b.stars - a.stars).slice(0, 6)
@@ -57,7 +78,7 @@ const generatedAt = data.generatedAt
     {{ repoCount }} public repos across {{ orgCount }} orgs, most of them open source.
     If something piques your interest, check out the code and contribute. My
     <a href="https://github.com/chrisbbreuer/dotfiles">dotfiles</a> are public too.
-    Synced from GitHub on {{ generatedAt }}.
+    Stars and npm downloads resync daily; last on {{ generatedAt }}.
   </p>
 
   <div class="proj-filter">

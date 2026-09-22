@@ -1,0 +1,64 @@
+name: Sync projects
+
+# Star counts and npm downloads are rendered from content/projects.json at
+# build time, so "daily" means a daily commit to that file — which is also a
+# daily deploy. 11:00 UTC is 4am in Los Angeles, the quietest hour to spend a
+# release on.
+on:
+  schedule:
+    - cron: '0 11 * * *'
+  workflow_dispatch:
+
+# Two syncs would race on the same file and the same push.
+concurrency:
+  group: projects-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    name: Resync stars and downloads
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.14
+
+      # The script reads `gh api user` and `user/orgs` to discover which owners
+      # to walk. GITHUB_TOKEN represents the repository rather than a person and
+      # answers 403 to both, so the script falls back to its own ORG_ORDER list
+      # — correct, just fixed. Set a PROJECTS_TOKEN secret (a classic PAT with
+      # `read:org` and `public_repo`) to have orgs discovered instead.
+      - name: Regenerate content/projects.json
+        env:
+          GH_TOKEN: ${{ secrets.PROJECTS_TOKEN || secrets.GITHUB_TOKEN }}
+        run: bun scripts/fetch-projects.ts
+
+      # A run that reaches neither GitHub nor npm would happily write an empty
+      # file and commit it. Refuse to push anything that lost most of the list.
+      - name: Sanity-check the result
+        run: |
+          count=$(bun -e 'console.log(JSON.parse(await Bun.file("content/projects.json").text()).repos.length)')
+          echo "repos: ${count}"
+          if [ "$count" -lt 50 ]; then
+            echo "::error::only ${count} repos came back — refusing to commit a truncated list"
+            exit 1
+          fi
+
+      - name: Commit if anything moved
+        run: |
+          if git diff --quiet -- content/projects.json; then
+            echo "no change"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/projects.json
+          git commit -m "chore(projects): resync stars and npm downloads"
+          git push

@@ -18,6 +18,10 @@ interface Repo {
   stars: number
   url: string
   tags: string[]
+  /** npm downloads in the last 30 days. Absent when the repo publishes nothing. */
+  downloads?: number
+  /** The npm package the downloads belong to, for the tooltip on the page. */
+  pkg?: string
 }
 
 /**
@@ -168,11 +172,20 @@ function gh(path: string): any {
   }
 }
 
-const me = execSync('gh api user --jq .login', { encoding: 'utf8' }).trim()
+// `gh api user` and `user/orgs` need a token that represents a person. The
+// daily sync in CI may only have GITHUB_TOKEN, which represents the repo and
+// answers 403 to both — so fall back to the owners we already list by name
+// rather than silently regenerating an empty file.
+let me = 'chrisbbreuer'
+try {
+  me = execSync('gh api user --jq .login 2>/dev/null', { encoding: 'utf8' }).trim() || me
+}
+catch {}
 const orgs: string[] = gh('user/orgs?per_page=100').map((o: any) => o.login)
+const owners = orgs.length > 0 ? [...orgs, me] : ORG_ORDER
 
 const repos: Repo[] = []
-for (const owner of [...orgs, me]) {
+for (const owner of owners) {
   const isUser = owner === me
   const list = gh(`${isUser ? 'users' : 'orgs'}/${owner}/repos?per_page=100&type=${isUser ? 'owner' : 'public'}`)
   for (const r of list) {
@@ -211,6 +224,65 @@ for (const pin of PINNED) {
   })
 }
 
+/**
+ * The npm package a repo publishes, read from package.json on its default
+ * branch. Absent for the Zig repos, the app repos, and anything marked
+ * private — which is most of them, so a miss is the normal case, not an error.
+ *
+ * A monorepo that publishes under names other than its root package.json is
+ * counted by that root name alone. Nothing here tries to walk workspaces: the
+ * number on the page is "downloads of the package this repo is named for",
+ * and inventing a sum across sub-packages would make it mean something else.
+ */
+function packageNameOf(fullName: string): string | null {
+  const res = gh(`repos/${fullName}/contents/package.json`)
+  if (!res || !res.content)
+    return null
+  try {
+    const pkg = JSON.parse(Buffer.from(res.content, 'base64').toString('utf8'))
+    if (pkg.private === true || typeof pkg.name !== 'string')
+      return null
+    return pkg.name
+  }
+  catch {
+    return null
+  }
+}
+
+/** Downloads in the last 30 days, or null if npm has never heard of it. */
+async function monthlyDownloads(pkg: string): Promise<number | null> {
+  try {
+    const res = await fetch(`https://api.npmjs.org/downloads/point/last-month/${encodeURIComponent(pkg)}`)
+    if (!res.ok)
+      return null
+    const body = await res.json() as { downloads?: number }
+    return typeof body.downloads === 'number' ? body.downloads : null
+  }
+  catch {
+    return null
+  }
+}
+
+/** Resolve downloads for every repo, a few at a time so npm stays friendly. */
+async function attachDownloads(list: Repo[]): Promise<void> {
+  const queue = [...list]
+  const workers = Array.from({ length: 8 }, async () => {
+    for (let repo = queue.shift(); repo; repo = queue.shift()) {
+      const pkg = packageNameOf(`${repo.org}/${repo.name}`)
+      if (!pkg)
+        continue
+      const downloads = await monthlyDownloads(pkg)
+      if (downloads === null)
+        continue
+      repo.pkg = pkg
+      repo.downloads = downloads
+    }
+  })
+  await Promise.all(workers)
+}
+
+await attachDownloads(repos)
+
 // Group per org, stars-descending inside each group; orgs by ORG_ORDER.
 repos.sort((a, b) => {
   const ai = ORG_ORDER.indexOf(a.org)
@@ -226,4 +298,6 @@ repos.sort((a, b) => {
 
 const out = join(import.meta.dir, '../content/projects.json')
 writeFileSync(out, `${JSON.stringify({ generatedAt: new Date().toISOString().slice(0, 10), repos }, null, 2)}\n`)
+const published = repos.filter(r => r.downloads !== undefined)
 console.log(`Wrote ${repos.length} repos from ${new Set(repos.map(r => r.org)).size} orgs to content/projects.json`)
+console.log(`${published.length} publish to npm, ${published.reduce((n, r) => n + (r.downloads || 0), 0).toLocaleString()} downloads in the last 30 days`)
