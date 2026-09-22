@@ -18,8 +18,13 @@
   </url>
   <url>
     <loc>https://chrisbreuer.me/blog</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://chrisbreuer.me/blog/both-halves</loc>
+    <lastmod>2026-09-22</lastmod>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://chrisbreuer.me/goals</loc>

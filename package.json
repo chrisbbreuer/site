@@ -71,8 +71,9 @@
     "sqlite": "^3.47.2"
   },
   "overrides": {
-    "@stacksjs/stx": "^0.2.289",
-    "bun-plugin-stx": "^0.2.289"
+    "@stacksjs/stx": "^0.2.290",
+    "bun-plugin-stx": "^0.2.290",
+    "ts-images": "^0.2.19"
   },
   "dependencies": {
     "@stacksjs/ts-avif": "^0.1.4",
@@ -81,7 +82,7 @@
   },
   "devDependencies": {
     "better-dx": "^0.2.22",
-    "ts-images": "^0.1.11"
+    "ts-images": "^0.2.19"
   },
   "workspaces": [
     "storage/framework",
