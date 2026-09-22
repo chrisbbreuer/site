@@ -1,9 +1,10 @@
 /*
  * Site chrome that must survive SPA navigation (the stx router swaps page
  * content but leaves the layout — masthead, footer — in place):
- *   1. Keep the active nav link in sync with the current path. The server marks
- *      it on first render, but after a client-side nav the old link stays
- *      highlighted, so we re-derive it from location.pathname.
+ *   1. Keep the active nav link in sync with the current path — masthead and
+ *      footer both, since /uses lives down there. The server marks it on first
+ *      render, but after a client-side nav the old link stays highlighted, so
+ *      we re-derive it from location.pathname.
  *   2. Projects page: live filter by name/description + org.
  * Loaded once from the layout; re-runs on stx:load and whenever content is
  * swapped in (MutationObserver), and is idempotent.
@@ -14,7 +15,7 @@
 
   function updateNav() {
     var path = location.pathname
-    var links = document.querySelectorAll('.masthead nav a')
+    var links = document.querySelectorAll('.masthead nav a, .site-footer a')
     for (var i = 0; i < links.length; i++) {
       var href = links[i].getAttribute('href')
       var active = !!href && href.charAt(0) === '/' &&
