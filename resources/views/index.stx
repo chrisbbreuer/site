@@ -40,10 +40,10 @@ const posts = fs.readdirSync(blogDir)
 @endpush
 
 @section('content')
-  <h1 class="page-title">Software engineer, founder, <br class="title-break">skyrunner.</h1>
+  <h1 class="page-title">Software engineer,<br class="title-break">founder,<br class="title-break">skyrunner.</h1>
   <p class="page-lead">
     I build developer tooling &mdash; <a href="https://stacksjs.com">Stacks</a>, a TypeScript
-    framework, and the open-source tooling around it &mdash; plus the apps that run on top of it.
+    framework and the ecosystem around it &mdash; plus the apps that run on top of it.
     The other half of my life is spent skyrunning: long days in the mountains, usually with a dog
     somewhere ahead of me on the trail. The two halves keep pointing at each other. This is where
     I write about both.
@@ -53,7 +53,7 @@ const posts = fs.readdirSync(blogDir)
   <ul class="entry-list">
     <li>
       <span class="entry-name"><a href="https://stacksjs.com">Stacks</a></span>
-      <span class="entry-desc">A TypeScript framework, and the open-source tooling around it.</span>
+      <span class="entry-desc">A TypeScript framework &mdash; and the open-source ecosystem that grew around it.</span>
     </li>
     <li>
       <span class="entry-name"><a href="https://hq.training">HQ.training</a></span>
@@ -92,5 +92,5 @@ const posts = fs.readdirSync(blogDir)
 @endsection
 
 @push('scripts')
-  <script src="/assets/scripts/subscribe.js" defer></script>
+  <script src="{{ asset('/assets/scripts/subscribe.js') }}" defer></script>
 @endpush

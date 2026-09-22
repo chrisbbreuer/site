@@ -41,8 +41,25 @@ const withLabels = data.repos.map((r) => {
   }
 })
 
-// Highlights: the most-starred work across every org.
-const highlights = [...withLabels].sort((a, b) => b.stars - a.stars).slice(0, 6)
+// Highlights: hand-picked rather than ranked, and kept in this order — the
+// stars-first list kept burying the small, load-bearing packages. `org/name`
+// where the bare name is ambiguous (there are two `fonts` repos).
+const HIGHLIGHTS = [
+  'stacksjs/stacks',
+  'stacksjs/dtsx',
+  'national-park-service/fonts',
+  'stacksjs/rpx',
+  'stacksjs/tlsx',
+  'stacksjs/ts-images',
+  'stacksjs/ts-spreadsheets',
+  'stacksjs/bun-queue',
+]
+const bySlug = {}
+for (const r of withLabels)
+  bySlug[`${r.org}/${r.name}`] = r
+// A repo that got renamed or archived out of projects.json drops off the list
+// rather than rendering a blank row.
+const highlights = HIGHLIGHTS.map(slug => bySlug[slug]).filter(Boolean)
 
 // Everything, grouped per org (the JSON is already in display order).
 const groups = []

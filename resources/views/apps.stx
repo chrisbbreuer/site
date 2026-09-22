@@ -63,7 +63,8 @@ const devApps = [
   <h2 class="section-label">The tooling underneath</h2>
   <p class="empty-note">
     <a href="https://stacksjs.com">Stacks</a> is the TypeScript framework all of
-    this is built on, and most of what it needs got written along the way &mdash;
+    this is built on &mdash; and by now an ecosystem more than a framework, because
+    most of what it needs got written along the way:
     a templating engine, a query builder, a deploy tool, a CSS engine, image and
     video codecs, a good few dozen more. Every public repo is listed on
     <a href="/projects">projects</a>.

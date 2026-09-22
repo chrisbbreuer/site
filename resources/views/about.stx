@@ -17,7 +17,7 @@ const gallery = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'content/gal
 // GitHub API. HQ.training and Wildloop are here because they are where the two
 // halves of the bio meet: athlete software written by someone who needs it.
 const building = [
-  { name: 'Stacks', url: 'https://stacksjs.com', text: 'A TypeScript framework, and the open-source tooling around it.' },
+  { name: 'Stacks', url: 'https://stacksjs.com', text: 'A TypeScript framework — and the open-source ecosystem that grew around it.' },
   { name: 'HQ.training', url: 'https://hq.training', text: 'An operating system for gyms, coaches and athletes.' },
   { name: 'Wildloop', url: 'https://wildloop.org', text: 'Trails, GPS and a social feed — every closed loop claims territory.' },
   { name: 'OpenFarm', url: 'https://openfarm.ing', text: 'Autonomous drone scouting and targeted treatment for farms.' },
@@ -71,6 +71,14 @@ const elsewhere = [
           building scalable systems. I dove deep into data storage and
           transfer, and distributed and decentralized compute techniques. That was a
           core reason I started working on Stacks.
+        </p>
+        <p>
+          The thing that has never changed is where the work comes from. Every
+          project I have started began as something I, my team, or the community
+          around us actually needed and could not go buy &mdash; Stacks because I
+          kept rewriting the same infrastructure underneath every app, the athlete
+          software because I wanted to use it myself. It is a narrow filter for
+          deciding what to build, and it is the reason any of it gets finished.
         </p>
         <p>
           The two halves feed each other more than you would think. A long day in the
