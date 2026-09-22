@@ -3,7 +3,7 @@ const fs = require('node:fs')
 const path = require('node:path')
 
 const title = 'Chris Breuer - Software engineer, founder & skyrunner'
-const description = 'Chris Breuer builds developer tooling — Stacks, HQ.training, Wildloop — and skyruns long days in the mountains. Notes on both.'
+const description = 'Chris Breuer builds developer and agentic tooling — Stacks, HQ.training, Wildloop — and skyruns long days in the mountains. Notes on both.'
 const activeNav = ''
 const pagePath = '/'
 
@@ -40,10 +40,12 @@ const posts = fs.readdirSync(blogDir)
 @endpush
 
 @section('content')
-  <h1 class="page-title">Software engineer, founder,<br class="title-break">skyrunner.</h1>
+  <h1 class="page-title">Software engineer,<br class="title-break">founder, skyrunner.</h1>
   <p class="page-lead">
     I build developer tooling &mdash; <a href="https://stacksjs.com">Stacks</a>, a TypeScript
-    framework and the ecosystem around it &mdash; plus the apps that run on top of it.
+    framework and the ecosystem around it &mdash; and increasingly agentic tooling: the things
+    engineers reach for, and the things their agents reach for. Plus the apps that run on top
+    of all of it.
     The other half of my life is spent skyrunning: long days in the mountains, usually with a dog
     somewhere ahead of me on the trail. The two halves keep pointing at each other. This is where
     I write about both.

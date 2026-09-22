@@ -3,7 +3,7 @@ const fs = require('node:fs')
 const path = require('node:path')
 
 const title = 'About - Chris Breuer'
-const description = 'I\'m Chris Breuer, a software engineer obsessed over developer tooling and a skyrunner. Building Stacks, HQ.training and Wildloop. Los Angeles based.'
+const description = 'I\'m Chris Breuer, a software engineer obsessed over developer and agentic tooling, and a skyrunner. Building Stacks, HQ.training and Wildloop. Los Angeles based.'
 const activeNav = 'about'
 const pagePath = '/about'
 
@@ -94,7 +94,9 @@ const elsewhere = [
         </p>
         <p>
           Today that is <a href="https://stacksjs.com">Stacks</a> and its broader ecosystem,
-          plus the apps built on top of it &mdash; lately
+          a growing amount of agentic tooling &mdash; the tools engineers use are quickly
+          becoming the tools their agents use, and that changes what a good one looks like
+          &mdash; plus the apps built on top of it, lately
           <a href="https://hq.training">HQ.training</a> and
           <a href="https://wildloop.org">Wildloop</a>, both of which are athlete software
           written by someone who needed it to exist. Follow along on

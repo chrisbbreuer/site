@@ -1,6 +1,6 @@
 ---
 title: Both Halves
-description: Fifteen years of building software, two years of planning to run 2,650 miles, and why those turn out to be the same problem.
+description: Fifteen years of building developer and agentic tooling, two years of planning to run 2,650 miles, and why those turn out to be the same problem.
 date: 2026-09-22
 author: Chris Breuer
 authorBio: Software engineer, founder of Stacks, skyrunner. Los Angeles based.
@@ -19,6 +19,8 @@ That is still the thing. Everything since has been a longer, more complicated ve
 I spent the next decade and a half on other people's problems and my own: small apps, then larger private ones, then enterprise services where the failure modes are measured in hours of downtime rather than a broken page. Somewhere in there I got interested in the unglamorous layer — how data is stored and moved, how work is spread across machines that do not trust each other, what happens at the boundaries.
 
 That interest is where [Stacks](https://stacksjs.com) comes from. A full-stack TypeScript framework on Bun, plus the ecosystem that turned out to be necessary to make it real: a templating engine, a query builder, a deploy tool, a CSS engine, image and video codecs. None of that was the plan. Each piece exists because I needed it and the thing that should have existed did not, or existed and was slow.
+
+Increasingly it is agentic tooling too. The tools engineers reach for are quickly becoming the tools their agents reach for, and that changes what a good one looks like — machine-readable output stops being a nicety, a confusing error message costs more than it used to, and "it works if you already know the trick" stops working at all. [buddy](https://github.com/stacksjs/buddy) is the clearest example: AI code review and dependency updates as one teammate rather than two bolted-on integrations.
 
 These days that is around two hundred published packages and a few million installs a month, which is a number I find genuinely hard to hold in my head. My goal is a billion downloads a month. Writing that down feels ridiculous, and that is rather the point — I keep a [public list of goals](/goals) precisely so the ridiculous ones have somewhere to sit where other people can see them.
 
