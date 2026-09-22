@@ -42,12 +42,27 @@ jobs:
 
       # A run that reaches neither GitHub nor npm would happily write an empty
       # file and commit it. Refuse to push anything that lost most of the list.
+      # A run that reaches neither GitHub nor npm would happily write an empty
+      # file, and one whose owner list has gone stale writes a quietly shorter
+      # one. Both are worse than a failed sync, so compare against what is
+      # committed and refuse anything that lost repos or whole orgs.
       - name: Sanity-check the result
         run: |
-          count=$(bun -e 'console.log(JSON.parse(await Bun.file("content/projects.json").text()).repos.length)')
-          echo "repos: ${count}"
+          read -r count orgs < <(bun -e '
+            const d = JSON.parse(await Bun.file("content/projects.json").text())
+            console.log(d.repos.length, new Set(d.repos.map(r => r.org)).size)
+          ')
+          read -r wasCount wasOrgs < <(git show HEAD:content/projects.json | bun -e '
+            const d = JSON.parse(await Bun.stdin.text())
+            console.log(d.repos.length, new Set(d.repos.map(r => r.org)).size)
+          ')
+          echo "repos: ${wasCount} -> ${count}, orgs: ${wasOrgs} -> ${orgs}"
           if [ "$count" -lt 50 ]; then
             echo "::error::only ${count} repos came back — refusing to commit a truncated list"
+            exit 1
+          fi
+          if [ "$orgs" -lt "$wasOrgs" ]; then
+            echo "::error::orgs dropped ${wasOrgs} -> ${orgs}; ORG_ORDER in scripts/fetch-projects.ts is probably stale"
             exit 1
           fi
 

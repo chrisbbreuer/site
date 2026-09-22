@@ -3,7 +3,7 @@ const fs = require('node:fs')
 const path = require('node:path')
 
 const title = 'About - Chris Breuer'
-const description = 'I\'m Chris Breuer, a software engineer obsessed over developer tooling and a skyrunner. Building Stacks, HQ.training and WildLoop. Los Angeles based.'
+const description = 'I\'m Chris Breuer, a software engineer obsessed over developer tooling and a skyrunner. Building Stacks, HQ.training and Wildloop. Los Angeles based.'
 const activeNav = 'about'
 const pagePath = '/about'
 
@@ -14,12 +14,12 @@ const pagePath = '/about'
 const gallery = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'content/gallery.json'), 'utf-8'))
 
 // The apps, not the repos — /projects already lists everything public from the
-// GitHub API. HQ.training and WildLoop are here because they are where the two
+// GitHub API. HQ.training and Wildloop are here because they are where the two
 // halves of the bio meet: athlete software written by someone who needs it.
 const building = [
   { name: 'Stacks', url: 'https://stacksjs.com', text: 'A TypeScript framework, and the open-source tooling around it.' },
   { name: 'HQ.training', url: 'https://hq.training', text: 'An operating system for gyms, coaches and athletes.' },
-  { name: 'WildLoop', url: 'https://wildloop.org', text: 'Trails, GPS and a social feed — every closed loop claims territory.' },
+  { name: 'Wildloop', url: 'https://wildloop.org', text: 'Trails, GPS and a social feed — every closed loop claims territory.' },
 ]
 
 const work = [
@@ -81,7 +81,7 @@ const elsewhere = [
           Today that is <a href="https://stacksjs.com">Stacks</a> and its broader ecosystem,
           plus the apps built on top of it &mdash; lately
           <a href="https://hq.training">HQ.training</a> and
-          <a href="https://wildloop.org">WildLoop</a>, both of which are athlete software
+          <a href="https://wildloop.org">Wildloop</a>, both of which are athlete software
           written by someone who needed it to exist. Follow along on
           <a href="https://github.com/chrisbbreuer">GitHub</a> for the latest.
         </p>

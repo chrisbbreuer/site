@@ -1,0 +1,58 @@
+<script server>
+const title = 'Goals - Chris Breuer'
+const description = 'What I am actually trying to do: Stacks v1.0, Wildloop, and the Pacific Crest Trail at a 60-mile-a-day average.'
+const activeNav = 'goals'
+const pagePath = '/goals'
+
+// Deliberately short. A list of twenty goals is a list of none, and a goal
+// with no way to tell whether it happened is a mood. Each of these is
+// something someone else could check.
+const work = [
+  { name: 'Stacks v1.0', url: 'https://stacksjs.com', text: 'The framework stops being a moving target. A stable API, documentation that matches it, and a version number I am willing to ask other people to depend on.' },
+  { name: 'Wildloop', url: 'https://wildloop.org', text: 'Ship the territory game properly: capture that holds up under a server-authoritative engine, clubs and challenges that people actually return for, and route records worth chasing.' },
+  { name: 'HQ.training', url: 'https://hq.training', text: 'Make it the thing coaches reach for first — training analysis that earns its place next to the billing and the scheduling, rather than sitting in a separate tab.' },
+]
+
+const personal = [
+  { name: 'The PCT, 60 miles a day', text: 'Pacific Crest Trail, northbound, 2,650 miles at a 60-mile-a-day average. The distance is the easy part to describe and the pace is the whole problem.' },
+  { name: 'Then race it', text: 'Stop training for nothing in particular. Line up at real skyraces, against real people, on terrain that makes a flat marathon look like a warm-up.' },
+  { name: 'Train in the open', text: 'Run the build in public the same way the code is — the days it goes well and the days it does not.' },
+]
+</script>
+
+@layout('layouts/site')
+
+@section('content')
+  <h1 class="page-title">Goals.</h1>
+  <p class="page-lead">
+    Written down and put somewhere public, which is the only version of a goal
+    that has ever worked for me. Two lists, same rule for both: something
+    another person could look at and tell whether it happened.
+  </p>
+
+  <h2 class="section-label">Work</h2>
+  <ul class="entry-list">
+    @foreach (work as goal)
+      <li>
+        <span class="entry-name"><a href="{{ goal.url }}">{{ goal.name }}</a></span>
+        <span class="entry-desc">{{ goal.text }}</span>
+      </li>
+    @endforeach
+  </ul>
+
+  <h2 class="section-label">Running</h2>
+  <ul class="entry-list">
+    @foreach (personal as goal)
+      <li>
+        <span class="entry-name">{{ goal.name }}</span>
+        <span class="entry-desc">{{ goal.text }}</span>
+      </li>
+    @endforeach
+  </ul>
+
+  <p class="empty-note">
+    The training behind the running half lives on
+    <a href="https://hq.training">HQ.training</a> &mdash; the same app I build
+    for everyone else, pointed at my own weeks.
+  </p>
+@endsection

@@ -103,7 +103,15 @@ function tagsFor(language: string | null | undefined, topics: string[] = []): st
   return out
 }
 
-/** Org display order; anything not listed lands at the end alphabetically. */
+/**
+ * Org display order; anything not listed lands at the end alphabetically.
+ *
+ * This doubles as the owner list when `user/orgs` is unreachable — which is
+ * the case in CI under GITHUB_TOKEN — so an org missing from here is an org
+ * whose repos silently vanish from the page. The sanity check in
+ * .github/workflows/projects-sync.yml refuses a result that drops orgs, so a
+ * new org shows up as a failed sync rather than a quietly shorter list.
+ */
 const ORG_ORDER = [
   'stacksjs',
   'chrisbbreuer',
@@ -120,6 +128,11 @@ const ORG_ORDER = [
   'bughq',
   'national-park-service',
   'ci-on',
+  'craft-native',
+  'loghqorg',
+  'ReportsHQ',
+  'ReviewOS',
+  'theopenfarm',
 ]
 
 /**

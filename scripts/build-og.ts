@@ -32,7 +32,13 @@ const cards: Card[] = [
     slug: 'apps',
     path: '~/apps',
     title: 'Apps',
-    desc: 'The products, as opposed to the packages. HQ.training, WildLoop, OpenFarm, and the HQ suite.',
+    desc: 'The products, as opposed to the packages. HQ.training, Wildloop, OpenFarm, and the HQ suite.',
+  },
+  {
+    slug: 'goals',
+    path: '~/goals',
+    title: 'Goals',
+    desc: 'Stacks v1.0, Wildloop, and the Pacific Crest Trail at a 60-mile-a-day average.',
   },
   {
     slug: 'projects',
