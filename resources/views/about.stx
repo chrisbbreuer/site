@@ -75,10 +75,12 @@ const elsewhere = [
         <p>
           The thing that has never changed is where the work comes from. Every
           project I have started began as something I, my team, or the community
-          around us actually needed and could not go buy &mdash; Stacks because I
-          kept rewriting the same infrastructure underneath every app, the athlete
-          software because I wanted to use it myself. It is a narrow filter for
-          deciding what to build, and it is the reason any of it gets finished.
+          around us actually needed, where the paid tools were the only ones
+          doing it well and nothing open source came close enough to compete
+          &mdash; Stacks because I kept rewriting the same infrastructure
+          underneath every app, the athlete software because I wanted to use it
+          myself. It is a narrow filter for deciding what to build, and it is
+          the reason any of it gets finished.
         </p>
         <p>
           The two halves feed each other more than you would think. A long day in the
