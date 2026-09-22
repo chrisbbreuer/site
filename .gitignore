@@ -107,3 +107,12 @@ storage/framework/core/defaults/app/
 /storage/framework/stx/cache/
 /storage/framework/stx/image-placeholders.json
 /storage/framework/stx/layout-types.d.ts
+
+# Fingerprinted static assets + their manifest (bun scripts/build-assets.ts).
+# Generated on deploy, never committed: the manifest and the hashed files have
+# to ship together or the page asks for files that are not there. Without them
+# the layout falls back to the plain paths, which is what `buddy dev` uses.
+/content/assets.json
+/public/site.*.css
+/public/assets/scripts/*.[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]*.js
+/public/fonts/**/*.[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]*.woff2

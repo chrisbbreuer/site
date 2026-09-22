@@ -64,5 +64,5 @@ const posts = (fs.existsSync(blogDir) ? fs.readdirSync(blogDir) : [])
 @endsection
 
 @push('scripts')
-  <script src="/assets/scripts/subscribe.js" defer></script>
+  <script src="{{ asset('/assets/scripts/subscribe.js') }}" defer></script>
 @endpush

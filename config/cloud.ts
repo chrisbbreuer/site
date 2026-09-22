@@ -102,6 +102,17 @@ export const tsCloud: TsCloudConfig = {
         'mkdir -p /var/lib/chrisbreuer',
         // Same reason: the CLI comes from the installed package now.
         'bun node_modules/@stacksjs/buddy/dist/cli.js migrate || true',
+        // sitemap.xml is derived from the views and posts in the release, so
+        // it is built here rather than committed — the shipped file then
+        // always matches the pages that actually shipped. `|| true` because a
+        // stale sitemap is not worth failing a deploy over.
+        'bun scripts/build-sitemap.ts || true',
+        // Hashed copies of the stylesheet, fonts and scripts, plus the
+        // manifest the layout resolves them through. stx serves a hashed
+        // filename `immutable` for a year instead of the unvalidated one-hour
+        // Cache-Control everything else gets. `|| true` for the same reason:
+        // without the manifest the layout just serves the plain paths.
+        'bun scripts/build-assets.ts || true',
       ],
       env: {
         HOST: '127.0.0.1',

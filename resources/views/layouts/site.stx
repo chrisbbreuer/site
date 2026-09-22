@@ -1,4 +1,22 @@
 <script server>
+const fs = require('node:fs')
+const path = require('node:path')
+
+// Static assets are served with a one-hour Cache-Control and no validator, so
+// an expired one is re-downloaded rather than revalidated. stx gives a
+// filename carrying a hash `max-age=31536000, immutable` instead, so
+// `bun scripts/build-assets.ts` writes hashed copies and this manifest.
+// Missing manifest (a dev run that skipped the script) falls back to the
+// plain path, which is still served — just not cached as long.
+let assetManifest = {}
+try {
+  assetManifest = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'content/assets.json'), 'utf-8'))
+}
+catch {}
+function asset(p) {
+  return assetManifest[p] || p
+}
+
 // Fallback page meta. Every page overrides these from its own server script
 // (page values win; this stub only fills the gaps).
 const title = 'Chris Breuer - Software engineer, founder & skyrunner'
@@ -39,9 +57,9 @@ const ogImage = `${siteUrl}/images/og/${ogSlugs.includes(ogSeg) ? ogSeg : 'home'
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   @stack('head')
-  <link rel="preload" href="/fonts/lilex/Lilex-var.woff2" as="font" type="font/woff2" crossorigin>
-  <script src="/assets/scripts/theme.js"></script>
-  <link rel="stylesheet" href="/site.css">
+  <link rel="preload" href="{{ asset('/fonts/lilex/Lilex-var.woff2') }}" as="font" type="font/woff2" crossorigin>
+  <script src="{{ asset('/assets/scripts/theme.js') }}"></script>
+  <link rel="stylesheet" href="{{ asset('/site.css') }}">
 </head>
 <body>
   <div class="shell">
@@ -57,9 +75,9 @@ const ogImage = `${siteUrl}/images/og/${ogSlugs.includes(ogSeg) ? ogSeg : 'home'
        `stx:load` listeners survive SPA navigation (the router doesn't execute
        page-pushed <script> tags on client-side nav). Both no-op off the About
        page. -->
-  <script src="/assets/scripts/site.js"></script>
-  <script src="/assets/scripts/splathash.js"></script>
-  <script src="/assets/scripts/gallery.js"></script>
+  <script src="{{ asset('/assets/scripts/site.js') }}"></script>
+  <script src="{{ asset('/assets/scripts/splathash.js') }}"></script>
+  <script src="{{ asset('/assets/scripts/gallery.js') }}"></script>
   @stack('scripts')
 </body>
 </html>
