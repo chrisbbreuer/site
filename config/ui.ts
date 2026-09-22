@@ -1,4 +1,13 @@
-import type { StxOptions as UiOptions } from '@stacksjs/stx'
+import type { StxOptions } from '@stacksjs/stx'
+import type { UiConfig } from '@stacksjs/types'
+
+/**
+ * This file configures two things that are typed in two places: the template
+ * directories, which belong to stx, and `defaultViews`, which the views server
+ * reads off `config.ui`. Neither type has the other's properties, so the
+ * constraint is the intersection rather than one of them.
+ */
+type UiOptions = StxOptions & Pick<UiConfig, 'defaultViews'>
 
 /**
  * STX Configuration for Stacks
