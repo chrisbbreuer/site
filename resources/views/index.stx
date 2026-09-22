@@ -3,7 +3,7 @@ const fs = require('node:fs')
 const path = require('node:path')
 
 const title = 'Chris Breuer - Software engineer, founder & skyrunner'
-const description = 'Chris Breuer builds developer tooling — Stacks, HQ.training, Wildloop — and skyruns long days in the mountains. Notes on both.'
+const description = 'Chris Breuer builds developer tooling — Stacks, HQ.training, Wildloop, OpenFarm — and skyruns long days in the mountains. Notes on both.'
 const activeNav = ''
 const pagePath = '/'
 
@@ -62,6 +62,10 @@ const posts = fs.readdirSync(blogDir)
     <li>
       <span class="entry-name"><a href="https://wildloop.org">Wildloop</a></span>
       <span class="entry-desc">Trail discovery, GPS recording and a social feed, with a territory game underneath: close a loop and you claim what it encircles.</span>
+    </li>
+    <li>
+      <span class="entry-name"><a href="https://openfarm.ing">OpenFarm</a></span>
+      <span class="entry-desc">Autonomous drone scouting and targeted treatment for farms &mdash; find the problem acre before it spreads, and treat that acre instead of the field.</span>
     </li>
   </ul>
 

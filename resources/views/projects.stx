@@ -68,6 +68,9 @@ const tagList = Object.keys(tagCounts).filter(t => tagCounts[t] >= 4).sort((a, b
 const repoCount = withLabels.length
 const orgCount = groups.length
 const generatedAt = data.generatedAt
+const monthlyTotal = withLabels.reduce((sum, r) => sum + (r.downloads || 0), 0)
+const publishedCount = withLabels.filter(r => r.downloads > 0).length
+const totalLabel = compact(monthlyTotal)
 </script>
 
 @layout('layouts/site')
@@ -76,9 +79,10 @@ const generatedAt = data.generatedAt
   <h1 class="page-title">Things I've made.</h1>
   <p class="page-lead">
     {{ repoCount }} public repos across {{ orgCount }} orgs, most of them open source.
-    If something piques your interest, check out the code and contribute. My
+    {{ publishedCount }} of them ship to npm, {{ totalLabel }} downloads a month between
+    them. If something piques your interest, read the code and send a patch &mdash; my
     <a href="https://github.com/chrisbbreuer/dotfiles">dotfiles</a> are public too.
-    Stars and npm downloads resync daily; last on {{ generatedAt }}.
+    Stars and downloads resync daily; last on {{ generatedAt }}.
   </p>
 
   <div class="proj-filter">

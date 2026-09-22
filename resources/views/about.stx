@@ -20,6 +20,7 @@ const building = [
   { name: 'Stacks', url: 'https://stacksjs.com', text: 'A TypeScript framework, and the open-source tooling around it.' },
   { name: 'HQ.training', url: 'https://hq.training', text: 'An operating system for gyms, coaches and athletes.' },
   { name: 'Wildloop', url: 'https://wildloop.org', text: 'Trails, GPS and a social feed — every closed loop claims territory.' },
+  { name: 'OpenFarm', url: 'https://openfarm.ing', text: 'Autonomous drone scouting and targeted treatment for farms.' },
 ]
 
 const work = [

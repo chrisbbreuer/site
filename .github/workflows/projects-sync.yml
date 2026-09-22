@@ -48,21 +48,29 @@ jobs:
       # committed and refuse anything that lost repos or whole orgs.
       - name: Sanity-check the result
         run: |
-          read -r count orgs < <(bun -e '
+          read -r count orgs paid < <(bun -e '
             const d = JSON.parse(await Bun.file("content/projects.json").text())
-            console.log(d.repos.length, new Set(d.repos.map(r => r.org)).size)
+            console.log(d.repos.length, new Set(d.repos.map(r => r.org)).size, d.repos.filter(r => r.downloads).length)
           ')
-          read -r wasCount wasOrgs < <(git show HEAD:content/projects.json | bun -e '
+          read -r wasCount wasOrgs wasPaid < <(git show HEAD:content/projects.json | bun -e '
             const d = JSON.parse(await Bun.stdin.text())
-            console.log(d.repos.length, new Set(d.repos.map(r => r.org)).size)
+            console.log(d.repos.length, new Set(d.repos.map(r => r.org)).size, d.repos.filter(r => r.downloads).length)
           ')
-          echo "repos: ${wasCount} -> ${count}, orgs: ${wasOrgs} -> ${orgs}"
+          echo "repos: ${wasCount} -> ${count}, orgs: ${wasOrgs} -> ${orgs}, with downloads: ${wasPaid} -> ${paid}"
           if [ "$count" -lt 50 ]; then
             echo "::error::only ${count} repos came back — refusing to commit a truncated list"
             exit 1
           fi
           if [ "$orgs" -lt "$wasOrgs" ]; then
             echo "::error::orgs dropped ${wasOrgs} -> ${orgs}; ORG_ORDER in scripts/fetch-projects.ts is probably stale"
+            exit 1
+          fi
+          # npm throttles a run that asks too fast, and a throttled lookup is
+          # indistinguishable from "this package does not exist" unless someone
+          # checks. The script retries; this catches the case where retrying was
+          # not enough, rather than publishing a page that quietly lost counts.
+          if [ "$paid" -lt "$wasPaid" ]; then
+            echo "::error::download counts dropped ${wasPaid} -> ${paid}; npm likely throttled the run"
             exit 1
           fi
 

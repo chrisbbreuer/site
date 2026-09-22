@@ -238,57 +238,84 @@ for (const pin of PINNED) {
 }
 
 /**
- * The npm package a repo publishes, read from package.json on its default
- * branch. Absent for the Zig repos, the app repos, and anything marked
- * private — which is most of them, so a miss is the normal case, not an error.
+ * One registry request, retried through the throttling npm does under load.
  *
- * A monorepo that publishes under names other than its root package.json is
- * counted by that root name alone. Nothing here tries to walk workspaces: the
- * number on the page is "downloads of the package this repo is named for",
- * and inventing a sum across sub-packages would make it mean something else.
+ * Without this the failures are invisible: a 429 turns into "this package does
+ * not exist", the repo silently loses its download count, and the number of
+ * rows carrying one changes run to run. Every give-up is counted so the run can
+ * say so at the end rather than quietly publishing a shorter list.
  */
-function packageNameOf(fullName: string): string | null {
-  const res = gh(`repos/${fullName}/contents/package.json`)
-  if (!res || !res.content)
-    return null
-  try {
-    const pkg = JSON.parse(Buffer.from(res.content, 'base64').toString('utf8'))
-    if (pkg.private === true || typeof pkg.name !== 'string')
-      return null
-    return pkg.name
+let lookupFailures = 0
+async function registryJson(url: string): Promise<any | null> {
+  for (let attempt = 0; attempt < 6; attempt++) {
+    try {
+      const res = await fetch(url)
+      if (res.ok)
+        return await res.json()
+      // A real "no such package" answer, not congestion — do not retry it.
+      if (res.status === 404)
+        return null
+    }
+    catch {
+      // Network error; treated the same as congestion.
+    }
+    await new Promise(resolve => setTimeout(resolve, 400 * 2 ** attempt))
   }
-  catch {
-    return null
-  }
+  lookupFailures++
+  return null
 }
 
 /** Downloads in the last 30 days, or null if npm has never heard of it. */
 async function monthlyDownloads(pkg: string): Promise<number | null> {
-  try {
-    const res = await fetch(`https://api.npmjs.org/downloads/point/last-month/${encodeURIComponent(pkg)}`)
-    if (!res.ok)
-      return null
-    const body = await res.json() as { downloads?: number }
-    return typeof body.downloads === 'number' ? body.downloads : null
-  }
-  catch {
-    return null
-  }
+  const body = await registryJson(`https://api.npmjs.org/downloads/point/last-month/${encodeURIComponent(pkg)}`)
+  return typeof body?.downloads === 'number' ? body.downloads : null
 }
 
-/** Resolve downloads for every repo, a few at a time so npm stays friendly. */
+/** The repo npm itself says a package is published from, as `owner/name`. */
+async function registryRepo(pkg: string): Promise<string | null> {
+  const body = await registryJson(`https://registry.npmjs.org/${encodeURIComponent(pkg)}/latest`)
+  const repository = body?.repository
+  const url = typeof repository === 'string' ? repository : repository?.url
+  if (!url)
+    return null
+  const match = url.match(/github\.com[/:]([^/]+)\/([^/.]+)/i)
+  return match ? `${match[1]}/${match[2]}` : null
+}
+
+/**
+ * Downloads of the package a repo is named for — `bunfig` for stacksjs/bunfig,
+ * `@stacksjs/stx` for stacksjs/stx — confirmed against the registry's own
+ * record of where that package is published from.
+ *
+ * Two earlier shapes of this were worse. Reading the root package.json missed
+ * every monorepo, because their roots are private and the real package lives in
+ * `packages/<name>`. Crawling workspaces through the GitHub contents API fixed
+ * that and introduced two new problems: it needed ~700 API calls, which
+ * exhausted the hourly limit mid-run and produced a silently empty file, and it
+ * credited the same @stacksjs/* packages to both `stacks` and `projects`, which
+ * vendor the whole set — ~3.2M downloads counted twice.
+ *
+ * So: one package per repo, the eponymous one, verified. It is the number a
+ * reader expects to see next to a repo name, it costs two registry calls and no
+ * GitHub quota, and it cannot double-count. A monorepo's other packages are not
+ * summed in — that would answer a different question than the one the row asks.
+ */
 async function attachDownloads(list: Repo[]): Promise<void> {
   const queue = [...list]
-  const workers = Array.from({ length: 8 }, async () => {
+  const workers = Array.from({ length: 2 }, async () => {
     for (let repo = queue.shift(); repo; repo = queue.shift()) {
-      const pkg = packageNameOf(`${repo.org}/${repo.name}`)
-      if (!pkg)
-        continue
-      const downloads = await monthlyDownloads(pkg)
-      if (downloads === null)
-        continue
-      repo.pkg = pkg
-      repo.downloads = downloads
+      const full = `${repo.org}/${repo.name}`.toLowerCase()
+      for (const candidate of [repo.name, `@${repo.org}/${repo.name}`, `@stacksjs/${repo.name}`]) {
+        const owner = await registryRepo(candidate)
+        if (!owner || owner.toLowerCase() !== full)
+          continue
+        const downloads = await monthlyDownloads(candidate)
+        if (downloads === null)
+          continue
+        repo.pkg = candidate
+        repo.downloads = downloads
+        break
+      }
     }
   })
   await Promise.all(workers)
@@ -314,3 +341,5 @@ writeFileSync(out, `${JSON.stringify({ generatedAt: new Date().toISOString().sli
 const published = repos.filter(r => r.downloads !== undefined)
 console.log(`Wrote ${repos.length} repos from ${new Set(repos.map(r => r.org)).size} orgs to content/projects.json`)
 console.log(`${published.length} publish to npm, ${published.reduce((n, r) => n + (r.downloads || 0), 0).toLocaleString()} downloads in the last 30 days`)
+if (lookupFailures > 0)
+  console.warn(`${lookupFailures} registry lookup(s) gave up after retrying — some counts may be missing`)

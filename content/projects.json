@@ -15,7 +15,9 @@
         "Framework",
         "Library",
         "Mobile"
-      ]
+      ],
+      "pkg": "stacks",
+      "downloads": 34512
     },
     {
       "name": "dtsx",
@@ -25,7 +27,9 @@
       "url": "https://github.com/stacksjs/dtsx",
       "tags": [
         "TypeScript"
-      ]
+      ],
+      "pkg": "@stacksjs/dtsx",
+      "downloads": 164103
     },
     {
       "name": "ts-spreadsheets",
@@ -51,7 +55,9 @@
         "TypeScript",
         "Bun",
         "Queue"
-      ]
+      ],
+      "pkg": "@stacksjs/bun-queue",
+      "downloads": 20770
     },
     {
       "name": "tlsx",
@@ -62,7 +68,9 @@
       "tags": [
         "TypeScript",
         "Library"
-      ]
+      ],
+      "pkg": "@stacksjs/tlsx",
+      "downloads": 34201
     },
     {
       "name": "ts-collect",
@@ -101,7 +109,9 @@
         "Bun",
         "CLI",
         "Proxy"
-      ]
+      ],
+      "pkg": "@stacksjs/rpx",
+      "downloads": 29640
     },
     {
       "name": "bun-plugin-dtsx",
@@ -112,9 +122,7 @@
       "tags": [
         "TypeScript",
         "Bun"
-      ],
-      "pkg": "bun-plugin-dtsx",
-      "downloads": 169788
+      ]
     },
     {
       "name": "localtunnels",
@@ -125,7 +133,9 @@
       "tags": [
         "TypeScript",
         "Tunneling"
-      ]
+      ],
+      "pkg": "localtunnels",
+      "downloads": 42493
     },
     {
       "name": "ts-rate-limiter",
@@ -153,7 +163,9 @@
         "Components",
         "CSS",
         "Templating"
-      ]
+      ],
+      "pkg": "@stacksjs/stx",
+      "downloads": 250817
     },
     {
       "name": "bun-git-hooks",
@@ -193,7 +205,9 @@
         "Bun",
         "Config",
         "Library"
-      ]
+      ],
+      "pkg": "bunfig",
+      "downloads": 226220
     },
     {
       "name": "ts-qr-codes",
@@ -203,7 +217,9 @@
       "url": "https://github.com/stacksjs/ts-qr-codes",
       "tags": [
         "TypeScript"
-      ]
+      ],
+      "pkg": "ts-qr-codes",
+      "downloads": 14651
     },
     {
       "name": "bun-plugin-unocss",
@@ -227,7 +243,9 @@
       "tags": [
         "TypeScript",
         "Bun"
-      ]
+      ],
+      "pkg": "@stacksjs/bunpress",
+      "downloads": 214156
     },
     {
       "name": "clapp",
@@ -240,7 +258,9 @@
         "CLI",
         "Library",
         "Zig"
-      ]
+      ],
+      "pkg": "@stacksjs/clapp",
+      "downloads": 203070
     },
     {
       "name": "bun-plugin-dotenvx",
@@ -276,7 +296,9 @@
       "url": "https://github.com/stacksjs/ts-images",
       "tags": [
         "TypeScript"
-      ]
+      ],
+      "pkg": "ts-images",
+      "downloads": 209263
     },
     {
       "name": "bun-plugin-auto-imports",
@@ -300,9 +322,7 @@
       "tags": [
         "TypeScript",
         "Bun"
-      ],
-      "pkg": "bun-plugin-markdown",
-      "downloads": 11
+      ]
     },
     {
       "name": "ts-cache",
@@ -331,9 +351,7 @@
         "Bun",
         "CLI",
         "Testing"
-      ],
-      "pkg": "bun-ts-starter",
-      "downloads": 36
+      ]
     },
     {
       "name": "vite-plugin-dotenvx",
@@ -365,9 +383,7 @@
         "TypeScript",
         "PHP",
         "Zig"
-      ],
-      "pkg": "@buddysh/buddy",
-      "downloads": 454
+      ]
     },
     {
       "name": "ts-dns",
@@ -379,9 +395,7 @@
         "TypeScript",
         "CLI",
         "Library"
-      ],
-      "pkg": "@stacksjs/dnsx",
-      "downloads": 27786
+      ]
     },
     {
       "name": "bumpx",
@@ -392,7 +406,9 @@
       "tags": [
         "TypeScript",
         "Zig"
-      ]
+      ],
+      "pkg": "@stacksjs/bumpx",
+      "downloads": 147969
     },
     {
       "name": "bun-router",
@@ -404,7 +420,9 @@
         "TypeScript",
         "Bun",
         "Laravel"
-      ]
+      ],
+      "pkg": "@stacksjs/bun-router",
+      "downloads": 40341
     },
     {
       "name": "date-picker",
@@ -415,9 +433,7 @@
       "tags": [
         "TypeScript",
         "Vue"
-      ],
-      "pkg": "date-picker",
-      "downloads": 208
+      ]
     },
     {
       "name": "ts-datetime",
@@ -443,7 +459,9 @@
         "Library",
         "React",
         "Vue"
-      ]
+      ],
+      "pkg": "ts-maps",
+      "downloads": 7841
     },
     {
       "name": "vite-plugin-layouts",
@@ -466,7 +484,9 @@
       "url": "https://github.com/stacksjs/logsmith",
       "tags": [
         "TypeScript"
-      ]
+      ],
+      "pkg": "@stacksjs/logsmith",
+      "downloads": 140452
     },
     {
       "name": "ts-audio",
@@ -490,7 +510,9 @@
       "tags": [
         "TypeScript",
         "Library"
-      ]
+      ],
+      "pkg": "ts-security",
+      "downloads": 11
     },
     {
       "name": "ts-gif",
@@ -543,7 +565,9 @@
         "Framework",
         "Library",
         "Testing"
-      ]
+      ],
+      "pkg": "besting",
+      "downloads": 45
     },
     {
       "name": "hush",
@@ -577,9 +601,7 @@
       "tags": [
         "TypeScript",
         "Library"
-      ],
-      "pkg": "@stacksjs/aax",
-      "downloads": 51
+      ]
     },
     {
       "name": "ts-punycode",
@@ -603,7 +625,9 @@
       "tags": [
         "TypeScript",
         "Laravel"
-      ]
+      ],
+      "pkg": "@stacksjs/ts-validation",
+      "downloads": 55170
     },
     {
       "name": "action-releaser",
@@ -649,7 +673,9 @@
       "url": "https://github.com/stacksjs/ts-medium-editor",
       "tags": [
         "TypeScript"
-      ]
+      ],
+      "pkg": "ts-medium-editor",
+      "downloads": 772
     },
     {
       "name": "vite-plugin-tauri",
@@ -661,7 +687,9 @@
         "TypeScript",
         "Desktop",
         "Mobile"
-      ]
+      ],
+      "pkg": "@stacksjs/vite-plugin-tauri",
+      "downloads": 27
     },
     {
       "name": "ts-clone",
@@ -697,7 +725,9 @@
       "url": "https://github.com/stacksjs/ts-numbers",
       "tags": [
         "TypeScript"
-      ]
+      ],
+      "pkg": "ts-numbers",
+      "downloads": 34
     },
     {
       "name": "ts-starter-monorepo",
@@ -732,7 +762,9 @@
         "TypeScript",
         "CLI",
         "Library"
-      ]
+      ],
+      "pkg": "ts-videos",
+      "downloads": 18302
     },
     {
       "name": "bench-review",
@@ -882,9 +914,7 @@
       "url": "https://github.com/stacksjs/raycast",
       "tags": [
         "TypeScript"
-      ],
-      "pkg": "buddy",
-      "downloads": 1519
+      ]
     },
     {
       "name": "tpc-license",
@@ -1239,9 +1269,7 @@
       "tags": [
         "JavaScript",
         "TypeScript"
-      ],
-      "pkg": "@ow3/dummy-ts-pkg",
-      "downloads": 12
+      ]
     },
     {
       "name": "deep-unref-vue",
@@ -1252,9 +1280,7 @@
       "tags": [
         "TypeScript",
         "Vue"
-      ],
-      "pkg": "@ow3/deep-unref-vue",
-      "downloads": 2010
+      ]
     },
     {
       "name": "composable-starter",
@@ -1265,9 +1291,7 @@
       "tags": [
         "JavaScript",
         "Library"
-      ],
-      "pkg": "@ow3/dummy-composable",
-      "downloads": 21
+      ]
     },
     {
       "name": "renovate-config",
@@ -1275,9 +1299,7 @@
       "description": "Open Web / Stacks preset for the Renovate bot.",
       "stars": 1,
       "url": "https://github.com/ow3org/renovate-config",
-      "tags": [],
-      "pkg": "@ow3/renovate-config",
-      "downloads": 28
+      "tags": []
     },
     {
       "name": "home",
@@ -1322,9 +1344,7 @@
         "Zig",
         "Shell",
         "TypeScript"
-      ],
-      "pkg": "den",
-      "downloads": 14
+      ]
     },
     {
       "name": "mail",
@@ -1336,7 +1356,9 @@
         "Zig",
         "CLI",
         "Library"
-      ]
+      ],
+      "pkg": "@stacksjs/mail",
+      "downloads": 5419
     },
     {
       "name": "bughq-laravel",
@@ -1356,7 +1378,9 @@
       "url": "https://github.com/bughq/sdk",
       "tags": [
         "TypeScript"
-      ]
+      ],
+      "pkg": "@bughq/sdk",
+      "downloads": 2403
     },
     {
       "name": "bughq-php",
