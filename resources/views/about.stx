@@ -20,7 +20,11 @@ const building = [
   { name: 'Stacks', url: 'https://stacksjs.com', text: 'A TypeScript framework — and the open-source ecosystem that grew around it.' },
   { name: 'HQ.training', url: 'https://hq.training', text: 'An operating system for gyms, coaches and athletes.' },
   { name: 'Wildloop', url: 'https://wildloop.org', text: 'Trails, GPS and a social feed — every closed loop claims territory.' },
-  { name: 'OpenFarm', url: 'https://openfarm.ing', text: 'Autonomous drone scouting and targeted treatment for farms.' },
+  // OpenFarm is hidden for now, to match /apps where it is commented out the
+  // same way. The home page carries the third copy of this list; it has no
+  // server-side array to comment in, so the entry was removed there outright.
+  // Restoring means all three.
+  // { name: 'OpenFarm', url: 'https://openfarm.ing', text: 'Autonomous drone scouting and targeted treatment for farms.' },
 ]
 
 const work = [

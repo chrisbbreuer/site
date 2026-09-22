@@ -1,6 +1,6 @@
 <script server>
 const title = 'Apps - Chris Breuer'
-const description = 'The products I build: HQ.training, Wildloop, OpenFarm, the HQ suite, and more. Separate from the open-source developer tooling.'
+const description = 'The products I build: HQ.training, Wildloop, the HQ suite, and more. Separate from the open-source developer tooling.'
 const activeNav = 'apps'
 const pagePath = '/apps'
 
