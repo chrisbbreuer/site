@@ -23,7 +23,8 @@ const posts = (fs.existsSync(blogDir) ? fs.readdirSync(blogDir) : [])
       title: data.title,
       date: data.date,
       excerpt: data.excerpt || data.description || '',
-      shortDate: typeof data.date === 'string' ? data.date.slice(0, 7) : '',
+      // The full day: several posts can land in the same month.
+      day: typeof data.date === 'string' ? data.date : '',
       stats: readingStats(raw).label,
     }
   })
@@ -56,7 +57,7 @@ const posts = (fs.existsSync(blogDir) ? fs.readdirSync(blogDir) : [])
               <span class="post-title">{{ post.title }}</span>
               <span class="post-stats">{{ post.stats }}</span>
             </span>
-            <span class="post-date">{{ post.shortDate }}</span>
+            <span class="post-date">{{ post.day }}</span>
           </a>
         </li>
       @endforeach

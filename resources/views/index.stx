@@ -31,7 +31,6 @@ const posts = fs.readdirSync(blogDir)
   })
   .filter(p => p.title && p.date)
   .sort((a, b) => b.date.localeCompare(a.date))
-  .map(p => ({ ...p, shortDate: p.date.slice(0, 7) }))
 </script>
 
 @layout('layouts/site')
@@ -79,7 +78,7 @@ const posts = fs.readdirSync(blogDir)
               <span class="post-title">{{ post.title }}</span>
               <span class="post-stats">{{ post.stats }}</span>
             </span>
-            <span class="post-date">{{ post.shortDate }}</span>
+            <span class="post-date">{{ post.date }}</span>
           </a>
         </li>
       @endforeach
