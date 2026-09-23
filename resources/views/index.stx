@@ -89,6 +89,3 @@ const posts = fs.readdirSync(blogDir)
   @include('../partials/subscribe.stx')
 @endsection
 
-@push('scripts')
-  <script src="{{ asset('/assets/scripts/subscribe.js') }}" defer></script>
-@endpush

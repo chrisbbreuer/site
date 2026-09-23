@@ -15,9 +15,20 @@ import type { ServerConfig } from '@stacksjs/types'
  * very first request, the one that mints the `X-CSRF-Token` cookie, stays
  * uncacheable, and every navigation after that is cacheable. `max-age` is kept
  * short because the content genuinely changes under the pages (projects.json
- * resyncs daily); the long `stale-while-revalidate` is the useful half, letting
- * the browser paint from cache and refresh behind the scenes when the origin is
+ * resyncs daily); `stale-while-revalidate` is the useful half, letting the
+ * browser paint from cache and refresh behind the scenes when the origin is
  * slow or restarting.
+ *
+ * That stale window is deliberately minutes rather than the day it used to be,
+ * because a stale document is not only old, it is from an older BUILD. Every
+ * page carries the id of the build that rendered it, and the SPA router
+ * compares that id against the one the server returns with each fragment; when
+ * they differ it hands the navigation to a full page load, on the grounds that
+ * a runtime from one build cannot be trusted to hydrate markup from another.
+ * So the stale window doubles as the window in which navigation silently stops
+ * being an SPA and starts reloading the page. A restart this site serves
+ * through takes about a second, which is what the stale window is actually
+ * for; a day of it just bought a day of full page loads after every deploy.
  *
  * NOT enabled here: `cache.renders` (and therefore `cache.prewarm`, which
  * requires it). The render cache keys on the full request, including the
@@ -34,7 +45,7 @@ export default {
   cache: {
     documents: {
       maxAge: 60,
-      staleWhileRevalidate: 86400,
+      staleWhileRevalidate: 300,
     },
   },
 } satisfies ServerConfig
