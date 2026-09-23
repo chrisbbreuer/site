@@ -6,6 +6,9 @@
  *      render, but after a client-side nav the old link stays highlighted, so
  *      we re-derive it from location.pathname.
  *   2. Projects page: live filter by name/description + org.
+ *   3. Warm every internal page so a tap swaps content with no round trip.
+ *      The router prefetches on hover, which a phone never does, so there
+ *      every navigation waited on the network.
  * Loaded once from the layout; re-runs on stx:load and whenever content is
  * swapped in (MutationObserver), and is idempotent.
  */
@@ -75,9 +78,43 @@
     apply()
   }
 
+  // Pages already requested this visit (the router keeps the responses).
+  var warmed = {}
+
+  function warmLink(a) {
+    var router = window.__stxRouter
+    if (!router || typeof router.prefetch !== 'function' || !a) return
+    var href = a.getAttribute('href')
+    // Same-site pages only: not feeds, files, or the page already showing.
+    if (!href || href.charAt(0) !== '/' || href.charAt(1) === '/') return
+    if (/\.(xml|json|txt|jpe?g|png|webp|svg|pdf)$/i.test(href.split(/[?#]/)[0])) return
+    if (href === location.pathname || warmed[href]) return
+    warmed[href] = true
+    router.prefetch(href)
+  }
+
+  function warmPages() {
+    var conn = navigator.connection
+    if (conn && (conn.saveData || /2g/.test(conn.effectiveType || ''))) return
+    var links = document.querySelectorAll('a[href^="/"]')
+    for (var i = 0; i < links.length; i++) warmLink(links[i])
+  }
+
+  function scheduleWarm() {
+    if (window.requestIdleCallback) requestIdleCallback(warmPages, { timeout: 2000 })
+    else setTimeout(warmPages, 800)
+  }
+
+  // A finger on a link is a stronger signal than idle time: fetch it now, so
+  // the ~100ms before the tap lands is already spent on the network.
+  document.addEventListener('touchstart', function (e) {
+    warmLink(e.target && e.target.closest && e.target.closest('a[href^="/"]'))
+  }, { passive: true, capture: true })
+
   function init() {
     updateNav()
     initProjectFilter()
+    scheduleWarm()
   }
   window.__siteChromeInit = init
 

@@ -134,6 +134,15 @@ a { color: var(--text-1); }
   padding: 0;
 }
 .theme-btn:hover { color: var(--text-1); border-color: var(--text-3); }
+/* The button sits outside the nav; on wide screens it keeps the nav's own
+ * 1rem spacing rather than the masthead's 1.5rem. */
+.masthead .theme-btn { margin-left: -0.5rem; }
+/* Phones: name and theme toggle share the top row, the links take the next. */
+@media (max-width: 640px) {
+  .masthead { row-gap: 0.9rem; }
+  .masthead .theme-btn { order: 2; margin-left: auto; }
+  .masthead nav { order: 3; width: 100%; margin-left: 0; }
+}
 
 /* ── Page basics ────────────────────────────────────────────────────────── */
 main { padding: 3.5rem 0 2rem; }
@@ -404,6 +413,9 @@ main { padding: 3.5rem 0 2rem; }
 .ridge-wrap {
   position: relative;
   margin-top: 3.5rem;
+  /* The peak labels hang off the line; never let one make the page scroll
+   * sideways (it did on phones: a label past the right edge added 18px). */
+  overflow-x: clip;
 }
 
 .ridge {
@@ -432,6 +444,9 @@ main { padding: 3.5rem 0 2rem; }
   .ridge-peaks {
     pointer-events: auto;
   }
+  .ridge-peak-name {
+    display: block;
+  }
 }
 .ridge-peak {
   position: absolute;
@@ -451,6 +466,9 @@ main { padding: 3.5rem 0 2rem; }
   transition: opacity 0.12s ease;
 }
 .ridge-peak-name {
+  /* Only a fine pointer can hover the line, so only it gets the labels;
+   * elsewhere they would be invisible boxes taking up layout. */
+  display: none;
   position: absolute;
   bottom: calc(100% - 0.35rem);
   left: var(--at);

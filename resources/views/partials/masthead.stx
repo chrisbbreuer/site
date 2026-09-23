@@ -10,6 +10,6 @@
     <a href="/goals"@if (activeNav === 'goals') aria-current="page"@endif>Goals</a>
     <a href="/projects"@if (activeNav === 'projects') aria-current="page"@endif>Projects</a>
     <a href="https://github.com/chrisbbreuer" rel="me">GitHub</a>
-    <button class="theme-btn" type="button" onclick="siteTheme()" aria-label="Toggle theme">◐</button>
   </nav>
+  <button class="theme-btn" type="button" onclick="siteTheme()" aria-label="Toggle theme">◐</button>
 </header>
