@@ -86,6 +86,15 @@ const elsewhere = [
           core reason I started working on Stacks.
         </p>
         <p>
+          The goal behind all of it is software that is as fast and as energy
+          efficient as it can be. In the age of AI that matters more than ever:
+          every request an agent makes runs on real hardware and real power, and
+          most of it passes through ordinary code on the way. Good abstractions are
+          one of the few levers that scale. Get the defaults right once, in
+          something like Stacks, and every app built on top of it does less work
+          for the same result.
+        </p>
+        <p>
           The thing that has never changed is where the work comes from. Every
           project I have started began as something I, my team, or the community
           around us actually needed, where the paid tools were the only ones

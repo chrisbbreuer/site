@@ -20,6 +20,8 @@ I spent the next decade and a half on other people's problems and my own: small 
 
 That interest is where [Stacks](https://stacksjs.com) comes from. A full-stack TypeScript framework on Bun, plus the ecosystem that turned out to be necessary to make it real: a templating engine, a query builder, a deploy tool, a CSS engine, image and video codecs. None of that was the plan. Each piece exists because I needed it and the thing that should have existed did not, or existed and was slow.
 
+Slow bothers me more every year. The goal behind all of it is software that is as fast and as energy efficient as it can be, and in the age of AI that stops being a matter of taste. Every request an agent makes runs on real hardware and real power, and most of it passes through ordinary code on the way. Good abstractions are one of the few levers that scale: get the defaults right once, in something like Stacks, and every app built on top of it does less work for the same result.
+
 Increasingly it is agentic tooling too. The tools engineers reach for are quickly becoming the tools their agents reach for, and that changes what a good one looks like. Machine-readable output stops being a nicety. A confusing error message costs more than it used to. "It works if you already know the trick" stops working at all. [buddy](https://github.com/stacksjs/buddy) is the clearest example: AI code review and dependency updates as one teammate rather than two bolted-on integrations.
 
 That is around two hundred published packages now, and roughly eight million installs a month. My goal is a billion a month. I keep a [public list of goals](/goals) so the unreasonable ones have somewhere to sit where other people can see them.

@@ -45,7 +45,7 @@ const work = [
       + `That is ${sharePercent}% of the way, or about ${multiple}× from here. `
       + `It resyncs daily, so this page marks its own homework.`,
   },
-  { name: 'Stacks v1.0', url: 'https://stacksjs.com', text: 'The framework stops being a moving target. A stable API, documentation that matches it, and a version number I am willing to ask other people to depend on.' },
+  { name: 'Stacks v1.0', url: 'https://stacksjs.com', text: 'The framework stops being a moving target. A stable API, documentation that matches it, fast and energy efficient by default with published benchmarks to show it, and a version number I am willing to ask other people to depend on.' },
   { name: 'Wildloop', url: 'https://wildloop.org', text: 'Ship the territory game properly: captures the server can stand behind, clubs and challenges people come back to, and route records worth chasing.' },
   { name: 'HQ.training', url: 'https://hq.training', text: 'Make it the thing coaches reach for first: training analysis that earns its place next to the billing and the scheduling, rather than sitting in a separate tab.' },
 ]
