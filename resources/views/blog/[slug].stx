@@ -23,6 +23,9 @@ const title = post ? `${post.title} - Chris Breuer` : 'Not found - Chris Breuer'
 const description = post ? (post.excerpt || `${post.title}, by Chris Breuer`) : 'Post not found.'
 const activeNav = 'blog'
 const pagePath = `/blog/${slug}`
+// Tells the layout this page is an article rather than a page, and hands it
+// the date the crawlers that care about freshness read.
+const ogArticle = post && post.date ? { published: post.date } : null
 </script>
 
 @layout('layouts/site')

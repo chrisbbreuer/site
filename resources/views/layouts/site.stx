@@ -45,7 +45,26 @@ const canonicalUrl = `${siteUrl}${typeof pagePath === 'string' ? pagePath : ''}`
 // card; anything unmapped uses the home card.
 const ogSlugs = ['about', 'apps', 'goals', 'projects', 'uses', 'blog']
 const ogSeg = typeof pagePath === 'string' && pagePath !== '/' ? pagePath.split('/')[1] : 'home'
-const ogImage = `${siteUrl}/images/og/${ogSlugs.includes(ogSeg) ? ogSeg : 'home'}.jpg`
+
+// A post gets its own card, named for its slug, and falls back to the generic
+// blog one when that card has not been generated yet. A card with the post's
+// own title on it is the difference between a share that says what was
+// written and one that says "Blog".
+const postSlug = typeof pagePath === 'string' && pagePath.startsWith('/blog/') ? pagePath.slice('/blog/'.length) : ''
+const postCard = postSlug ? `blog-${postSlug}` : ''
+const ogCard = postCard && fs.existsSync(path.join(process.cwd(), 'public/images/og', `${postCard}.jpg`))
+  ? postCard
+  : (ogSlugs.includes(ogSeg) ? ogSeg : 'home')
+const ogImage = `${siteUrl}/images/og/${ogCard}.jpg`
+
+// A post is an article, and the crawlers that care read the date off it.
+//
+// Read the way pagePath is read, behind a typeof guard and never declared
+// here: a `const` of the same name in this script shadows the value the page
+// set, which is how this silently stayed a "website" the first time.
+const ogArticleValue = typeof ogArticle === 'undefined' ? null : ogArticle
+const ogType = ogArticleValue && typeof ogArticleValue === 'object' ? 'article' : 'website'
+const ogPublished = ogType === 'article' ? String(ogArticleValue.published || '') : ''
 </script>
 
 <!DOCTYPE html>
@@ -56,7 +75,7 @@ const ogImage = `${siteUrl}/images/og/${ogSlugs.includes(ogSeg) ? ogSeg : 'home'
   <title>{{ title }}</title>
   <meta name="description" content="{{ description }}">
   <link rel="canonical" href="{{ canonicalUrl }}">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="{{ ogType }}">
   <meta property="og:url" content="{{ canonicalUrl }}">
   <meta property="og:site_name" content="Chris Breuer">
   <meta property="og:title" content="{{ title }}">
@@ -70,6 +89,11 @@ const ogImage = `${siteUrl}/images/og/${ogSlugs.includes(ogSeg) ? ogSeg : 'home'
   <meta name="twitter:title" content="{{ title }}">
   <meta name="twitter:description" content="{{ description }}">
   <meta name="twitter:image" content="{{ ogImage }}">
+  @if (ogPublished)
+    <meta property="article:published_time" content="{{ ogPublished }}">
+    <meta property="article:author" content="Chris Breuer">
+    <meta name="author" content="Chris Breuer">
+  @endif
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   @stack('head')

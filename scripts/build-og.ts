@@ -5,7 +5,7 @@
 // This writes self-contained HTML into public/_og/, which is rendered through
 // the in-app browser at 2x and downscaled to public/images/og/<slug>.jpg.
 // The _og/ scratch dir is removed once the JPGs are captured.
-import { mkdirSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 interface Card {
@@ -172,13 +172,62 @@ function html(c: Card): string {
     </div>
     <div class="foot">
       <span>chrisbreuer.me</span>
-      <svg class="rule" viewBox="0 0 600 22" preserveAspectRatio="none" aria-hidden="true"><path d="M0 21 L90 21 L134 11 L156 14 L198 5 L226 13 L260 9 L298 17 L320 14 L371 4 L400 12 L429 9 L465 16 L500 19 L600 21" vector-effect="non-scaling-stroke" /></svg>
+      <svg class="rule" viewBox="0 0 600 22" preserveAspectRatio="none" aria-hidden="true"><path d="${ridgePath}" vector-effect="non-scaling-stroke" /></svg>
       <span>@chrisbbreuer</span>
     </div>
   </div>
 </body>
 </html>`
 }
+
+// A card per post, read out of the markdown, so writing one is all it takes
+// to get a share image with its own title on it. Without this every post
+// shared as the generic "Blog" card, which tells a reader nothing about what
+// they are being handed.
+const blogDir = join(import.meta.dir, '..', 'content', 'blog')
+if (existsSync(blogDir)) {
+  for (const file of readdirSync(blogDir).filter(name => name.endsWith('.md')).sort()) {
+    const slug = file.replace(/\.md$/, '')
+    const raw = readFileSync(join(blogDir, file), 'utf-8')
+    const front = raw.match(/^---\n([\s\S]*?)\n---/)
+    if (!front) continue
+    const field = (name: string): string => {
+      const line = front[1].split('\n').find(entry => entry.trim().startsWith(`${name}:`))
+      if (!line) return ''
+      return line.slice(line.indexOf(':') + 1).trim().replace(/^['"]|['"]$/g, '')
+    }
+    const title = field('title')
+    if (!title) continue
+    cards.push({
+      slug: `blog-${slug}`,
+      path: `~/blog/${slug}`,
+      title,
+      desc: field('description') || field('excerpt') || 'Writing by Chris Breuer.',
+    })
+  }
+}
+
+// The rule along the bottom of every card is the same San Gabriel crest the
+// site's footer draws, rescaled from its 1200x32 viewBox into the card's
+// 600x22 one. Read from the partial so the two can never drift into being
+// two different mountain ranges.
+function cardRidgePath(): string {
+  const partial = join(import.meta.dir, '..', 'resources', 'views', 'partials', 'footer.stx')
+  const match = readFileSync(partial, 'utf-8').match(/<path d="([^"]+)"/)
+  if (!match) return ''
+  return match[1]
+    .split(/(?=[ML])/)
+    .map((step) => {
+      const command = step[0]
+      const [x, y] = step.slice(1).trim().split(/\s+/).map(Number)
+      if (!Number.isFinite(x) || !Number.isFinite(y)) return ''
+      return `${command}${((x / 1200) * 600).toFixed(1)} ${((y / 32) * 22).toFixed(1)}`
+    })
+    .filter(Boolean)
+    .join(' ')
+}
+
+const ridgePath = cardRidgePath()
 
 const outDir = join(import.meta.dir, '..', 'public', '_og')
 mkdirSync(outDir, { recursive: true })
