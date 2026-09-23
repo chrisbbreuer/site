@@ -258,6 +258,13 @@ main { padding: 3.5rem 0 2rem; }
   color: var(--text-1);
 }
 .post-list .post-title { font-weight: 550; line-height: 1.4; }
+/* /blog stacks the reading stats under the title; home keeps title + date. */
+.post-list .post-main { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
+.post-list .post-stats {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-3);
+}
 .post-list a:hover .post-title { text-decoration: underline; text-underline-offset: 3px; }
 .post-list .post-date {
   flex: 0 0 auto;

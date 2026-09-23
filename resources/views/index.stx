@@ -45,7 +45,8 @@ const posts = fs.readdirSync(blogDir)
     I build developer tooling. <a href="https://stacksjs.com">Stacks</a>, a TypeScript
     framework and the ecosystem around it, and increasingly agentic tooling: the things
     engineers reach for, and the things their agents reach for. Plus the apps that run on top
-    of all of it.
+    of all of it. All of it aims to be as fast and as energy efficient as software can be:
+    in the age of AI, well-built abstractions are one way to scale AI sustainably.
     The other half of my life is spent skyrunning: long days in the mountains, usually with a dog
     somewhere ahead of me on the trail. The two halves keep pointing at each other. This is where
     I write about both.

@@ -2,6 +2,7 @@
 const fs = require('node:fs')
 const path = require('node:path')
 const { parseMarkdownWithFrontmatter } = require('@stacksjs/ts-md')
+const { readingStats } = require(path.join(process.cwd(), 'resources/utils/reading-stats.ts'))
 
 const title = 'Blog - Chris Breuer'
 const description = 'Chris Breuer on developer and agentic tooling, on skyrunning and long days in the mountains, and on the places the two turn out to be the same problem.'
@@ -23,6 +24,7 @@ const posts = (fs.existsSync(blogDir) ? fs.readdirSync(blogDir) : [])
       date: data.date,
       excerpt: data.excerpt || data.description || '',
       shortDate: typeof data.date === 'string' ? data.date.slice(0, 7) : '',
+      stats: readingStats(raw).label,
     }
   })
   .filter(p => p.title && p.date)
@@ -50,7 +52,10 @@ const posts = (fs.existsSync(blogDir) ? fs.readdirSync(blogDir) : [])
       @foreach (posts as post)
         <li>
           <a href="/blog/{{ post.slug }}">
-            <span class="post-title">{{ post.title }}</span>
+            <span class="post-main">
+              <span class="post-title">{{ post.title }}</span>
+              <span class="post-stats">{{ post.stats }}</span>
+            </span>
             <span class="post-date">{{ post.shortDate }}</span>
           </a>
         </li>

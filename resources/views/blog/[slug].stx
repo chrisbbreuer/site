@@ -2,6 +2,7 @@
 const fs = require('node:fs')
 const path = require('node:path')
 const { parseMarkdownWithFrontmatter } = require('@stacksjs/ts-md')
+const { readingStats } = require(path.join(process.cwd(), 'resources/utils/reading-stats.ts'))
 
 // Dynamic route: /blog/<slug> → content/blog/<slug>.md, rendered with our
 // homegrown @stacksjs/ts-md. `params.slug` is threaded in from the request.
@@ -10,12 +11,14 @@ const file = path.join(process.cwd(), 'content/blog', `${slug}.md`)
 
 let post = null
 if (slug && fs.existsSync(file)) {
-  const { data, html } = parseMarkdownWithFrontmatter(fs.readFileSync(file, 'utf-8'))
+  const raw = fs.readFileSync(file, 'utf-8')
+  const { data, html } = parseMarkdownWithFrontmatter(raw)
   post = {
     title: data.title || slug,
     date: typeof data.date === 'string' ? data.date : '',
     excerpt: data.excerpt || data.description || '',
     html,
+    stats: readingStats(raw).label,
   }
 }
 
@@ -37,7 +40,7 @@ const ogArticle = post && post.date ? { published: post.date } : null
         <a class="post-back" href="/blog">← Writing</a>
         <h1 class="page-title">{{ post.title }}</h1>
         @if (post.date)
-          <p class="post-meta"><time datetime="{{ post.date }}">{{ post.date }}</time></p>
+          <p class="post-meta"><time datetime="{{ post.date }}">{{ post.date }}</time> · {{ post.stats }}</p>
         @endif
       </header>
       <div class="prose post-body">
