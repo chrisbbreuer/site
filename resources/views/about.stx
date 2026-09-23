@@ -29,7 +29,8 @@ const building = [
 
 const work = [
   { name: 'Stacks.js, Inc.', role: 'Founder', period: '2024 to present' },
-  { name: 'Bisnow', role: 'Senior Software Engineer', period: '2023 to 2024' },
+  // Hidden for now: the longer role wraps and breaks the rhythm of the list.
+  // { name: 'Bisnow', role: 'Senior Software Engineer', period: '2023 to 2024' },
   { name: 'Bixolon', role: 'Consultant', period: '2020 to 2024' },
   { name: 'University of Oregon', role: 'Consultant', period: '2020 to 2021' },
   { name: 'Girlgaze', role: 'Consultant', period: '2019 to 2020' },
