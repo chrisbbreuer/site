@@ -3,6 +3,7 @@ const fs = require('node:fs')
 const path = require('node:path')
 const { parseMarkdownWithFrontmatter } = require('@stacksjs/ts-md')
 const { readingStats } = require(path.join(process.cwd(), 'resources/utils/reading-stats.ts'))
+const { longPostDate } = require(path.join(process.cwd(), 'resources/utils/post-date.ts'))
 
 // Dynamic route: /blog/<slug> → content/blog/<slug>.md, rendered with our
 // homegrown @stacksjs/ts-md. `params.slug` is threaded in from the request.
@@ -20,11 +21,7 @@ if (slug && fs.existsSync(file)) {
     html,
     stats: readingStats(raw).label,
   }
-  // Written out on the post itself ("September 22, 2026"); the lists keep
-  // the compact ISO form. Noon UTC so no timezone can shift the day.
-  post.longDate = post.date
-    ? new Date(`${post.date}T12:00:00Z`).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })
-    : ''
+  post.longDate = post.date ? longPostDate(post.date) : ''
 }
 
 const title = post ? `${post.title} - Chris Breuer` : 'Not found - Chris Breuer'

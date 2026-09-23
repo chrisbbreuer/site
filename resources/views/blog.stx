@@ -3,6 +3,7 @@ const fs = require('node:fs')
 const path = require('node:path')
 const { parseMarkdownWithFrontmatter } = require('@stacksjs/ts-md')
 const { readingStats } = require(path.join(process.cwd(), 'resources/utils/reading-stats.ts'))
+const { longPostDate } = require(path.join(process.cwd(), 'resources/utils/post-date.ts'))
 
 const title = 'Blog - Chris Breuer'
 const description = 'Chris Breuer on developer and agentic tooling, on skyrunning and long days in the mountains, and on the places the two turn out to be the same problem.'
@@ -23,8 +24,9 @@ const posts = (fs.existsSync(blogDir) ? fs.readdirSync(blogDir) : [])
       title: data.title,
       date: data.date,
       excerpt: data.excerpt || data.description || '',
-      // The full day: several posts can land in the same month.
+      // The full day, written out: several posts can land in the same month.
       day: typeof data.date === 'string' ? data.date : '',
+      longDate: typeof data.date === 'string' ? longPostDate(data.date) : '',
       stats: readingStats(raw).label,
     }
   })
@@ -55,7 +57,7 @@ const posts = (fs.existsSync(blogDir) ? fs.readdirSync(blogDir) : [])
               <span class="post-title">{{ post.title }}</span>
               <span class="post-stats">{{ post.stats }}</span>
             </span>
-            <span class="post-date">{{ post.day }}</span>
+            <time class="post-date" datetime="{{ post.day }}">{{ post.longDate }}</time>
           </a>
         </li>
       @endforeach
