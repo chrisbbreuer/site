@@ -73,7 +73,8 @@
   "overrides": {
     "@stacksjs/stx": "^0.2.290",
     "bun-plugin-stx": "^0.2.290",
-    "ts-images": "^0.2.19"
+    "ts-images": "^0.2.19",
+    "@stacksjs/ts-cloud": "^0.16.3"
   },
   "dependencies": {
     "@stacksjs/ts-avif": "^0.1.4",
