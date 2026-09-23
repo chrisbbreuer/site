@@ -8,7 +8,7 @@
  * repos the filters would drop go in PINNED.
  */
 import { execSync } from 'node:child_process'
-import { writeFileSync } from 'node:fs'
+import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 interface Repo {
@@ -284,7 +284,11 @@ for (const pin of PINNED) {
  * say so at the end rather than quietly publishing a shorter list.
  */
 let lookupFailures = 0
-async function registryJson(url: string): Promise<any | null> {
+/** A lookup that gave up: npm never answered, so the package's fate is unknown. */
+const GAVE_UP = Symbol('gave up')
+type Lookup<T> = T | null | typeof GAVE_UP
+
+async function registryJson(url: string): Promise<Lookup<any>> {
   for (let attempt = 0; attempt < 6; attempt++) {
     try {
       const res = await fetch(url)
@@ -300,18 +304,22 @@ async function registryJson(url: string): Promise<any | null> {
     await new Promise(resolve => setTimeout(resolve, 400 * 2 ** attempt))
   }
   lookupFailures++
-  return null
+  return GAVE_UP
 }
 
 /** Downloads in the last 30 days, or null if npm has never heard of it. */
-async function monthlyDownloads(pkg: string): Promise<number | null> {
+async function monthlyDownloads(pkg: string): Promise<Lookup<number>> {
   const body = await registryJson(`https://api.npmjs.org/downloads/point/last-month/${encodeURIComponent(pkg)}`)
+  if (body === GAVE_UP)
+    return GAVE_UP
   return typeof body?.downloads === 'number' ? body.downloads : null
 }
 
 /** The repo npm itself says a package is published from, as `owner/name`. */
-async function registryRepo(pkg: string): Promise<string | null> {
+async function registryRepo(pkg: string): Promise<Lookup<string>> {
   const body = await registryJson(`https://registry.npmjs.org/${encodeURIComponent(pkg)}/latest`)
+  if (body === GAVE_UP)
+    return GAVE_UP
   const repository = body?.repository
   const url = typeof repository === 'string' ? repository : repository?.url
   if (!url)
@@ -398,14 +406,19 @@ function workspacePackages(fullName: string): string[] {
 async function attachDownloads(list: Repo[]): Promise<void> {
   const known = new Map(list.map(repo => [`${repo.org}/${repo.name}`.toLowerCase(), repo]))
 
-  const candidates = new Set<string>()
+  // Which repos list each package, so a throttled "who publishes this?"
+  // lookup can still be charged to someone.
+  const sources = new Map<string, Repo[]>()
   for (const repo of list) {
     for (const name of workspacePackages(`${repo.org}/${repo.name}`))
-      candidates.add(name)
+      sources.set(name, [...(sources.get(name) ?? []), repo])
   }
+  const candidates = new Set(sources.keys())
   console.log(`resolved ${candidates.size} candidate package name(s) across ${list.length} repos`)
 
   const totals = new Map<Repo, { downloads: number, packages: string[] }>()
+  /** Repos with at least one package npm never answered for. */
+  const incomplete = new Set<Repo>()
   const queue = [...candidates]
   // Two at a time. npm throttles a run that asks faster, and a throttled
   // lookup is indistinguishable from "no such package", which silently
@@ -413,6 +426,11 @@ async function attachDownloads(list: Repo[]): Promise<void> {
   const workers = Array.from({ length: 2 }, async () => {
     for (let pkg = queue.shift(); pkg; pkg = queue.shift()) {
       const owner = await registryRepo(pkg)
+      if (owner === GAVE_UP) {
+        for (const source of sources.get(pkg) ?? [])
+          incomplete.add(source)
+        continue
+      }
       if (!owner)
         continue
 
@@ -421,6 +439,10 @@ async function attachDownloads(list: Repo[]): Promise<void> {
         continue
 
       const downloads = await monthlyDownloads(pkg)
+      if (downloads === GAVE_UP) {
+        incomplete.add(repo)
+        continue
+      }
       if (downloads === null)
         continue
 
@@ -440,6 +462,54 @@ async function attachDownloads(list: Repo[]): Promise<void> {
     if (entry.packages.length > 1)
       repo.pkgCount = entry.packages.length
   }
+
+  const kept = keepCountsLostToThrottling(incomplete, previousCounts())
+  if (kept.length > 0)
+    console.warn(`kept the last known count for ${kept.length} repo(s) npm throttled: ${kept.join(', ')}`)
+}
+
+type Counts = Pick<Repo, 'downloads' | 'pkg' | 'pkgCount'>
+
+/** Yesterday's counts, keyed "org/name", from the file this run replaces. */
+function previousCounts(): Map<string, Counts> {
+  const file = join(import.meta.dir, '../content/projects.json')
+  if (!existsSync(file))
+    return new Map()
+  try {
+    const { repos } = JSON.parse(readFileSync(file, 'utf8')) as { repos: Repo[] }
+    return new Map(repos.map(r => [`${r.org}/${r.name}`, { downloads: r.downloads, pkg: r.pkg, pkgCount: r.pkgCount }]))
+  }
+  catch {
+    return new Map()
+  }
+}
+
+/**
+ * A throttled lookup is missing data, not a smaller number: summing the
+ * packages that did answer under-counts the repo, and that used to publish as
+ * a real drop (gitlint went from 124,343 a month to 0 on one run). A repo that
+ * npm left incomplete and that came out lower than last time keeps last time's
+ * figures until a run gets through. A complete answer always wins, so a real
+ * decline still shows the next time npm answers every package.
+ *
+ * Returns the repos it kept, as "org/name".
+ */
+function keepCountsLostToThrottling(incomplete: Iterable<Repo>, previous: Map<string, Counts>): string[] {
+  const kept: string[] = []
+  for (const repo of incomplete) {
+    const key = `${repo.org}/${repo.name}`
+    const last = previous.get(key)
+    if (last?.downloads === undefined || (repo.downloads ?? 0) >= last.downloads)
+      continue
+    repo.downloads = last.downloads
+    repo.pkg = last.pkg
+    if (last.pkgCount === undefined)
+      delete repo.pkgCount
+    else
+      repo.pkgCount = last.pkgCount
+    kept.push(key)
+  }
+  return kept
 }
 
 await attachDownloads(repos)
@@ -464,4 +534,4 @@ console.log(`Wrote ${repos.length} repos from ${new Set(repos.map(r => r.org)).s
 const packageTotal = published.reduce((n, r) => n + (r.pkgCount || 1), 0)
 console.log(`${published.length} repos publish ${packageTotal} package(s), ${published.reduce((n, r) => n + (r.downloads || 0), 0).toLocaleString()} downloads in the last 30 days`)
 if (lookupFailures > 0)
-  console.warn(`${lookupFailures} registry lookup(s) gave up after retrying, some counts may be missing`)
+  console.warn(`${lookupFailures} registry lookup(s) gave up after retrying; a repo they left short keeps its last known count`)

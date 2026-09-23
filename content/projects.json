@@ -16,9 +16,9 @@
         "Library",
         "Mobile"
       ],
-      "downloads": 3596620,
+      "downloads": 3627852,
       "pkg": "@stacksjs/ai",
-      "pkgCount": 83
+      "pkgCount": 84
     },
     {
       "name": "dtsx",
@@ -394,7 +394,9 @@
         "TypeScript",
         "PHP",
         "Zig"
-      ]
+      ],
+      "downloads": 454,
+      "pkg": "@buddysh/buddy"
     },
     {
       "name": "ts-dns",
@@ -903,7 +905,9 @@
       "tags": [
         "TypeScript",
         "Library"
-      ]
+      ],
+      "downloads": 16,
+      "pkg": "ts-ndarray"
     },
     {
       "name": "ts-png",
