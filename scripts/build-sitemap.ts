@@ -7,8 +7,7 @@
  * which is the only way a hand-kept list stays honest.
  *
  * `lastmod` comes from the post's frontmatter date where there is one, and the
- * file's mtime otherwise. Drafts in `content/drafts` are deliberately skipped —
- * they are not routed, so listing them would advertise 404s.
+ * file's mtime otherwise. Drafts in `content/drafts` are deliberately skipped, * they are not routed, so listing them would advertise 404s.
  *
  * Run: bun scripts/build-sitemap.ts
  * Also runs on every deploy (see `preStart` in config/cloud.ts), so the shipped

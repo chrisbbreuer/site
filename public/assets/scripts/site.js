@@ -1,7 +1,7 @@
 /*
  * Site chrome that must survive SPA navigation (the stx router swaps page
- * content but leaves the layout — masthead, footer — in place):
- *   1. Keep the active nav link in sync with the current path — masthead and
+ * content but leaves the layout, masthead, footer, in place):
+ *   1. Keep the active nav link in sync with the current path, masthead and
  *      footer both, since /uses lives down there. The server marks it on first
  *      render, but after a client-side nav the old link stays highlighted, so
  *      we re-derive it from location.pathname.

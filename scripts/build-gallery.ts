@@ -3,8 +3,8 @@
  * source photos. Everything is homegrown: decoding, resizing, format choice,
  * and the SplatHash placeholder all come from ts-images.
  *
- * For each source it emits two variants — `sm` (masonry thumbnail) and `lg`
- * (lightbox source) — each in the smallest of AVIF / WebP that clears a
+ * For each source it emits two variants, `sm` (masonry thumbnail) and `lg`
+ * (lightbox source), each in the smallest of AVIF / WebP that clears a
  * quality gate (falling back to JPEG), plus a 16-byte SplatHash placeholder
  * that the browser paints before any image byte arrives.
  *
@@ -32,7 +32,7 @@ function decodeHeicToJpeg(input: string, output: string): void {
 }
 
 // Accept any source images (heic/jpeg/png, plus Apple Notes `.dat` exports
-// which are jpeg internally — ts-images detects format by magic bytes, not
+// which are jpeg internally, ts-images detects format by magic bytes, not
 // extension). Skip our own -sm/-lg outputs so re-running in place is safe.
 // Sorted by the first number in the filename so ordering is stable.
 const sources = readdirSync(sourceDir)

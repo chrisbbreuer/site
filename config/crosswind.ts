@@ -1,5 +1,5 @@
 /**
- * Crosswind (utility CSS) — content globs for STX views.
+ * Crosswind (utility CSS), content globs for STX views.
  * @see https://github.com/cwcss/crosswind
  */
 export default {

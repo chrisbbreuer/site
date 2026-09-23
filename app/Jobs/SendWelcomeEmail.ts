@@ -37,7 +37,7 @@ export default new Job({
 })
 
 /**
- * Usage examples (no imports needed — jobs are auto-imported):
+ * Usage examples (no imports needed, jobs are auto-imported):
  *
  * // Dispatch to queue
  * await SendWelcomeEmail.dispatch({ email: 'user@example.com', name: 'Chris' })

@@ -71,8 +71,7 @@ export const tsCloud: TsCloudConfig = {
       domain: 'chrisbreuer.me',
       // The published package ships this entry prebuilt, so nothing is
       // compiled here. The previous command built app/ProductionServer.ts,
-      // which imported `../storage/framework/core/buddy/src/commands/serve` —
-      // a path that stopped existing when this project moved off the
+      // which imported `../storage/framework/core/buddy/src/commands/serve`, // a path that stopped existing when this project moved off the
       // vendored core, and took the deploy down with it.
       start: 'bun node_modules/@stacksjs/buddy/dist/serve-entry.js',
       port: 3040,
@@ -82,7 +81,7 @@ export const tsCloud: TsCloudConfig = {
       // ts-cloud already overlaps releases: the new one binds the same port
       // via SO_REUSEPORT while the old keeps serving, and only then is the old
       // stopped. But without this the gate is `systemctl is-active` for five
-      // seconds — which asks whether the process is alive, not whether it can
+      // seconds, which asks whether the process is alive, not whether it can
       // answer. A Bun server binds its port almost immediately and then does
       // its startup work, so "active" was true long before the first byte
       // could be served. The old release was retired into that window, and
@@ -92,7 +91,7 @@ export const tsCloud: TsCloudConfig = {
       // path, which is what the stall actually blocked.
       healthCheck: { path: '/' },
       // stx generates responsive image derivatives (7 widths x 2 formats) on
-      // first boot, and it does that work on the event loop — the server binds
+      // first boot, and it does that work on the event loop, the server binds
       // :3040 immediately but answers nothing until the pass finishes. For this
       // site that is ~1,000 files and ~280MB, mostly the About gallery, which
       // takes far longer than the liveness probe's three 5s checks. The probe
@@ -101,12 +100,12 @@ export const tsCloud: TsCloudConfig = {
       // release dir breaks that loop: ts-cloud seeds shared/ from the live
       // release on the first deploy that declares this, then symlinks it into
       // every release after, so the derivatives are generated once rather than
-      // once per deploy. `.env` stays shared — ts-cloud always merges it in.
+      // once per deploy. `.env` stays shared, ts-cloud always merges it in.
       //
       // image-placeholders.json is the other half of that boot work: stx calls
       // warmImagePlaceholders() with it as an explicit cachePath, and requests
       // wait on that pass, so an un-cached copy costs the same stall on every
-      // release. Both entries are caches keyed by source image — a new photo
+      // release. Both entries are caches keyed by source image, a new photo
       // derives just its own entry, it does not invalidate the rest.
       sharedPaths: [
         'storage/framework/stx/image-delivery',
@@ -118,7 +117,7 @@ export const tsCloud: TsCloudConfig = {
         // Same reason: the CLI comes from the installed package now.
         'bun node_modules/@stacksjs/buddy/dist/cli.js migrate || true',
         // sitemap.xml is derived from the views and posts in the release, so
-        // it is built here rather than committed — the shipped file then
+        // it is built here rather than committed, the shipped file then
         // always matches the pages that actually shipped. `|| true` because a
         // stale sitemap is not worth failing a deploy over.
         'bun scripts/build-sitemap.ts || true',
@@ -167,8 +166,8 @@ export const tsCloud: TsCloudConfig = {
 
     // The blog is stx-native now (resources/views/blog.stx + blog/[slug].stx,
     // markdown from content/blog rendered by @stacksjs/ts-md). It is served by
-    // the main app at /blog — no separate static BunPress build, no rpx /blog
-    // route — so the blog shares the app's layout, theme and SPA routing.
+    // the main app at /blog, no separate static BunPress build, no rpx /blog
+    // route, so the blog shares the app's layout, theme and SPA routing.
 
     // www → apex redirect (gateway answers with a 301; nothing is shipped).
     chrisbreuerWww: { domain: 'www.chrisbreuer.me', redirect: 'https://chrisbreuer.me' },

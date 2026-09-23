@@ -28,7 +28,7 @@ function compact(n) {
 }
 
 const monthlyLabel = compact(monthly)
-// A multiple is the honest way to say it. The percentage — 0.3% — is true and
+// A multiple is the honest way to say it. The percentage, 0.3%, is true and
 // tells you nothing; "325 times from here" tells you what kind of problem it is.
 const multiple = Math.round(TARGET / Math.max(monthly, 1))
 const sharePercent = ((monthly / TARGET) * 100).toFixed(2)

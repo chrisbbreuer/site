@@ -49,7 +49,7 @@
   --vp-code-block-bg: #101010;
 }
 
-/* Lilex (OFL, https://github.com/mishamyrt/Lilex) — the site's one typeface,
+/* Lilex (OFL, https://github.com/mishamyrt/Lilex), the site's one typeface,
  * served from the main app's public/fonts. Variable weight 100-700. */
 @font-face {
   font-family: 'Lilex';

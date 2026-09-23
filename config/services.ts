@@ -35,7 +35,7 @@ export default {
     scopes: ['profile', 'email'],
   },
 
-  // Sign in with Apple has no static client secret — the AppleProvider
+  // Sign in with Apple has no static client secret, the AppleProvider
   // signs a short-lived ES256 JWT from teamId + keyId + privateKey (the
   // .p8 file's contents) on every token exchange.
   apple: {

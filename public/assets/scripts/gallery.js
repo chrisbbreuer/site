@@ -4,7 +4,7 @@
  *
  * SPA-aware: the stx router swaps page content without a full reload and fires
  * `stx:load` once the new markup + scripts are in place, so we (re)initialise
- * on that event as well as the initial load. Everything is idempotent — items
+ * on that event as well as the initial load. Everything is idempotent, items
  * are wired once (data-lb-wired), and the lightbox overlay is created once and
  * reused across navigations.
  */
@@ -49,8 +49,7 @@
     // Reset the large layer so it can crossfade in fresh for this photo.
     fullImg.classList.remove('is-shown')
     fullImg.removeAttribute('src')
-    // Base layer: the SplatHash placeholder, upgraded to the decoded thumb —
-    // shown instantly so there's always something on screen.
+    // Base layer: the SplatHash placeholder, upgraded to the decoded thumb, // shown instantly so there's always something on screen.
     var baseSrc = ''
     if (hash && window.splatHashToDataURL) {
       try { baseSrc = window.splatHashToDataURL(hash) } catch (e) { /* best effort */ }
@@ -110,7 +109,7 @@
     // Bio spans the left four columns, portrait the right two. The bio gets an
     // inset on its right so the text keeps clear of the right-hand photo
     // columns (box-sizing: border-box, so the 4-col box width is unchanged and
-    // the grid stays aligned — only the text reflows narrower).
+    // the grid stays aligned, only the text reflows narrower).
     bio.style.position = 'absolute'; bio.style.top = '0'; bio.style.left = '0'
     bio.style.width = (4 * colW + 3 * GAP) + 'px'
     bio.style.paddingRight = '28px'

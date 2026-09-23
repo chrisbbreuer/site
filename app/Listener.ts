@@ -26,7 +26,7 @@ function listenEvents(type: keyof typeof events, event: any) {
   if (!eventListeners || eventListeners.length === 0)
     return
 
-  // Fire-and-forget with error handling — mitt doesn't await wildcard handlers
+  // Fire-and-forget with error handling, mitt doesn't await wildcard handlers
   processListeners(type as string, eventListeners, event)
 }
 

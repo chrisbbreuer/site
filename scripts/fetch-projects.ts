@@ -108,8 +108,8 @@ function tagsFor(language: string | null | undefined, topics: string[] = []): st
 /**
  * Org display order; anything not listed lands at the end alphabetically.
  *
- * This doubles as the owner list when `user/orgs` is unreachable — which is
- * the case in CI under GITHUB_TOKEN — so an org missing from here is an org
+ * This doubles as the owner list when `user/orgs` is unreachable, which is
+ * the case in CI under GITHUB_TOKEN, so an org missing from here is an org
  * whose repos silently vanish from the page. The sanity check in
  * .github/workflows/projects-sync.yml refuses a result that drops orgs, so a
  * new org shows up as a failed sync rather than a quietly shorter list.
@@ -189,10 +189,10 @@ function stripEmoji(text: string): string {
  * Which mark replaces it depends on the job the dash was doing, because one
  * substitution does not fit all three:
  *
- *   "libraries—faster"            joins two words      -> comma
- *   "repairs CI — and keeps ..."  joins two clauses    -> comma (a colon
+ *   "libraries, faster"            joins two words      -> comma
+ *   "repairs CI, and keeps ..."  joins two clauses    -> comma (a colon
  *                                                        cannot precede "and")
- *   "error tracking — PHP SDK"    introduces the rest  -> colon
+ *   "error tracking, PHP SDK"    introduces the rest  -> colon
  *
  * The last is the common shape for a repo description, and a comma there would
  * read as the first item of a list: "SDKs, core, Vue, Nuxt" is four things.
@@ -200,11 +200,11 @@ function stripEmoji(text: string): string {
 function normalizeDashes(text: string): string {
   return text
     // Spaced, followed by a conjunction: the dash was standing in for a comma.
-    .replace(/\s+[—–]\s+(?=(?:and|or|but|so|yet|nor)\b)/gi, ', ')
+    .replace(/\s+[--]\s+(?=(?:and|or|but|so|yet|nor)\b)/gi, ', ')
     // Spaced otherwise: the dash was introducing what follows.
-    .replace(/\s+[—–]\s+/g, ': ')
+    .replace(/\s+[--]\s+/g, ': ')
     // Unspaced: it was gluing two words together.
-    .replace(/\s*[—–]\s*/g, ', ')
+    .replace(/\s*[--]\s*/g, ', ')
 }
 
 function gh(path: string): any {
@@ -218,7 +218,7 @@ function gh(path: string): any {
 
 // `gh api user` and `user/orgs` need a token that represents a person. The
 // daily sync in CI may only have GITHUB_TOKEN, which represents the repo and
-// answers 403 to both — so fall back to the owners we already list by name
+// answers 403 to both, so fall back to the owners we already list by name
 // rather than silently regenerating an empty file.
 let me = 'chrisbbreuer'
 try {
@@ -283,7 +283,7 @@ async function registryJson(url: string): Promise<any | null> {
       const res = await fetch(url)
       if (res.ok)
         return await res.json()
-      // A real "no such package" answer, not congestion — do not retry it.
+      // A real "no such package" answer, not congestion, do not retry it.
       if (res.status === 404)
         return null
     }
@@ -319,7 +319,7 @@ async function registryRepo(pkg: string): Promise<string | null> {
  *
  * Reading only the root was wrong by an order of magnitude. Almost everything
  * here is a monorepo whose root is private and whose real packages live in
- * `packages/<name>` or `storage/framework/core/<name>` — stacks alone ships
+ * `packages/<name>` or `storage/framework/core/<name>`, stacks alone ships
  * over eighty. Counting one package per repo reported 3.1M downloads a month
  * when the true figure is several times that.
  *
@@ -384,7 +384,7 @@ function workspacePackages(fullName: string): string[] {
  *
  * The registry decides ownership, not the checkout that happens to contain the
  * file. Several of these repos vendor the whole @stacksjs/* set, and crediting
- * each of them for it counted millions of downloads twice — which is how an
+ * each of them for it counted millions of downloads twice, which is how an
  * earlier version of this produced a number larger than reality while a later
  * one produced a number far smaller.
  */
@@ -401,7 +401,7 @@ async function attachDownloads(list: Repo[]): Promise<void> {
   const totals = new Map<Repo, { downloads: number, packages: string[] }>()
   const queue = [...candidates]
   // Two at a time. npm throttles a run that asks faster, and a throttled
-  // lookup is indistinguishable from "no such package" — which silently
+  // lookup is indistinguishable from "no such package", which silently
   // subtracts a whole repo's downloads from the total.
   const workers = Array.from({ length: 2 }, async () => {
     for (let pkg = queue.shift(); pkg; pkg = queue.shift()) {
@@ -457,4 +457,4 @@ console.log(`Wrote ${repos.length} repos from ${new Set(repos.map(r => r.org)).s
 const packageTotal = published.reduce((n, r) => n + (r.pkgCount || 1), 0)
 console.log(`${published.length} repos publish ${packageTotal} package(s), ${published.reduce((n, r) => n + (r.downloads || 0), 0).toLocaleString()} downloads in the last 30 days`)
 if (lookupFailures > 0)
-  console.warn(`${lookupFailures} registry lookup(s) gave up after retrying — some counts may be missing`)
+  console.warn(`${lookupFailures} registry lookup(s) gave up after retrying, some counts may be missing`)

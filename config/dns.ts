@@ -5,7 +5,7 @@ import type { DnsConfig } from '@stacksjs/types'
  *
  * Declarative DNS for chrisbreuer.me. NOTE: the authoritative DNS for this
  * domain lives at PORKBUN (not Route 53), pointing at the shared Hetzner box
- * (stacks-production-app, 178.156.x — see config/cloud.ts attachTo). This file
+ * (stacks-production-app, 178.156.x, see config/cloud.ts attachTo). This file
  * documents the desired records; `buddy dns` reconciliation against Route 53
  * is a no-op for this project (no AWS credentials / hosted zone).
  */

@@ -41,7 +41,7 @@ const withLabels = data.repos.map((r) => {
   }
 })
 
-// Highlights: hand-picked rather than ranked, and kept in this order — the
+// Highlights: hand-picked rather than ranked, and kept in this order, the
 // stars-first list kept burying the small, load-bearing packages. `org/name`
 // where the bare name is ambiguous (there are two `fonts` repos).
 const HIGHLIGHTS = [

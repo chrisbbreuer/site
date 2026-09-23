@@ -4,7 +4,7 @@ import type { DashboardConfig } from '@stacksjs/types'
  * **Dashboard Configuration**
  *
  * Controls which sections render in the `buddy dev --dashboard` sidebar.
- * Each section defaults to enabled — flip a flag to `false` here to hide
+ * Each section defaults to enabled, flip a flag to `false` here to hide
  * a section that this project doesn't use.
  *
  * Common cases:
@@ -14,7 +14,7 @@ import type { DashboardConfig } from '@stacksjs/types'
  *
  *   • A project with no newsletter hides the built-in Subscribers row in
  *     the Data section by setting `data.subscribers.enabled: false`. The
- *     Data section itself stays — that's where every userland model under
+ *     Data section itself stays, that's where every userland model under
  *     `app/Models/` is auto-listed, and you always want to see those.
  */
 export default {
@@ -40,7 +40,7 @@ export default {
     },
   },
 
-  // CI tracking — ports the standalone repo-dashboard into the dashboard
+  // CI tracking, ports the standalone repo-dashboard into the dashboard
   // (stacksjs/stacks#1844). Off by default; opt in by listing orgs and
   // setting GITHUB_TOKEN in .env.
   ci: {

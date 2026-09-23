@@ -7,7 +7,7 @@ import { response, route } from '@stacksjs/router'
  *
  * Framework routes (auth, dashboard, commerce, CMS, etc.) are loaded
  * automatically from storage/framework/defaults/routes/dashboard.ts.
- * You do NOT need to define them here — only add your own custom routes.
+ * You do NOT need to define them here, only add your own custom routes.
  *
  * @see https://docs.stacksjs.com/routing
  */

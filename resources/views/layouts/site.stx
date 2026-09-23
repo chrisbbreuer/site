@@ -7,7 +7,7 @@ const path = require('node:path')
 // filename carrying a hash `max-age=31536000, immutable` instead, so
 // `bun scripts/build-assets.ts` writes hashed copies and this manifest.
 // Missing manifest (a dev run that skipped the script) falls back to the
-// plain path, which is still served — just not cached as long.
+// plain path, which is still served, just not cached as long.
 let assetManifest = {}
 try {
   assetManifest = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'content/assets.json'), 'utf-8'))

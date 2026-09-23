@@ -412,5 +412,23 @@
     "smWidth": 460,
     "smHeight": 405,
     "hash": "me+Cqd7qWIJVYhBa6TNoBg=="
+  },
+  {
+    "sm": "/images/gallery/note-47-sm.avif",
+    "lg": "/images/gallery/note-47-lg.avif",
+    "width": 480,
+    "height": 360,
+    "smWidth": 460,
+    "smHeight": 345,
+    "hash": "ihE9aed1qJ2Vnd+ZpCy0nA=="
+  },
+  {
+    "sm": "/images/gallery/note-48-sm.webp",
+    "lg": "/images/gallery/note-48-lg.webp",
+    "width": 1500,
+    "height": 2000,
+    "smWidth": 460,
+    "smHeight": 613,
+    "hash": "ffCUsiGuOHI3YjcTYzYZUg=="
   }
 ]

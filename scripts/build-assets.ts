@@ -5,7 +5,7 @@
  * carrying an 8+ hex-digit hash before the extension is served
  * `max-age=31536000, immutable`, and everything else gets `max-age=3600` with
  * no ETag and no Last-Modified. No validator means an expired asset is not
- * revalidated, it is re-downloaded in full — so today every returning visitor
+ * revalidated, it is re-downloaded in full, so today every returning visitor
  * pulls the stylesheet, the fonts and five scripts again every hour, about
  * 130 KB, for bytes they already have.
  *
@@ -28,7 +28,7 @@ import process from 'node:process'
 const root = join(import.meta.dir, '..')
 const pub = join(root, 'public')
 
-/** 12 hex digits — comfortably past the 8 stx needs, still short in a URL. */
+/** 12 hex digits, comfortably past the 8 stx needs, still short in a URL. */
 const hash = (bytes: Buffer | string) => createHash('sha256').update(bytes).digest('hex').slice(0, 12)
 
 const manifest: Record<string, string> = {}
@@ -66,7 +66,7 @@ function fingerprint(urlPath: string, contents?: Buffer | string): string | null
   return `/${hashed}`
 }
 
-// 1. Fonts first — the stylesheet points at them.
+// 1. Fonts first, the stylesheet points at them.
 const fonts = ['fonts/lilex/Lilex-var.woff2', 'fonts/lilex/Lilex-Italic-var.woff2']
 const fontMap = new Map<string, string>()
 for (const f of fonts) {

@@ -22,8 +22,8 @@ export default new Middleware({
     }
 
     // Check the login cookie (web auth, token driver). Plain server-rendered
-    // <form method="POST"> actions — logout, and any other dashboard form on
-    // an auth-guarded route — carry the HttpOnly login cookie that the token
+    // <form method="POST"> actions, logout, and any other dashboard form on
+    // an auth-guarded route, carry the HttpOnly login cookie that the token
     // driver sets, but no Authorization header, so the bearer check above
     // misses them and the request 401s even though the user is signed in.
     // Validate that cookie as a token, mirroring the auth team helper's

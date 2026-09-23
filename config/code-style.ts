@@ -29,7 +29,7 @@ const config: PickierOptions = {
     'ts/no-top-level-await': 'off',
     // Console is intentional in this codebase
     'no-console': 'off',
-    // Markdown rules — docs are authored prose, not code
+    // Markdown rules, docs are authored prose, not code
     'markdown/heading-increment': 'off',
     'markdown/no-empty-links': 'off',
     'markdown/link-image-style': 'off',
@@ -54,7 +54,7 @@ const config: PickierOptions = {
     'markdown/ul-indent': 'off',
     'markdown/ol-prefix': 'off',
     'markdown/list-indent': 'off',
-    // publint rules — workspace packages build dist/ on demand, so these
+    // publint rules, workspace packages build dist/ on demand, so these
     // checks generate noise on a fresh checkout. Re-enable when shipping.
     'publint/file-does-not-exist': 'off',
     'publint/exports-types-should-be-first': 'off',
@@ -64,7 +64,7 @@ const config: PickierOptions = {
     'publint/file-invalid-format': 'off',
     'publint/bin-file-not-executable': 'off',
     'publint/module-should-be-esm': 'off',
-    // We use string concat readably in some places — preserve dev intent.
+    // We use string concat readably in some places, preserve dev intent.
     'general/prefer-template': 'off',
     'pickier/prefer-template': 'off',
     // The buddy plugin shell deliberately uses `eval "$cmd"` to pass arbitrary
@@ -77,7 +77,7 @@ const config: PickierOptions = {
     '**/fixtures/**',
     '**/coverage/**',
     '**/temp/**',
-    // Build caches and vendored deps — never user-editable source
+    // Build caches and vendored deps, never user-editable source
     '**/cache/**',
     '**/storage/framework/cache/**',
     '**/storage/framework/auto-imports/**',
@@ -85,10 +85,10 @@ const config: PickierOptions = {
     '**/storage/framework/server/storage/**',
     '**/.bunpress/**',
     '**/docs/deps/**',
-    // Generated scaffolds copied into pantry — out of project control
+    // Generated scaffolds copied into pantry, out of project control
     '**/pantry/**',
     // Hand-written browser scripts served verbatim from public/ (incl. the
-    // vendored SplatHash decoder) — not part of the TS build graph, and
+    // vendored SplatHash decoder), not part of the TS build graph, and
     // pickier lints but won't --fix them.
     '**/public/assets/scripts/**',
   ],

@@ -2,7 +2,7 @@
  * Regenerates the ridgeline in resources/views/partials/footer.stx.
  *
  * The footer rule is a real elevation profile of the San Gabriel Mountains
- * crest, west to east — Newhall Pass to the Lytle Creek end, with Mount Baldy
+ * crest, west to east, Newhall Pass to the Lytle Creek end, with Mount Baldy
  * as the high point. It is built here rather than drawn by hand:
  *
  *   1. GUIDE is a coarse polyline following the range's high divide. It only
@@ -12,12 +12,12 @@
  *      actually runs, which hand-typed summit coordinates do not: the front
  *      range packs Lowe, Markham, San Gabriel and Disappointment within a
  *      kilometre of each other, and a naive local-max search collapses them.
- *   3. Generalise for a line drawn 32 units tall — a narrow Gaussian to drop
+ *   3. Generalise for a line drawn 32 units tall, a narrow Gaussian to drop
  *      DEM speckle that would read as noise, then Douglas-Peucker to keep the
  *      byte count sane for something inlined on every page.
  *
  * Elevations come from the USGS 3DEP 1/3 arc-second (10 m) DEM, via
- * api.opentopodata.org — a public endpoint, 100 points per request and one
+ * api.opentopodata.org, a public endpoint, 100 points per request and one
  * request a second, which is why a full run takes about a minute.
  *
  * Usage: bun scripts/build-ridge.ts [--write]
@@ -59,10 +59,12 @@ interface GuidePoint {
   /** Published elevation in feet. */
   ft?: number
   label?: boolean
+  /** A pass or saddle: snap it to a dip in the line rather than a summit. */
+  low?: boolean
 }
 
 const GUIDE: GuidePoint[] = [
-  { lat: 34.3250, lon: -118.4350, note: 'west end', name: 'Newhall Pass', ft: 1500, label: true },
+  { lat: 34.3250, lon: -118.4350, note: 'west end', name: 'Newhall Pass', ft: 1500, low: true, label: true },
   { lat: 34.3450, lon: -118.3450, note: 'Magic Mountain / western San Gabriels' },
   { lat: 34.3800, lon: -118.2160, note: 'Mill Creek Summit' },
   { lat: 34.3766, lon: -118.1776, note: 'Mount Gleason', name: 'Mount Gleason', ft: 6502, label: true },
@@ -75,16 +77,16 @@ const GUIDE: GuidePoint[] = [
   { lat: 34.3500, lon: -117.8230, note: 'Throop Peak', name: 'Throop Peak', ft: 9138, label: true },
   { lat: 34.3560, lon: -117.8050, note: 'Mount Burnham', name: 'Mount Burnham', ft: 8997, label: true },
   { lat: 34.3583, lon: -117.7625, note: 'Mount Baden-Powell', name: 'Mount Baden-Powell', ft: 9399, label: true },
-  { lat: 34.3739, lon: -117.7519, note: 'Vincent Gap', name: 'Vincent Gap', ft: 6565, label: true },
+  { lat: 34.3739, lon: -117.7519, note: 'Vincent Gap', name: 'Vincent Gap', ft: 6565, low: true, label: true },
   { lat: 34.3500, lon: -117.7100, note: 'Blue Ridge / Wright Mountain', name: 'Wright Mountain', ft: 8505, label: true },
   { lat: 34.3300, lon: -117.6750, note: 'Guffy / east Blue Ridge' },
   { lat: 34.3100, lon: -117.6400, note: 'Pine Mountain / Dawson Peak', name: 'Pine Mountain', ft: 9648, label: true },
   { lat: 34.2889, lon: -117.6464, note: 'Mount Baldy (San Antonio)', name: 'Mount Baldy', ft: 10064, label: true },
   { lat: 34.2720, lon: -117.6240, note: 'Telegraph Peak', name: 'Telegraph Peak', ft: 8985, label: true },
-  { lat: 34.2519, lon: -117.6086, note: 'Icehouse Saddle', name: 'Icehouse Saddle', ft: 7580, label: true },
+  { lat: 34.2519, lon: -117.6086, note: 'Icehouse Saddle', name: 'Icehouse Saddle', ft: 7580, low: true, label: true },
   { lat: 34.2244, lon: -117.5983, note: 'Cucamonga Peak', name: 'Cucamonga Peak', ft: 8859, label: true },
   { lat: 34.2080, lon: -117.5450, note: 'Lytle Creek divide' },
-  { lat: 34.1900, lon: -117.4850, note: 'east end', name: 'Lytle Creek', ft: 2700, label: true },
+  { lat: 34.1900, lon: -117.4850, note: 'east end', name: 'Lytle Creek', ft: 2700, low: true, label: true },
 ]
 
 const rad = (d: number) => (d * Math.PI) / 180
@@ -211,9 +213,96 @@ function writePeaks(): void {
     .filter((entry): entry is { point: GuidePoint & { name: string, ft: number }, x: number } =>
       Boolean(entry.point.label && entry.point.name && entry.point.ft))
 
-  const peaks = labelled.map((entry, index) => {
+  // Snap each label onto a feature the line actually draws.
+  //
+  // A guide point sits on the divide, but the profile at that distance is
+  // whatever the transect found highest anywhere across the crest, and the two
+  // do not have to coincide. Where they did not, a label pointed at a dip:
+  // "Wright Mountain 8,505 ft" with its tick planted in a saddle, which is
+  // worse than no label at all because it is confidently wrong.
+  //
+  // The drawn path is the honest source for this, and it is already committed,
+  // so the search needs nothing from the network.
+  const vertices = readPathVertices()
+  const extrema = findExtrema(vertices)
+  const heightOf = new Map(vertices.map(vertex => [vertex.x, vertex.y]))
+
+  const used = new Set<number>()
+  let floor = -1
+  const snapped = labelled.map((entry, index) => {
     const previous = labelled[index - 1]
     const next = labelled[index + 1]
+    // Never search past halfway to a neighbour.
+    //
+    // Reaching the whole way looks more generous and is a trap: each label
+    // then finds its neighbour's bump slightly closer than its own, takes it,
+    // and pushes the next one along. Everything still lands on a turning point
+    // and the whole range is off by one, which is worse than an honest gap. It
+    // put Wright Mountain at 8,505 ft on the highest point of the line and
+    // Baden-Powell below Burnham.
+    const reach = Math.min(
+      previous ? (entry.x - previous.x) / 2 : W,
+      next ? (next.x - entry.x) / 2 : W,
+    )
+    const wanted = entry.point.low ? extrema.minima : extrema.maxima
+    let best: number | null = null
+    for (const candidate of wanted) {
+      if (used.has(candidate) || candidate < floor) continue
+      if (Math.abs(candidate - entry.x) > reach) continue
+      if (best === null || Math.abs(candidate - entry.x) < Math.abs(best - entry.x)) best = candidate
+    }
+    if (best !== null) {
+      used.add(best)
+      floor = best
+    }
+    return { point: entry.point, x: best, guideX: entry.x }
+  })
+
+  // A feature the generalised line does not draw gets no label. Blue Ridge is
+  // the case that forced this: a long even climb with no turning point in it,
+  // so the only places to put "Wright Mountain 8,505 ft" were a slope or a
+  // dip, and both tell the reader something untrue. The neighbouring zones
+  // simply widen to cover the ground.
+  const missing = snapped.filter(entry => entry.x === null).map(entry => entry.point.name)
+  const kept = snapped.filter((entry): entry is typeof entry & { x: number } => entry.x !== null)
+  if (missing.length > 0)
+    process.stderr.write(`no feature drawn for: ${missing.join(', ')}\n`)
+
+  // The line and the elevations have to tell the same story.
+  //
+  // A label can sit on a genuine turning point and still be wrong: if it
+  // claims more feet than its neighbour it has to sit higher on the line too,
+  // and when it does not, one of the two is on the other's bump. That is the
+  // failure worth guarding against, because every label still looks right.
+  //
+  // The guide's coordinates are good enough to trace a ridge and not good
+  // enough to be survey marks, so a disagreement is settled by dropping the
+  // label whose snap travelled furthest from where the guide put it, then
+  // rechecking. Saying less is the price of not saying something false.
+  const agreed = [...kept]
+  for (;;) {
+    let conflict: { drop: number } | null = null
+    for (let i = 1; i < agreed.length && !conflict; i++) {
+      const a = agreed[i - 1]
+      const b = agreed[i]
+      const ya = heightOf.get(a.x)
+      const yb = heightOf.get(b.x)
+      if (ya === undefined || yb === undefined || a.point.ft === b.point.ft) continue
+      const aIsHigher = a.point.ft > b.point.ft
+      const disagrees = aIsHigher ? ya > yb : yb > ya
+      if (!disagrees) continue
+      const travelA = Math.abs(a.x - a.guideX)
+      const travelB = Math.abs(b.x - b.guideX)
+      conflict = { drop: travelA >= travelB ? i - 1 : i }
+    }
+    if (!conflict) break
+    process.stderr.write(`dropped ${agreed[conflict.drop].point.name}: the line does not agree it belongs where it landed\n`)
+    agreed.splice(conflict.drop, 1)
+  }
+
+  const peaks = agreed.map((entry, index) => {
+    const previous = agreed[index - 1]
+    const next = agreed[index + 1]
     const left = previous ? (previous.x + entry.x) / 2 : 0
     const right = next ? (entry.x + next.x) / 2 : W
     const width = right - left
@@ -233,7 +322,42 @@ function writePeaks(): void {
   })
 
   writeFileSync(PEAKS, `${JSON.stringify(peaks, null, 2)}\n`)
-  process.stderr.write(`wrote content/ridge-peaks.json - ${peaks.length} hover targets\n`)
+  process.stderr.write(`wrote content/ridge-peaks.json, ${peaks.length} labels, each on a turning point the line draws\n`)
+}
+
+/** The vertices of the ridge path currently committed in the partial. */
+function readPathVertices(): { x: number, y: number }[] {
+  const match = readFileSync(PARTIAL, 'utf-8').match(/<path d="([^"]+)"/)
+  if (!match) throw new Error(`no <path d="..."> in ${PARTIAL}`)
+  return match[1]
+    .split(/[ML]/)
+    .map(part => part.trim())
+    .filter(Boolean)
+    .map((part) => {
+      const [x, y] = part.split(/\s+/).map(Number)
+      return { x, y }
+    })
+}
+
+/**
+ * Turning points in the drawn line.
+ *
+ * y grows downward, so a summit is a local minimum in y. Endpoints count: the
+ * line starts and ends at the range's low ground, which is what the first and
+ * last labels name.
+ */
+function findExtrema(vertices: { x: number, y: number }[]): { maxima: number[], minima: number[] } {
+  const maxima: number[] = []
+  const minima: number[] = []
+  for (let i = 1; i < vertices.length - 1; i++) {
+    const { y } = vertices[i]
+    const before = vertices[i - 1].y
+    const after = vertices[i + 1].y
+    if (y <= before && y <= after && (y < before || y < after)) maxima.push(vertices[i].x)
+    if (y >= before && y >= after && (y > before || y > after)) minima.push(vertices[i].x)
+  }
+  minima.push(vertices[0].x, vertices[vertices.length - 1].x)
+  return { maxima, minima }
 }
 
 writePeaks()
@@ -272,11 +396,11 @@ const d = simplified.map((p, i) => `${i ? 'L' : 'M'}${p[0].toFixed(1)} ${p[1].to
 
 const summit = crestFt.indexOf(Math.max(...crestFt))
 console.error(`\n${simplified.length} points, ${d.length} bytes`)
-console.error(`profile ${Math.round(lo)}–${Math.round(hi)} ft over ${miMax.toFixed(0)} mi`)
+console.error(`profile ${Math.round(lo)}-${Math.round(hi)} ft over ${miMax.toFixed(0)} mi`)
 console.error(`summit ${Math.round(crestFt[summit])} ft at mi ${stationMi[summit].toFixed(1)} (Mount Baldy is 10,064 ft)`)
 
 if (process.argv.includes('--write')) {
-  if (!existsSync(PARTIAL)) throw new Error(`${PARTIAL} not found — run from the project root`)
+  if (!existsSync(PARTIAL)) throw new Error(`${PARTIAL} not found, run from the project root`)
   const before = readFileSync(PARTIAL, 'utf-8')
   const after = before.replace(/(<path d=")[^"]*(")/, `$1${d}$2`)
   if (after === before) throw new Error(`No <path d="…"> found in ${PARTIAL}`)

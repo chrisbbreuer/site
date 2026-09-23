@@ -36,7 +36,7 @@ export default {
     },
 
     // SingleStore speaks the MySQL wire protocol on port 3306. Managed
-    // SingleStore (Helios) endpoints require TLS — set DB_SSL=true.
+    // SingleStore (Helios) endpoints require TLS, set DB_SSL=true.
     singlestore: {
       name: env.DB_DATABASE || 'stacks',
       host: env.DB_HOST || '127.0.0.1',

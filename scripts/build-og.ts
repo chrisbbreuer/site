@@ -148,7 +148,7 @@ function html(c: Card): string {
     display: flex; align-items: center; justify-content: space-between;
     font-size: 21px; color: #5f5f5f; letter-spacing: 0.02em;
   }
-  /* The hairline between the two footer labels is an elevation profile — the
+  /* The hairline between the two footer labels is an elevation profile, the
      same ridge motif the site uses above its footer, at card scale. */
   .foot .rule {
     flex: 1; margin: 0 24px; height: 22px;

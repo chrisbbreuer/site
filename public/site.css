@@ -5,7 +5,7 @@
  * which follows prefers-color-scheme until the visitor picks a mode).
  */
 
-/* Lilex (OFL, https://github.com/mishamyrt/Lilex) — the site's one typeface.
+/* Lilex (OFL, https://github.com/mishamyrt/Lilex), the site's one typeface.
  * Variable weight 100-700, self-hosted, swap so text never blocks on it. */
 @font-face {
   font-family: 'Lilex';
@@ -389,7 +389,7 @@ main { padding: 3.5rem 0 2rem; }
 /* ── Footer ─────────────────────────────────────────────────────────────── */
 /* The rule above the footer is a ridgeline (see partials/footer.stx): same
  * hairline weight and colour as every other divider, it just isn't flat. The
- * height is what makes a real elevation profile legible — the San Gabriels run
+ * height is what makes a real elevation profile legible, the San Gabriels run
  * 2,100 to 9,700 ft, and under ~2.5rem that range flattens into a wobble. */
 .ridge-wrap {
   position: relative;
@@ -536,7 +536,7 @@ main { padding: 3.5rem 0 2rem; }
 /* One masonry wraps around the bio and portrait. The bio sits top-left over
  * three columns, the portrait top-right over two; the 46 photos flow through a
  * single 5-column masonry whose left three columns start below the bio and
- * whose right two start below the portrait — so the right side runs unbroken
+ * whose right two start below the portrait, so the right side runs unbroken
  * to the bottom and the left three fill in beside it, one seamless grid. The
  * geometry (column widths, x/y of every tile, container height) is computed in
  * /assets/scripts/gallery.js; the rules below are just the paint + a graceful

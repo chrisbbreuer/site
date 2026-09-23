@@ -8,12 +8,12 @@ const activeNav = 'about'
 const pagePath = '/about'
 
 // Photos: built by `bun scripts/build-gallery.ts` from my photo dump. All of
-// them flow into one masonry that wraps around the bio and portrait — the
+// them flow into one masonry that wraps around the bio and portrait, the
 // layout is computed by /assets/scripts/gallery.js (aspect ratios are known
 // up front, so there's no reflow on load).
 const gallery = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'content/gallery.json'), 'utf-8'))
 
-// The apps, not the repos — /projects already lists everything public from the
+// The apps, not the repos, /projects already lists everything public from the
 // GitHub API. HQ.training and Wildloop are here because they are where the two
 // halves of the bio meet: athlete software written by someone who needs it.
 const building = [
@@ -29,6 +29,7 @@ const building = [
 
 const work = [
   { name: 'Stacks.js, Inc.', role: 'Founder', period: '2024 to present' },
+  { name: 'Bisnow', role: 'Senior Software Engineer', period: '2023 to 2024' },
   { name: 'Bixolon', role: 'Consultant', period: '2020 to 2024' },
   { name: 'University of Oregon', role: 'Consultant', period: '2020 to 2021' },
   { name: 'Girlgaze', role: 'Consultant', period: '2019 to 2020' },
