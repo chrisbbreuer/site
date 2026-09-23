@@ -189,22 +189,29 @@ function stripEmoji(text: string): string {
  * Which mark replaces it depends on the job the dash was doing, because one
  * substitution does not fit all three:
  *
- *   "libraries, faster"            joins two words      -> comma
- *   "repairs CI, and keeps ..."  joins two clauses    -> comma (a colon
- *                                                        cannot precede "and")
- *   "error tracking, PHP SDK"    introduces the rest  -> colon
+ *   "libraries{em}faster"             joins two words      -> comma
+ *   "repairs CI {em} and keeps ..."   joins two clauses    -> comma (a colon
+ *                                                            cannot precede "and")
+ *   "error tracking {em} PHP SDK"     introduces the rest  -> colon
  *
- * The last is the common shape for a repo description, and a comma there would
- * read as the first item of a list: "SDKs, core, Vue, Nuxt" is four things.
+ * ({em} stands for an em or en dash.) The last is the common shape for a repo
+ * description, and a comma there would read as the first item of a list:
+ * "SDKs, core, Vue, Nuxt" is four things.
+ *
+ * Only em (U+2014) and en (U+2013) dashes. A plain hyphen joins a compound
+ * ("high-performance", "type-safe") and must survive. The dashes are written
+ * as escapes on purpose: a sweep that replaced literal em dashes across the
+ * repo once turned this class into a plain hyphen, and every hyphenated word
+ * on /projects came out as "high, performance".
  */
 function normalizeDashes(text: string): string {
   return text
     // Spaced, followed by a conjunction: the dash was standing in for a comma.
-    .replace(/\s+[--]\s+(?=(?:and|or|but|so|yet|nor)\b)/gi, ', ')
+    .replace(/\s+[\u2014\u2013]\s+(?=(?:and|or|but|so|yet|nor)\b)/gi, ', ')
     // Spaced otherwise: the dash was introducing what follows.
-    .replace(/\s+[--]\s+/g, ': ')
+    .replace(/\s+[\u2014\u2013]\s+/g, ': ')
     // Unspaced: it was gluing two words together.
-    .replace(/\s*[--]\s*/g, ', ')
+    .replace(/\s*[\u2014\u2013]\s*/g, ', ')
 }
 
 function gh(path: string): any {

@@ -20,6 +20,11 @@ if (slug && fs.existsSync(file)) {
     html,
     stats: readingStats(raw).label,
   }
+  // Written out on the post itself ("September 22, 2026"); the lists keep
+  // the compact ISO form. Noon UTC so no timezone can shift the day.
+  post.longDate = post.date
+    ? new Date(`${post.date}T12:00:00Z`).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })
+    : ''
 }
 
 const title = post ? `${post.title} - Chris Breuer` : 'Not found - Chris Breuer'
@@ -40,7 +45,7 @@ const ogArticle = post && post.date ? { published: post.date } : null
         <a class="post-back" href="/blog">← Writing</a>
         <h1 class="page-title">{{ post.title }}</h1>
         @if (post.date)
-          <p class="post-meta"><time datetime="{{ post.date }}">{{ post.date }}</time> · {{ post.stats }}</p>
+          <p class="post-meta"><time datetime="{{ post.date }}">{{ post.longDate }}</time> · {{ post.stats }}</p>
         @endif
       </header>
       <div class="prose post-body">
