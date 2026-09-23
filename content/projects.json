@@ -4,7 +4,7 @@
     {
       "name": "stacks",
       "org": "stacksjs",
-      "description": "Modern, performant, optimized for DX/AX. Develop powerful apps, clouds & framework, agnostic libraries—faster.",
+      "description": "Modern, performant, optimized for DX/AX. Develop powerful apps, clouds & framework-agnostic libraries, faster.",
       "stars": 628,
       "url": "https://github.com/stacksjs/stacks",
       "tags": [
@@ -16,9 +16,9 @@
         "Library",
         "Mobile"
       ],
-      "downloads": 3723026,
+      "downloads": 3596620,
       "pkg": "@stacksjs/ai",
-      "pkgCount": 86
+      "pkgCount": 83
     },
     {
       "name": "dtsx",
@@ -65,7 +65,7 @@
     {
       "name": "tlsx",
       "org": "stacksjs",
-      "description": "A modern & lightweight TLS library & CLI. Built for automation—HTTPS by default. Similar to mkcert.",
+      "description": "A modern & lightweight TLS library & CLI. Built for automation, HTTPS by default. Similar to mkcert.",
       "stars": 47,
       "url": "https://github.com/stacksjs/tlsx",
       "tags": [
@@ -79,13 +79,15 @@
     {
       "name": "ts-collect",
       "org": "stacksjs",
-      "description": "Lightweight & powerful Laravel, like Collections written for TypeScript.",
+      "description": "Lightweight & powerful Laravel-like Collections written for TypeScript.",
       "stars": 36,
       "url": "https://github.com/stacksjs/ts-collect",
       "tags": [
         "TypeScript",
         "Laravel"
-      ]
+      ],
+      "downloads": 35405,
+      "pkg": "ts-collect"
     },
     {
       "name": "vite-plugin-local",
@@ -130,7 +132,7 @@
     {
       "name": "localtunnels",
       "org": "stacksjs",
-      "description": "A simple and smart tunneling alternative. Without or with self, hosting.",
+      "description": "A simple and smart tunneling alternative. Without or with self-hosting.",
       "stars": 22,
       "url": "https://github.com/stacksjs/localtunnels",
       "tags": [
@@ -143,7 +145,7 @@
     {
       "name": "ts-rate-limiter",
       "org": "stacksjs",
-      "description": "A high, performance, flexible rate limiting library for TypeScript.",
+      "description": "A high-performance, flexible rate limiting library for TypeScript.",
       "stars": 21,
       "url": "https://github.com/stacksjs/ts-rate-limiter",
       "tags": [
@@ -167,14 +169,14 @@
         "CSS",
         "Templating"
       ],
-      "downloads": 1030508,
+      "downloads": 1262051,
       "pkg": "create-stx",
-      "pkgCount": 8
+      "pkgCount": 9
     },
     {
       "name": "bun-git-hooks",
       "org": "stacksjs",
-      "description": "Think of `simple, git, hooks` but optimized for all, sized Bun projects.",
+      "description": "Think of `simple-git-hooks` but optimized for all-sized Bun projects.",
       "stars": 18,
       "url": "https://github.com/stacksjs/bun-git-hooks",
       "tags": [
@@ -284,7 +286,7 @@
     {
       "name": "table",
       "org": "stacksjs",
-      "description": "The modern way to work with tables. Blazing fast facet, filtering, sorting, and searching.",
+      "description": "The modern way to work with tables. Blazing fast facet-filtering, sorting, and searching.",
       "stars": 13,
       "url": "https://github.com/stacksjs/table",
       "tags": [
@@ -334,7 +336,7 @@
     {
       "name": "ts-cache",
       "org": "stacksjs",
-      "description": "A fast, type, safe, and feature, rich caching library for modern applications.",
+      "description": "A fast, type-safe, and feature-rich caching library for modern applications.",
       "stars": 11,
       "url": "https://github.com/stacksjs/ts-cache",
       "tags": [
@@ -385,21 +387,19 @@
     {
       "name": "buddy",
       "org": "stacksjs",
-      "description": "AI code review and dependency updates in one teammate. Reviews PRs and local changes, answers @buddy comments, gates merges, repairs CI — and keeps deps current. Runs on your CI, with your keys.",
+      "description": "AI code review and dependency updates in one teammate. Reviews PRs and local changes, answers @buddy comments, gates merges, repairs CI, and keeps deps current. Runs on your CI, with your keys.",
       "stars": 10,
       "url": "https://github.com/stacksjs/buddy",
       "tags": [
         "TypeScript",
         "PHP",
         "Zig"
-      ],
-      "downloads": 454,
-      "pkg": "@buddysh/buddy"
+      ]
     },
     {
       "name": "ts-dns",
       "org": "stacksjs",
-      "description": "A command, line & library DNS client. Like dig & dog, but for TypeScript.",
+      "description": "A command-line & library DNS client. Like dig & dog, but for TypeScript.",
       "stars": 10,
       "url": "https://github.com/stacksjs/ts-dns",
       "tags": [
@@ -439,7 +439,7 @@
     {
       "name": "date-picker",
       "org": "stacksjs",
-      "description": "The modern, beautifully, designed open source date picker. Airbnb, style theme & more.",
+      "description": "The modern, beautifully-designed open source date picker. Airbnb-style theme & more.",
       "stars": 9,
       "url": "https://github.com/stacksjs/date-picker",
       "tags": [
@@ -450,7 +450,7 @@
     {
       "name": "ts-datetime",
       "org": "stacksjs",
-      "description": "Modern datetime tooling. A Carbon, like API for TypeScript.",
+      "description": "Modern datetime tooling. A Carbon-like API for TypeScript.",
       "stars": 9,
       "url": "https://github.com/stacksjs/ts-datetime",
       "tags": [
@@ -478,7 +478,7 @@
     {
       "name": "vite-plugin-layouts",
       "org": "stacksjs",
-      "description": "Router, based layouts for your application.",
+      "description": "Router-based layouts for your application.",
       "stars": 9,
       "url": "https://github.com/stacksjs/vite-plugin-layouts",
       "tags": [
@@ -527,9 +527,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 149,
+      "downloads": 137,
       "pkg": "ts-aes",
-      "pkgCount": 12
+      "pkgCount": 11
     },
     {
       "name": "ts-gif",
@@ -546,7 +546,7 @@
     {
       "name": "ts-http",
       "org": "stacksjs",
-      "description": "A modern command, line & library HTTP client, \"for the API era.\" Like httpie, written in & for TypeScript.",
+      "description": "A modern command-line & library HTTP client, \"for the API era.\" Like httpie, written in & for TypeScript.",
       "stars": 7,
       "url": "https://github.com/stacksjs/ts-http",
       "tags": [
@@ -576,7 +576,7 @@
     {
       "name": "besting",
       "org": "stacksjs",
-      "description": "A modern & extremely performant testing framework. Browser, CLI, API testing, ready.",
+      "description": "A modern & extremely performant testing framework. Browser, CLI, API testing-ready.",
       "stars": 6,
       "url": "https://github.com/stacksjs/besting",
       "tags": [
@@ -592,7 +592,7 @@
     {
       "name": "hush",
       "org": "stacksjs",
-      "description": "Hush.app ensures your notifications are suppressed during your screen, shared meetings.",
+      "description": "Hush.app ensures your notifications are suppressed during your screen-shared meetings.",
       "stars": 6,
       "url": "https://github.com/stacksjs/hush",
       "tags": [
@@ -617,7 +617,7 @@
     {
       "name": "ts-aax",
       "org": "stacksjs",
-      "description": "A library to work with Audible's .aax files. Cross, platform app coming soon.",
+      "description": "A library to work with Audible's .aax files. Cross-platform app coming soon.",
       "stars": 6,
       "url": "https://github.com/stacksjs/ts-aax",
       "tags": [
@@ -679,7 +679,7 @@
     {
       "name": "fonts",
       "org": "stacksjs",
-      "description": "A hand, picked collection of beautiful fonts, distributed on npm.",
+      "description": "A hand-picked collection of beautiful fonts, distributed on npm.",
       "stars": 5,
       "url": "https://github.com/stacksjs/fonts",
       "tags": [
@@ -690,7 +690,7 @@
     {
       "name": "ts-medium-editor",
       "org": "stacksjs",
-      "description": "A modern, minimal & performant Medium, like rich text editor.",
+      "description": "A modern, minimal & performant Medium-like rich text editor.",
       "stars": 5,
       "url": "https://github.com/stacksjs/ts-medium-editor",
       "tags": [
@@ -702,7 +702,7 @@
     {
       "name": "vite-plugin-tauri",
       "org": "stacksjs",
-      "description": "Easily build cross, platform apps using Tauri & Vite.",
+      "description": "Easily build cross-platform apps using Tauri & Vite.",
       "stars": 5,
       "url": "https://github.com/stacksjs/vite-plugin-tauri",
       "tags": [
@@ -754,7 +754,7 @@
     {
       "name": "ts-starter-monorepo",
       "org": "stacksjs",
-      "description": "Same as our `ts, starter` but optimized for workspaces / monorepos.",
+      "description": "Same as our `ts-starter` but optimized for workspaces / monorepos.",
       "stars": 4,
       "url": "https://github.com/stacksjs/ts-starter-monorepo",
       "tags": [
@@ -903,9 +903,7 @@
       "tags": [
         "TypeScript",
         "Library"
-      ],
-      "downloads": 16,
-      "pkg": "ts-ndarray"
+      ]
     },
     {
       "name": "ts-png",
@@ -923,7 +921,7 @@
     {
       "name": "ts-tokens",
       "org": "stacksjs",
-      "description": "Fungible or non, fungible. Choose your network.",
+      "description": "Fungible or non-fungible. Choose your network.",
       "stars": 3,
       "url": "https://github.com/stacksjs/ts-tokens",
       "tags": [
@@ -989,7 +987,7 @@
     {
       "name": "very-good-adblock",
       "org": "chrisbbreuer",
-      "description": "Removes ads, pop, ups, and YouTube and Twitch interruptions at the source. Fast, private, no telemetry.",
+      "description": "Removes ads, pop-ups, and YouTube and Twitch interruptions at the source. Fast, private, no telemetry.",
       "stars": 3,
       "url": "https://github.com/chrisbbreuer/very-good-adblock",
       "tags": [
@@ -1030,7 +1028,7 @@
     {
       "name": "pact-act",
       "org": "chrisbbreuer",
-      "description": "This repository contains the text of the two bills (S.3373 & H.R.3967). Review the non, difference here.",
+      "description": "This repository contains the text of the two bills (S.3373 & H.R.3967). Review the non-difference here.",
       "stars": 1,
       "url": "https://github.com/chrisbbreuer/pact-act",
       "tags": []
@@ -1059,7 +1057,7 @@
     {
       "name": "zig-config",
       "org": "zig-utils",
-      "description": "A zero, dependency, smart configuration loader for Zig.",
+      "description": "A zero-dependency, smart configuration loader for Zig.",
       "stars": 7,
       "url": "https://github.com/zig-utils/zig-config",
       "tags": [
@@ -1070,7 +1068,7 @@
     {
       "name": "zig-test-framework",
       "org": "zig-utils",
-      "description": "A modern, feature, rich testing framework for Zig inspired by Jest, Vitest, and Bun's test runner.",
+      "description": "A modern, feature-rich testing framework for Zig inspired by Jest, Vitest, and Bun's test runner.",
       "stars": 7,
       "url": "https://github.com/zig-utils/zig-test-framework",
       "tags": [
@@ -1081,7 +1079,7 @@
     {
       "name": "zig-cli",
       "org": "zig-utils",
-      "description": "A modern, feature, rich CLI library for Zig.",
+      "description": "A modern, feature-rich CLI library for Zig.",
       "stars": 6,
       "url": "https://github.com/zig-utils/zig-cli",
       "tags": [
@@ -1112,7 +1110,7 @@
     {
       "name": "zig-error-handling",
       "org": "zig-utils",
-      "description": "A type, safe error handling library for Zig inspired by Rust's Result<T, E> and TypeScript's neverthrow.",
+      "description": "A type-safe error handling library for Zig inspired by Rust's Result<T, E> and TypeScript's neverthrow.",
       "stars": 3,
       "url": "https://github.com/zig-utils/zig-error-handling",
       "tags": [
@@ -1123,7 +1121,7 @@
     {
       "name": "zig-starter",
       "org": "zig-utils",
-      "description": "A production, ready Zig starter template for building libraries and CLI applications.",
+      "description": "A production-ready Zig starter template for building libraries and CLI applications.",
       "stars": 3,
       "url": "https://github.com/zig-utils/zig-starter",
       "tags": [
@@ -1134,7 +1132,7 @@
     {
       "name": "zig-css",
       "org": "zig-utils",
-      "description": "A high, performance Tailwind CSS & UnoCSS alternative built with Zig.",
+      "description": "A high-performance Tailwind CSS & UnoCSS alternative built with Zig.",
       "stars": 2,
       "url": "https://github.com/zig-utils/zig-css",
       "tags": [
@@ -1146,7 +1144,7 @@
     {
       "name": "zig-faker",
       "org": "zig-utils",
-      "description": "A high, performance, lightweight fake data generator. Generate realistic fake data for testing, prototyping, and development.",
+      "description": "A high-performance, lightweight fake data generator. Generate realistic fake data for testing, prototyping, and development.",
       "stars": 2,
       "url": "https://github.com/zig-utils/zig-faker",
       "tags": [
@@ -1157,7 +1155,7 @@
     {
       "name": "zig-waf",
       "org": "zig-utils",
-      "description": "A high, performance, embeddable web application firewall and fleet platform written in Zig.",
+      "description": "A high-performance, embeddable web application firewall and fleet platform written in Zig.",
       "stars": 2,
       "url": "https://github.com/zig-utils/zig-waf",
       "tags": [
@@ -1189,7 +1187,7 @@
     {
       "name": "zig-gc",
       "org": "zig-utils",
-      "description": "A precise, non, moving, tri, color mark, sweep garbage collector in pure Zig, generic over an embedder binding.",
+      "description": "A precise, non-moving, tri-color mark-sweep garbage collector in pure Zig, generic over an embedder binding.",
       "stars": 1,
       "url": "https://github.com/zig-utils/zig-gc",
       "tags": [
@@ -1199,7 +1197,7 @@
     {
       "name": "zig-injection",
       "org": "zig-utils",
-      "description": "A high, performance, allocation, conscious libinjection, compatible SQLi and XSS detection library for Zig",
+      "description": "A high-performance, allocation-conscious libinjection-compatible SQLi and XSS detection library for Zig",
       "stars": 1,
       "url": "https://github.com/zig-utils/zig-injection",
       "tags": [
@@ -1209,7 +1207,7 @@
     {
       "name": "zig-search-engine",
       "org": "zig-utils",
-      "description": "Search, engine integrations for Zig services.",
+      "description": "Search-engine integrations for Zig services.",
       "stars": 1,
       "url": "https://github.com/zig-utils/zig-search-engine",
       "tags": [
@@ -1219,7 +1217,7 @@
     {
       "name": "zig-xml",
       "org": "zig-utils",
-      "description": "A small, lenient, allocation, light XML/HTML tokenizer for Zig with HTML5 entity decoding.",
+      "description": "A small, lenient, allocation-light XML/HTML tokenizer for Zig with HTML5 entity decoding.",
       "stars": 1,
       "url": "https://github.com/zig-utils/zig-xml",
       "tags": [
@@ -1274,7 +1272,7 @@
     {
       "name": "web-components-starter",
       "org": "ow3org",
-      "description": "Web Components Starter template to help kick, start development of a framework, agnostic component library.",
+      "description": "Web Components Starter template to help kick-start development of a framework-agnostic component library.",
       "stars": 19,
       "url": "https://github.com/ow3org/web-components-starter",
       "tags": [
@@ -1298,7 +1296,7 @@
     {
       "name": "deep-unref-vue",
       "org": "ow3org",
-      "description": "Easily remove all refs from an object using the `deepUnref`, composable.",
+      "description": "Easily remove all refs from an object using the `deepUnref`-composable.",
       "stars": 4,
       "url": "https://github.com/ow3org/deep-unref-vue",
       "tags": [
@@ -1375,7 +1373,7 @@
     {
       "name": "mail",
       "org": "mail-os",
-      "description": "A performant & secure SMTP server implementation, designed for self, hosting email infrastructure.",
+      "description": "A performant & secure SMTP server implementation, designed for self-hosting email infrastructure.",
       "stars": 10,
       "url": "https://github.com/mail-os/mail",
       "tags": [
@@ -1389,7 +1387,7 @@
     {
       "name": "bughq-laravel",
       "org": "bughq",
-      "description": "bughq error tracking — Laravel integration",
+      "description": "bughq error tracking: Laravel integration",
       "stars": 2,
       "url": "https://github.com/bughq/bughq-laravel",
       "tags": [
@@ -1399,20 +1397,20 @@
     {
       "name": "sdk",
       "org": "bughq",
-      "description": "bughq error, tracking SDKs — core, Vue, Nuxt, Stacks/stx",
+      "description": "bughq error-tracking SDKs: core, Vue, Nuxt, Stacks/stx",
       "stars": 2,
       "url": "https://github.com/bughq/sdk",
       "tags": [
         "TypeScript"
       ],
-      "downloads": 5725,
+      "downloads": 6725,
       "pkg": "@bughq/sdk",
-      "pkgCount": 4
+      "pkgCount": 5
     },
     {
       "name": "bughq-php",
       "org": "bughq",
-      "description": "bughq error tracking — PHP SDK",
+      "description": "bughq error tracking: PHP SDK",
       "stars": 1,
       "url": "https://github.com/bughq/bughq-php",
       "tags": [
@@ -1449,7 +1447,7 @@
     {
       "name": "loghq-laravel",
       "org": "loghqorg",
-      "description": "loghq log streaming: Laravel integration",
+      "description": "loghq log streaming - Laravel integration",
       "stars": 0,
       "url": "https://github.com/loghqorg/loghq-laravel",
       "tags": [
@@ -1459,7 +1457,7 @@
     {
       "name": "loghq-php",
       "org": "loghqorg",
-      "description": "loghq log streaming: PHP SDK",
+      "description": "loghq log streaming - PHP SDK",
       "stars": 0,
       "url": "https://github.com/loghqorg/loghq-php",
       "tags": [
@@ -1479,7 +1477,7 @@
     {
       "name": "app",
       "org": "ReviewOS",
-      "description": "A native desktop client for ReviewOS — review, stage and commit without leaving the machine. Built with stx and craft.",
+      "description": "A native desktop client for ReviewOS: review, stage and commit without leaving the machine. Built with stx and craft.",
       "stars": 1,
       "url": "https://github.com/ReviewOS/app",
       "tags": [
