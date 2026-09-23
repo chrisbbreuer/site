@@ -308,6 +308,9 @@ main { padding: 3.5rem 0 2rem; }
   font-size: 0.98rem;
   line-height: 1.65;
 }
+/* A note closing a list (/goals) needs room to read as its own paragraph,
+   not as a wrapped line of the last row. */
+.entry-list + .empty-note { margin-top: 2rem; }
 
 /* ── Pull quote ─────────────────────────────────────────────────────────── */
 /* Same hairline vocabulary as every other divider on the site: the quote is
