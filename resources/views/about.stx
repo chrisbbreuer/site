@@ -17,7 +17,7 @@ const gallery = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'content/gal
 // GitHub API. HQ.training and Wildloop are here because they are where the two
 // halves of the bio meet: athlete software written by someone who needs it.
 const building = [
-  { name: 'Stacks', url: 'https://stacksjs.com', text: 'A TypeScript framework — and the open-source ecosystem that grew around it.' },
+  { name: 'Stacks', url: 'https://stacksjs.com', text: 'A TypeScript framework, and the open-source ecosystem that grew around it.' },
   { name: 'HQ.training', url: 'https://hq.training', text: 'An operating system for gyms, coaches and athletes.' },
   { name: 'Wildloop', url: 'https://wildloop.org', text: 'Trails and GPS recording. Close a loop and you claim the ground inside it.' },
   // OpenFarm is hidden for now, to match /apps where it is commented out the
@@ -58,14 +58,14 @@ const elsewhere = [
         <p>
           The only thing I loved more than computers as a kid was sports and the
           outdoors. That took me to university in Hawaii, where I played NCAA soccer.
-          Almost 20 years later, not much has changed &mdash; it just got steeper.
+          Almost 20 years later, not much has changed. It just got steeper.
           These days it is skyrunning: long days in the mountains, on trails that go
           up far more than they go along, with my dog setting the pace. It is still
           the one thing that reliably peels me away from my desk.
         </p>
         <p>
           The next big one is the Pacific Crest Trail, north, at a 60-mile-a-day
-          average &mdash; 2,650 miles of finding out what holds up at that pace and
+          average: 2,650 miles of finding out what holds up at that pace and
           what doesn't. After that I stop training for nothing in particular and start
           racing: lining up at actual events, against actual people, on the kind of
           terrain that makes a flat marathon look like a warm-up.
@@ -81,8 +81,8 @@ const elsewhere = [
           The thing that has never changed is where the work comes from. Every
           project I have started began as something I, my team, or the community
           around us actually needed, where the paid tools were the only ones
-          doing it well and nothing open source came close enough to compete
-          &mdash; Stacks because I kept rewriting the same infrastructure
+          doing it well and nothing open source came close enough to compete.
+          Stacks because I kept rewriting the same infrastructure
           underneath every app, the athlete software because I wanted to use it
           myself. It is a narrow filter for deciding what to build, and it is
           the reason any of it gets finished.
@@ -90,7 +90,7 @@ const elsewhere = [
         <p>
           The two halves feed each other more than you would think. A long day in the
           mountains is mostly about pacing, small decisions compounding, and being
-          honest with yourself about what is actually working &mdash; which is also a
+          honest with yourself about what is actually working, which is also a
           fair description of shipping software.
         </p>
         <p>

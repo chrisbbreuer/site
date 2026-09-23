@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-09-22",
+  "generatedAt": "2026-09-23",
   "repos": [
     {
       "name": "stacks",
       "org": "stacksjs",
-      "description": "Modern, performant, optimized for DX/AX. Develop powerful apps, clouds & framework-agnostic libraries—faster.",
+      "description": "Modern, performant, optimized for DX/AX. Develop powerful apps, clouds & framework-agnostic libraries, faster.",
       "stars": 628,
       "url": "https://github.com/stacksjs/stacks",
       "tags": [
@@ -16,7 +16,7 @@
         "Library",
         "Mobile"
       ],
-      "downloads": 3656166,
+      "downloads": 3687414,
       "pkg": "@stacksjs/ai",
       "pkgCount": 85
     },
@@ -43,9 +43,7 @@
         "TypeScript",
         "Bun",
         "Library"
-      ],
-      "downloads": 29756,
-      "pkg": "ts-spreadsheets"
+      ]
     },
     {
       "name": "bun-queue",
@@ -65,7 +63,7 @@
     {
       "name": "tlsx",
       "org": "stacksjs",
-      "description": "A modern & lightweight TLS library & CLI. Built for automation—HTTPS by default. Similar to mkcert.",
+      "description": "A modern & lightweight TLS library & CLI. Built for automation, HTTPS by default. Similar to mkcert.",
       "stars": 47,
       "url": "https://github.com/stacksjs/tlsx",
       "tags": [
@@ -169,9 +167,9 @@
         "CSS",
         "Templating"
       ],
-      "downloads": 1262051,
+      "downloads": 1024553,
       "pkg": "create-stx",
-      "pkgCount": 9
+      "pkgCount": 8
     },
     {
       "name": "bun-git-hooks",
@@ -387,7 +385,7 @@
     {
       "name": "buddy",
       "org": "stacksjs",
-      "description": "AI code review and dependency updates in one teammate. Reviews PRs and local changes, answers @buddy comments, gates merges, repairs CI — and keeps deps current. Runs on your CI, with your keys.",
+      "description": "AI code review and dependency updates in one teammate. Reviews PRs and local changes, answers @buddy comments, gates merges, repairs CI, and keeps deps current. Runs on your CI, with your keys.",
       "stars": 10,
       "url": "https://github.com/stacksjs/buddy",
       "tags": [
@@ -458,7 +456,9 @@
       "tags": [
         "TypeScript",
         "Library"
-      ]
+      ],
+      "downloads": 14,
+      "pkg": "@stacksjs/ts-datetime"
     },
     {
       "name": "ts-maps",
@@ -554,8 +554,9 @@
         "CLI",
         "Library"
       ],
-      "downloads": 11,
-      "pkg": "@stacksjs/httx-dashboard"
+      "downloads": 26705,
+      "pkg": "@stacksjs/httx",
+      "pkgCount": 2
     },
     {
       "name": "ts-slug",
@@ -633,7 +634,9 @@
       "tags": [
         "TypeScript",
         "Library"
-      ]
+      ],
+      "downloads": 1398,
+      "pkg": "ts-punycode"
     },
     {
       "name": "ts-validation",
@@ -732,9 +735,7 @@
       "tags": [
         "TypeScript",
         "Library"
-      ],
-      "downloads": 7613,
-      "pkg": "ts-countries"
+      ]
     },
     {
       "name": "ts-numbers",
@@ -767,7 +768,9 @@
       "tags": [
         "TypeScript",
         "Library"
-      ]
+      ],
+      "downloads": 18,
+      "pkg": "ts-vat"
     },
     {
       "name": "ts-videos",
@@ -1384,7 +1387,7 @@
     {
       "name": "bughq-laravel",
       "org": "bughq",
-      "description": "bughq error tracking — Laravel integration",
+      "description": "bughq error tracking: Laravel integration",
       "stars": 2,
       "url": "https://github.com/bughq/bughq-laravel",
       "tags": [
@@ -1394,7 +1397,7 @@
     {
       "name": "sdk",
       "org": "bughq",
-      "description": "bughq error-tracking SDKs — core, Vue, Nuxt, Stacks/stx",
+      "description": "bughq error-tracking SDKs: core, Vue, Nuxt, Stacks/stx",
       "stars": 2,
       "url": "https://github.com/bughq/sdk",
       "tags": [
@@ -1407,7 +1410,7 @@
     {
       "name": "bughq-php",
       "org": "bughq",
-      "description": "bughq error tracking — PHP SDK",
+      "description": "bughq error tracking: PHP SDK",
       "stars": 1,
       "url": "https://github.com/bughq/bughq-php",
       "tags": [
@@ -1474,7 +1477,7 @@
     {
       "name": "app",
       "org": "ReviewOS",
-      "description": "A native desktop client for ReviewOS — review, stage and commit without leaving the machine. Built with stx and craft.",
+      "description": "A native desktop client for ReviewOS: review, stage and commit without leaving the machine. Built with stx and craft.",
       "stars": 1,
       "url": "https://github.com/ReviewOS/app",
       "tags": [

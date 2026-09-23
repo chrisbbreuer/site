@@ -98,7 +98,7 @@ const totalLabel = compact(monthlyTotal)
   <p class="page-lead">
     {{ repoCount }} public repos across {{ orgCount }} orgs, most of them open source.
     {{ publishedCount }} of them ship {{ packageCount }} packages to npm, {{ totalLabel }}
-    downloads a month between them. If something piques your interest, read the code and send a patch &mdash; my
+    downloads a month between them. If something piques your interest, read the code and send a patch. My
     <a href="https://github.com/chrisbbreuer/dotfiles">dotfiles</a> are public too.
     Stars and downloads resync daily; last on {{ generatedAt }}.
   </p>

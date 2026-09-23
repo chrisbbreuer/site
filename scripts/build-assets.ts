@@ -97,5 +97,5 @@ if (existsSync(scriptsDir)) {
 
 const out = join(root, 'content/assets.json')
 writeFileSync(out, `${JSON.stringify(manifest, null, 2)}\n`)
-process.stdout.write(`wrote content/assets.json — ${Object.keys(manifest).length} assets\n`)
+process.stdout.write(`wrote content/assets.json, ${Object.keys(manifest).length} assets\n`)
 for (const [from, to] of Object.entries(manifest)) process.stdout.write(`  ${from}  ->  ${to}\n`)

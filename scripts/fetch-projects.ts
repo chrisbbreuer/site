@@ -178,6 +178,35 @@ function stripEmoji(text: string): string {
     .trim()
 }
 
+/**
+ * Normalise dashes a repo description arrived with.
+ *
+ * These are written on GitHub and rendered here, so they are site copy the
+ * moment they land on /projects, and the site sets its own dashes aside. Done
+ * at fetch time rather than in the JSON because the JSON is rewritten from the
+ * API every day, and an edit to it would last exactly until the next sync.
+ *
+ * Which mark replaces it depends on the job the dash was doing, because one
+ * substitution does not fit all three:
+ *
+ *   "libraries—faster"            joins two words      -> comma
+ *   "repairs CI — and keeps ..."  joins two clauses    -> comma (a colon
+ *                                                        cannot precede "and")
+ *   "error tracking — PHP SDK"    introduces the rest  -> colon
+ *
+ * The last is the common shape for a repo description, and a comma there would
+ * read as the first item of a list: "SDKs, core, Vue, Nuxt" is four things.
+ */
+function normalizeDashes(text: string): string {
+  return text
+    // Spaced, followed by a conjunction: the dash was standing in for a comma.
+    .replace(/\s+[—–]\s+(?=(?:and|or|but|so|yet|nor)\b)/gi, ', ')
+    // Spaced otherwise: the dash was introducing what follows.
+    .replace(/\s+[—–]\s+/g, ': ')
+    // Unspaced: it was gluing two words together.
+    .replace(/\s*[—–]\s*/g, ', ')
+}
+
 function gh(path: string): any {
   try {
     return JSON.parse(execSync(`gh api "${path}" 2>/dev/null`, { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 }))
@@ -215,7 +244,7 @@ for (const owner of owners) {
     repos.push({
       name: r.name,
       org: owner,
-      description: stripEmoji(r.description),
+      description: normalizeDashes(stripEmoji(r.description)),
       stars: r.stargazers_count,
       url: r.html_url,
       tags: tagsFor(r.language, r.topics),
@@ -232,7 +261,7 @@ for (const pin of PINNED) {
   repos.push({
     name: r.name,
     org: r.owner.login,
-    description: stripEmoji(pin.description || r.description || ''),
+    description: normalizeDashes(stripEmoji(pin.description || r.description || '')),
     stars: r.stargazers_count,
     url: r.html_url,
     tags: tagsFor(r.language, r.topics),

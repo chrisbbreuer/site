@@ -42,8 +42,8 @@ const posts = fs.readdirSync(blogDir)
 @section('content')
   <h1 class="page-title">Software engineer,<br class="title-break">founder, skyrunner.</h1>
   <p class="page-lead">
-    I build developer tooling &mdash; <a href="https://stacksjs.com">Stacks</a>, a TypeScript
-    framework and the ecosystem around it &mdash; and increasingly agentic tooling: the things
+    I build developer tooling. <a href="https://stacksjs.com">Stacks</a>, a TypeScript
+    framework and the ecosystem around it, and increasingly agentic tooling: the things
     engineers reach for, and the things their agents reach for. Plus the apps that run on top
     of all of it.
     The other half of my life is spent skyrunning: long days in the mountains, usually with a dog
@@ -55,11 +55,11 @@ const posts = fs.readdirSync(blogDir)
   <ul class="entry-list">
     <li>
       <span class="entry-name"><a href="https://stacksjs.com">Stacks</a></span>
-      <span class="entry-desc">A TypeScript framework &mdash; and the open-source ecosystem that grew around it.</span>
+      <span class="entry-desc">A TypeScript framework, and the open-source ecosystem that grew around it.</span>
     </li>
     <li>
       <span class="entry-name"><a href="https://hq.training">HQ.training</a></span>
-      <span class="entry-desc">An operating system for gyms, coaches and athletes &mdash; memberships, scheduling and billing, sitting next to the training data.</span>
+      <span class="entry-desc">An operating system for gyms, coaches and athletes: memberships, scheduling and billing, sitting next to the training data.</span>
     </li>
     <li>
       <span class="entry-name"><a href="https://wildloop.org">Wildloop</a></span>

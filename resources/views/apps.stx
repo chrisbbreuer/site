@@ -18,7 +18,7 @@ const apps = [
   { name: 'CommsHQ', url: 'https://commshq.com', text: 'Creator-first communications: publishing, automation and commerce marketing in one place.' },
   // Commented out rather than deleted, so it comes back as one line when it
   // is ready to be shown.
-  // { name: 'CampusHQ', url: 'https://campushq.org', text: 'Event management for independent schools — the calendar, the parent volunteers, the reminders nobody has time to send, and the spring gala with its silent auction.' },
+  // { name: 'CampusHQ', url: 'https://campushq.org', text: 'Event management for independent schools: the calendar, the parent volunteers, the reminders nobody has time to send, and the spring gala with its silent auction.' },
   { name: 'Very Good Adblock', url: 'https://very-good-adblock.org', text: 'A fast Manifest V3 ad blocker for Chrome, Firefox and Safari.' },
   { name: 'System Cleaner', url: 'https://system-cleaner.app', text: 'A macOS cleaner that runs entirely on your Mac. Nothing is uploaded, no account is required, and every destructive action is reviewable first.' },
 ]
@@ -28,7 +28,7 @@ const devApps = [
   { name: 'StatusHQ', url: 'https://statushq.org', text: 'Self-hostable status pages and uptime monitoring.' },
   { name: 'BugHQ', url: 'https://bughq.org', text: 'Error tracking for people who ship.' },
   { name: 'LogHQ', url: 'https://loghq.org', text: 'Log management for people who ship.' },
-  { name: 'AnalyticsHQ', url: 'https://analyticshq.org', text: 'Privacy-first, cookieless web analytics — real-time visitors, sources and conversions, with no consent banner to apologise for.' },
+  { name: 'AnalyticsHQ', url: 'https://analyticshq.org', text: 'Privacy-first, cookieless web analytics: real-time visitors, sources and conversions, with no consent banner to apologise for.' },
 ]
 </script>
 
@@ -39,7 +39,7 @@ const devApps = [
   <p class="page-lead">
     The products, as opposed to the packages. Most of them run on
     <a href="https://stacksjs.com">Stacks</a>, which is the other half of the
-    story &mdash; that half lives on <a href="/projects">projects</a>.
+    story. That half lives on <a href="/projects">projects</a>.
   </p>
 
   <h2 class="section-label">For people</h2>
@@ -65,7 +65,7 @@ const devApps = [
   <h2 class="section-label">The tooling underneath</h2>
   <p class="empty-note">
     <a href="https://stacksjs.com">Stacks</a> is the TypeScript framework all of
-    this is built on &mdash; and by now an ecosystem more than a framework, because
+    this is built on, and by now an ecosystem more than a framework, because
     most of what it needs got written along the way:
     a templating engine, a query builder, a deploy tool, a CSS engine, image and
     video codecs, a good few dozen more. Every public repo is listed on

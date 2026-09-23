@@ -1,4 +1,4 @@
-# chrisbreuer.me — everything here is meant to be read.
+# chrisbreuer.me: everything here is meant to be read.
 User-agent: *
 Allow: /
 
