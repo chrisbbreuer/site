@@ -130,7 +130,11 @@ const elsewhere = [
         @foreach (elsewhere as place)
           <li>
             <span class="entry-name"><a href="{{ place.url }}" rel="me">{{ place.name }}</a></span>
-            <span class="entry-desc">{{ place.text }}</span>
+            @if (place.url.startsWith('mailto:'))
+              <span class="entry-desc"><a href="{{ place.url }}">{{ place.text }}</a></span>
+            @else
+              <span class="entry-desc">{{ place.text }}</span>
+            @endif
           </li>
         @endforeach
       </ul>

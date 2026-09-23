@@ -157,14 +157,16 @@ main { padding: 3.5rem 0 2rem; }
   color: var(--text-2);
 }
 .page-lead a,
-.prose a {
+.prose a,
+.entry-list .entry-desc a {
   color: var(--text-1);
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-color: var(--text-3);
 }
 .page-lead a:hover,
-.prose a:hover { text-decoration-color: var(--text-1); }
+.prose a:hover,
+.entry-list .entry-desc a:hover { text-decoration-color: var(--text-1); }
 
 .prose p { margin: 0 0 1.1rem; color: var(--text-2); }
 .prose strong { color: var(--text-1); }
