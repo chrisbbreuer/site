@@ -23,22 +23,24 @@
  * Usage: bun scripts/build-ridge.ts [--write]
  *   Without --write it prints the path and leaves the partial alone.
  */
+import { createHash } from 'node:crypto'
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import process from 'node:process'
 
 const FT_PER_M = 3.28084
 const PARTIAL = 'resources/views/partials/footer.stx'
 const PEAKS = 'content/ridge-peaks.json'
+const PROFILE = 'content/ridge-profile.json'
 
 // Width and vertical bounds of the generated path, in viewBox units.
 const W = 1200
 const TOP = 2
 const BOT = 30
 
-const STATIONS = 260 // samples along the crest (~0.25 mi apart)
+const STATIONS = 420 // samples along the crest (~0.15 mi apart)
 const TRANSECT_M = 1200 // half-width of each perpendicular transect, metres
 const TRANSECT_N = 17 // samples across a transect
-const SMOOTH_SIGMA = 1.3 // Gaussian width, in stations
+const SMOOTH_SIGMA = 0.8 // Gaussian width, in stations
 const RDP_EPSILON = 0.16 // Douglas-Peucker tolerance, in viewBox units
 
 /**
@@ -67,24 +69,30 @@ const GUIDE: GuidePoint[] = [
   { lat: 34.3250, lon: -118.4350, note: 'west end', name: 'Newhall Pass', ft: 1500, low: true, label: true },
   { lat: 34.3450, lon: -118.3450, note: 'Magic Mountain / western San Gabriels' },
   { lat: 34.3800, lon: -118.2160, note: 'Mill Creek Summit' },
-  { lat: 34.3766, lon: -118.1776, note: 'Mount Gleason', name: 'Mount Gleason', ft: 6502, label: true },
-  { lat: 34.3700, lon: -118.1100, note: 'Mount Pacifico', name: 'Mount Pacifico', ft: 7124, label: true },
+  { lat: 34.3764, lon: -118.1774, note: 'Mount Gleason', name: 'Mount Gleason', ft: 6502, label: true },
+  { lat: 34.3718, lon: -118.0733, note: 'Mount Pacifico' },
   { lat: 34.3560, lon: -118.0300, note: 'Mount Hillyer / Chilao' },
-  { lat: 34.3443, lon: -117.9317, note: 'Mount Waterman', name: 'Mount Waterman', ft: 8038, label: true },
-  { lat: 34.3330, lon: -117.9100, note: 'Twin Peaks / Kratka Ridge', name: 'Twin Peaks', ft: 7761, label: true },
-  { lat: 34.3520, lon: -117.8760, note: 'Mount Williamson', name: 'Mount Williamson', ft: 8214, label: true },
-  { lat: 34.3490, lon: -117.8500, note: 'Mount Islip / Windy Gap', name: 'Mount Islip', ft: 8250, label: true },
-  { lat: 34.3500, lon: -117.8230, note: 'Throop Peak', name: 'Throop Peak', ft: 9138, label: true },
-  { lat: 34.3560, lon: -117.8050, note: 'Mount Burnham', name: 'Mount Burnham', ft: 8997, label: true },
-  { lat: 34.3583, lon: -117.7625, note: 'Mount Baden-Powell', name: 'Mount Baden-Powell', ft: 9399, label: true },
+  { lat: 34.3367, lon: -117.9369, note: 'Mount Waterman', name: 'Mount Waterman', ft: 8038, label: true },
+  { lat: 34.3379, lon: -117.9288, note: 'Twin Peaks / Kratka Ridge', name: 'Twin Peaks', ft: 7761, label: true },
+  { lat: 34.3712, lon: -117.8584, note: 'Mount Williamson', name: 'Mount Williamson', ft: 8214, label: true },
+  // Mount Islip is deliberately absent. It is a named 8,250 ft summit people
+  // know, but it sits on a southern spur above Windy Gap, 2.1 km off the
+  // Williamson-to-Throop divide this profile traces (the transect half-width
+  // is 1.2 km). Routing the guide through it would drag the line down a side
+  // ridge and misdraw the skyline to win one label. The best summit inside
+  // its own search box reads 8,100 ft, 150 ft under the published figure,
+  // which is the same thing said a second way: that ground is not the crest.
+  { lat: 34.3504, lon: -117.7992, note: 'Throop Peak', name: 'Throop Peak', ft: 9138, label: true },
+  { lat: 34.3611, lon: -117.7724, note: 'Mount Burnham', name: 'Mount Burnham', ft: 8997, label: true },
+  { lat: 34.3583, lon: -117.7647, note: 'Mount Baden-Powell', name: 'Mount Baden-Powell', ft: 9399, label: true },
   { lat: 34.3739, lon: -117.7519, note: 'Vincent Gap', name: 'Vincent Gap', ft: 6565, low: true, label: true },
-  { lat: 34.3500, lon: -117.7100, note: 'Blue Ridge / Wright Mountain', name: 'Wright Mountain', ft: 8505, label: true },
+  { lat: 34.3569, lon: -117.6828, note: 'Blue Ridge / Wright Mountain' },
   { lat: 34.3300, lon: -117.6750, note: 'Guffy / east Blue Ridge' },
-  { lat: 34.3100, lon: -117.6400, note: 'Pine Mountain / Dawson Peak', name: 'Pine Mountain', ft: 9648, label: true },
-  { lat: 34.2889, lon: -117.6464, note: 'Mount Baldy (San Antonio)', name: 'Mount Baldy', ft: 10064, label: true },
-  { lat: 34.2720, lon: -117.6240, note: 'Telegraph Peak', name: 'Telegraph Peak', ft: 8985, label: true },
+  { lat: 34.3030, lon: -117.6360, note: 'Pine Mountain / Dawson Peak', name: 'Pine Mountain', ft: 9648, label: true },
+  { lat: 34.2891, lon: -117.6462, note: 'Mount Baldy (San Antonio)', name: 'Mount Baldy', ft: 10064, label: true },
+  { lat: 34.2833, lon: -117.6276, note: 'Telegraph Peak', name: 'Telegraph Peak', ft: 8985, label: true },
   { lat: 34.2519, lon: -117.6086, note: 'Icehouse Saddle', name: 'Icehouse Saddle', ft: 7580, low: true, label: true },
-  { lat: 34.2244, lon: -117.5983, note: 'Cucamonga Peak', name: 'Cucamonga Peak', ft: 8859, label: true },
+  { lat: 34.2228, lon: -117.5853, note: 'Cucamonga Peak', name: 'Cucamonga Peak', ft: 8859, label: true },
   { lat: 34.2080, lon: -117.5450, note: 'Lytle Creek divide' },
   { lat: 34.1900, lon: -117.4850, note: 'east end', name: 'Lytle Creek', ft: 2700, low: true, label: true },
 ]
@@ -281,19 +289,28 @@ function writePeaks(): void {
   // rechecking. Saying less is the price of not saying something false.
   const agreed = [...kept]
   for (;;) {
+    // Every pair, not just neighbours. A label can agree with the two labels
+    // either side of it and still contradict one further along the line, which
+    // is how Telegraph Peak (8,985 ft) once drew higher than Baden-Powell,
+    // Throop and Pine Mountain at the same time: it had snapped onto Baldy's
+    // shoulder, where the crest really is that high, and its own neighbours
+    // were Baldy above and a saddle below, so an adjacent-only check saw
+    // nothing wrong. The ordering is a claim about the whole ridge.
     let conflict: { drop: number } | null = null
-    for (let i = 1; i < agreed.length && !conflict; i++) {
-      const a = agreed[i - 1]
-      const b = agreed[i]
-      const ya = heightOf.get(a.x)
-      const yb = heightOf.get(b.x)
-      if (ya === undefined || yb === undefined || a.point.ft === b.point.ft) continue
-      const aIsHigher = a.point.ft > b.point.ft
-      const disagrees = aIsHigher ? ya > yb : yb > ya
-      if (!disagrees) continue
-      const travelA = Math.abs(a.x - a.guideX)
-      const travelB = Math.abs(b.x - b.guideX)
-      conflict = { drop: travelA >= travelB ? i - 1 : i }
+    for (let i = 0; i < agreed.length && !conflict; i++) {
+      for (let k = i + 1; k < agreed.length && !conflict; k++) {
+        const a = agreed[i]
+        const b = agreed[k]
+        const ya = heightOf.get(a.x)
+        const yb = heightOf.get(b.x)
+        if (ya === undefined || yb === undefined || a.point.ft === b.point.ft) continue
+        const aIsHigher = a.point.ft > b.point.ft
+        const disagrees = aIsHigher ? ya > yb : yb > ya
+        if (!disagrees) continue
+        const travelA = Math.abs(a.x - a.guideX)
+        const travelB = Math.abs(b.x - b.guideX)
+        conflict = { drop: travelA >= travelB ? i : k }
+      }
     }
     if (!conflict) break
     process.stderr.write(`dropped ${agreed[conflict.drop].point.name}: the line does not agree it belongs where it landed\n`)
@@ -367,19 +384,52 @@ if (process.argv.includes('--peaks-only')) {
   process.exit(0)
 }
 
-console.error(`Sampling ${samples.length} DEM points over ${(totalM / 1609.34).toFixed(0)} mi of crest…`)
-const elevations: number[] = []
-for (let i = 0; i < samples.length; i += 100) {
-  elevations.push(...await lookup(samples.slice(i, i + 100)))
-  console.error(`  ${Math.min(i + 100, samples.length)}/${samples.length}`)
-}
+/**
+ * The sampled crest, cached.
+ *
+ * The DEM costs about a minute and a half of politely rate-limited requests
+ * to a public endpoint, and the terrain does not change. Caching what came
+ * back means the drawing decisions below, how much to smooth and how hard to
+ * simplify, can be tuned without asking for it again, and means anyone can
+ * redraw the line from a clean checkout with no network at all. `--resample`
+ * goes back to the DEM.
+ */
+interface CachedProfile { stations: number, guide: string, miMax: number, crestFt: number[] }
 
-// Crest = the highest point on each transect.
-const crestFt: number[] = []
-for (let s = 0; s < STATIONS; s++) {
-  let best = Number.NEGATIVE_INFINITY
-  for (let k = 0; k < TRANSECT_N; k++) best = Math.max(best, elevations[s * TRANSECT_N + k])
-  crestFt.push(best)
+// The cache is only valid for the guide it was sampled along. Keying on the
+// station count alone meant moving a waypoint silently reused elevations from
+// the old route, which is the kind of stale that looks like a working script.
+const guideFingerprint = createHash('sha256')
+  .update(GUIDE.map(g => `${g.lat},${g.lon}`).join(';'))
+  .digest('hex')
+  .slice(0, 12)
+
+let crestFt: number[]
+const cached: CachedProfile | null = existsSync(PROFILE) && !process.argv.includes('--resample')
+  ? JSON.parse(readFileSync(PROFILE, 'utf-8'))
+  : null
+
+if (cached && cached.stations === STATIONS && cached.guide === guideFingerprint) {
+  crestFt = cached.crestFt
+  process.stderr.write(`using the cached profile: ${crestFt.length} stations (--resample to refetch)\n`)
+}
+else {
+  if (cached) process.stderr.write(`cached profile is for a different guide or station count: resampling\n`)
+  process.stderr.write(`Sampling ${samples.length} DEM points over ${(totalM / 1609.34).toFixed(0)} mi of crest…\n`)
+  const elevations: number[] = []
+  for (let i = 0; i < samples.length; i += 100) {
+    elevations.push(...await lookup(samples.slice(i, i + 100)))
+    process.stderr.write(`  ${Math.min(i + 100, samples.length)}/${samples.length}\n`)
+  }
+  // Crest = the highest point on each transect.
+  crestFt = []
+  for (let s = 0; s < STATIONS; s++) {
+    let best = Number.NEGATIVE_INFINITY
+    for (let k = 0; k < TRANSECT_N; k++) best = Math.max(best, elevations[s * TRANSECT_N + k])
+    crestFt.push(best)
+  }
+  writeFileSync(PROFILE, `${JSON.stringify({ stations: STATIONS, guide: guideFingerprint, miMax: stationMi[stationMi.length - 1], crestFt: crestFt.map(ft => Math.round(ft)) }, null, 0)}\n`)
+  process.stderr.write(`cached the profile to ${PROFILE}\n`)
 }
 
 const generalised = smooth(crestFt, SMOOTH_SIGMA)

@@ -53,6 +53,8 @@ const HIGHLIGHTS = [
   'stacksjs/ts-images',
   'stacksjs/ts-spreadsheets',
   'stacksjs/bun-queue',
+  'home-lang/home',
+  'pantry-pm/pantry',
 ]
 const bySlug = {}
 for (const r of withLabels)
