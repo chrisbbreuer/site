@@ -258,7 +258,7 @@ main { padding: 3.5rem 0 2rem; }
   color: var(--text-1);
 }
 .post-list .post-title { font-weight: 550; line-height: 1.4; }
-/* /blog stacks the reading stats under the title; home keeps title + date. */
+/* Reading stats sit under the title, on /blog and on the home page. */
 .post-list .post-main { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
 .post-list .post-stats {
   font-family: var(--font-mono);

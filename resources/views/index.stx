@@ -1,6 +1,7 @@
 <script server>
 const fs = require('node:fs')
 const path = require('node:path')
+const { readingStats } = require(path.join(process.cwd(), 'resources/utils/reading-stats.ts'))
 
 const title = 'Chris Breuer - Software engineer, founder & skyrunner'
 const description = 'Chris Breuer builds developer and agentic tooling, plus the apps on top of it: Stacks, HQ.training, Wildloop. Skyrunner. Notes on both.'
@@ -26,7 +27,7 @@ const posts = fs.readdirSync(blogDir)
         fm[line.slice(0, i).trim()] = val
       }
     }
-    return { slug: f.replace(/\.md$/, ''), title: fm.title, date: fm.date }
+    return { slug: f.replace(/\.md$/, ''), title: fm.title, date: fm.date, stats: readingStats(raw).label }
   })
   .filter(p => p.title && p.date)
   .sort((a, b) => b.date.localeCompare(a.date))
@@ -74,7 +75,10 @@ const posts = fs.readdirSync(blogDir)
       @foreach (posts as post)
         <li>
           <a href="/blog/{{ post.slug }}">
-            <span class="post-title">{{ post.title }}</span>
+            <span class="post-main">
+              <span class="post-title">{{ post.title }}</span>
+              <span class="post-stats">{{ post.stats }}</span>
+            </span>
             <span class="post-date">{{ post.shortDate }}</span>
           </a>
         </li>
