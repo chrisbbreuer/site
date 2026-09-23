@@ -41,9 +41,7 @@ const posts = (fs.existsSync(blogDir) ? fs.readdirSync(blogDir) : [])
 @section('content')
   <h1 class="page-title">Writing</h1>
   <p class="page-lead">
-    Both halves. Developer and agentic tooling on one side,
-    <a href="https://stacksjs.com">Stacks</a> and the things engineers and
-    their agents reach for. Long days in the mountains on the other. The
+    Both halves. Developer and agentic tooling on one side, and long days in the mountains on the other. The
     posts that interest me most are the ones where those turn out to be the
     same problem.
   </p>
@@ -71,4 +69,3 @@ const posts = (fs.existsSync(blogDir) ? fs.readdirSync(blogDir) : [])
 
   @include('../partials/subscribe.stx')
 @endsection
-
