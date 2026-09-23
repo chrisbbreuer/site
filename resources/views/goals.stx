@@ -3,7 +3,7 @@ const fs = require('node:fs')
 const path = require('node:path')
 
 const title = 'Goals - Chris Breuer'
-const description = 'What I am actually trying to do: a billion npm downloads a month, Stacks v1.0, Wildloop, and the Pacific Crest Trail at 60 miles a day.'
+const description = 'What I am working toward: a billion npm downloads a month, Stacks v1.0, Wildloop, and the Pacific Crest Trail.'
 const activeNav = 'goals'
 const pagePath = '/goals'
 
@@ -51,8 +51,8 @@ const work = [
 ]
 
 const personal = [
-  { name: 'Pacific Crest Trail', text: 'Northbound, 2,650 miles, at a 60-mile-a-day average.' },
-  { name: 'Race it', text: 'Once the trail is done, stop training for its own sake and start pinning on a number. Skyraces, a real start list, terrain that goes up.' },
+  { name: 'Pacific Crest Trail', text: 'Northbound, 2,650 miles, aiming to average 60 a day. I do not know yet if that pace holds. Finding out is half the point.' },
+  { name: 'Race it', text: 'Once the trail is done, start pinning on a number at mountain races to see where I stand.' },
   { name: 'Train in the open', text: 'Run the build in public the same way the code is: the days it goes well and the days it does not.' },
 ]
 </script>

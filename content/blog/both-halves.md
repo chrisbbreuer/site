@@ -32,7 +32,7 @@ The only thing I loved more than computers as a kid was being outside. Almost tw
 
 These days it is skyrunning: long days in the mountains, on trails that go up considerably more than they go along, usually with my dog somewhere ahead of me. Weekends are California or Colorado. It is the one reliable thing that gets me away from a keyboard.
 
-The next big one is the Pacific Crest Trail, northbound, 2,650 miles, at a 60-mile-a-day average. Two years of building toward it at twenty to forty hours a week. After that I want to stop training for its own sake and race. Pin on a number, stand on a real start list, find out where I land.
+Next up is the Pacific Crest Trail, northbound: 2,650 miles, aiming to average 60 a day. I do not know yet if that pace holds, and finding out is half the reason to try. I have two years to build toward it, at twenty to forty hours of training a week. After that I want to start racing, pinning on a number at mountain races to see where I stand.
 
 That plan is [public](https://hq.training/share/chris), on the app I build for everyone else, pointed at my own weeks. It seemed dishonest to sell coaches software for tracking athletes and keep my own training in a spreadsheet.
 

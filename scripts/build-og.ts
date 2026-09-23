@@ -38,7 +38,7 @@ const cards: Card[] = [
     slug: 'goals',
     path: '~/goals',
     title: 'Goals',
-    desc: 'Stacks v1.0, Wildloop, and the Pacific Crest Trail at a 60-mile-a-day average.',
+    desc: 'Stacks v1.0, Wildloop, and the Pacific Crest Trail, aiming for 60 miles a day.',
   },
   {
     slug: 'projects',
