@@ -3,30 +3,21 @@ import type { DnsConfig } from '@stacksjs/types'
 /**
  * **DNS Options**
  *
- * Declarative DNS for chrisbreuer.me. NOTE: the authoritative DNS for this
- * domain lives at PORKBUN (not Route 53), pointing at the shared Hetzner box
- * (stacks-production-app, 178.156.x, see config/cloud.ts attachTo). This file
- * documents the desired records; `buddy dns` reconciliation against Route 53
- * is a no-op for this project (no AWS credentials / hosted zone).
+ * Declarative DNS for chrisbreuer.me. The zone is on Cloudflare (registered at
+ * Porkbun) and is owned by deploy through config/cloud.ts infrastructure.dns,
+ * so nothing is declared here.
  */
 export default {
-  a: [
-    {
-      name: 'chrisbreuer.me', // Hostname (root domain)
-      address: '178.105.248.188', // shared Hetzner box (stacks-production-app)
-      ttl: 300, // Time-to-live in seconds
-    },
-
-    {
-      name: 'www',
-      address: '@',
-      ttl: 300,
-    },
-  ],
+  // Deliberately empty. The zone is on Cloudflare and deploy owns it (see
+  // config/cloud.ts infrastructure.dns): it copied Porkbun's records across
+  // when it moved the zone and reconciles them since. Declaring records here
+  // as well would give the domain two owners that disagree. Add entries only
+  // for records deploy does not manage, such as a verification TXT.
+  a: [],
   aaaa: [],
   cname: [],
   mx: [],
   txt: [],
 
-  nameservers: ['curitiba.ns.porkbun.com', 'fortaleza.ns.porkbun.com', 'maceio.ns.porkbun.com', 'salvador.ns.porkbun.com'],
+  nameservers: [],
 } satisfies DnsConfig

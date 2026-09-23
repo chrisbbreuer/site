@@ -44,6 +44,52 @@ export const tsCloud: TsCloudConfig = {
         onDemandTlsStaging: false,
       },
     },
+    dns: {
+      /*
+       * The zone lives on Cloudflare; the domain stays registered at Porkbun.
+       *
+       * The site is served from one box in Europe, and every page was a full
+       * round trip from wherever the reader is: 0.6-0.7s to first byte from
+       * Los Angeles. Behind Cloudflare, TLS ends at the nearest edge, the
+       * edge keeps a warm connection to the origin, and static assets (CSS,
+       * fonts, images, scripts) are served from the edge cache.
+       *
+       * `registrar` makes the move part of the deploy: ts-cloud creates the
+       * zone, copies Porkbun's records across, verifies them record for record,
+       * and only then repoints the nameservers.
+       */
+      provider: 'cloudflare',
+      domain: 'chrisbreuer.me',
+
+      registrar: {
+        provider: 'porkbun',
+
+        /*
+         * Only the web hosts go through the proxy. `mail.chrisbreuer.me` and
+         * `autodiscover.chrisbreuer.me` must stay DNS-only: Cloudflare does not
+         * proxy SMTP or IMAP, and a proxied mail host would hide the origin
+         * address the SPF record authorises.
+         */
+        proxied: [
+          'chrisbreuer.me',
+          'www.chrisbreuer.me',
+          // Not dashboard.chrisbreuer.me: the origin holds no certificate for
+          // it, so under `ssl: strict` the edge would answer 526. It stays
+          // DNS-only, as it was, until it is actually served.
+        ],
+      },
+
+      /*
+       * Reconciled on every deploy. `strict` because the origin holds a real
+       * certificate; Cloudflare hands a new zone `full`, and `flexible` would
+       * loop against an origin that redirects to HTTPS.
+       */
+      zone: {
+        ssl: 'strict',
+        alwaysUseHttps: true,
+        minTlsVersion: '1.2',
+      },
+    },
   },
 
   environments: {

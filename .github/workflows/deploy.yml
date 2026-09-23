@@ -80,6 +80,11 @@ jobs:
           # The deploy resolves the box through the Hetzner API even when it is
           # attaching to one the `stacks` project owns rather than provisioning.
           HCLOUD_TOKEN: ${{ secrets.HCLOUD_TOKEN }}
+          # Decrypts .env.production, where the DNS credentials live (Cloudflare
+          # for the zone, Porkbun for the registrar). Those are deliberately NOT
+          # listed here: a variable named here overrides the decrypted value,
+          # and a secret that does not exist overrides it with "".
+          DOTENV_PRIVATE_KEY_PRODUCTION: ${{ secrets.DOTENV_PRIVATE_KEY_PRODUCTION }}
         run: ./buddy deploy --prod --yes
 
       # A release warms its stx image caches before it can answer anything, and
