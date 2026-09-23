@@ -389,16 +389,90 @@ main { padding: 3.5rem 0 2rem; }
  * hairline weight and colour as every other divider, it just isn't flat. The
  * height is what makes a real elevation profile legible — the San Gabriels run
  * 2,100 to 9,700 ft, and under ~2.5rem that range flattens into a wobble. */
+.ridge-wrap {
+  position: relative;
+  margin-top: 3.5rem;
+}
+
 .ridge {
   display: block;
   width: 100%;
   height: 2.75rem;
-  margin-top: 3.5rem;
   fill: none;
   stroke: var(--divider);
   stroke-width: 1;
   stroke-linecap: square;
   stroke-linejoin: miter;
+}
+
+/* Hovering the ridge names the feature under the pointer. The zones tile the
+ * whole line rather than sitting on the summits, so there is nowhere on it
+ * that answers nothing; `--at` is where the peak falls inside its own zone,
+ * which is not the middle, because the peaks are not evenly spaced. */
+.ridge-peaks {
+  position: absolute;
+  inset: 0;
+  /* A touch screen has no pointer to follow the line with, so the zones are
+   * not there to be tapped at. */
+  pointer-events: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .ridge-peaks {
+    pointer-events: auto;
+  }
+}
+.ridge-peak {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+/* A hairline dropped on the summit itself, so the label is anchored to a
+ * point on the line and not just floating near it. */
+.ridge-peak::after {
+  content: '';
+  position: absolute;
+  left: var(--at);
+  top: 0;
+  bottom: 0;
+  border-left: 1px solid var(--divider);
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+.ridge-peak-name {
+  position: absolute;
+  bottom: calc(100% - 0.35rem);
+  left: var(--at);
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.12s ease;
+}
+.ridge-peak-ft {
+  color: var(--text-3);
+}
+/* The two at the ends would hang off the page if they were centred. */
+.ridge-peak.is-start .ridge-peak-name {
+  left: 0;
+  transform: none;
+}
+.ridge-peak.is-end .ridge-peak-name {
+  left: auto;
+  right: 0;
+  transform: none;
+}
+.ridge-peak:hover::after,
+.ridge-peak:hover .ridge-peak-name {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ridge-peak::after,
+  .ridge-peak-name {
+    transition: none;
+  }
 }
 
 .site-footer {

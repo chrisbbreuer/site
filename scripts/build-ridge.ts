@@ -28,6 +28,7 @@ import process from 'node:process'
 
 const FT_PER_M = 3.28084
 const PARTIAL = 'resources/views/partials/footer.stx'
+const PEAKS = 'content/ridge-peaks.json'
 
 // Width and vertical bounds of the generated path, in viewBox units.
 const W = 1200
@@ -40,31 +41,50 @@ const TRANSECT_N = 17 // samples across a transect
 const SMOOTH_SIGMA = 1.3 // Gaussian width, in stations
 const RDP_EPSILON = 0.16 // Douglas-Peucker tolerance, in viewBox units
 
-/** Coarse guide along the range's high divide, west to east. */
-const GUIDE: [number, number, string][] = [
-  [34.3250, -118.4350, 'west end (Newhall Pass)'],
-  [34.3450, -118.3450, 'Magic Mountain / western San Gabriels'],
-  [34.3800, -118.2160, 'Mill Creek Summit'],
-  [34.3766, -118.1776, 'Mount Gleason'],
-  [34.3700, -118.1100, 'Mount Pacifico'],
-  [34.3560, -118.0300, 'Mount Hillyer / Chilao'],
-  [34.3443, -117.9317, 'Mount Waterman'],
-  [34.3330, -117.9100, 'Twin Peaks / Kratka Ridge'],
-  [34.3520, -117.8760, 'Mount Williamson'],
-  [34.3490, -117.8500, 'Mount Islip / Windy Gap'],
-  [34.3500, -117.8230, 'Throop Peak'],
-  [34.3560, -117.8050, 'Mount Burnham'],
-  [34.3583, -117.7625, 'Mount Baden-Powell'],
-  [34.3739, -117.7519, 'Vincent Gap'],
-  [34.3500, -117.7100, 'Blue Ridge / Wright Mountain'],
-  [34.3300, -117.6750, 'Guffy / east Blue Ridge'],
-  [34.3100, -117.6400, 'Pine Mountain / Dawson Peak'],
-  [34.2889, -117.6464, 'Mount Baldy (San Antonio)'],
-  [34.2720, -117.6240, 'Telegraph Peak'],
-  [34.2519, -117.6086, 'Icehouse Saddle'],
-  [34.2244, -117.5983, 'Cucamonga Peak'],
-  [34.2080, -117.5450, 'Lytle Creek divide'],
-  [34.1900, -117.4850, 'east end (Lytle Creek mouth)'],
+/**
+ * Coarse guide along the range's high divide, west to east.
+ *
+ * `ft` is the published summit elevation, not a sampled one: the DEM is what
+ * draws the line, but a tooltip should say what the USGS quad says. `label`
+ * marks the features worth naming on hover - enough to tell you where on the
+ * range you are, few enough that each one still has room to be hovered.
+ */
+interface GuidePoint {
+  lat: number
+  lon: number
+  /** What this point is, for the reader of this file. */
+  note: string
+  /** Display name, when this point is labelled. */
+  name?: string
+  /** Published elevation in feet. */
+  ft?: number
+  label?: boolean
+}
+
+const GUIDE: GuidePoint[] = [
+  { lat: 34.3250, lon: -118.4350, note: 'west end', name: 'Newhall Pass', ft: 1500, label: true },
+  { lat: 34.3450, lon: -118.3450, note: 'Magic Mountain / western San Gabriels' },
+  { lat: 34.3800, lon: -118.2160, note: 'Mill Creek Summit' },
+  { lat: 34.3766, lon: -118.1776, note: 'Mount Gleason', name: 'Mount Gleason', ft: 6502, label: true },
+  { lat: 34.3700, lon: -118.1100, note: 'Mount Pacifico', name: 'Mount Pacifico', ft: 7124, label: true },
+  { lat: 34.3560, lon: -118.0300, note: 'Mount Hillyer / Chilao' },
+  { lat: 34.3443, lon: -117.9317, note: 'Mount Waterman', name: 'Mount Waterman', ft: 8038, label: true },
+  { lat: 34.3330, lon: -117.9100, note: 'Twin Peaks / Kratka Ridge', name: 'Twin Peaks', ft: 7761, label: true },
+  { lat: 34.3520, lon: -117.8760, note: 'Mount Williamson', name: 'Mount Williamson', ft: 8214, label: true },
+  { lat: 34.3490, lon: -117.8500, note: 'Mount Islip / Windy Gap', name: 'Mount Islip', ft: 8250, label: true },
+  { lat: 34.3500, lon: -117.8230, note: 'Throop Peak', name: 'Throop Peak', ft: 9138, label: true },
+  { lat: 34.3560, lon: -117.8050, note: 'Mount Burnham', name: 'Mount Burnham', ft: 8997, label: true },
+  { lat: 34.3583, lon: -117.7625, note: 'Mount Baden-Powell', name: 'Mount Baden-Powell', ft: 9399, label: true },
+  { lat: 34.3739, lon: -117.7519, note: 'Vincent Gap', name: 'Vincent Gap', ft: 6565, label: true },
+  { lat: 34.3500, lon: -117.7100, note: 'Blue Ridge / Wright Mountain', name: 'Wright Mountain', ft: 8505, label: true },
+  { lat: 34.3300, lon: -117.6750, note: 'Guffy / east Blue Ridge' },
+  { lat: 34.3100, lon: -117.6400, note: 'Pine Mountain / Dawson Peak', name: 'Pine Mountain', ft: 9648, label: true },
+  { lat: 34.2889, lon: -117.6464, note: 'Mount Baldy (San Antonio)', name: 'Mount Baldy', ft: 10064, label: true },
+  { lat: 34.2720, lon: -117.6240, note: 'Telegraph Peak', name: 'Telegraph Peak', ft: 8985, label: true },
+  { lat: 34.2519, lon: -117.6086, note: 'Icehouse Saddle', name: 'Icehouse Saddle', ft: 7580, label: true },
+  { lat: 34.2244, lon: -117.5983, note: 'Cucamonga Peak', name: 'Cucamonga Peak', ft: 8859, label: true },
+  { lat: 34.2080, lon: -117.5450, note: 'Lytle Creek divide' },
+  { lat: 34.1900, lon: -117.4850, note: 'east end', name: 'Lytle Creek', ft: 2700, label: true },
 ]
 
 const rad = (d: number) => (d * Math.PI) / 180
@@ -75,7 +95,7 @@ function distM(a: [number, number], b: [number, number]): number {
   return Math.hypot((b[1] - a[1]) * m.lon, (b[0] - a[0]) * m.lat)
 }
 
-const pts = GUIDE.map(g => [g[0], g[1]] as [number, number])
+const pts = GUIDE.map(g => [g.lat, g.lon] as [number, number])
 const cumulative = [0]
 for (let i = 1; i < pts.length; i++) cumulative.push(cumulative[i - 1] + distM(pts[i - 1], pts[i]))
 const totalM = cumulative[cumulative.length - 1]
@@ -172,6 +192,55 @@ function rdp(points: [number, number][], eps: number): [number, number][] {
   }
   if (max <= eps) return [a, b]
   return [...rdp(points.slice(0, idx + 1), eps).slice(0, -1), ...rdp(points.slice(idx), eps)]
+}
+
+/**
+ * Write the hover targets for the footer ridge.
+ *
+ * Each labelled guide point gets its x on the 0-1200 viewBox, and a zone
+ * reaching halfway to its neighbours on either side, so the whole line is
+ * covered and a pointer anywhere on it names the nearest feature. `at` is
+ * where the label sits inside its own zone, which is not the middle: the
+ * peaks are not evenly spaced.
+ *
+ * Pure geometry, so this runs without touching the network.
+ */
+function writePeaks(): void {
+  const labelled = GUIDE
+    .map((point, index) => ({ point, x: (cumulative[index] / totalM) * W }))
+    .filter((entry): entry is { point: GuidePoint & { name: string, ft: number }, x: number } =>
+      Boolean(entry.point.label && entry.point.name && entry.point.ft))
+
+  const peaks = labelled.map((entry, index) => {
+    const previous = labelled[index - 1]
+    const next = labelled[index + 1]
+    const left = previous ? (previous.x + entry.x) / 2 : 0
+    const right = next ? (entry.x + next.x) / 2 : W
+    const width = right - left
+    return {
+      name: entry.point.name,
+      ft: entry.point.ft,
+      // Formatted here so the template stays a loop and nothing else.
+      ftLabel: entry.point.ft.toLocaleString('en-US'),
+      // Percentages so the zones scale with the shell, exactly as the line does.
+      left: Number(((left / W) * 100).toFixed(3)),
+      width: Number(((width / W) * 100).toFixed(3)),
+      at: Number((((entry.x - left) / width) * 100).toFixed(3)),
+      // Labels near an edge are anchored to it rather than centred, or they
+      // would hang off the side of the page.
+      anchor: entry.x / W < 0.12 ? 'start' : entry.x / W > 0.88 ? 'end' : 'center',
+    }
+  })
+
+  writeFileSync(PEAKS, `${JSON.stringify(peaks, null, 2)}\n`)
+  process.stderr.write(`wrote content/ridge-peaks.json - ${peaks.length} hover targets\n`)
+}
+
+writePeaks()
+
+if (process.argv.includes('--peaks-only')) {
+  process.stderr.write('--peaks-only: leaving the ridge path alone\n')
+  process.exit(0)
 }
 
 console.error(`Sampling ${samples.length} DEM points over ${(totalM / 1609.34).toFixed(0)} mi of crest…`)

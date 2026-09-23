@@ -1,7 +1,7 @@
 <!-- A ridge closes every page: the divider rule above the footer, drawn as an
      elevation profile instead of a straight border.
 
-     This is the real thing — the crest of the San Gabriel Mountains, west to
+     This is the real thing: the crest of the San Gabriel Mountains, west to
      east, from Newhall Pass on the left to the Lytle Creek end on the right:
      63 miles, 2,100 ft to 9,700 ft. The high point at roughly four-fifths
      across is Mount Baldy (10,064 ft); the long climb before it runs over
@@ -12,10 +12,25 @@
      drawn 32 units tall (scripts/build-ridge.ts regenerates it).
 
      Scales with the shell (preserveAspectRatio="none"); non-scaling-stroke
-     keeps it a true 1px hairline at any width. -->
-<svg class="ridge" viewBox="0 0 1200 32" preserveAspectRatio="none" role="img" aria-label="Elevation profile of the San Gabriel Mountains crest" focusable="false">
-  <path d="M0.0 30.0 L13.9 28.5 L23.2 28.2 L32.4 26.8 L37.1 26.4 L46.3 26.6 L55.6 25.6 L60.2 25.3 L69.5 25.6 L88.0 27.0 L92.7 26.7 L101.9 25.2 L120.5 23.6 L134.4 21.8 L157.5 20.6 L180.7 21.1 L190.0 20.8 L208.5 19.7 L236.3 17.6 L245.6 17.2 L259.5 17.2 L291.9 14.1 L296.5 14.3 L310.4 16.4 L315.1 16.8 L324.3 16.9 L338.2 16.2 L347.5 16.2 L352.1 16.7 L366.0 19.4 L370.7 20.0 L375.3 20.2 L379.9 19.8 L384.6 19.0 L398.5 15.6 L403.1 14.8 L407.7 14.4 L412.4 14.5 L426.3 16.7 L444.8 17.1 L468.0 15.4 L481.9 15.7 L505.0 15.3 L514.3 14.4 L528.2 12.2 L551.4 9.3 L560.6 8.5 L569.9 8.9 L579.2 10.2 L588.4 11.0 L602.3 11.3 L611.6 11.1 L634.7 12.6 L648.6 12.5 L657.9 12.1 L662.5 11.6 L671.8 9.5 L676.4 8.7 L690.3 8.5 L718.1 5.3 L722.8 5.1 L732.0 5.7 L736.7 5.7 L759.8 4.2 L764.5 4.4 L769.1 5.3 L778.4 8.1 L783.0 8.6 L792.3 7.7 L796.9 8.2 L810.8 12.0 L815.4 12.8 L834.0 14.3 L838.6 14.4 L843.2 14.1 L852.5 12.5 L866.4 10.8 L871.0 10.5 L889.6 10.0 L898.8 9.2 L917.4 4.9 L926.6 3.5 L935.9 3.3 L949.8 3.8 L954.4 3.5 L963.7 2.0 L968.3 2.0 L977.6 3.0 L982.2 3.7 L1000.8 7.8 L1005.4 8.2 L1010.0 7.9 L1023.9 6.4 L1028.6 6.6 L1037.8 7.9 L1042.5 8.1 L1056.4 7.6 L1065.6 8.1 L1070.3 7.9 L1079.5 6.5 L1084.2 6.4 L1088.8 6.9 L1093.4 7.9 L1107.3 13.1 L1112.0 14.4 L1116.6 15.2 L1121.2 15.4 L1130.5 14.8 L1139.8 15.0 L1144.4 15.5 L1158.3 17.6 L1176.8 18.6 L1200.0 20.6" vector-effect="non-scaling-stroke" />
-</svg>
+     keeps it a true 1px hairline at any width. Hovering it names the feature
+     under the pointer, from content/ridge-peaks.json. -->
+<div class="ridge-wrap">
+  <svg class="ridge" viewBox="0 0 1200 32" preserveAspectRatio="none" role="img" aria-label="Elevation profile of the San Gabriel Mountains crest, west to east from Newhall Pass to Lytle Creek, high point Mount Baldy at 10,064 feet" focusable="false">
+    <path d="M0.0 30.0 L13.9 28.5 L23.2 28.2 L32.4 26.8 L37.1 26.4 L46.3 26.6 L55.6 25.6 L60.2 25.3 L69.5 25.6 L88.0 27.0 L92.7 26.7 L101.9 25.2 L120.5 23.6 L134.4 21.8 L157.5 20.6 L180.7 21.1 L190.0 20.8 L208.5 19.7 L236.3 17.6 L245.6 17.2 L259.5 17.2 L291.9 14.1 L296.5 14.3 L310.4 16.4 L315.1 16.8 L324.3 16.9 L338.2 16.2 L347.5 16.2 L352.1 16.7 L366.0 19.4 L370.7 20.0 L375.3 20.2 L379.9 19.8 L384.6 19.0 L398.5 15.6 L403.1 14.8 L407.7 14.4 L412.4 14.5 L426.3 16.7 L444.8 17.1 L468.0 15.4 L481.9 15.7 L505.0 15.3 L514.3 14.4 L528.2 12.2 L551.4 9.3 L560.6 8.5 L569.9 8.9 L579.2 10.2 L588.4 11.0 L602.3 11.3 L611.6 11.1 L634.7 12.6 L648.6 12.5 L657.9 12.1 L662.5 11.6 L671.8 9.5 L676.4 8.7 L690.3 8.5 L718.1 5.3 L722.8 5.1 L732.0 5.7 L736.7 5.7 L759.8 4.2 L764.5 4.4 L769.1 5.3 L778.4 8.1 L783.0 8.6 L792.3 7.7 L796.9 8.2 L810.8 12.0 L815.4 12.8 L834.0 14.3 L838.6 14.4 L843.2 14.1 L852.5 12.5 L866.4 10.8 L871.0 10.5 L889.6 10.0 L898.8 9.2 L917.4 4.9 L926.6 3.5 L935.9 3.3 L949.8 3.8 L954.4 3.5 L963.7 2.0 L968.3 2.0 L977.6 3.0 L982.2 3.7 L1000.8 7.8 L1005.4 8.2 L1010.0 7.9 L1023.9 6.4 L1028.6 6.6 L1037.8 7.9 L1042.5 8.1 L1056.4 7.6 L1065.6 8.1 L1070.3 7.9 L1079.5 6.5 L1084.2 6.4 L1088.8 6.9 L1093.4 7.9 L1107.3 13.1 L1112.0 14.4 L1116.6 15.2 L1121.2 15.4 L1130.5 14.8 L1139.8 15.0 L1144.4 15.5 L1158.3 17.6 L1176.8 18.6 L1200.0 20.6" vector-effect="non-scaling-stroke" />
+  </svg>
+  <!-- Hover targets, tiled across the whole line so a pointer anywhere on it
+       names the nearest feature rather than finding dead space between peaks.
+       Pure markup and CSS: nothing to bind, so it survives a client-side
+       navigation without a listener to re-attach. Hidden from assistive tech,
+       which is served by the label on the graphic itself. -->
+  <div class="ridge-peaks" aria-hidden="true">
+    @foreach (ridgePeaks as peak)
+      <span class="ridge-peak is-{{ peak.anchor }}" style="left: {{ peak.left }}%; width: {{ peak.width }}%; --at: {{ peak.at }}%">
+        <span class="ridge-peak-name">{{ peak.name }} <span class="ridge-peak-ft">{{ peak.ftLabel }} ft</span></span>
+      </span>
+    @endforeach
+  </div>
+</div>
 <footer class="site-footer">
   <a href="/uses"@if (activeNav === 'uses') aria-current="page"@endif>uses</a>
   <a href="https://github.com/chrisbbreuer" rel="me">github</a>

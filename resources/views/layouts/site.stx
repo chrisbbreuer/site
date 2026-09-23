@@ -13,9 +13,25 @@ try {
   assetManifest = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'content/assets.json'), 'utf-8'))
 }
 catch {}
+// Only in production. The hashed copies are made by a build step, so in
+// development they are whatever that step last wrote - edit site.css, reload,
+// and the page would keep serving the previous hash with no sign anything was
+// ignored. Dev serves the file on disk.
+const fingerprintAssets = (process.env.APP_ENV || process.env.NODE_ENV || '').toLowerCase() === 'production'
+
 function asset(p) {
-  return assetManifest[p] || p
+  return fingerprintAssets ? (assetManifest[p] || p) : p
 }
+
+// Hover targets for the footer ridge, written by scripts/build-ridge.ts from
+// the same guide the line is sampled along, so a peak's label and the bump it
+// names cannot drift apart. Empty is fine: the ridge just stops being
+// hoverable.
+let ridgePeaks = []
+try {
+  ridgePeaks = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'content/ridge-peaks.json'), 'utf-8'))
+}
+catch {}
 
 // Fallback page meta. Every page overrides these from its own server script
 // (page values win; this stub only fills the gaps).
