@@ -1,5 +1,8 @@
 import type { UserConfig } from 'cz-git'
-import { components, functions } from '@stacksjs/utils'
+// Deep import on purpose: @stacksjs/utils' barrel re-exports four names and
+// these are not among them, though the package still ships them and maps
+// `./*` to dist. Importing from the barrel stopped compiling at 0.74.56.
+import { components, functions } from '@stacksjs/utils/utils'
 import git from './git'
 
 const scopes = [...new Set([...git.scopes, ...components, ...functions])]

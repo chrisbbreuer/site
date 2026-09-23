@@ -11,14 +11,67 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      type: unknown
-      description: unknown
-      subject_type: unknown
-      subject_id: unknown
-      causer: unknown
-      properties: unknown
-      ip_address: unknown
+      type: string
+      description: string
+      subject_type: string
+      subject_id: number
+      causer: string
+      properties: string
+      ip_address: string
       user_id: number
+    }
+    analytics_events: {
+      // columns
+      id: number
+      uuid: string
+      created_at: string
+      updated_at: string | null
+      name: string
+      category: string
+      path: string
+      value: number
+      currency: string
+      properties: string
+    }
+    auction_items: {
+      // columns
+      id: number
+      uuid: string
+      created_at: string
+      updated_at: string | null
+      lot_number: number
+      title: string
+      description: string
+      image_url: string
+      category: string
+      donor_name: string
+      fair_market_value: number
+      starting_bid: number
+      min_increment: number
+      buy_now_price: number
+      reserve_price: number
+      status: "open" | "closed" | "sold" | "passed"
+      closes_at: string
+      extension_count: number
+      auction_id: number
+    }
+    auctions: {
+      // columns
+      id: number
+      uuid: string
+      created_at: string
+      updated_at: string | null
+      event_id: number
+      title: string
+      description: string
+      status: "draft" | "preview" | "open" | "closed" | "settled"
+      currency: string
+      goal_amount: number
+      opens_at: string
+      closes_at: string
+      anti_snipe_minutes: number
+      extend_on_bid_window_minutes: number
+      max_extensions: number
     }
     authors: {
       // columns
@@ -26,11 +79,59 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      name: unknown
-      email: unknown
-      bio: unknown
-      avatar: unknown
+      name: string
+      email: string
+      bio: string
+      avatar: string
       user_id: number
+    }
+    automation_runs: {
+      // columns
+      id: number
+      uuid: string
+      created_at: string
+      updated_at: string | null
+      status: "queued" | "running" | "waiting" | "completed" | "failed" | "cancelled"
+      current_node_id: string
+      version: number
+      subject_type: string
+      subject_id: string
+      context: unknown
+      idempotency_key: string
+      started_at: string
+      finished_at: string
+      error: string
+      team_id: number
+      automation_id: number
+    }
+    automations: {
+      // columns
+      id: number
+      uuid: string
+      created_at: string
+      updated_at: string | null
+      name: string
+      status: "draft" | "active" | "paused" | "archived"
+      version: number
+      trigger: unknown
+      graph: unknown
+      published_at: string
+      team_id: number
+    }
+    bids: {
+      // columns
+      id: number
+      uuid: string
+      created_at: string
+      updated_at: string | null
+      bidder_name: string
+      bidder_email: string
+      amount: number
+      max_amount: number
+      status: "leading" | "outbid" | "won" | "lost" | "invalid"
+      placed_at: string
+      auction_id: number
+      auction_item_id: number
     }
     board_columns: {
       // columns
@@ -39,10 +140,10 @@ declare module '@stacksjs/database' {
       created_at: string
       updated_at: string | null
       board_id: number
-      name: unknown
-      position: unknown
-      card_limit: unknown
-      color: unknown
+      name: string
+      position: number
+      card_limit: number
+      color: string
     }
     boards: {
       // columns
@@ -50,12 +151,13 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      name: unknown
-      description: unknown
-      icon: unknown
-      color: unknown
-      position: unknown
-      archived: unknown
+      name: string
+      description: string
+      icon: string
+      color: string
+      position: number
+      archived: number
+      team_id: number
     }
     campaign_sends: {
       // columns
@@ -66,12 +168,40 @@ declare module '@stacksjs/database' {
       campaign_id: number
       subscriber_id: number
       email_list_id: number
-      status: unknown
-      provider_message_id: unknown
-      error: unknown
-      sent_at: unknown
-      opened_at: unknown
-      clicked_at: unknown
+      status: "queued" | "deferred" | "sending" | "sent" | "delivered" | "failed" | "undelivered" | "bounced" | "complained" | "suppressed" | "cancelled"
+      channel: "email" | "sms" | "push"
+      recipient: string
+      idempotency_key: string
+      provider_message_id: string
+      error: string
+      sent_at: string
+      opened_at: string
+      clicked_at: string
+      delivered_at: string
+      failed_at: string
+      segments: number
+      cost: number
+      metadata: unknown
+      team_id: number
+      campaign_variant_id: number
+    }
+    campaign_variants: {
+      // columns
+      id: number
+      uuid: string
+      created_at: string
+      updated_at: string | null
+      name: string
+      subject: string
+      content: unknown
+      allocation: number
+      sent_count: number
+      open_count: number
+      click_count: number
+      conversion_count: number
+      is_winner: number
+      team_id: number
+      campaign_id: number
     }
     campaigns: {
       // columns
@@ -79,27 +209,43 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      name: unknown
-      description: unknown
-      type: unknown
-      status: unknown
-      subject: unknown
-      template: unknown
-      text: unknown
-      from_name: unknown
-      from_address: unknown
+      name: string
+      description: string
+      type: "email" | "sms" | "push" | "social" | "multi-channel"
+      status: "draft" | "scheduled" | "sending" | "sent" | "paused" | "cancelled" | "failed" | "active" | "completed" | "archived"
+      subject: string
+      template: string
+      text: string
+      content: unknown
+      channel_settings: unknown
+      segment_definition: unknown
+      from_name: string
+      from_address: string
+      reply_to: string
+      timezone: string
+      recurrence: string
+      experiment_metric: "open_rate" | "click_rate" | "conversion_rate"
       email_list_id: number
-      scheduled_at: unknown
-      sent_at: unknown
-      audience_size: unknown
-      sent_count: unknown
-      open_rate: unknown
-      click_rate: unknown
-      conversion_rate: unknown
-      budget: unknown
-      spent: unknown
-      start_date: unknown
-      end_date: unknown
+      scheduled_at: string
+      sent_at: string
+      audience_size: number
+      sent_count: number
+      open_rate: number
+      click_rate: number
+      conversion_rate: number
+      budget: number
+      spent: number
+      currency: string
+      start_date: string
+      end_date: string
+      team_id: number
+    }
+    card_assignees: {
+      // columns
+      card_id: number
+      user_id: number
+      assigned_by_user_id: number | null
+      created_at: string | null
     }
     card_comments: {
       // columns
@@ -109,7 +255,13 @@ declare module '@stacksjs/database' {
       updated_at: string | null
       card_id: number
       user_id: number
-      body: unknown
+      body: string
+    }
+    card_labels: {
+      // columns
+      card_id: number
+      label_id: number
+      created_at: string | null
     }
     cards: {
       // columns
@@ -117,14 +269,14 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      column_id: unknown
+      column_id: number
       board_id: number
-      title: unknown
-      description: unknown
-      position: unknown
-      created_by_user_id: unknown
-      due_date: unknown
-      archived: unknown
+      title: string
+      description: string
+      position: number
+      created_by_user_id: number
+      due_date: string
+      archived: number
       board_column_id: number
       user_id: number
     }
@@ -134,17 +286,17 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      quantity: unknown
-      unit_price: unknown
-      total_price: unknown
-      tax_rate: unknown
-      tax_amount: unknown
-      discount_percentage: unknown
-      discount_amount: unknown
-      product_name: unknown
-      product_sku: unknown
-      product_image: unknown
-      notes: unknown
+      quantity: number
+      unit_price: number
+      total_price: number
+      tax_rate: number
+      tax_amount: number
+      discount_percentage: number
+      discount_amount: number
+      product_name: string
+      product_sku: string
+      product_image: string
+      notes: string
       cart_id: number
     }
     carts: {
@@ -153,16 +305,16 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      status: unknown
-      total_items: unknown
-      subtotal: unknown
-      tax_amount: unknown
-      discount_amount: unknown
-      total: unknown
-      expires_at: unknown
-      currency: unknown
-      notes: unknown
-      applied_coupon_id: unknown
+      status: "active" | "abandoned" | "converted" | "expired"
+      total_items: number
+      subtotal: number
+      tax_amount: number
+      discount_amount: number
+      total: number
+      expires_at: string
+      currency: string
+      notes: string
+      applied_coupon_id: string
       customer_id: number
       coupon_id: number
     }
@@ -172,13 +324,60 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      name: unknown
-      description: unknown
-      slug: unknown
-      image_url: unknown
-      is_active: unknown
-      parent_category_id: unknown
-      display_order: unknown
+      name: string
+      description: string
+      slug: string
+      image_url: string
+      is_active: number
+      parent_category_id: string
+      display_order: number
+    }
+    categorizable_models: {
+      // columns
+      id: number
+      category_id: number
+      categorizable_id: number
+      categorizable_type: string
+      created_at: string
+      updated_at: string | null
+    }
+    categorizables: {
+      // columns
+      id: number
+      created_at: string
+      updated_at: string | null
+      name: string
+      slug: string
+      description: string | null
+      is_active: number
+      categorizable_id: number
+      categorizable_type: string
+    }
+    ci_run_states: {
+      // columns
+      repo_full_name: string
+      last_conclusion: string | null
+      last_run_id: number | null
+      last_seen_at: string | null
+      last_notified_at: string | null
+      updated_at: string | null
+    }
+    ci_runner_alert_states: {
+      // columns
+      org: string
+      alerting: number
+      last_alerted_at: string | null
+      last_cleared_at: string | null
+      updated_at: string | null
+    }
+    ci_runner_samples: {
+      // columns
+      id: number
+      org: string
+      running: number
+      queued: number
+      cap: number
+      sampled_at: string
     }
     comments: {
       // columns
@@ -186,17 +385,50 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      author_name: unknown
-      author_email: unknown
-      content: unknown
-      body: unknown
-      post_title: unknown
-      status: unknown
-      ip_address: unknown
-      user_agent: unknown
-      is_approved: unknown
+      author_name: string
+      author_email: string
+      content: string
+      body: string
+      post_title: string
+      status: "pending" | "approved" | "spam" | "trash"
+      ip_address: string
+      user_agent: string
+      is_approved: number
       post_id: number
       user_id: number
+    }
+    communication_suppressions: {
+      // columns
+      id: number
+      uuid: string
+      created_at: string
+      updated_at: string | null
+      recipient: string
+      channel: "email" | "sms" | "push"
+      reason: "unsubscribe" | "bounce" | "complaint" | "carrier" | "manual" | "legal"
+      source: string
+      suppressed_at: string
+      lifted_at: string
+      team_id: number
+    }
+    consent_events: {
+      // columns
+      id: number
+      uuid: string
+      created_at: string
+      updated_at: string | null
+      recipient: string
+      channel: "email" | "sms" | "push"
+      action: "requested" | "granted" | "revoked" | "confirmed" | "suppressed"
+      purpose: string
+      source: string
+      jurisdiction: string
+      policy_version: string
+      idempotency_key: string
+      proof: unknown
+      ip_address: string
+      occurred_at: string
+      team_id: number
     }
     coupons: {
       // columns
@@ -204,20 +436,53 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      code: unknown
-      description: unknown
-      status: unknown
-      is_active: unknown
-      discount_type: unknown
-      discount_value: unknown
-      min_order_amount: unknown
-      max_discount_amount: unknown
-      free_product_id: unknown
-      usage_limit: unknown
-      usage_count: unknown
-      start_date: unknown
-      end_date: unknown
+      code: string
+      description: string
+      status: "Active" | "Scheduled" | "Expired"
+      is_active: number
+      discount_type: "fixed_amount" | "percentage"
+      discount_value: number
+      min_order_amount: number
+      max_discount_amount: number
+      free_product_id: string
+      usage_limit: number
+      usage_count: number
+      start_date: string
+      end_date: string
       product_id: number
+    }
+    courier_pings: {
+      // columns
+      id: number
+      uuid: string
+      created_at: string
+      updated_at: string | null
+      latitude: number
+      longitude: number
+      heading: number
+      speed: number
+      accuracy: number
+      recorded_at: string
+      courier_id: number
+      delivery_route_id: number
+    }
+    couriers: {
+      // columns
+      id: number
+      uuid: string
+      created_at: string
+      updated_at: string | null
+      name: string
+      phone: string
+      vehicle_number: string
+      license: string
+      status: "active" | "on_delivery" | "on_break" | "offline"
+      latitude: number
+      longitude: number
+      heading: number
+      speed: number
+      last_ping_at: string
+      user_id: number
     }
     customers: {
       // columns
@@ -225,13 +490,13 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      name: unknown
-      email: unknown
-      phone: unknown
-      total_spent: unknown
-      last_order: unknown
-      status: unknown
-      avatar: unknown
+      name: string
+      email: string
+      phone: string
+      total_spent: number
+      last_order: string
+      status: "Active" | "Inactive"
+      avatar: string
       user_id: number
     }
     delivery_routes: {
@@ -240,12 +505,38 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      driver: unknown
-      vehicle: unknown
-      stops: unknown
-      delivery_time: unknown
-      total_distance: unknown
-      last_active: unknown
+      courier: string
+      vehicle: string
+      stops: number
+      delivery_time: number
+      total_distance: number
+      last_active: number
+      status: "planned" | "active" | "completed" | "cancelled"
+      started_at: string
+      completed_at: string
+      courier_id: number
+    }
+    delivery_stops: {
+      // columns
+      id: number
+      uuid: string
+      created_at: string
+      updated_at: string | null
+      sequence: number
+      status: "pending" | "en_route" | "arrived" | "completed" | "failed" | "skipped"
+      address: string
+      latitude: number
+      longitude: number
+      recipient_name: string
+      recipient_phone: string
+      eta_at: string
+      notified_nearby_at: string
+      arrived_at: string
+      completed_at: string
+      notes: string
+      type: "pickup" | "dropoff"
+      delivery_route_id: number
+      order_id: number
     }
     deployments: {
       // columns
@@ -253,15 +544,15 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      commit_hash: unknown
-      commit_message: unknown
-      branch: unknown
-      status: unknown
-      environment: unknown
-      duration: unknown
-      author: unknown
-      url: unknown
-      error_log: unknown
+      commit_hash: string
+      commit_message: string
+      branch: string
+      status: string
+      environment: string
+      duration: number
+      author: string
+      url: string
+      error_log: string
     }
     digital_deliveries: {
       // columns
@@ -269,26 +560,52 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      name: unknown
-      description: unknown
-      download_limit: unknown
-      expiry_days: unknown
-      requires_login: unknown
-      automatic_delivery: unknown
-      status: unknown
+      name: string
+      description: string
+      download_limit: number
+      expiry_days: number
+      requires_login: number
+      automatic_delivery: number
+      status: "active" | "inactive"
+    }
+    driver_pings: {
+      // columns
+      id: number
+      latitude: number
+      longitude: number
+      heading: number | null
+      speed: number | null
+      accuracy: number | null
+      recorded_at: string
+      driver_id: number | null
+      delivery_route_id: number | null
+      created_at: string
+      updated_at: string | null
+      uuid: string | null
     }
     drivers: {
       // columns
       id: number
-      uuid: string
+      name: string | null
+      phone: string | null
+      vehicle_number: string | null
+      license: string | null
+      status: string | null
+      user_id: number | null
       created_at: string
       updated_at: string | null
-      name: unknown
-      phone: unknown
-      vehicle_number: unknown
-      license: unknown
-      status: unknown
-      user_id: number
+    }
+    email_idempotency: {
+      // columns
+      id: number
+      created_at: string
+      updated_at: string | null
+      idempotency_key: string
+      message_id: string
+      recipient: string
+      subject: string
+      provider: string
+      success: number
     }
     email_list_subscribers: {
       // columns
@@ -298,10 +615,10 @@ declare module '@stacksjs/database' {
       updated_at: string | null
       email_list_id: number
       subscriber_id: number
-      status: unknown
-      source: unknown
-      subscribed_at: unknown
-      unsubscribed_at: unknown
+      status: "subscribed" | "unsubscribed" | "pending" | "bounced"
+      source: string
+      subscribed_at: string
+      unsubscribed_at: string
     }
     email_lists: {
       // columns
@@ -309,38 +626,104 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      name: unknown
-      slug: unknown
-      description: unknown
-      subscriber_count: unknown
-      active_count: unknown
-      unsubscribed_count: unknown
-      bounced_count: unknown
-      status: unknown
-      is_public: unknown
-      double_opt_in: unknown
+      name: string
+      slug: string
+      description: string
+      subscriber_count: number
+      active_count: number
+      unsubscribed_count: number
+      bounced_count: number
+      status: "active" | "inactive" | "archived"
+      is_public: number
+      double_opt_in: number
+    }
+    email_suppressions: {
+      // columns
+      id: number
+      created_at: string
+      updated_at: string | null
+      email: string
+      type: "bounce" | "complaint" | "unsubscribe" | "manual"
+      reason: string
+    }
+    email_webhook_events: {
+      // columns
+      id: number
+      created_at: string
+      updated_at: string | null
+      provider: "mailgun" | "postmark" | "ses" | "sendgrid"
+      event_id: string
+      processed_at: string
     }
     errors: {
       // columns
       id: number
       created_at: string
       updated_at: string | null
-      type: unknown
-      message: unknown
-      stack: unknown
-      status: unknown
-      additional_info: unknown
+      type: string
+      message: string
+      stack: string
+      status: number
+      additional_info: string
     }
     failed_jobs: {
       // columns
       id: number
+      uuid: string
       created_at: string
       updated_at: string | null
-      connection: unknown
-      queue: unknown
-      payload: unknown
-      exception: unknown
-      failed_at: unknown
+      connection: string
+      queue: string
+      payload: string
+      exception: string
+      attempts: number
+      max_attempts: number
+      duration_ms: number
+      failed_at: string
+    }
+    form_fields: {
+      // columns
+      id: number
+      created_at: string
+      updated_at: string | null
+      name: string
+      label: string
+      type: "text" | "textarea" | "email" | "phone" | "select" | "checkbox" | "radio" | "date" | "file" | "currency" | "section_break"
+      required: number
+      position: number
+      width: "full" | "half"
+      options: unknown
+      conditions: unknown
+      form_id: number
+    }
+    form_submissions: {
+      // columns
+      id: number
+      uuid: string
+      created_at: string
+      updated_at: string | null
+      data: unknown
+      email: string
+      name: string
+      status: "pending_payment" | "complete" | "spam"
+      amount_cents: number
+      payment_intent_id: string
+      ip: string
+      submitted_at: string
+      form_id: number
+      site_id: number
+    }
+    forms: {
+      // columns
+      id: number
+      uuid: string
+      created_at: string
+      updated_at: string | null
+      name: string
+      handle: string
+      status: "draft" | "active" | "closed"
+      settings: unknown
+      site_id: number
     }
     gift_cards: {
       // columns
@@ -348,21 +731,21 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      code: unknown
-      initial_balance: unknown
-      current_balance: unknown
-      currency: unknown
-      status: unknown
-      purchaser_id: unknown
-      recipient_email: unknown
-      recipient_name: unknown
-      personal_message: unknown
-      is_digital: unknown
-      is_reloadable: unknown
-      is_active: unknown
-      expiry_date: unknown
-      last_used_date: unknown
-      template_id: unknown
+      code: string
+      initial_balance: number
+      current_balance: number
+      currency: string
+      status: "ACTIVE" | "USED" | "EXPIRED" | "DEACTIVATED"
+      purchaser_id: string
+      recipient_email: string
+      recipient_name: string
+      personal_message: string
+      is_digital: number
+      is_reloadable: number
+      is_active: number
+      expiry_date: string
+      last_used_date: string
+      template_id: string
       customer_id: number
     }
     jobs: {
@@ -370,11 +753,11 @@ declare module '@stacksjs/database' {
       id: number
       created_at: string
       updated_at: string | null
-      queue: unknown
-      payload: unknown
-      attempts: unknown
-      available_at: unknown
-      reserved_at: unknown
+      queue: string
+      payload: string
+      attempts: number
+      available_at: number
+      reserved_at: number
     }
     labels: {
       // columns
@@ -383,8 +766,8 @@ declare module '@stacksjs/database' {
       created_at: string
       updated_at: string | null
       board_id: number
-      name: unknown
-      color: unknown
+      name: string
+      color: string
     }
     license_keys: {
       // columns
@@ -392,10 +775,10 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      key: unknown
-      template: unknown
-      expiry_date: unknown
-      status: unknown
+      key: string
+      template: "Standard License" | "Premium License" | "Enterprise License"
+      expiry_date: string
+      status: "active" | "inactive" | "unassigned"
       customer_id: number
       product_id: number
       order_id: number
@@ -405,13 +788,13 @@ declare module '@stacksjs/database' {
       id: number
       created_at: string
       updated_at: string | null
-      timestamp: unknown
-      type: unknown
-      source: unknown
-      message: unknown
-      project: unknown
-      stacktrace: unknown
-      file: unknown
+      timestamp: number
+      type: "warning" | "error" | "info" | "success"
+      source: "file" | "cli" | "system"
+      message: string
+      project: string
+      stacktrace: string
+      file: string
     }
     loyalty_points: {
       // columns
@@ -419,13 +802,14 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      wallet_id: unknown
-      points: unknown
-      source: unknown
-      source_reference_id: unknown
-      description: unknown
-      expiry_date: unknown
-      is_used: unknown
+      wallet_id: string
+      points: number
+      source: string
+      source_reference_id: string
+      description: string
+      expiry_date: string
+      is_used: number
+      customer_id: number
     }
     loyalty_rewards: {
       // columns
@@ -433,16 +817,57 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      name: unknown
-      description: unknown
-      points_required: unknown
-      reward_type: unknown
-      discount_percentage: unknown
-      free_product_id: unknown
-      is_active: unknown
-      expiry_days: unknown
-      image_url: unknown
+      name: string
+      description: string
+      points_required: number
+      reward_type: string
+      discount_percentage: number
+      free_product_id: string
+      is_active: number
+      expiry_days: number
+      image_url: string
       product_id: number
+    }
+    magic_link_tokens: {
+      // columns
+      id: number
+      created_at: string
+      updated_at: string | null
+      email: string
+      token: string
+      expires_at: string
+      consumed_at: string
+      redirect_to: string
+      site_id: number
+      user_id: number
+    }
+    mail_preferences: {
+      // columns
+      id: number
+      created_at: string
+      updated_at: string | null
+      mailbox: string
+      account_name: string
+      signature: string
+      display_density: "comfortable" | "default" | "compact"
+      theme: "light" | "dark" | "system"
+      language: "en" | "fr" | "de" | "es" | "ja"
+      default_reply_behavior: "reply" | "replyAll"
+      send_and_archive: number
+      auto_advance: "newer" | "older" | "back"
+      desktop_notifications: number
+      notification_sound: "default" | "subtle" | "none"
+      notification_preview: number
+      filters: string
+      blocked_senders: string
+      labels: string
+      load_remote_images: number
+      show_external_content: number
+      vacation_enabled: number
+      vacation_start_date: string
+      vacation_end_date: string
+      vacation_subject: string
+      vacation_message: string
     }
     manufacturers: {
       // columns
@@ -450,10 +875,48 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      manufacturer: unknown
-      description: unknown
-      country: unknown
-      featured: unknown
+      manufacturer: string
+      description: string
+      country: string
+      featured: number
+    }
+    menu_items: {
+      // columns
+      id: number
+      created_at: string
+      updated_at: string | null
+      label: string
+      url: string
+      target: "_self" | "_blank"
+      parent_id: number
+      position: number
+      visibility: "public" | "auth"
+      menu_id: number
+      page_id: number
+    }
+    menus: {
+      // columns
+      id: number
+      created_at: string
+      updated_at: string | null
+      handle: string
+      name: string
+      site_id: number
+    }
+    notification_deliveries: {
+      // columns
+      id: number
+      created_at: string
+      updated_at: string | null
+      user_id: number
+      channel: "email" | "sms" | "chat" | "database" | "push" | "broadcast"
+      recipient: string
+      subject: string
+      body: string
+      status: "pending" | "sent" | "delivered" | "failed"
+      error: string
+      metadata: string
+      sent_at: string
     }
     notifications: {
       // columns
@@ -461,25 +924,42 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      type: unknown
-      channel: unknown
-      recipient: unknown
-      subject: unknown
-      body: unknown
-      status: unknown
-      read_at: unknown
-      sent_at: unknown
-      metadata: unknown
+      type: string
+      data: string
+      read_at: string
       user_id: number
+    }
+    oauth_access_tokens: {
+      // columns
+      id: number
+      created_at: string
+      updated_at: string | null
+      tokenable_type: string
+      tokenable_id: number
+      name: string
+      token: string
+      scopes: string
+      revoked: number
+      expires_at: string
+      user_agent: string
+      ip_address: string
+    }
+    order_idempotency: {
+      // columns
+      id: number
+      created_at: string
+      updated_at: string | null
+      idempotency_key: string
+      order_id: number
     }
     order_items: {
       // columns
       id: number
       created_at: string
       updated_at: string | null
-      quantity: unknown
-      price: unknown
-      special_instructions: unknown
+      quantity: number
+      price: number
+      special_instructions: string
       order_id: number
       product_id: number
     }
@@ -489,19 +969,36 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      status: unknown
-      total_amount: unknown
-      tax_amount: unknown
-      discount_amount: unknown
-      delivery_fee: unknown
-      tip_amount: unknown
-      order_type: unknown
-      delivery_address: unknown
-      special_instructions: unknown
-      estimated_delivery_time: unknown
-      applied_coupon_id: unknown
+      status: string
+      total_amount: number
+      currency: string
+      tax_amount: number
+      discount_amount: number
+      delivery_fee: number
+      tip_amount: number
+      order_type: string
+      delivery_address: string
+      special_instructions: string
+      estimated_delivery_time: string
+      tracking_token: string
+      delivery_latitude: number
+      delivery_longitude: number
+      applied_coupon_id: string
       customer_id: number
       coupon_id: number
+    }
+    page_revisions: {
+      // columns
+      id: number
+      created_at: string
+      updated_at: string | null
+      revision: number
+      title: string
+      blocks: unknown
+      meta_description: string
+      note: string
+      page_id: number
+      author_id: number
     }
     pages: {
       // columns
@@ -509,12 +1006,20 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      title: unknown
-      template: unknown
-      views: unknown
-      published_at: unknown
-      conversions: unknown
+      title: string
+      slug: string
+      path: string
+      parent_id: number
+      template: string
+      blocks: unknown
+      meta_description: string
+      status: "draft" | "published" | "scheduled" | "archived"
+      scheduled_at: string
+      views: number
+      published_at: string
+      conversions: number
       author_id: number
+      site_id: number
     }
     payment_methods: {
       // columns
@@ -522,13 +1027,13 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      type: unknown
-      last_four: unknown
-      brand: unknown
-      exp_month: unknown
-      exp_year: unknown
-      is_default: unknown
-      provider_id: unknown
+      type: string
+      last_four: number
+      brand: string
+      exp_month: number
+      exp_year: number
+      is_default: number
+      provider_id: string
       user_id: number
     }
     payment_products: {
@@ -537,13 +1042,13 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      name: unknown
-      description: unknown
-      key: unknown
-      unit_price: unknown
-      status: unknown
-      image: unknown
-      provider_id: unknown
+      name: string
+      description: string
+      key: string
+      unit_price: number
+      status: string
+      image: string
+      provider_id: string
     }
     payment_transactions: {
       // columns
@@ -551,11 +1056,11 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      name: unknown
-      description: unknown
-      amount: unknown
-      type: unknown
-      provider_id: unknown
+      name: string
+      description: string
+      amount: number
+      type: string
+      provider_id: string
       user_id: number
       payment_method_id: number
     }
@@ -565,19 +1070,42 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      amount: unknown
-      method: unknown
-      status: unknown
-      currency: unknown
-      reference_number: unknown
-      card_last_four: unknown
-      card_brand: unknown
-      billing_email: unknown
-      transaction_id: unknown
-      payment_provider: unknown
-      refund_amount: unknown
-      notes: unknown
+      amount: number
+      method: "cash" | "creditCard" | "debitCard" | "paypal" | "applePay" | "googlePay" | "bankTransfer" | "giftCard"
+      status: "pending" | "processing" | "completed" | "failed" | "refunded" | "partiallyRefunded" | "succeeded"
+      currency: string
+      reference_number: string
+      card_last_four: string
+      card_brand: string
+      billing_email: string
+      transaction_id: string
+      payment_provider: string
+      refund_amount: number
+      notes: string
       order_id: number
+      customer_id: number
+    }
+    permissions: {
+      // columns
+      id: number
+      name: string
+      guard_name: string
+      description: string | null
+      created_at: string | null
+      updated_at: string | null
+    }
+    pledges: {
+      // columns
+      id: number
+      uuid: string
+      created_at: string
+      updated_at: string | null
+      donor_name: string
+      donor_email: string
+      amount: number
+      level: string
+      status: "pending" | "confirmed" | "cancelled"
+      auction_id: number
       customer_id: number
     }
     posts: {
@@ -586,15 +1114,20 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      title: unknown
-      poster: unknown
-      content: unknown
-      excerpt: unknown
-      views: unknown
-      published_at: unknown
-      status: unknown
-      is_featured: unknown
+      title: string
+      slug: string
+      poster: string
+      content: string
+      excerpt: string
+      focus_keyword: string
+      meta_description: string
+      canonical_url: string
+      views: number
+      published_at: string
+      status: "published" | "draft" | "archived"
+      is_featured: number
       author_id: number
+      site_id: number
     }
     print_devices: {
       // columns
@@ -602,13 +1135,13 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      name: unknown
-      mac_address: unknown
-      location: unknown
-      terminal: unknown
-      status: unknown
-      last_ping: unknown
-      print_count: unknown
+      name: string
+      mac_address: string
+      location: string
+      terminal: string
+      status: "online" | "offline" | "warning"
+      last_ping: number
+      print_count: number
     }
     product_units: {
       // columns
@@ -616,11 +1149,11 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      name: unknown
-      abbreviation: unknown
-      type: unknown
-      description: unknown
-      is_default: unknown
+      name: string
+      abbreviation: string
+      type: string
+      description: string
+      is_default: number
       product_id: number
     }
     product_variants: {
@@ -629,11 +1162,11 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      variant: unknown
-      type: unknown
-      description: unknown
-      options: unknown
-      status: unknown
+      variant: string
+      type: string
+      description: string
+      options: string
+      status: "active" | "inactive" | "draft"
       product_id: number
     }
     products: {
@@ -642,17 +1175,45 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      name: unknown
-      description: unknown
-      price: unknown
-      image_url: unknown
-      is_available: unknown
-      inventory_count: unknown
-      preparation_time: unknown
-      allergens: unknown
-      nutritional_info: unknown
+      name: string
+      description: string
+      price: number
+      image_url: string
+      is_available: number
+      inventory_count: number
+      preparation_time: number
+      allergens: string
+      nutritional_info: string
       category_id: number
       manufacturer_id: number
+    }
+    query_logs: {
+      // columns
+      id: number
+      created_at: string
+      updated_at: string | null
+      query: string
+      normalized_query: string
+      duration: number
+      connection: string
+      status: "completed" | "failed" | "slow"
+      error: string
+      executed_at: string
+      bindings: string
+      trace: string
+      model: string
+      method: string
+      file: string
+      line: number
+      memory_usage: number
+      rows_affected: number
+      transaction_id: string
+      tags: string
+      affected_tables: string
+      indexes_used: string
+      missing_indexes: string
+      explain_plan: string
+      optimization_suggestions: string
     }
     receipts: {
       // columns
@@ -660,15 +1221,45 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      printer: unknown
-      document: unknown
-      timestamp: unknown
-      status: unknown
-      size: unknown
-      pages: unknown
-      duration: unknown
-      metadata: unknown
+      printer: string
+      document: string
+      timestamp: string
+      status: "success" | "failed" | "warning"
+      size: number
+      pages: number
+      duration: number
+      metadata: string
       print_device_id: number
+    }
+    redirects: {
+      // columns
+      id: number
+      created_at: string
+      updated_at: string | null
+      from_path: string
+      to_path: string
+      status_code: number
+      source: "slug-change" | "manual"
+      site_id: number
+    }
+    referral_codes: {
+      // columns
+      id: number
+      created_at: string
+      updated_at: string | null
+      user_id: number
+      code: string
+    }
+    referrals: {
+      // columns
+      id: number
+      created_at: string
+      updated_at: string | null
+      referrer_id: number
+      referred_user_id: number
+      code: string
+      status: "registered" | "qualified"
+      qualified_at: string | null
     }
     releases: {
       // columns
@@ -676,12 +1267,12 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      version: unknown
-      type: unknown
-      status: unknown
-      notes: unknown
-      downloads: unknown
-      author: unknown
+      version: string
+      type: string
+      status: string
+      notes: string
+      downloads: number
+      author: string
     }
     requests: {
       // columns
@@ -689,14 +1280,14 @@ declare module '@stacksjs/database' {
       created_at: string
       updated_at: string | null
       deleted_at: string | null
-      method: unknown
-      path: unknown
-      status_code: unknown
-      duration_ms: unknown
-      ip_address: unknown
-      memory_usage: unknown
-      user_agent: unknown
-      error_message: unknown
+      method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE" | "OPTIONS" | "HEAD"
+      path: string
+      status_code: number
+      duration_ms: number
+      ip_address: string
+      memory_usage: number
+      user_agent: string
+      error_message: string
     }
     reviews: {
       // columns
@@ -704,18 +1295,47 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      rating: unknown
-      title: unknown
-      content: unknown
-      is_verified_purchase: unknown
-      is_approved: unknown
-      is_featured: unknown
-      helpful_votes: unknown
-      unhelpful_votes: unknown
-      purchase_date: unknown
-      images: unknown
+      rating: number
+      title: string
+      content: string
+      is_verified_purchase: number
+      is_approved: number
+      is_featured: number
+      helpful_votes: number
+      unhelpful_votes: number
+      purchase_date: string
+      images: string
       product_id: number
       customer_id: number
+    }
+    role_permissions: {
+      // columns
+      role_id: number
+      permission_id: number
+      created_at: string | null
+    }
+    roles: {
+      // columns
+      id: number
+      name: string
+      guard_name: string
+      description: string | null
+      created_at: string | null
+      updated_at: string | null
+    }
+    sender_domains: {
+      // columns
+      id: number
+      uuid: string
+      created_at: string
+      updated_at: string | null
+      domain: string
+      status: "pending" | "verified" | "failed" | "disabled"
+      selector: string
+      dns_records: unknown
+      verified_at: string
+      last_checked_at: string
+      team_id: number
     }
     shipping_methods: {
       // columns
@@ -723,11 +1343,11 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      name: unknown
-      description: unknown
-      base_rate: unknown
-      free_shipping: unknown
-      status: unknown
+      name: string
+      description: string
+      base_rate: number
+      free_shipping: number
+      status: "active" | "inactive" | "draft"
     }
     shipping_rates: {
       // columns
@@ -735,9 +1355,9 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      weight_from: unknown
-      weight_to: unknown
-      rate: unknown
+      weight_from: number
+      weight_to: number
+      rate: number
       shipping_method_id: number
       shipping_zone_id: number
     }
@@ -747,12 +1367,55 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      name: unknown
-      countries: unknown
-      regions: unknown
-      postal_codes: unknown
-      status: unknown
+      name: string
+      countries: string
+      regions: string
+      postal_codes: string
+      status: "active" | "inactive" | "draft"
       shipping_method_id: number
+    }
+    site_domains: {
+      // columns
+      id: number
+      created_at: string
+      updated_at: string | null
+      domain: string
+      is_primary: number
+      verified_at: string
+      ssl_status: "pending" | "issued" | "failed"
+      site_id: number
+    }
+    sites: {
+      // columns
+      id: number
+      uuid: string
+      created_at: string
+      updated_at: string | null
+      name: string
+      subdomain: string
+      status: "active" | "suspended" | "archived"
+      settings: unknown
+      timezone: string
+      team_id: number
+    }
+    sms_opt_outs: {
+      // columns
+      id: number
+      created_at: string
+      updated_at: string | null
+      phone: string
+      reason: string
+      opted_out_at: string
+    }
+    social_accounts: {
+      // columns
+      id: number
+      created_at: string
+      updated_at: string | null
+      provider: string
+      provider_user_id: string
+      provider_email: string
+      user_id: number
     }
     social_posts: {
       // columns
@@ -760,18 +1423,43 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      content: unknown
-      platform: unknown
-      status: unknown
-      scheduled_at: unknown
-      published_at: unknown
-      likes: unknown
-      shares: unknown
-      comments: unknown
-      reach: unknown
-      image_url: unknown
-      external_id: unknown
+      content: string
+      platform: "twitter" | "facebook" | "instagram" | "linkedin" | "tiktok" | "youtube"
+      status: "draft" | "scheduled" | "published" | "failed"
+      scheduled_at: string
+      published_at: string
+      likes: number
+      shares: number
+      comments: number
+      reach: number
+      image_url: string
+      external_id: string
       user_id: number
+    }
+    storage_item_tasks: {
+      // columns
+      id: number
+      uuid: string
+      created_at: string
+      updated_at: string | null
+      disk: string
+      path: string
+      kind: "optimize" | "transcode" | "tag"
+      state: "queued" | "running" | "done" | "failed"
+      attempts: number
+      error: string
+      started_at: string
+      finished_at: string
+    }
+    storage_items: {
+      // columns
+      id: number
+      uuid: string
+      created_at: string
+      updated_at: string | null
+      disk: string
+      path: string
+      favorite: number
     }
     subscriber_emails: {
       // columns
@@ -779,8 +1467,8 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      email: unknown
-      source: unknown
+      email: string
+      source: string
       subscriber_id: number
     }
     subscribers: {
@@ -789,10 +1477,10 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      email: unknown
-      status: unknown
-      source: unknown
-      unsubscribed_at: unknown
+      email: string
+      status: "subscribed" | "unsubscribed" | "pending" | "bounced"
+      source: string
+      unsubscribed_at: string
       user_id: number
     }
     subscriptions: {
@@ -801,18 +1489,27 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      type: unknown
-      plan: unknown
-      provider_id: unknown
-      provider_status: unknown
-      unit_price: unknown
-      provider_type: unknown
-      provider_price_id: unknown
-      quantity: unknown
-      trial_ends_at: unknown
-      ends_at: unknown
-      last_used_at: unknown
+      type: string
+      plan: string
+      provider_id: string
+      provider_status: string
+      unit_price: number
+      provider_type: string
+      provider_price_id: string
+      quantity: number
+      trial_ends_at: string
+      ends_at: string
+      last_used_at: string
       user_id: number
+    }
+    taggable_models: {
+      // columns
+      id: number
+      tag_id: number
+      taggable_id: number
+      taggable_type: string
+      created_at: string
+      updated_at: string | null
     }
     tags: {
       // columns
@@ -820,11 +1517,10 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      name: unknown
-      slug: unknown
-      description: unknown
-      post_count: unknown
-      color: unknown
+      name: string
+      slug: string
+      description: string
+      color: string
     }
     tax_rates: {
       // columns
@@ -832,13 +1528,46 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      name: unknown
-      rate: unknown
-      type: unknown
-      country: unknown
-      region: unknown
-      status: unknown
-      is_default: unknown
+      name: string
+      rate: number
+      type: string
+      country: string
+      region: "North America" | "South America" | "Europe" | "Asia" | "Africa" | "Oceania" | "Antarctica"
+      status: "active" | "inactive"
+      is_default: number
+      code: string
+      exemptible: number
+    }
+    team_invitations: {
+      // columns
+      id: number
+      uuid: string
+      created_at: string
+      updated_at: string | null
+      team_id: number
+      email: string
+      role: "admin" | "member" | "viewer"
+      token_hash: string
+      pending_key: string
+      invited_by_user_id: number
+      accepted_by_user_id: number
+      status: "pending" | "accepted" | "revoked" | "expired"
+      delivery_status: "pending" | "sent" | "failed"
+      delivery_error: string
+      expires_at: string
+      delivered_at: string
+      accepted_at: string
+    }
+    team_members: {
+      // columns
+      id: number
+      uuid: string
+      created_at: string
+      updated_at: string | null
+      team_id: number
+      user_id: number
+      role: "owner" | "admin" | "member" | "viewer"
+      status: "active" | "suspended"
     }
     teams: {
       // columns
@@ -846,10 +1575,10 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      name: unknown
-      description: unknown
-      member_count: unknown
-      status: unknown
+      name: string
+      description: string
+      member_count: number
+      status: string
     }
     transactions: {
       // columns
@@ -857,14 +1586,39 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      amount: unknown
-      status: unknown
-      payment_method: unknown
-      payment_details: unknown
-      transaction_reference: unknown
-      loyalty_points_earned: unknown
-      loyalty_points_redeemed: unknown
+      amount: number
+      status: string
+      payment_method: string
+      payment_details: string
+      transaction_reference: string
+      loyalty_points_earned: number
+      loyalty_points_redeemed: number
       order_id: number
+    }
+    usage_events: {
+      // columns
+      id: number
+      uuid: string
+      created_at: string
+      updated_at: string | null
+      meter: "contacts" | "email_sends" | "sms_segments" | "ai_generations" | "storage_bytes"
+      quantity: number
+      idempotency_key: string
+      metadata: unknown
+      occurred_at: string
+      team_id: number
+    }
+    user_permissions: {
+      // columns
+      user_id: number
+      permission_id: number
+      created_at: string | null
+    }
+    user_roles: {
+      // columns
+      user_id: number
+      role_id: number
+      created_at: string | null
     }
     users: {
       // columns
@@ -872,10 +1626,16 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      name: unknown
-      email: unknown
-      password: unknown
-      avatar: unknown
+      email_verified_at: string | null
+      password_changed_at: string | null
+      two_factor_secret: string | null
+      two_factor_enabled: number | null
+      two_factor_last_used_step: number | null
+      stripe_id: string | null
+      name: string
+      email: string
+      password: string
+      avatar: string
     }
     waitlist_products: {
       // columns
@@ -883,17 +1643,17 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      name: unknown
-      email: unknown
-      phone: unknown
-      quantity: unknown
-      notification_preference: unknown
-      source: unknown
-      notes: unknown
-      status: unknown
-      notified_at: unknown
-      purchased_at: unknown
-      cancelled_at: unknown
+      name: string
+      email: string
+      phone: string
+      quantity: number
+      notification_preference: "sms" | "email" | "both"
+      source: string
+      notes: string
+      status: "waiting" | "purchased" | "notified" | "cancelled"
+      notified_at: string
+      purchased_at: string
+      cancelled_at: string
       product_id: number
       customer_id: number
     }
@@ -903,19 +1663,19 @@ declare module '@stacksjs/database' {
       uuid: string
       created_at: string
       updated_at: string | null
-      name: unknown
-      email: unknown
-      phone: unknown
-      party_size: unknown
-      check_in_time: unknown
-      table_preference: unknown
-      status: unknown
-      quoted_wait_time: unknown
-      actual_wait_time: unknown
-      queue_position: unknown
-      seated_at: unknown
-      no_show_at: unknown
-      cancelled_at: unknown
+      name: string
+      email: string
+      phone: string
+      party_size: number
+      check_in_time: string
+      table_preference: "indoor" | "bar" | "booth" | "no_preference"
+      status: "waiting" | "seated" | "cancelled" | "no_show"
+      quoted_wait_time: number
+      actual_wait_time: number
+      queue_position: number
+      seated_at: string
+      no_show_at: string
+      cancelled_at: string
       customer_id: number
     }
     websockets: {
@@ -923,10 +1683,10 @@ declare module '@stacksjs/database' {
       id: number
       created_at: string
       updated_at: string | null
-      type: unknown
-      socket: unknown
-      details: unknown
-      time: unknown
+      type: "disconnection" | "error" | "success"
+      socket: string
+      details: string
+      time: number
     }
   }
 }

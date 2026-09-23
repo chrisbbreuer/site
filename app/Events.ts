@@ -10,5 +10,10 @@ import type { Events } from '@stacksjs/types'
 export default {
   // eventName: ['Listener1', 'Listener2'] -> listeners default to ./app/actions/*
   'user:registered': ['SendWelcomeEmail'],
-  'user:created': ['NotifyUser'],
+  // 'user:created' used to be mapped here and is gone: the framework's event
+  // names now come from AppEvents/AuthEvents rather than an index signature,
+  // and nothing emits it. A model emits `<model>:created` only with the
+  // `observe` trait, this site defines no models of its own, and the built-in
+  // User does not observe. It was scaffolding that type-checked while doing
+  // nothing, which is the failure an event map is least able to report.
 } satisfies Events

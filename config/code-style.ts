@@ -79,10 +79,16 @@ const config: PickierOptions = {
     '**/temp/**',
     // Build caches and vendored deps, never user-editable source
     '**/cache/**',
-    '**/storage/framework/cache/**',
-    '**/storage/framework/auto-imports/**',
-    '**/storage/framework/frontend-dist/**',
-    '**/storage/framework/server/storage/**',
+    // The whole of storage/framework belongs to the framework: it is vendored
+    // from the `stacks` package and rewritten by `buddy generate`, so a fix
+    // made here is gone at the next sync. This used to list four subdirectories
+    // and lint the rest, which meant an upgrade could hand this project lint
+    // ERRORS in files it does not own: 0.74.56 arrived with an unused import in
+    // server/build.ts and three in types/auto-imports.d.ts, and `pickier .`
+    // went from clean to failing without a line of app code changing. 36 of the
+    // 38 files it flagged were framework files. Report those upstream; do not
+    // gate this repo on them.
+    '**/storage/framework/**',
     '**/.bunpress/**',
     '**/docs/deps/**',
     // Generated scaffolds copied into pantry, out of project control

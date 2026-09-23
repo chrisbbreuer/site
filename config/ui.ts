@@ -30,23 +30,19 @@ export default {
    */
   defaultViews: false,
 
-  /**
-   * Skip the startup image pass.
+  /*
+   * `imageWarmup: false` used to sit here, to skip a startup pass that derived
+   * placeholders and built the responsive image catalog. It was worth about 27
+   * seconds of boot on this site, which renders no <StxImage> and no @image and
+   * so wanted none of it.
    *
-   * It derives placeholders and builds the responsive delivery catalog, and
-   * `<StxImage>` and `@image` are the only things that read either. This site
-   * renders neither: the gallery is built ahead of time by
-   * scripts/build-gallery.ts and the pages reference those files directly, so
-   * every variant the pass produced went unrequested. It was decoding 130
-   * rasters and holding 560 MB to do it.
-   *
-   * That was never free and recently got expensive. The server now waits for
-   * this pass before it binds, so on the box it was a minute or more before a
-   * release could serve, which is also how long a deploy kept two releases
-   * running at once. That overlap is the peak memory moment of a deploy, on a
-   * box shared with a dozen other tenants.
+   * Removed because nothing reads the option any more: it is absent from both
+   * StxOptions and UiConfig as of stacks 0.74.56, so it stopped type-checking,
+   * and `grep imageWarmup node_modules/@stacksjs` finds nothing. Keeping it
+   * would have been a setting that looked load-bearing and did nothing. Boot
+   * was measured after removing it and is still under a second, so the pass is
+   * no longer running at startup on its own account.
    */
-  imageWarmup: false,
 
   // Components directory - for user-defined components
   componentsDir: 'resources/components',

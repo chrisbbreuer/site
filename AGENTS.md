@@ -23,7 +23,16 @@ before doing non-trivial work in that area rather than guessing an API.
 - stx `<script>` tags may only contain stx-compatible code (signals, composables, directives).
 
 ### Dependencies
-- **buddy-bot** handles dependency updates, not renovatebot.
+- **buddy-bot** handles dependency updates, not renovatebot. It runs on a
+  schedule with strategy `all` and only ever opens PRs, so this project tracks
+  latest by default.
+- Do not pin a dependency through `overrides` in `package.json`. An override
+  wins over every range in the tree, including buddy-bot's, so the package
+  silently stops updating and nothing reports it: `ts-images` sat on 0.2.19
+  while 0.2.20 was out, because an override said so. The overrides that used to
+  be here existed to collapse nested copies of `@stacksjs/stx` and
+  `@stacksjs/ts-cloud`, which `linker = "hoisted"` in `bunfig.toml` already
+  does. If a duplicate copy ever reappears, fix the linker, not the version.
 - **better-dx** provides shared dev tooling as peer dependencies; do not install its peers (e.g.
   `typescript`, `pickier`, `bun-plugin-dtsx`) separately if `better-dx` is already in `package.json`.
 - If `better-dx` is in `package.json`, ensure `bunfig.toml` sets `linker = "hoisted"`.

@@ -1,5 +1,12 @@
-import type { QueryBuilderConfig, SupportedDialect } from 'bun-query-builder'
+import type { SupportedDialect } from 'bun-query-builder'
 import { env } from '@stacksjs/env'
+// `defineConfig` rather than `satisfies QueryBuilderConfig`. That type is the
+// RESOLVED shape with every field required, so annotating a config file with it
+// demands `migrationDir`, `snapshotDir` and a dozen sections this project has
+// no opinion about, and every field added upstream afterwards became a build
+// break here. 0.74.56 added two. `defineConfig` takes the options shape, where
+// nothing is required, and returns its argument unchanged.
+import { defineConfig } from 'bun-query-builder'
 
 const dialect = (env.DB_CONNECTION as SupportedDialect) || 'sqlite'
 
@@ -14,7 +21,7 @@ const databaseConfig = dialect === 'sqlite'
       port: env.DB_PORT || 5432,
     }
 
-export default {
+export default defineConfig({
   verbose: true,
   dialect,
   database: databaseConfig,
@@ -71,4 +78,4 @@ export default {
     column: 'deleted_at',
     defaultFilter: true,
   },
-} satisfies QueryBuilderConfig
+})

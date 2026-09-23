@@ -32,7 +32,7 @@ on:
       strategy:
         description: Update strategy
         required: false
-        default: patch
+        default: all
         type: choice
         options:
           - all
@@ -303,7 +303,7 @@ jobs:
       - name: Display update configuration
         run: |
           echo "🧪 **Buddy Bot Update Mode**"
-          echo "Strategy: ${{ github.event.inputs.strategy || 'patch' }}"
+          echo "Strategy: ${{ github.event.inputs.strategy || 'all' }}"
           echo "Dry Run: ${{ github.event.inputs.dry_run || 'false' }}"
           echo "Packages: ${{ github.event.inputs.packages || 'all' }}"
           echo "Verbose: ${{ github.event.inputs.verbose || 'true' }}"
@@ -311,10 +311,15 @@ jobs:
           echo "Repository: ${{ github.repository }}"
           echo "Branch: ${{ github.ref_name }}"
 
+      # `all`, not `patch`. A scheduled run has no inputs, so the fallback IS the
+      # scheduled strategy, and `patch` meant a minor release was never even
+      # proposed: the repo drifted quietly behind and nobody saw a PR for it.
+      # This job only opens pull requests, so proposing a major costs a review,
+      # not a broken deploy.
       - name: Run Buddy dependency updates
         if: ${{ github.event.inputs.dry_run != 'true' }}
         run: |
-          STRATEGY="${{ github.event.inputs.strategy || 'patch' }}"
+          STRATEGY="${{ github.event.inputs.strategy || 'all' }}"
           PACKAGES="${{ github.event.inputs.packages }}"
           VERBOSE="${{ github.event.inputs.verbose || 'true' }}"
 
@@ -353,7 +358,7 @@ jobs:
         run: |
           echo "## 🚀 Dependency Update Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "- **Strategy**: ${{ github.event.inputs.strategy || 'patch' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Strategy**: ${{ github.event.inputs.strategy || 'all' }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Triggered by**: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Dry run**: ${{ github.event.inputs.dry_run || 'false' }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Packages**: ${{ github.event.inputs.packages || 'all' }}" >> $GITHUB_STEP_SUMMARY
