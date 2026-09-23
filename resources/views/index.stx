@@ -3,7 +3,7 @@ const fs = require('node:fs')
 const path = require('node:path')
 const { readingStats } = require(path.join(process.cwd(), 'resources/utils/reading-stats.ts'))
 
-const title = 'Chris Breuer - Software engineer, founder & skyrunner'
+const title = 'Chris Breuer - Software engineer, founder & ultra skyrunner'
 const description = 'Chris Breuer builds developer and agentic tooling, plus the apps on top of it: Stacks, HQ.training, Wildloop. Skyrunner. Notes on both.'
 const activeNav = ''
 const pagePath = '/'
@@ -40,7 +40,7 @@ const posts = fs.readdirSync(blogDir)
 @endpush
 
 @section('content')
-  <h1 class="page-title">Software engineer,<br class="title-break">founder, skyrunner.</h1>
+  <h1 class="page-title">Software engineer,<br class="title-break">founder, ultra skyrunner.</h1>
   <p class="page-lead">
     I build developer tooling. <a href="https://stacksjs.com">Stacks</a>, a TypeScript
     framework and the ecosystem around it, and increasingly agentic tooling: the things
@@ -92,4 +92,3 @@ const posts = fs.readdirSync(blogDir)
 
   @include('../partials/subscribe.stx')
 @endsection
-

@@ -35,7 +35,7 @@ catch {}
 
 // Fallback page meta. Every page overrides these from its own server script
 // (page values win; this stub only fills the gaps).
-const title = 'Chris Breuer - Software engineer, founder & skyrunner'
+const title = 'Chris Breuer - Software engineer, founder & ultra skyrunner'
 const description = 'Chris Breuer builds developer tooling and skyruns long days in the mountains. Notes on TypeScript, Bun, Stacks, and the trails in between.'
 const activeNav = ''
 const siteUrl = 'https://chrisbreuer.me'

@@ -3,7 +3,7 @@ const fs = require('node:fs')
 const path = require('node:path')
 
 const title = 'About - Chris Breuer'
-const description = 'I\'m Chris Breuer, a software engineer obsessed over developer and agentic tooling, and a skyrunner. Building Stacks, HQ.training and Wildloop. Los Angeles based.'
+const description = 'I\'m Chris Breuer, a software engineer obsessed over developer and agentic tooling, and a ultra skyrunner. Building Stacks, HQ.training and Wildloop. Los Angeles based.'
 const activeNav = 'about'
 const pagePath = '/about'
 

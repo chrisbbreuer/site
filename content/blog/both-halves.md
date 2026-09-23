@@ -3,7 +3,7 @@ title: Both Halves
 description: Fifteen years of building developer and agentic tooling, two years of planning to run 2,650 miles, and why those turn out to be the same problem.
 date: 2026-09-22
 author: Chris Breuer
-authorBio: Software engineer, founder of Stacks, skyrunner. Los Angeles based.
+authorBio: Software engineer, founder of Stacks, ultra skyrunner. Los Angeles based.
 ---
 
 This is the post that should have existed first, so it is the one I have been putting off.
