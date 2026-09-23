@@ -34,6 +34,13 @@ import { route } from '@stacksjs/router'
 // `routes/api.ts` (user routes win) gets to pick its own limits.
 route.post('/login', 'Actions/Auth/LoginAction').rateLimit(5, 'minute')
 route.post('/register', 'Actions/Auth/RegisterAction').rateLimit(3, 'minute')
+// Magic links (config.auth.magicLink.enabled gates both, 404 when off).
+// The send endpoint answers a uniform 202 either way (anti-enumeration
+// lives in sendMagicLink); the consume endpoint is a POST because email
+// scanners prefetch GETs and would burn single-use tokens - the GET page
+// at /auth/magic/{token} is an interstitial that posts here.
+route.post('/auth/magic-link', 'Actions/Auth/MagicLinkSendAction').rateLimit(3, 'minute')
+route.post('/auth/magic-link/consume', 'Actions/Auth/MagicLinkConsumeAction').rateLimit(10, 'minute')
 // Passkey ENROLLMENT (attaching a new credential to an account) must be
 // auth-gated — it's not a login flow, it's a logged-in user adding a
 // second factor to their own account. Previously unauthenticated and
@@ -67,6 +74,8 @@ route.group({ prefix: '/auth' }, () => {
 })
 
 route.group({ middleware: 'auth' }, () => {
+  route.get('/referrals', 'Actions/Auth/ReferralSummaryAction').rateLimit(60, 'minute')
+  route.post('/referrals/code', 'Actions/Auth/CreateReferralCodeAction').rateLimit(10, 'minute')
   route.get('/me', 'Actions/Auth/AuthUserAction')
   route.post('/logout', 'Actions/Auth/LogoutAction')
   // Sign out everywhere: revoke every access/refresh token AND destroy

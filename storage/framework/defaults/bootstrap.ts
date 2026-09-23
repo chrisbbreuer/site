@@ -26,33 +26,6 @@ import { frameworkPath } from '@stacksjs/path'
 import { route } from '@stacksjs/router'
 import MaintenanceMiddleware from './app/Middleware/Maintenance'
 
-// RBAC: wire the bun-query-builder-backed store so `hasRole(user, …)` and
-// friends from `@stacksjs/auth` actually hit the database (otherwise every
-// call throws "RBAC store not configured"). The store is a thin adapter
-// over the `roles` / `permissions` / `user_roles` / `user_permissions` /
-// `role_permissions` tables created by migrations 0000000101–0000000105.
-// Registered unconditionally because the auth middleware + Role middleware
-// both reach for the helpers at request time regardless of which feature
-// the project opts into.
-// DEFERRED, non-blocking wiring on purpose. This file is dynamically
-// imported by the route loader while other entrypoints (a test file, the
-// API server) may still be mid-way through evaluating the @stacksjs/auth
-// async module graph. With a static `import { setRbacStore } ...`, Bun
-// could execute this module against auth's partially-evaluated record:
-// the exported function exists (hoisted) but rbac.ts's module-level
-// `let store` hadn't initialized, so calling it threw
-// `Cannot access 'store' before initialization`, the whole bootstrap
-// import failed, and EVERY framework default route (auth, 2FA, passkeys,
-// dashboard) silently vanished — the loader logs one line and carries
-// on. A blocking `await import('@stacksjs/auth')` here deadlocks instead
-// (auth's evaluation can be waiting on the same route-loading pass that
-// is importing this file), so the wiring is fire-and-forget: routes
-// register immediately, and the RBAC store lands the moment auth's
-// evaluation completes — before any real request needs it.
-import('@stacksjs/auth')
-  .then(({ createBqbRbacStore, setRbacStore }) => setRbacStore(createBqbRbacStore()))
-  .catch(err => console.error('[bootstrap] RBAC store wiring failed:', err))
-
 // Global maintenance / coming-soon gate. Registered first so the
 // `buddy down` / `buddy coming-soon` (and their env-var equivalents)
 // state files intercept every request before any other middleware or
@@ -134,7 +107,27 @@ if (mounts('dashboard', feature('dashboard'))) {
   await route.register(frameworkPath('defaults/routes/dashboard-api.ts'))
   // The dev dashboard boots through this file rather than the application
   // router's importRoutes() path, so load model-declared useApi routes here too.
-  await import(frameworkPath('orm/routes.ts'))
+  //
+  // Package first, vendored second, matching importRoutes() and start.ts. This
+  // line used to import the vendored copy only, and nothing re-vendors that
+  // file: `@stacksjs/orm` publishes `dist/routes.js` and no `routes.ts`, so an
+  // app kept whatever generator its copy froze at however often it upgraded.
+  // An old enough copy compares route paths literally, so a generated
+  // `PATCH /api/sites/{id}` does not recognise a hand-written
+  // `/api/sites/{siteId}` as the same endpoint and registers alongside it,
+  // and the hand-written handler's authorization check stops running
+  // (stacksjs/stacks#2364).
+  //
+  // Held in a variable so the specifier resolves at runtime rather than while
+  // transpiling, where an unresolvable literal would fail this module instead
+  // of throwing where it can be caught.
+  const ormRoutesPackage = '@stacksjs/orm/routes'
+  try {
+    await import(ormRoutesPackage)
+  }
+  catch {
+    await import(frameworkPath('orm/routes.ts'))
+  }
 }
 
 // Email webhook + unsubscribe routes (stacksjs/stacks#1881, #1880).
@@ -146,6 +139,20 @@ if (mounts('dashboard', feature('dashboard'))) {
 // register first.
 if (mounts('email', feature('email'))) {
   await route.register(frameworkPath('defaults/routes/email.ts'))
+}
+
+// Form-builder public endpoints (`@stacksjs/forms`). Gated on the `forms`
+// feature, which defaults OFF - an app opts in with config/forms.ts
+// (`buddy forms:install`) and only then do the public submit routes exist.
+if (mounts('forms', feature('forms'))) {
+  await route.register(frameworkPath('defaults/routes/forms.ts'))
+}
+
+// Courier delivery endpoints: position ingest and the stop/route lifecycle a
+// courier's device drives. Gated with the rest of the commerce surface, since
+// they are meaningless without the delivery models behind them.
+if (mounts('delivery', feature('commerce'))) {
+  await route.register(frameworkPath('defaults/routes/delivery.ts'))
 }
 
 // Social sign-in: `/auth/{provider}` + `/auth/{provider}/callback`

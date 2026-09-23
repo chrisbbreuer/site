@@ -1,6 +1,6 @@
 ---
 name: stacks-cms
-description: Use when working with the CMS in a Stacks application — posts, authors, pages, categories, tags, comments, blog configuration, RSS feeds, or sitemaps. Covers @stacksjs/cms, CMS models, routes, and actions.
+description: Use when working with the CMS in a Stacks application - posts, authors, pages, categories, tags, comments, blog configuration, RSS feeds, or sitemaps. Covers @stacksjs/cms, CMS models, routes, and actions.
 license: MIT
 compatibility: Bun >= 1.3.0, TypeScript
 allowed-tools: Read Edit Write Bash Grep Glob
@@ -183,10 +183,10 @@ cms.comments.deleteComment(id: number): Promise<void>
   title: 'Stacks Blog',
   description: 'The official Stacks.js blog',
   postsPerPage: 10,
-  enableComments: true,
-  enableRss: true,
-  enableSitemap: true,
-  enableSearch: true,
+  enableComments: true,   // declared, NOT yet honoured by the static builder
+  enableRss: true,        // generates feed.xml
+  enableSitemap: true,    // generates sitemap.xml
+  enableSearch: true,     // declared, NOT yet honoured by the static builder
   social: { twitter: '@stacksjs', github: 'stacksjs/stacks' },
   theme: { primaryColor: '#3451b2', logo: '/images/logos/logo-transparent.svg' },
 }

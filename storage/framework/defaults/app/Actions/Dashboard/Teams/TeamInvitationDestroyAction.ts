@@ -1,6 +1,6 @@
 import type { RequestInstance } from '@stacksjs/types'
 import { Action } from '@stacksjs/actions'
-import { db } from '@stacksjs/database'
+import { db } from '@stacksjs/database/runtime'
 import { response } from '@stacksjs/router'
 import { teamOperationalError } from '../../Teams/team-response'
 import {
@@ -25,7 +25,7 @@ export default new Action({
 
     let invitation
     try {
-      invitation = await (db as any)
+      invitation = await db
         .selectFrom('team_invitations')
         .where('id', '=', invitationId)
         .where('team_id', '=', teamId)
@@ -41,7 +41,7 @@ export default new Action({
       return response.json({ message: 'Only pending invitations can be revoked.' }, 409)
 
     try {
-      const result = await (db as any)
+      const result = await db
         .updateTable('team_invitations')
         .set({
           status: 'revoked',

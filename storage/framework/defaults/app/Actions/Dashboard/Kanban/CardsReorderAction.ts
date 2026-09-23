@@ -1,6 +1,6 @@
 import type { RequestInstance } from '@stacksjs/types'
 import { Action } from '@stacksjs/actions'
-import { db } from '@stacksjs/database'
+import { db } from '@stacksjs/database/runtime'
 import { kanbanActionError, kanbanError } from './kanban-response'
 
 interface ColumnReorder {
@@ -99,7 +99,7 @@ export default new Action({
       if (boardIds.size > 1) {
         return kanbanError('All columns in a reorder request must belong to the same board.', 400)
       }
-      const boardId = colRows[0].board_id
+      const boardId = colRows[0]?.board_id
 
       // Verify all cards belong to that board (prevents a malformed
       // page from moving cards in from a sibling board).

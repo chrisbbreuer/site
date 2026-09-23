@@ -1,6 +1,6 @@
 import type { RequestInstance } from '@stacksjs/types'
 import { Action } from '@stacksjs/actions'
-import { db } from '@stacksjs/database'
+import { db } from '@stacksjs/database/runtime'
 import { response } from '@stacksjs/router'
 import { teamOperationalError } from '../../Teams/team-response'
 import { invitationStatus, parsePositiveId } from './team-records'
@@ -32,7 +32,7 @@ export default new Action({
 
     try {
       const [members, invitations] = await Promise.all([
-        (db as any)
+        db
           .selectFrom('team_members')
           .innerJoin('users', 'users.id', '=', 'team_members.user_id')
           .where('team_members.team_id', '=', teamId)
@@ -47,7 +47,7 @@ export default new Action({
           ])
           .orderBy('users.name', 'asc')
           .execute(),
-        (db as any)
+        db
           .selectFrom('team_invitations')
           .where('team_id', '=', teamId)
           .where('status', '=', 'pending')

@@ -1,6 +1,6 @@
 import type { RequestInstance } from '@stacksjs/types'
 import { Action } from '@stacksjs/actions'
-import { db } from '@stacksjs/database'
+import { db } from '@stacksjs/database/runtime'
 import { response } from '@stacksjs/router'
 import { TeamStateConflictError, teamOperationalError } from '../../Teams/team-response'
 import { syncTeamMemberCount } from './team-member-count'
@@ -22,7 +22,7 @@ export default new Action({
     try {
       result = await db.transaction(async (rawTrx) => {
         const trx = rawTrx as unknown as typeof db
-        const member = await (trx as any)
+        const member = await trx
           .selectFrom('team_members')
           .where('id', '=', memberId)
           .where('team_id', '=', teamId)
@@ -33,7 +33,7 @@ export default new Action({
         if (member.role === 'owner')
           return response.json({ message: 'Transfer team ownership before removing the owner.' }, 409)
 
-        const deleted = await (trx as any)
+        const deleted = await trx
           .deleteFrom('team_members')
           .where('id', '=', memberId)
           .where('team_id', '=', teamId)

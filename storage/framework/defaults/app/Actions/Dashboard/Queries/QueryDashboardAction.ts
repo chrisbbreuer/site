@@ -1,6 +1,6 @@
 import { Action } from '@stacksjs/actions'
 import { config } from '@stacksjs/config'
-import { db } from '@stacksjs/database'
+import { db } from '@stacksjs/database/runtime'
 import { dashboardOperationalError } from '../dashboard-response'
 import { dashboardQueryColumns, mapDashboardQueryLog, type QueryLogSourceRow } from './query-dashboard'
 
@@ -23,7 +23,7 @@ export default new Action({
       return {
         enabled: queryLogging?.enabled === true,
         slowThreshold: queryLogging?.slowThreshold || 100,
-        queries: rows.map(row => mapDashboardQueryLog(row as QueryLogSourceRow)),
+        queries: rows.map((row: unknown) => mapDashboardQueryLog(row as QueryLogSourceRow)),
       }
     }
     catch (error) {

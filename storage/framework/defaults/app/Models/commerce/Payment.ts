@@ -1,4 +1,4 @@
-import { defineModel } from '@stacksjs/orm'
+import { customerOwnership, defineModel } from '@stacksjs/orm'
 import { schema } from '@stacksjs/validation'
 
 export default defineModel({
@@ -7,14 +7,19 @@ export default defineModel({
   primaryKey: 'id',
   autoIncrement: true,
 
+  // Rows belong to the caller's customer record, one hop from the user
+  // (stacksjs/stacks#2375). Without this the generated writes are reachable by
+  // any authenticated caller for any row.
+  ownership: customerOwnership(),
+
   traits: {
     useUuid: true,
     useTimestamps: true,
     useSearch: {
-      displayable: ['id', 'orderId', 'customerId', 'amount', 'method', 'status', 'date'],
+      displayable: ['id', 'orderId', 'customerId', 'amount', 'method', 'status', 'createdAt'],
       searchable: ['orderId', 'customerId', 'referenceNumber'],
       sortable: ['amount', 'createdAt'],
-      filterable: ['method', 'status', 'date'],
+      filterable: ['method', 'status', 'createdAt'],
     },
 
     useSeeder: {

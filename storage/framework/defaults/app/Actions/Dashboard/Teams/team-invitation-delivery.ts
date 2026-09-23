@@ -1,5 +1,5 @@
 import { config } from '@stacksjs/config'
-import { db } from '@stacksjs/database'
+import { db } from '@stacksjs/database/runtime'
 import { sendTeamInvitation } from '../../../Mail/TeamInvitation'
 import { teamOperationalIssue } from '../../Teams/team-response'
 import { changedRows, invitationUrl, sqlTimestamp } from './team-records'
@@ -45,7 +45,7 @@ export async function deliverTeamInvitation(input: DeliveryInput): Promise<void>
   }
 
   try {
-    const result = await (db as any)
+    const result = await db
       .updateTable('team_invitations')
       .set({
         delivery_status: 'sent',
@@ -66,7 +66,7 @@ export async function deliverTeamInvitation(input: DeliveryInput): Promise<void>
 }
 
 export async function markTeamInvitationDeliveryFailed(id: number, tokenHash: string, error: string): Promise<void> {
-  await (db as any)
+  await db
     .updateTable('team_invitations')
     .set({
       delivery_status: 'failed',

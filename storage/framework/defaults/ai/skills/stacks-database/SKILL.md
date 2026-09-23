@@ -1,6 +1,6 @@
 ---
 name: stacks-database
-description: Use when working with databases in a Stacks application — configuring connections, running queries, migrations, seeding, SQL helpers, or using SQLite/MySQL/PostgreSQL/DynamoDB. Covers @stacksjs/database, bun-query-builder, config/database.ts, and the database/ migrations directory.
+description: Use when working with databases in a Stacks application - configuring connections, running queries, migrations, seeding, SQL helpers, or using SQLite/MySQL/PostgreSQL/DynamoDB. Covers @stacksjs/database, bun-query-builder, config/database.ts, and the database/ migrations directory.
 license: MIT
 compatibility: Bun >= 1.3.0, TypeScript, SQLite >= 3.47.2
 allowed-tools: Read Edit Write Bash Grep Glob
@@ -12,7 +12,7 @@ allowed-tools: Read Edit Write Bash Grep Glob
 - Database package: `storage/framework/core/database/src/`
 - Configuration: `config/database.ts`
 - QB config: `config/query-builder.ts`
-- Migrations: `database/migrations/` (96+ migration files, `.sql` format)
+- Migrations: `database/migrations/` (229 migration files, `.sql` format)
 - QB state: `.qb/`
 - ORM: `storage/framework/orm/`
 
@@ -85,6 +85,12 @@ const users = await db.selectFrom('users').where('active', '=', true).get()
 ```
 
 `initializeDbConfig(config)` can be called to update the backing config at runtime.
+
+For reads which cannot tolerate replication lag, use `db.primary.selectFrom(...)`.
+It stays on the primary when automatic replica routing is enabled, and uses the
+active transaction connection inside a transaction. It does not mark the request
+as a writer or change routing for unrelated reads. Session authentication uses
+this handle so a revoked session cannot authenticate from a stale replica.
 
 ## SQL Template Tag (types.ts)
 
@@ -177,6 +183,8 @@ Before running migrations on SQLite, `preprocessSqliteMigrations()`:
 - `seedModel$(modelName, options?): Promise<SeedResult>` -- seed one model by name
 - `freshSeed(config?): Promise<SeedSummary>` -- calls `seed({ ...config, fresh: true })` (truncates before seeding)
 - `listSeedableModels(): Promise<Array<{ name, table, count, source: 'default' | 'user' }>>` -- list without seeding
+- `runApplicationSeeders(config?): Promise<ApplicationSeederSummary>` -- runs `database/seeders` classes in deterministic relative-path order
+- `Seeder` -- abstract base class for idempotent application bootstrap seeders
 
 ### SeederConfig
 ```typescript
@@ -198,6 +206,20 @@ interface SeederConfig {
 - Records inserted in batches of 100
 - Models sorted by dependency: User (0), Team (1), Project (2), everything else (10)
 - Missing tables are skipped gracefully
+- `buddy seed` and `buddy migrate:fresh --seed` also run application seeders after model factories
+- Application seeder modules must default-export a class extending `Seeder` and implement `run()`
+- Application seeders are for idempotent bootstrap work that does not belong in model factories, such as an initial workspace or role assignment
+
+```typescript
+// database/seeders/OwnerSeeder.ts
+import { Seeder } from '@stacksjs/database'
+
+export default class OwnerSeeder extends Seeder {
+  async run(): Promise<void> {
+    // Resolve existing records first, then create only what is missing.
+  }
+}
+```
 
 ### SeedResult / SeedSummary
 ```typescript
@@ -242,7 +264,19 @@ Entity-centric API for single-table design:
   migrations: 'migrations',
   migrationLocks: 'migration_locks',
   queryLogging: {
-    enabled: true,
+    // Defaults on outside production and off in production. Production also
+    // skips query hooks unless persistent history is explicitly enabled,
+    // except one onQueryError hook on PostgreSQL and MySQL that reports a
+    // pool broken by oven-sh/bun#42804.
+    enabled: env.DB_QUERY_LOGGING_ENABLED ?? !['production', 'prod'].includes(env.APP_ENV || ''),
+    captureAllTraces: false, // slow and failed queries always keep traces
+    // Bound values in query_logs.bindings, credentials stored as `<redacted>`
+    // (by name and shape, so not every secret); production keeps only each
+    // value's type unless this is enabled. Env takes true/false, 1/0, yes/no, on/off.
+    captureBindings: env.DB_QUERY_LOGGING_CAPTURE_BINDINGS ?? !['production', 'prod'].includes(env.APP_ENV || ''),
+    // More secret columns, on top of those names: 'code' in every table,
+    // 'gift_cards.code' in that one. Also taken out of a failed query's error.
+    sensitiveColumns: [],
     slowThreshold: 100,  // ms
     retention: 7,        // days
     pruneFrequency: 24,  // hours

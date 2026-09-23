@@ -1,6 +1,6 @@
 import type { RequestInstance } from '@stacksjs/types'
 import { Action } from '@stacksjs/actions'
-import { db } from '@stacksjs/database'
+import { db } from '@stacksjs/database/runtime'
 import { isUniqueViolation } from '@stacksjs/orm'
 import { response } from '@stacksjs/router'
 import { teamOperationalError } from '../../Teams/team-response'
@@ -28,7 +28,7 @@ export default new Action({
 
     let invitation
     try {
-      invitation = await (db as any)
+      invitation = await db
         .selectFrom('team_invitations')
         .innerJoin('teams', 'teams.id', '=', 'team_invitations.team_id')
         .where('team_invitations.id', '=', invitationId)
@@ -55,7 +55,7 @@ export default new Action({
     const tokenHash = hashInvitationToken(token)
     const expiresAt = invitationExpiresAt()
     try {
-      const result = await (db as any)
+      const result = await db
         .updateTable('team_invitations')
         .set({
           token_hash: tokenHash,

@@ -1,4 +1,4 @@
-import { defineModel } from '@stacksjs/orm'
+import { defineModel, parentOwnership } from '@stacksjs/orm'
 import { schema } from '@stacksjs/validation'
 
 export default defineModel({
@@ -7,14 +7,19 @@ export default defineModel({
   primaryKey: 'id',
   autoIncrement: true,
 
+  // No owner of its own: these rows are owned by whoever owns the cart's customer
+  // (stacksjs/stacks#2375). Resolved through the parent so it follows any change
+  // to how Cart decides ownership.
+  ownership: parentOwnership('Cart', 'cart_id'),
+
   traits: {
     useUuid: true,
     useTimestamps: true,
     useSearch: {
-      displayable: ['id', 'cartId', 'productId', 'quantity', 'unitPrice', 'totalPrice'],
-      searchable: ['id', 'cartId', 'productId'],
+      displayable: ['id', 'cartId', 'productName', 'productSku', 'quantity', 'unitPrice', 'totalPrice'],
+      searchable: ['id', 'cartId', 'productName', 'productSku'],
       sortable: ['createdAt', 'updatedAt', 'quantity', 'unitPrice'],
-      filterable: ['cartId', 'productId'],
+      filterable: ['cartId', 'productSku'],
     },
 
     useSeeder: {

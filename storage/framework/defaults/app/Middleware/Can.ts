@@ -1,6 +1,9 @@
-import { AuthorizationException, authorize } from '@stacksjs/auth'
+import { AuthorizationException, authorize } from '@stacksjs/auth/gate'
+import { authenticatedUser } from '@stacksjs/auth/middleware'
 import { HttpError } from '@stacksjs/error-handling'
 import { Middleware, resolveRouteModel, setRouteModelFallback } from '@stacksjs/router'
+
+let ormModule: typeof import('@stacksjs/orm') | undefined
 
 /**
  * Convention binding: parameter `site` resolves through the `Site` model
@@ -23,7 +26,7 @@ setRouteModelFallback(async (value, { param }) => {
   // touched: lowercasing the rest would turn `blogPost` into `Blogpost`.
   const modelName = param.charAt(0).toUpperCase() + param.slice(1)
 
-  const orm = await import('@stacksjs/orm') as Record<string, any>
+  const orm = (ormModule ??= await import('@stacksjs/orm')) as Record<string, any>
   const model = orm[modelName]
 
   // No model of that name — decline, so the raw string passes through exactly
@@ -76,7 +79,7 @@ export default new Middleware({
     }
 
     // Get the authenticated user
-    const user = request.user || request._user || null
+    const user = await authenticatedUser(request)
 
     // Prepare arguments for the gate check
     const args: any[] = []
@@ -109,7 +112,7 @@ export default new Middleware({
 
     // Perform the authorization check
     try {
-      await authorize(ability, user, ...args)
+      await authorize(ability, user ?? null, ...args)
     }
     catch (error) {
       if (error instanceof AuthorizationException) {

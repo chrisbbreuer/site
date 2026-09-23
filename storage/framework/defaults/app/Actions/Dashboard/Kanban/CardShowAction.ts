@@ -1,6 +1,6 @@
 import type { RequestInstance } from '@stacksjs/types'
 import { Action } from '@stacksjs/actions'
-import { db } from '@stacksjs/database'
+import { db } from '@stacksjs/database/runtime'
 import { modelBoolean } from './kanban-model'
 import { kanbanActionError, kanbanError } from './kanban-response'
 
@@ -50,7 +50,7 @@ export default new Action({
       const cardRows = await db.unsafe(
         'SELECT * FROM cards WHERE id = ? LIMIT 1',
         [id],
-      ).execute() as CardRow[]
+      ).execute() as unknown as CardRow[]
       const card = cardRows?.[0]
       if (!card) {
         return kanbanError('Card not found', 404)

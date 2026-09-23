@@ -1,6 +1,6 @@
 import type { RequestInstance } from '@stacksjs/types'
 import { Action } from '@stacksjs/actions'
-import { db } from '@stacksjs/database'
+import { db } from '@stacksjs/database/runtime'
 import { emailSDK } from '@stacksjs/email'
 import { response } from '@stacksjs/router'
 import { dashboardRequestValue } from '../dashboard-request'
@@ -167,7 +167,7 @@ export default new Action({
           .where('channel', '=', 'email')
           .where('created_at', '>=', previousStart.toISOString())
           .orderBy('created_at', 'desc')
-          .execute() as Promise<DeliveryRow[]>,
+          .execute() as unknown as Promise<DeliveryRow[]>,
       ])
     }
     catch (error) {

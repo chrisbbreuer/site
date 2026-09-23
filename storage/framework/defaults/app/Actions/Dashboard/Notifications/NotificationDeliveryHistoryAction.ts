@@ -1,6 +1,6 @@
 import type { RequestInstance } from '@stacksjs/types'
 import { Action } from '@stacksjs/actions'
-import { db } from '@stacksjs/database'
+import { db } from '@stacksjs/database/runtime'
 import { response } from '@stacksjs/router'
 import { dashboardOperationalError } from '../dashboard-response'
 import { dashboardRequestValue } from '../dashboard-request'
@@ -79,7 +79,7 @@ export default new Action({
           .orderBy(sort as DeliverySort, direction)
           .limit(perPage)
           .offset((page - 1) * perPage)
-          .execute() as Promise<NotificationDeliveryRow[]>,
+          .execute() as unknown as Promise<NotificationDeliveryRow[]>,
       ])
 
       const total = Number(countRow?.count || 0)

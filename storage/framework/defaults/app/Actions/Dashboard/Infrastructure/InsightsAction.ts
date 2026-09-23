@@ -4,7 +4,7 @@ import { resolve } from 'node:path'
 import { Action } from '@stacksjs/actions'
 import { cache } from '@stacksjs/cache'
 import { config } from '@stacksjs/config'
-import { db } from '@stacksjs/database'
+import { db } from '@stacksjs/database/runtime'
 import { checkQueueHealth } from '@stacksjs/queue'
 import { dashboardOperationalIssue } from '../dashboard-response'
 import {
@@ -181,7 +181,7 @@ export default new Action({
         averageDurationMs: finiteNumber(requestSummary.value?.average),
         maximumDurationMs: finiteNumber(requestSummary.value?.maximum),
         latestAt: requestSummary.value?.latest || '',
-        slowest: slowRequests.value.map(row => ({
+        slowest: slowRequests.value.map((row: Record<string, unknown>) => ({
           id: countValue(row.id),
           method: String(row.method || 'GET'),
           path: safeRequestPath(row.path),
@@ -200,7 +200,7 @@ export default new Action({
         averageDurationMs: finiteNumber(querySummary.value?.average),
         maximumDurationMs: finiteNumber(querySummary.value?.maximum),
         latestAt: querySummary.value?.latest || '',
-        slowest: slowQueries.value.map(row => ({
+        slowest: slowQueries.value.map((row: Record<string, unknown>) => ({
           id: countValue(row.id),
           query: compactSql(row.query),
           durationMs: finiteNumber(row.duration),
@@ -240,7 +240,7 @@ export default new Action({
       errors: {
         total: countValue(errorSummary.value?.total),
         latestAt: errorSummary.value?.latest || '',
-        recent: recentErrors.value.map(row => ({
+        recent: recentErrors.value.map((row: Record<string, unknown>) => ({
           id: countValue(row.id),
           type: String(row.type || 'Error'),
           message: String(row.message || ''),

@@ -52,6 +52,28 @@ auth/src/
 - `Auth.login(credentials: AuthCredentials, options?: TokenCreateOptions): Promise<{ user, token } | null>` — login and create token
 - `Auth.loginUsingId(userId: number, options?: TokenCreateOptions): Promise<{ user, token } | null>` — login by user ID
 - `Auth.logout(): Promise<void>` — revoke current token
+
+### Personal access tokens (Sanctum-shaped)
+
+`oauth_access_tokens` is polymorphic: `tokenable_type` holds the owner's TABLE
+name (`users`, `authors`) and `tokenable_id` its id there, so any model
+declaring `useAuth` can hold tokens - not only `User`.
+
+- `createToken(id, name, scopes, { tokenableType })` — mint one. Returns the
+  plaintext ONCE (`plainTextToken`); the table stores a hash and nothing can
+  recover it afterwards. `tokenableType` defaults to `users`.
+- `tokens(id, tokenableType?)` — list an owner's live tokens.
+- `tokenCan(scope)` / `tokenCanAll` / `tokenCanAny` / `tokenAbilities` — check
+  the current request's token.
+- `revokeToken`, `revokeTokenById`, `revokeAllTokens(id, type?)`,
+  `revokeOtherTokens(id, type?)` — revocation also revokes the paired refresh
+  token, which a raw row delete does not.
+- `setTrailActor(id)` — attribute writes in a queue job or CLI run that has no
+  request to read a user from.
+
+The `PersonalAccessToken` model maps the same table, so `owner.with('tokenable')`
+lists exactly what `createToken` minted. It deliberately generates no CRUD
+routes: minting and revoking both carry semantics a generic route does not.
 - `Auth.once(credentials: AuthCredentials): Promise<boolean>` — one-time auth without token
 - `Auth.requestToken(credentials, clientId, clientSecret): Promise<{ token } | null>` — OAuth token request
 
@@ -236,7 +258,7 @@ interface RbacStore { findRoleByName, createRole, deleteRole, getAllRoles, findP
 - `SessionAuth.logout(sessionId): void`
 - `SessionAuth.user(sessionId): Promise<UserModel | undefined>`
 - `SessionAuth.check(sessionId): boolean`
-- `SessionAuth.refresh(sessionId, ttlMs?): boolean`
+- `SessionAuth.refresh(sessionId, ttlMs?): boolean`, rejects non-positive or non-finite TTLs without changing the session
 
 Internal: in-memory Map with 10k session limit, 5-minute eviction interval, timing-safe password comparison with dummy bcrypt hash.
 
@@ -363,15 +385,43 @@ await authUser.authorize('edit-post', post)  // throws if denied
 
 ## Middleware Aliases (app/Middleware.ts)
 
-Available middleware names: `maintenance`, `auth`, `guest`, `api`, `team`, `logger`, `abilities`, `can`, `throttle`, `local`, `development`, `staging`, `production`, `env.local`, `env.development`, `env.staging`, `env.production`, `role`, `permission`, `verified` (EnsureEmailIsVerified)
+Auth-relevant aliases: `auth`, `guest`, `verified` (EnsureEmailIsVerified),
+`abilities`, `can`, `role`, `permission`, `team`, `signed`, `throttle`. The
+environment aliases are `env`, `env:local`, `env:development` / `env:dev`,
+`env:staging`, `env:production` / `env:prod` — with a COLON, not a dot; an
+earlier version of this list wrote `env.local` and those never existed. See
+`stacks-middleware` for the full set and for the `!alias` and `alias:params`
+forms.
 
-## Application Gates Example (app/Gates.ts)
+## Application Gates (app/Gates.ts)
 
 ```typescript
-Gate.define('access-admin', (user) => user?.email?.endsWith('@stacksjs.org') ?? false)
-Gate.define('edit-settings', (user) => !!user)
-Gate.define('view-dashboard', (user) => !!user)
+import { defineGates } from '@stacksjs/auth'
+
+export default defineGates({
+  gates: {
+    'access-admin': user => user?.email?.endsWith('@stacksjs.com') ?? false,
+    'edit-settings': user => !!user,
+    'view-dashboard': user => !!user,
+  },
+  policies: {
+    Post: 'PostPolicy',
+  },
+})
 ```
+
+Registered at boot by `initializeAuthorization()`, from
+`injectGlobalAutoImports()` — the one place every entry point comes through, so
+HTTP, `buddy seed`, a scheduled job and a console command all get the same
+gates.
+
+Both halves of `policies` are checked: the key names a model the ORM exposes,
+the value a policy file under `app/Policies/` or the framework defaults. An
+explicit mapping WINS over the `<Model>Policy` naming convention, which is the
+reason to write one.
+
+`Gate.define(...)` still works for a gate registered at runtime; `defineGates`
+is the declarative form and the one the ability-name completions come from.
 
 ## Default API Routes
 
@@ -409,6 +459,8 @@ traits: {
 - RBAC has an internal cache (`userRoles`, `userPermissions`, `rolePermissions`) — call `Rbac.flushCache()` after direct DB changes
 - `syncRoles()` and `syncPermissions()` are guard-scoped replacements: they preserve assignments belonging to other guards
 - Gate `before` callbacks can short-circuit — return `true` to allow, `null` to continue checking
+- An ability with no gate and no policy method **denies**. That is the right default, and it means a gate that was never registered is indistinguishable from one that says no — which is how `initializeAuthorization()` went unnoticed while nothing called it
+- `allows()` and friends take `Ability`, which is open (`GateName | PolicyAbility | (string & {})`). A `/can/:ability` route passes an ability straight through, so narrowing it would reject correct code; the union is for completions
 - `withRbac()` and `withAuthorization()` return new objects with methods mixed in
 - The `RbacStore` interface must be implemented and set via `Rbac.setStore()` for RBAC to work
 - Password reset tokens expire after 60 minutes by default
