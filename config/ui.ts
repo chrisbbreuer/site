@@ -30,6 +30,24 @@ export default {
    */
   defaultViews: false,
 
+  /**
+   * Skip the startup image pass.
+   *
+   * It derives placeholders and builds the responsive delivery catalog, and
+   * `<StxImage>` and `@image` are the only things that read either. This site
+   * renders neither: the gallery is built ahead of time by
+   * scripts/build-gallery.ts and the pages reference those files directly, so
+   * every variant the pass produced went unrequested. It was decoding 130
+   * rasters and holding 560 MB to do it.
+   *
+   * That was never free and recently got expensive. The server now waits for
+   * this pass before it binds, so on the box it was a minute or more before a
+   * release could serve, which is also how long a deploy kept two releases
+   * running at once. That overlap is the peak memory moment of a deploy, on a
+   * box shared with a dozen other tenants.
+   */
+  imageWarmup: false,
+
   // Components directory - for user-defined components
   componentsDir: 'resources/components',
 
