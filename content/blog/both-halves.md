@@ -34,7 +34,7 @@ The only thing I loved more than computers as a kid was being outside. Almost tw
 
 These days it is skyrunning: long days in the mountains, on trails that go up considerably more than they go along, usually with my dog somewhere ahead of me. Weekends are California or Colorado. It is the one reliable thing that gets me away from a keyboard.
 
-I am not really a runner, though. I have been an athlete most of my life, but running never brought me much joy, and I have never done it professionally. The point is less the running than showing that a strong mind with a clear goal can get you almost anywhere. It is also good for the dog.
+I am not really a runner, though. I have been an athlete most of my life, but running never brought me much joy, and I have never done it professionally. The point is less the running than showing that a strong mind with a clear goal can get you almost anywhere. But... the dog is a big fan!
 
 Next up is the Pacific Crest Trail, northbound: 2,650 miles, aiming to average 60 a day. I do not know yet if that pace holds, and finding out is half the reason to try. I have two years to build toward it, at twenty to forty hours of training a week. After that I want to start racing, pinning on a number at mountain races to see where I stand.
 
