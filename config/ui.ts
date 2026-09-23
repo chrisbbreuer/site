@@ -2,12 +2,21 @@ import type { StxOptions } from '@stacksjs/stx'
 import type { UiConfig } from '@stacksjs/types'
 
 /**
- * This file configures two things that are typed in two places: the template
- * directories, which belong to stx, and `defaultViews`, which the views server
- * reads off `config.ui`. Neither type has the other's properties, so the
- * constraint is the intersection rather than one of them.
+ * This file configures things that are typed in three different packages: the
+ * template directories belong to stx, `defaultViews` is read off `config.ui`
+ * by the views server, and `imageWarmup` is a `ServeOptions` field that
+ * bun-plugin-stx reads. No one type has the others' properties, so the
+ * constraint is the intersection rather than any one of them.
  */
-type UiOptions = StxOptions & Pick<UiConfig, 'defaultViews'>
+type UiOptions = StxOptions & Pick<UiConfig, 'defaultViews'> & {
+  /**
+   * Declared here rather than picked off `ServeOptions`, which is where
+   * bun-plugin-stx actually types it: that file declares `ServeOptions` twice
+   * and the exported one is the declaration without this field, so
+   * `Pick<ServeOptions, 'imageWarmup'>` does not compile.
+   */
+  imageWarmup?: boolean
+}
 
 /**
  * STX Configuration for Stacks
@@ -30,19 +39,27 @@ export default {
    */
   defaultViews: false,
 
-  /*
-   * `imageWarmup: false` used to sit here, to skip a startup pass that derived
-   * placeholders and built the responsive image catalog. It was worth about 27
-   * seconds of boot on this site, which renders no <StxImage> and no @image and
-   * so wanted none of it.
+
+  /**
+   * Skip the startup image pass.
    *
-   * Removed because nothing reads the option any more: it is absent from both
-   * StxOptions and UiConfig as of stacks 0.74.56, so it stopped type-checking,
-   * and `grep imageWarmup node_modules/@stacksjs` finds nothing. Keeping it
-   * would have been a setting that looked load-bearing and did nothing. Boot
-   * was measured after removing it and is still under a second, so the pass is
-   * no longer running at startup on its own account.
+   * It derives placeholders and builds the responsive delivery catalog, and
+   * `<StxImage>` and `@image` are the only things that read either. This site
+   * renders neither: the gallery is built ahead of time by
+   * scripts/build-gallery.ts and the pages reference those files directly, so
+   * every variant the pass produces goes unrequested.
+   *
+   * Measured on this project, with the 120 files in public/images/gallery:
+   * 1.1s to bind with this set, 35s without it, at 918 MB peak. The server
+   * waits for the pass before binding, so without this a deploy cannot clear
+   * its health gate at all. It is load-bearing.
+   *
+   * bun-plugin-stx is the package that reads it, and it is absent from both
+   * StxOptions and UiConfig, so a grep of `node_modules/@stacksjs` finds
+   * nothing and it looks like dead config. It is not. Removing it on that
+   * basis is what took the site down.
    */
+  imageWarmup: false,
 
   // Components directory - for user-defined components
   componentsDir: 'resources/components',
