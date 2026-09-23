@@ -119,7 +119,8 @@ a { color: var(--text-1); }
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.theme-btn {
+/* Round icon buttons at the end of the masthead: GitHub, then the theme toggle. */
+.icon-btn {
   border: 1px solid var(--divider);
   border-radius: 999px;
   background: transparent;
@@ -133,14 +134,18 @@ a { color: var(--text-1); }
   line-height: 1;
   padding: 0;
 }
-.theme-btn:hover { color: var(--text-1); border-color: var(--text-3); }
-/* The button sits outside the nav; on wide screens it keeps the nav's own
- * 1rem spacing rather than the masthead's 1.5rem. */
-.masthead .theme-btn { margin-left: -0.5rem; }
-/* Phones: name and theme toggle share the top row, the links take the next. */
+.icon-btn:hover { color: var(--text-1); border-color: var(--text-3); }
+a.icon-btn { text-decoration: none; }
+.icon-btn > [class^='i-'] { width: 15px; height: 15px; }
+/* The buttons sit outside the nav: 1rem after it, as between its links, and
+ * 0.5rem between the two buttons, rather than the masthead's 1.5rem. */
+.masthead nav + .icon-btn { margin-left: -0.5rem; }
+.masthead .icon-btn + .icon-btn { margin-left: -1rem; }
+/* Phones: name and the buttons share the top row, the links take the next. */
 @media (max-width: 640px) {
   .masthead { row-gap: 0.9rem; }
-  .masthead .theme-btn { order: 2; margin-left: auto; }
+  .masthead .icon-btn { order: 2; }
+  .masthead nav + .icon-btn { margin-left: auto; }
   .masthead nav { order: 3; width: 100%; margin-left: 0; }
 }
 
