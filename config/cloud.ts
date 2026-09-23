@@ -76,6 +76,21 @@ export const tsCloud: TsCloudConfig = {
       // vendored core, and took the deploy down with it.
       start: 'bun node_modules/@stacksjs/buddy/dist/serve-entry.js',
       port: 3040,
+      // What the zero-downtime cutover waits for before retiring the old
+      // release.
+      //
+      // ts-cloud already overlaps releases: the new one binds the same port
+      // via SO_REUSEPORT while the old keeps serving, and only then is the old
+      // stopped. But without this the gate is `systemctl is-active` for five
+      // seconds — which asks whether the process is alive, not whether it can
+      // answer. A Bun server binds its port almost immediately and then does
+      // its startup work, so "active" was true long before the first byte
+      // could be served. The old release was retired into that window, and
+      // every request that arrived in it got nothing back.
+      //
+      // `/` rather than a static file on purpose: it exercises the render
+      // path, which is what the stall actually blocked.
+      healthCheck: { path: '/' },
       // stx generates responsive image derivatives (7 widths x 2 formats) on
       // first boot, and it does that work on the event loop — the server binds
       // :3040 immediately but answers nothing until the pass finishes. For this
