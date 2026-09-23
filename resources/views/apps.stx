@@ -13,7 +13,7 @@ const pagePath = '/apps'
 // software, and the third is the tooling underneath all of it.
 const apps = [
   { name: 'HQ.training', url: 'https://hq.training', text: 'An operating system for modern gyms, coaches and athletes: memberships, billing, scheduling and check-in, with training analysis pulled from Oura, WHOOP, Garmin, Apple Health and the rest.' },
-  { name: 'Wildloop', url: 'https://wildloop.org', text: 'Trail discovery and GPS tracking with clubs, challenges and fastest known times — and a territory game underneath, where closing a loop claims the ground inside it.' },
+  { name: 'Wildloop', url: 'https://wildloop.org', text: 'Trail discovery and GPS recording, with clubs, challenges and fastest known times. Underneath it is a territory game: close a loop and you claim the ground inside it.' },
   // { name: 'OpenFarm', url: 'https://openfarm.ing', text: 'Autonomous drone scouting and targeted treatment for farms. Find the problem acre before it spreads, and treat that acre rather than the whole field.' },
   { name: 'CommsHQ', url: 'https://commshq.com', text: 'Creator-first communications: publishing, automation and commerce marketing in one place.' },
   // Commented out rather than deleted, so it comes back as one line when it

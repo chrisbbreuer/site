@@ -24,7 +24,7 @@ Increasingly it is agentic tooling too. The tools engineers reach for are quickl
 
 That is around two hundred published packages now, and roughly eight million installs a month. My goal is a billion a month. I keep a [public list of goals](/goals) so the unreasonable ones have somewhere to sit where other people can see them.
 
-On top of the framework there are the apps. [HQ.training](https://hq.training) for gyms, coaches and athletes. [Wildloop](https://wildloop.org), which is trail discovery and GPS with a territory game underneath. [OpenFarm](https://openfarm.ing), which is drone scouting for farms. Both of the first two are athlete software written by someone who needed them to exist, which brings me to the other half.
+On top of the framework there are the apps. [HQ.training](https://hq.training) for gyms, coaches and athletes. [Wildloop](https://wildloop.org) for trail discovery and GPS, with a territory game underneath. [OpenFarm](https://openfarm.ing) for drone scouting on farms. Both of the first two are athlete software written by someone who needed them to exist, which brings me to the other half.
 
 ## The other half
 

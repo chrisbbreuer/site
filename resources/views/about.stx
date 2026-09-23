@@ -19,7 +19,7 @@ const gallery = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'content/gal
 const building = [
   { name: 'Stacks', url: 'https://stacksjs.com', text: 'A TypeScript framework — and the open-source ecosystem that grew around it.' },
   { name: 'HQ.training', url: 'https://hq.training', text: 'An operating system for gyms, coaches and athletes.' },
-  { name: 'Wildloop', url: 'https://wildloop.org', text: 'Trails, GPS and a social feed — every closed loop claims territory.' },
+  { name: 'Wildloop', url: 'https://wildloop.org', text: 'Trails and GPS recording. Close a loop and you claim the ground inside it.' },
   // OpenFarm is hidden for now, to match /apps where it is commented out the
   // same way. The home page carries the third copy of this list; it has no
   // server-side array to comment in, so the entry was removed there outright.
@@ -95,12 +95,12 @@ const elsewhere = [
         </p>
         <p>
           Today that is <a href="https://stacksjs.com">Stacks</a> and its broader ecosystem,
-          a growing amount of agentic tooling &mdash; the tools engineers use are quickly
-          becoming the tools their agents use, and that changes what a good one looks like
-          &mdash; plus the apps built on top of it, lately
+          and a growing amount of agentic tooling. The tools engineers use are quickly
+          becoming the tools their agents use, and that changes what a good one looks like.
+          On top of it sit the apps. Lately that means
           <a href="https://hq.training">HQ.training</a> and
-          <a href="https://wildloop.org">Wildloop</a>, both of which are athlete software
-          written by someone who needed it to exist. Follow along on
+          <a href="https://wildloop.org">Wildloop</a>: athlete software I wrote because I
+          needed it to exist. Follow along on
           <a href="https://github.com/chrisbbreuer">GitHub</a> for the latest.
         </p>
       </div>

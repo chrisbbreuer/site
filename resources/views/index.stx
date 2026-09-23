@@ -3,7 +3,7 @@ const fs = require('node:fs')
 const path = require('node:path')
 
 const title = 'Chris Breuer - Software engineer, founder & skyrunner'
-const description = 'Chris Breuer builds developer and agentic tooling — Stacks, HQ.training, Wildloop — and skyruns long days in the mountains. Notes on both.'
+const description = 'Chris Breuer builds developer and agentic tooling, plus the apps on top of it: Stacks, HQ.training, Wildloop. Skyrunner. Notes on both.'
 const activeNav = ''
 const pagePath = '/'
 
@@ -63,7 +63,7 @@ const posts = fs.readdirSync(blogDir)
     </li>
     <li>
       <span class="entry-name"><a href="https://wildloop.org">Wildloop</a></span>
-      <span class="entry-desc">Trail discovery, GPS recording and a social feed, with a territory game underneath: close a loop and you claim what it encircles.</span>
+      <span class="entry-desc">Trail discovery and GPS recording, with a territory game underneath: close a loop and the ground inside it is yours.</span>
     </li>
   </ul>
 
