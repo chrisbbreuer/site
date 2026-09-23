@@ -20,7 +20,10 @@
   var baseImg = null // small/thumb layer, shown instantly
   var fullImg = null // large layer, fades in over the base once it loads
   var closeBtn = null
+  var caption = null
+  var stage = null
   var lastFocus = null
+  var openRatio = 0 // width/height of the photo currently open
 
   function ensureOverlay() {
     if (overlay) return
@@ -28,27 +31,71 @@
     overlay.className = 'lightbox'
     overlay.setAttribute('role', 'dialog')
     overlay.setAttribute('aria-modal', 'true')
-    overlay.innerHTML = '<button class="lightbox-close" aria-label="Close">×</button><figure class="lightbox-stage"><img class="lb-base" alt=""><img class="lb-full" alt=""></figure>'
+    overlay.innerHTML = '<button class="lightbox-close" aria-label="Close">×</button>'
+      + '<figure class="lightbox-figure">'
+      + '<span class="lightbox-stage"><img class="lb-base" alt=""><img class="lb-full" alt=""><span class="lb-spinner" aria-hidden="true"></span></span>'
+      + '<figcaption class="lightbox-caption"></figcaption>'
+      + '</figure>'
     document.body.appendChild(overlay)
     baseImg = overlay.querySelector('.lb-base')
     fullImg = overlay.querySelector('.lb-full')
+    caption = overlay.querySelector('.lightbox-caption')
+    stage = overlay.querySelector('.lightbox-stage')
     closeBtn = overlay.querySelector('.lightbox-close')
     overlay.addEventListener('click', function (e) {
-      if (e.target === overlay || e.target === closeBtn || e.target === baseImg || e.target === fullImg) close()
+      if (e.target === overlay || e.target === closeBtn || e.target === baseImg || e.target === fullImg || e.target === caption) close()
     })
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && overlay.classList.contains('is-open')) close()
     })
   }
 
+  /*
+   * Give the stage the size the photo should actually be shown at.
+   *
+   * Without this the stage took its size from the base layer, which is the
+   * 460px masonry thumbnail, and the full-size layer is absolutely positioned
+   * to match it. So every photo opened at 460px no matter how large the file
+   * behind it was: the lightbox downloaded a 2600px image and painted it into
+   * a thumbnail's footprint. Sizing the box here from the photo's own aspect
+   * ratio is what makes opening one worth doing.
+   */
+  function sizeStage() {
+    if (!openRatio) return
+    var pad = window.innerWidth < 640 ? 16 : 48
+    var maxW = Math.min(window.innerWidth - pad * 2, 1400)
+    // Leaves room for the caption and the gap above it.
+    var maxH = window.innerHeight * 0.78
+    var h = Math.min(maxH, maxW / openRatio)
+    var w = h * openRatio
+    stage.style.width = Math.round(w) + 'px'
+    stage.style.height = Math.round(h) + 'px'
+  }
+
   function open(item) {
     var full = item.getAttribute('data-full')
     var hash = item.getAttribute('data-hash')
+    var alt = item.getAttribute('data-alt') || ''
     var thumb = item.querySelector('img')
+    var pw = parseFloat(item.getAttribute('data-w')) || 4
+    var ph = parseFloat(item.getAttribute('data-h')) || 3
+    openRatio = pw / ph
     lastFocus = item
+    sizeStage()
     // Reset the large layer so it can crossfade in fresh for this photo.
     fullImg.classList.remove('is-shown')
     fullImg.removeAttribute('src')
+    // Describe the photo, to the page and to assistive tech. The base layer
+    // carries the alt while the full one loads, so the description is there
+    // from the moment it opens rather than when the bytes land.
+    baseImg.alt = alt
+    fullImg.alt = alt
+    caption.textContent = alt
+    caption.hidden = !alt
+    overlay.setAttribute('aria-label', alt || 'Photograph')
+    // The full-size file is a megabyte or so, so say something is coming.
+    // Removed on load, and on error too, so a failure does not spin forever.
+    stage.classList.add('is-loading')
     // Base layer: the SplatHash placeholder, upgraded to the decoded thumb, // shown instantly so there's always something on screen.
     var baseSrc = ''
     if (hash && window.splatHashToDataURL) {
@@ -63,18 +110,24 @@
     // swapping the source abruptly.
     if (full) {
       fullImg.onload = function () {
+        stage.classList.remove('is-loading')
         // Defer one tick so the opacity:0 start state is painted first, then
         // the class flip transitions it in (setTimeout, not rAF, which some
         // browsers throttle for offscreen/background frames).
         setTimeout(function () { fullImg.classList.add('is-shown') }, 20)
       }
+      fullImg.onerror = function () { stage.classList.remove('is-loading') }
       fullImg.src = full
+    }
+    else {
+      stage.classList.remove('is-loading')
     }
   }
 
   function close() {
     overlay.classList.remove('is-open')
     document.body.classList.remove('lightbox-open')
+    openRatio = 0
     if (lastFocus) lastFocus.focus()
   }
 
@@ -187,6 +240,7 @@
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(layoutMasonry)
   var rt
   window.addEventListener('resize', function () {
+    if (openRatio) sizeStage()
     clearTimeout(rt)
     rt = setTimeout(layoutMasonry, 120)
   })

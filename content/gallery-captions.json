@@ -1,0 +1,11 @@
+{
+  "_comment": "Alt text for gallery photos, keyed by the source filename build-gallery.ts read them from. Written from each photo's own EXIF: the coordinates and date are the camera's, and the elevation is that coordinate sampled against the USGS 3DEP 10m DEM, the same source the footer ridgeline is drawn from. Kept here rather than in gallery.json because that file is generated.",
+  "IMG_8178": "San Gabriel Mountains, California, 8,180 ft. Sunset from the ridge near Windy Gap in January, ranges going flat and blue behind each other, the dog already heading down the scree ahead of me.",
+  "IMG_3880": "New York Harbor, December. Lower Manhattan at dusk from the water, One World Trade rising over the rest of the skyline and the lights just coming on.",
+  "IMG_2650": "San Juan Mountains above Ouray, Colorado, 9,700 ft. Late April, snow still filling the couloirs on the ridge above the spruce.",
+  "IMG_7713": "The Monterey Peninsula coast, California, at sea level. The dog with her nose up in the coastal scrub, eyes shut, yellow in flower behind her.",
+  "IMG_5866": "Near Silverton, Colorado, 9,260 ft. Mid September, a whole hillside of aspens turning gold against the dark spruce.",
+  "IMG_5833": "San Juan Mountains near Red Mountain Pass, Colorado, 10,200 ft. A bull moose standing in the willows across the basin.",
+  "IMG_5177": "Rocky Mountain National Park, Colorado, 9,330 ft. A bull moose on the cut bank below the aspens, close enough to count the points.",
+  "IMG_5650": "Independence Pass, Colorado, 12,130 ft. Standing out on the tundra bench with the red talus of the peak behind, weather building over the divide."
+}

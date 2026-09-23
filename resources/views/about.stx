@@ -12,6 +12,17 @@ const pagePath = '/about'
 // layout is computed by /assets/scripts/gallery.js (aspect ratios are known
 // up front, so there's no reflow on load).
 const gallery = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'content/gallery.json'), 'utf-8'))
+  .map((photo) => ({
+    ...photo,
+    // What the lightbox loads. `xl` is the variant worth opening; `lg` is the
+    // fallback for photos added before that variant existed.
+    full: photo.xl || photo.lg,
+    alt: photo.alt || '',
+    // A photo with a description is announced by it. One without stays alt=""
+    // rather than "Photograph", which tells a screen reader nothing it could
+    // not already work out and is worse than silence.
+    label: photo.alt ? `Open photograph. ${photo.alt}` : 'Open photograph',
+  }))
 
 // The apps, not the repos, /projects already lists everything public from the
 // GitHub API. HQ.training and Wildloop are here because they are where the two
@@ -165,8 +176,8 @@ const elsewhere = [
 
     <div class="photo-masonry" aria-label="Photographs">
       @foreach (gallery as photo)
-        <button type="button" class="gallery-item" data-full="{{ photo.lg }}" data-hash="{{ photo.hash }}" data-w="{{ photo.width }}" data-h="{{ photo.height }}" style="aspect-ratio: {{ photo.width }} / {{ photo.height }}" aria-label="Open photograph">
-          <img src="{{ photo.sm }}" alt="" width="{{ photo.smWidth }}" height="{{ photo.smHeight }}" loading="lazy" decoding="async">
+        <button type="button" class="gallery-item" data-full="{{ photo.full }}" data-alt="{{ photo.alt }}" data-hash="{{ photo.hash }}" data-w="{{ photo.width }}" data-h="{{ photo.height }}" style="aspect-ratio: {{ photo.width }} / {{ photo.height }}" aria-label="{{ photo.label }}">
+          <img src="{{ photo.sm }}" alt="{{ photo.alt }}" width="{{ photo.smWidth }}" height="{{ photo.smHeight }}" loading="lazy" decoding="async">
         </button>
       @endforeach
     </div>
