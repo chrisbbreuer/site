@@ -30,8 +30,12 @@ const withLabels = data.repos.map((r) => {
     parts.push(`${compact(r.stars)} ${r.stars === 1 ? 'star' : 'stars'}`)
   // Only npm-published repos carry a download count; the Zig and app repos
   // simply have nothing to say here, so they show stars alone.
+  //
+  // A monorepo's figure is every package it publishes, summed. Said without
+  // the package count, 3.6M/mo on stacksjs/stacks read as the `stacks`
+  // package alone, which is a few thousand a week.
   if (r.downloads > 0)
-    parts.push(`${compact(r.downloads)}/mo`)
+    parts.push(r.pkgCount > 1 ? `${compact(r.downloads)}/mo across ${r.pkgCount} packages` : `${compact(r.downloads)}/mo`)
   return {
     ...r,
     // r.tags comes from GitHub language + topics (see scripts/fetch-projects.ts).

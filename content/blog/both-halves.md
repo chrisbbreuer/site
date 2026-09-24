@@ -24,7 +24,7 @@ Slow bothers me more every year. The goal behind all of it is software that is a
 
 Increasingly it is agentic tooling too. The tools engineers reach for are quickly becoming the tools their agents reach for, and that changes what a good one looks like. Machine-readable output stops being a nicety. A confusing error message costs more than it used to. "It works if you already know the trick" stops working at all. [buddy](https://github.com/stacksjs/buddy) is the clearest example: AI code review and dependency updates as one teammate rather than two bolted-on integrations.
 
-That is around two hundred published packages now, and roughly eight million installs a month. My goal is a billion a month. I keep a [public list of goals](/goals) so the unreasonable ones have somewhere to sit where other people can see them.
+That is around two hundred published packages now, and roughly eight million npm downloads a month across them. My goal is a billion a month. I keep a [public list of goals](/goals) so the unreasonable ones have somewhere to sit where other people can see them.
 
 On top of the framework there are the apps. [HQ.training](https://hq.training) for gyms, coaches and athletes. [Wildloop](https://wildloop.org) for trail discovery and GPS, with a territory game underneath. [OpenFarm](https://openfarm.ing) for drone scouting on farms. Both of the first two are athlete software written by someone who needed them to exist, which brings me to the other half.
 
