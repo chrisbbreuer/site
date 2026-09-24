@@ -49,7 +49,7 @@ const posts = fs.readdirSync(blogDir)
     of all of it. All of it aims to be as fast and as energy efficient as software can be:
     in the age of AI, well-built abstractions are one way to scale AI sustainably.
     The other half of my life is spent skyrunning: long days in the mountains, usually with my dog
-    somewhere ahead of me on the trail. I am very much a dog person, and she is the best training
+    somewhere ahead of me on the trail. I am very much a dog person, and he is the best training
     partner I have. The two halves keep pointing at each other. This is where I write about both.
   </p>
 
