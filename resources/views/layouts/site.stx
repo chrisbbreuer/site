@@ -23,6 +23,12 @@ function asset(p) {
   return fingerprintAssets ? (assetManifest[p] || p) : p
 }
 
+// AnalyticsHQ, cookieless, so there is no consent banner to show. Production
+// only, so a dev run never lands in the numbers. Loaded once in the head: it
+// wraps history.pushState, which is how the stx router's in-app navigations
+// are counted as pageviews too.
+const analyticsSiteId = fingerprintAssets ? 'ff6aa9c3d48c6b9a96ca8aca' : ''
+
 // Hover targets for the footer ridge, written by scripts/build-ridge.ts from
 // the same guide the line is sampled along, so a peak's label and the bump it
 // names cannot drift apart. Empty is fine: the ridge just stops being
@@ -97,6 +103,9 @@ const ogPublished = ogType === 'article' ? String(ogArticleValue.published || ''
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   @stack('head')
+  @if (analyticsSiteId)
+    <script defer src="https://analyticshq.org/script.js" data-site="{{ analyticsSiteId }}"></script>
+  @endif
   <link rel="preload" href="{{ asset('/fonts/lilex/Lilex-var.woff2') }}" as="font" type="font/woff2" crossorigin>
   <script src="{{ asset('/assets/scripts/theme.js') }}"></script>
   <link rel="stylesheet" href="{{ asset('/site.css') }}">
