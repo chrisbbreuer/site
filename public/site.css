@@ -445,14 +445,6 @@ main { padding: 3.5rem 0 2rem; }
    * not there to be tapped at. */
   pointer-events: none;
 }
-@media (hover: hover) and (pointer: fine) {
-  .ridge-peaks {
-    pointer-events: auto;
-  }
-  .ridge-peak-name {
-    display: block;
-  }
-}
 .ridge-peak {
   position: absolute;
   top: 0;
@@ -502,6 +494,16 @@ main { padding: 3.5rem 0 2rem; }
 .ridge-peak:hover::after,
 .ridge-peak:hover .ridge-peak-name {
   opacity: 1;
+}
+/* After the base rules on purpose: same specificity, so this has to come
+ * later to win. Above them, `display: none` hid the labels everywhere. */
+@media (hover: hover) and (pointer: fine) {
+  .ridge-peaks {
+    pointer-events: auto;
+  }
+  .ridge-peak-name {
+    display: block;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .ridge-peak::after,
