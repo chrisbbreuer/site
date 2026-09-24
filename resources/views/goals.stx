@@ -11,10 +11,11 @@ const pagePath = '/goals'
 // resynced daily by .github/workflows/projects-sync.yml, so this number moves
 // on its own rather than being a figure I typed once and forgot.
 const projects = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'content/projects.json'), 'utf-8'))
-const monthly = projects.repos.reduce((sum, r) => sum + (r.downloads || 0), 0)
-// Packages, not repositories. A monorepo that ships eighty-five of them is one
-// row on /projects and eighty-five things people actually install.
-const packageCount = projects.repos.reduce((sum, r) => sum + (r.downloads ? (r.pkgCount || 1) : 0), 0)
+// Every published package, subpackages included: npm counts each one, and so
+// does this goal. The text below says "across N published packages" so the
+// figure is never read as installs of one thing.
+const monthly = projects.repos.reduce((sum, r) => sum + (r.allDownloads || 0), 0)
+const packageCount = projects.repos.reduce((sum, r) => sum + (r.allDownloads ? (r.pkgCount || 1) : 0), 0)
 const TARGET = 1000000000
 
 function compact(n) {

@@ -31,11 +31,10 @@ const withLabels = data.repos.map((r) => {
   // Only npm-published repos carry a download count; the Zig and app repos
   // simply have nothing to say here, so they show stars alone.
   //
-  // A monorepo's figure is every package it publishes, summed. Said without
-  // the package count, 3.6M/mo on stacksjs/stacks read as the `stacks`
-  // package alone, which is a few thousand a week.
+  // The row is the repo's main package (`stacks` for stacksjs/stacks), not
+  // its subpackages summed: see mainPackage in scripts/fetch-projects.ts.
   if (r.downloads > 0)
-    parts.push(r.pkgCount > 1 ? `${compact(r.downloads)}/mo across ${r.pkgCount} packages` : `${compact(r.downloads)}/mo`)
+    parts.push(`${compact(r.downloads)}/mo`)
   return {
     ...r,
     // r.tags comes from GitHub language + topics (see scripts/fetch-projects.ts).
@@ -91,9 +90,11 @@ const tagList = Object.keys(tagCounts).filter(t => tagCounts[t] >= 4).sort((a, b
 const repoCount = withLabels.length
 const orgCount = groups.length
 const generatedAt = data.generatedAt
-const monthlyTotal = withLabels.reduce((sum, r) => sum + (r.downloads || 0), 0)
-const publishedCount = withLabels.filter(r => r.downloads > 0).length
-const packageCount = withLabels.reduce((sum, r) => sum + (r.downloads > 0 ? (r.pkgCount || 1) : 0), 0)
+// The lead's total is every published package, subpackages included, which
+// is why it is larger than the rows below add up to. It says "packages".
+const monthlyTotal = withLabels.reduce((sum, r) => sum + (r.allDownloads || 0), 0)
+const publishedCount = withLabels.filter(r => r.allDownloads > 0).length
+const packageCount = withLabels.reduce((sum, r) => sum + (r.allDownloads > 0 ? (r.pkgCount || 1) : 0), 0)
 const totalLabel = compact(monthlyTotal)
 </script>
 
@@ -104,7 +105,8 @@ const totalLabel = compact(monthlyTotal)
   <p class="page-lead">
     {{ repoCount }} public repos across {{ orgCount }} orgs, most of them open source.
     {{ publishedCount }} of them ship {{ packageCount }} packages to npm, {{ totalLabel }}
-    downloads a month between them. If something piques your interest, read the code and send a patch. My
+    downloads a month between them; each row below counts just its main package.
+    If something piques your interest, read the code and send a patch. My
     <a href="https://github.com/chrisbbreuer/dotfiles">dotfiles</a> are public too.
     Stars and downloads resync daily; last on {{ generatedAt }}.
   </p>

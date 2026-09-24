@@ -18,11 +18,20 @@ interface Repo {
   stars: number
   url: string
   tags: string[]
-  /** npm downloads in the last 30 days. Absent when the repo publishes nothing. */
+  /**
+   * npm downloads in the last 30 days of the repo's main package: the one
+   * named after the repo, or the top-level one (see mainPackage). This is the
+   * figure on the repo's row. Absent when the repo publishes nothing.
+   */
   downloads?: number
-  /** The npm package the downloads belong to, for the tooltip on the page. */
+  /** The package `downloads` belongs to. */
   pkg?: string
-  /** How many published packages that repo's total covers. */
+  /**
+   * Every package the repo publishes, summed: the main one and all of its
+   * subpackages. Only the site-wide totals use this, and they say so.
+   */
+  allDownloads?: number
+  /** How many published packages `allDownloads` covers. */
   pkgCount?: number
 }
 
@@ -284,6 +293,8 @@ for (const pin of PINNED) {
  * say so at the end rather than quietly publishing a shorter list.
  */
 let lookupFailures = 0
+/** Packages npm still had not answered for after the slow retry pass. */
+let unanswered = 0
 /** A lookup that gave up: npm never answered, so the package's fate is unknown. */
 const GAVE_UP = Symbol('gave up')
 type Lookup<T> = T | null | typeof GAVE_UP
@@ -315,17 +326,50 @@ async function monthlyDownloads(pkg: string): Promise<Lookup<number>> {
   return typeof body?.downloads === 'number' ? body.downloads : null
 }
 
-/** The repo npm itself says a package is published from, as `owner/name`. */
-async function registryRepo(pkg: string): Promise<Lookup<string>> {
+/**
+ * What the registry says about a package's latest version: the repo it is
+ * published from, as `owner/name`, and every package it pulls in on install.
+ */
+async function registryInfo(pkg: string): Promise<Lookup<{ owner: string, deps: string[] }>> {
   const body = await registryJson(`https://registry.npmjs.org/${encodeURIComponent(pkg)}/latest`)
   if (body === GAVE_UP)
     return GAVE_UP
   const repository = body?.repository
   const url = typeof repository === 'string' ? repository : repository?.url
-  if (!url)
+  const match = url?.match(/github\.com[/:]([^/]+)\/([^/.]+)/i)
+  if (!match)
     return null
-  const match = url.match(/github\.com[/:]([^/]+)\/([^/.]+)/i)
-  return match ? `${match[1]}/${match[2]}` : null
+  const deps = Object.keys({ ...body.dependencies, ...body.peerDependencies, ...body.optionalDependencies })
+  return { owner: `${match[1]}/${match[2]}`, deps }
+}
+
+/**
+ * The package a repo's row is about.
+ *
+ * A monorepo's subpackages are not the project: stacksjs/stacks publishes
+ * `stacks` plus eighty-odd `@stacksjs/*` pieces that installing `stacks`
+ * pulls in, and summing them put 3.6M a month on a row whose package does a
+ * few thousand a week. So the row takes one package, in this order:
+ *
+ *   1. the one named after the repo: `stacks`, then `@<org>/<repo>`, then any
+ *      scope's `@<scope>/<repo>` (`@stacksjs/stx` for stacksjs/stx);
+ *   2. otherwise the most downloaded package that nothing else in the same
+ *      repo depends on, the thing people install rather than a piece of it;
+ *   3. otherwise the most downloaded package, when everything is a piece of
+ *      something (a dependency cycle, say).
+ */
+function mainPackage(repo: Repo, packages: { name: string, downloads: number, deps: string[] }[]): { name: string, downloads: number } {
+  const byName = new Map(packages.map(p => [p.name.toLowerCase(), p]))
+  const repoName = repo.name.toLowerCase()
+  const named = byName.get(repoName)
+    ?? byName.get(`@${repo.org.toLowerCase()}/${repoName}`)
+    ?? packages.find(p => p.name.toLowerCase().endsWith(`/${repoName}`))
+  if (named)
+    return named
+
+  const pulledIn = new Set(packages.flatMap(p => p.deps.filter(d => d !== p.name)))
+  const mostDownloaded = (list: typeof packages) => [...list].sort((a, b) => b.downloads - a.downloads || a.name.localeCompare(b.name))[0]
+  return mostDownloaded(packages.filter(p => !pulledIn.has(p.name))) ?? mostDownloaded(packages)
 }
 
 /**
@@ -410,57 +454,82 @@ async function attachDownloads(list: Repo[]): Promise<void> {
   // lookup can still be charged to someone.
   const sources = new Map<string, Repo[]>()
   for (const repo of list) {
-    for (const name of workspacePackages(`${repo.org}/${repo.name}`))
+    // The repo's own name too, not only what its manifests list: stacks
+    // publishes `stacks` from a directory its root workspaces do not cover,
+    // so a manifest scan alone never found the package the repo is named for.
+    // The registry still decides ownership below, so a same-named package
+    // someone else publishes is never credited here.
+    const guesses = [repo.name, `@${repo.org}/${repo.name}`].map(name => name.toLowerCase())
+    for (const name of new Set([...workspacePackages(`${repo.org}/${repo.name}`), ...guesses]))
       sources.set(name, [...(sources.get(name) ?? []), repo])
   }
   const candidates = new Set(sources.keys())
   console.log(`resolved ${candidates.size} candidate package name(s) across ${list.length} repos`)
 
-  const totals = new Map<Repo, { downloads: number, packages: string[] }>()
+  const totals = new Map<Repo, { name: string, downloads: number, deps: string[] }[]>()
   /** Repos with at least one package npm never answered for. */
   const incomplete = new Set<Repo>()
+  /**
+   * Look one package up and file it under its repo. Answers what became of it:
+   * counted or deliberately skipped (`done`), or npm never answered (a repo to
+   * blame, or the repos that list it when not even the owner came back).
+   */
+  async function lookup(pkg: string): Promise<'done' | Repo[]> {
+    const info = await registryInfo(pkg)
+    if (info === GAVE_UP)
+      return sources.get(pkg) ?? []
+    if (!info)
+      return 'done'
+
+    const repo = known.get(info.owner.toLowerCase())
+    if (!repo)
+      return 'done'
+
+    const downloads = await monthlyDownloads(pkg)
+    if (downloads === GAVE_UP)
+      return [repo]
+    if (downloads === null)
+      return 'done'
+
+    totals.set(repo, [...(totals.get(repo) ?? []), { name: pkg, downloads, deps: info.deps }])
+    return 'done'
+  }
+
   const queue = [...candidates]
+  const throttled: string[] = []
   // Two at a time. npm throttles a run that asks faster, and a throttled
   // lookup is indistinguishable from "no such package", which silently
   // subtracts a whole repo's downloads from the total.
   const workers = Array.from({ length: 2 }, async () => {
     for (let pkg = queue.shift(); pkg; pkg = queue.shift()) {
-      const owner = await registryRepo(pkg)
-      if (owner === GAVE_UP) {
-        for (const source of sources.get(pkg) ?? [])
-          incomplete.add(source)
-        continue
-      }
-      if (!owner)
-        continue
-
-      const repo = known.get(owner.toLowerCase())
-      if (!repo)
-        continue
-
-      const downloads = await monthlyDownloads(pkg)
-      if (downloads === GAVE_UP) {
-        incomplete.add(repo)
-        continue
-      }
-      if (downloads === null)
-        continue
-
-      const entry = totals.get(repo) ?? { downloads: 0, packages: [] }
-      entry.downloads += downloads
-      entry.packages.push(pkg)
-      totals.set(repo, entry)
+      if (await lookup(pkg) !== 'done')
+        throttled.push(pkg)
     }
   })
   await Promise.all(workers)
 
-  for (const [repo, entry] of totals) {
-    repo.downloads = entry.downloads
-    // Shortest name first, deterministically: `stx` reads better than
-    // `@stacksjs/stx-loader` as the label for what a repo ships.
-    repo.pkg = entry.packages.sort((a, b) => a.length - b.length || a.localeCompare(b))[0]
-    if (entry.packages.length > 1)
-      repo.pkgCount = entry.packages.length
+  // Then once more, one at a time with a pause, for whatever npm turned away.
+  // A throttled lookup is not a small one: it was `stacks` itself on the run
+  // that wrote this, which left the stacks row showing `@stacksjs/stacks` at
+  // 113 a month instead of the package the repo is named for.
+  if (throttled.length > 0)
+    console.log(`retrying ${throttled.length} throttled package(s) one at a time`)
+  for (const pkg of throttled) {
+    await new Promise(resolve => setTimeout(resolve, 3000))
+    const result = await lookup(pkg)
+    if (result !== 'done') {
+      unanswered++
+      for (const repo of result)
+        incomplete.add(repo)
+    }
+  }
+
+  for (const [repo, packages] of totals) {
+    const main = mainPackage(repo, packages)
+    repo.downloads = main.downloads
+    repo.pkg = main.name
+    repo.allDownloads = packages.reduce((sum, p) => sum + p.downloads, 0)
+    repo.pkgCount = packages.length
   }
 
   const kept = keepCountsLostToThrottling(incomplete, previousCounts())
@@ -468,7 +537,7 @@ async function attachDownloads(list: Repo[]): Promise<void> {
     console.warn(`kept the last known count for ${kept.length} repo(s) npm throttled: ${kept.join(', ')}`)
 }
 
-type Counts = Pick<Repo, 'downloads' | 'pkg' | 'pkgCount'>
+type Counts = Pick<Repo, 'downloads' | 'pkg' | 'allDownloads' | 'pkgCount'>
 
 /** Yesterday's counts, keyed "org/name", from the file this run replaces. */
 function previousCounts(): Map<string, Counts> {
@@ -477,7 +546,7 @@ function previousCounts(): Map<string, Counts> {
     return new Map()
   try {
     const { repos } = JSON.parse(readFileSync(file, 'utf8')) as { repos: Repo[] }
-    return new Map(repos.map(r => [`${r.org}/${r.name}`, { downloads: r.downloads, pkg: r.pkg, pkgCount: r.pkgCount }]))
+    return new Map(repos.map(r => [`${r.org}/${r.name}`, { downloads: r.downloads, pkg: r.pkg, allDownloads: r.allDownloads, pkgCount: r.pkgCount }]))
   }
   catch {
     return new Map()
@@ -499,14 +568,15 @@ function keepCountsLostToThrottling(incomplete: Iterable<Repo>, previous: Map<st
   for (const repo of incomplete) {
     const key = `${repo.org}/${repo.name}`
     const last = previous.get(key)
-    if (last?.downloads === undefined || (repo.downloads ?? 0) >= last.downloads)
+    // Compared on everything the repo publishes: that is the number a missing
+    // package shrinks. A file from before `allDownloads` existed has no such
+    // figure, and keeps nothing rather than comparing against the wrong one.
+    if (last?.allDownloads === undefined || (repo.allDownloads ?? 0) >= last.allDownloads)
       continue
     repo.downloads = last.downloads
     repo.pkg = last.pkg
-    if (last.pkgCount === undefined)
-      delete repo.pkgCount
-    else
-      repo.pkgCount = last.pkgCount
+    repo.allDownloads = last.allDownloads
+    repo.pkgCount = last.pkgCount
     kept.push(key)
   }
   return kept
@@ -529,9 +599,9 @@ repos.sort((a, b) => {
 
 const out = join(import.meta.dir, '../content/projects.json')
 writeFileSync(out, `${JSON.stringify({ generatedAt: new Date().toISOString().slice(0, 10), repos }, null, 2)}\n`)
-const published = repos.filter(r => r.downloads !== undefined)
+const published = repos.filter(r => r.allDownloads !== undefined)
 console.log(`Wrote ${repos.length} repos from ${new Set(repos.map(r => r.org)).size} orgs to content/projects.json`)
 const packageTotal = published.reduce((n, r) => n + (r.pkgCount || 1), 0)
-console.log(`${published.length} repos publish ${packageTotal} package(s), ${published.reduce((n, r) => n + (r.downloads || 0), 0).toLocaleString()} downloads in the last 30 days`)
-if (lookupFailures > 0)
-  console.warn(`${lookupFailures} registry lookup(s) gave up after retrying; a repo they left short keeps its last known count`)
+console.log(`${published.length} repos publish ${packageTotal} package(s), ${published.reduce((n, r) => n + (r.allDownloads || 0), 0).toLocaleString()} downloads in the last 30 days`)
+if (unanswered > 0)
+  console.warn(`${unanswered} package(s) npm never answered for, after ${lookupFailures} throttled request(s); a repo they left short keeps its last known count`)
