@@ -136,7 +136,6 @@ const personal = [
   <p class="empty-note">
     The training behind the running half is
     <a href="https://hq.training/share/chris">public</a>: two years of
-    it, on <a href="https://hq.training">HQ.training</a>, the same app I build
-    for everyone else, pointed at my own weeks.
+    it, on <a href="https://hq.training">HQ.training</a>, pointed at my own weeks.
   </p>
 @endsection
