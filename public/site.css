@@ -326,6 +326,36 @@ main { padding: 3.5rem 0 2rem; }
    not as a wrapped line of the last row. */
 .entry-list + .empty-note { margin-top: 2rem; }
 
+/* Goal progress (/goals): the same hairline as every divider, with the done
+ * part drawn over it in the text colour. The label says it in words, so the
+ * bar is never the only way to read the number. */
+.goal-progress {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+  max-width: 32rem;
+}
+.goal-bar {
+  position: relative;
+  flex: 1;
+  height: 3px;
+  background: var(--divider);
+  overflow: hidden;
+}
+.goal-bar-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--text-1);
+}
+.goal-bar-label {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-3);
+  white-space: nowrap;
+}
+
 /* ── Pull quote ─────────────────────────────────────────────────────────── */
 /* Same hairline vocabulary as every other divider on the site: the quote is
  * set off by a rule rather than by a bigger, louder typeface. */

@@ -3,7 +3,7 @@ const fs = require('node:fs')
 const path = require('node:path')
 
 const title = 'Goals - Chris Breuer'
-const description = 'What I am working toward: a billion npm downloads a month, Stacks v1.0, Wildloop, and the Pacific Crest Trail.'
+const description = 'What I am working toward: a billion npm downloads a month, Stacks v1.0, Wildloop, the Pacific Crest Trail, and every US national park.'
 const activeNav = 'goals'
 const pagePath = '/goals'
 
@@ -33,6 +33,22 @@ const monthlyLabel = compact(monthly)
 const multiple = Math.round(TARGET / Math.max(monthly, 1))
 const sharePercent = ((monthly / TARGET) * 100).toFixed(2)
 
+// A goal that can be counted gets a bar. `done` and `total` are the count, and
+// `label` is what the bar says in words. The fill is never narrower than a
+// hairline once there is any progress, so a real 0.3% still shows up as a
+// start rather than as nothing.
+function progress(done, total, label) {
+  const ratio = Math.min(Math.max(done / total, 0), 1)
+  return {
+    label,
+    width: done > 0 ? `max(2px, ${(ratio * 100).toFixed(2)}%)` : '0',
+    valueNow: Math.round(ratio * 100),
+  }
+}
+
+const NATIONAL_PARKS = 63
+const parksVisited = 20
+
 // Deliberately short. A list of twenty goals is a list of none, and a goal
 // with no way to tell whether it happened is a mood. Each of these is
 // something someone else could check.
@@ -44,6 +60,7 @@ const work = [
       + `Today it is ${monthlyLabel} a month across ${packageCount} published packages. `
       + `That is ${sharePercent}% of the way, or about ${multiple}× from here. `
       + `It resyncs daily, so this page marks its own homework.`,
+    progress: progress(monthly, TARGET, `${monthlyLabel} of 1B a month`),
   },
   { name: 'Stacks v1.0', url: 'https://stacksjs.com', text: 'The framework stops being a moving target. A stable API, documentation that matches it, fast and energy efficient by default with published benchmarks to show it, and a version number I am willing to ask other people to depend on.' },
   { name: 'Wildloop', url: 'https://wildloop.org', text: 'Ship the territory game properly: captures the server can stand behind, clubs and challenges people come back to, and route records worth chasing.' },
@@ -54,6 +71,11 @@ const personal = [
   { name: 'Pacific Crest Trail', text: 'Northbound, 2,650 miles, aiming to average 60 a day. I do not know yet if that pace holds. Finding out is half the point.' },
   { name: 'Race it', text: 'Once the trail is done, start pinning on a number at mountain races to see where I stand.' },
   { name: 'Train in the open', text: 'Run the build in public the same way the code is: the days it goes well and the days it does not.' },
+  {
+    name: 'Every national park',
+    text: `All ${NATIONAL_PARKS} in the US. I have been to ${parksVisited} so far.`,
+    progress: progress(parksVisited, NATIONAL_PARKS, `${parksVisited} of ${NATIONAL_PARKS} parks`),
+  },
 ]
 </script>
 
@@ -82,17 +104,31 @@ const personal = [
     @foreach (work as goal)
       <li>
         <span class="entry-name"><a href="{{ goal.url }}">{{ goal.name }}</a></span>
-        <span class="entry-desc">{{ goal.text }}</span>
+        <span class="entry-desc">{{ goal.text }}
+          @if (goal.progress)
+            <span class="goal-progress">
+              <span class="goal-bar" role="progressbar" aria-label="{{ goal.progress.label }}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ goal.progress.valueNow }}"><span class="goal-bar-fill" style="width: {{ goal.progress.width }}"></span></span>
+              <span class="goal-bar-label">{{ goal.progress.label }}</span>
+            </span>
+          @endif
+        </span>
       </li>
     @endforeach
   </ul>
 
-  <h2 class="section-label">Running</h2>
+  <h2 class="section-label">Outside</h2>
   <ul class="entry-list">
     @foreach (personal as goal)
       <li>
         <span class="entry-name">{{ goal.name }}</span>
-        <span class="entry-desc">{{ goal.text }}</span>
+        <span class="entry-desc">{{ goal.text }}
+          @if (goal.progress)
+            <span class="goal-progress">
+              <span class="goal-bar" role="progressbar" aria-label="{{ goal.progress.label }}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ goal.progress.valueNow }}"><span class="goal-bar-fill" style="width: {{ goal.progress.width }}"></span></span>
+              <span class="goal-bar-label">{{ goal.progress.label }}</span>
+            </span>
+          @endif
+        </span>
       </li>
     @endforeach
   </ul>
