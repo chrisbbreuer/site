@@ -1,7 +1,11 @@
 <section class="subscribe" aria-labelledby="subscribe-heading">
   <h2 id="subscribe-heading">Get new posts by email</h2>
   <p>No schedule, no spam. Unsubscribe any time.</p>
-  <form data-subscribe="homepage" action="/api/email/subscribe" method="POST">
+  <!-- The list lives in CommsHQ, which sends the confirmation email from
+       hi@chrisbreuer.me and owns the double opt-in and unsubscribe links.
+       Without JavaScript this still works: the plain post gets CommsHQ's
+       "check your inbox" page. -->
+  <form data-subscribe="homepage" action="https://commshq.org/forms/39c0a12a-077d-4e43-b416-a61d0b7b9abc/submit" method="POST">
     <input type="email" name="email" placeholder="you@example.com" autocomplete="email" aria-label="Email address" required>
     <button type="submit">Subscribe</button>
     <p class="form-note" role="status" aria-live="polite"></p>
