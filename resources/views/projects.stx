@@ -113,13 +113,13 @@ const totalLabel = compact(monthlyTotal)
     <input type="search" class="proj-search" placeholder="Filter by name or description" aria-label="Filter projects" autocomplete="off">
     <div class="proj-facets">
       <div class="proj-chips" role="group" aria-label="Filter by tag">
-        <button type="button" class="proj-chip is-active" data-tag="" aria-pressed="true">All tags</button>
+        <button type="button" class="is-active proj-chip" data-tag="" aria-pressed="true">All tags</button>
         @foreach (tagList as tag)
           <button type="button" class="proj-chip" data-tag="{{ tag }}" aria-pressed="false">{{ tag }}</button>
         @endforeach
       </div>
       <div class="proj-chips" role="group" aria-label="Filter by org">
-        <button type="button" class="proj-chip is-active" data-org="" aria-pressed="true">All orgs</button>
+        <button type="button" class="is-active proj-chip" data-org="" aria-pressed="true">All orgs</button>
         @foreach (orgList as org)
           <button type="button" class="proj-chip" data-org="{{ org }}" aria-pressed="false">{{ org }}</button>
         @endforeach
@@ -127,7 +127,7 @@ const totalLabel = compact(monthlyTotal)
     </div>
   </div>
 
-  <section class="proj-section proj-highlights">
+  <section class="proj-highlights proj-section">
     <h2 class="section-label">Highlights</h2>
     <ul class="entry-list">
       @foreach (highlights as repo)
@@ -142,7 +142,7 @@ const totalLabel = compact(monthlyTotal)
   <p class="proj-empty" hidden>No projects match that filter.</p>
 
   @foreach (groups as group)
-    <section class="proj-section proj-group">
+    <section class="proj-group proj-section">
       <h2 class="section-label">
         <a href="{{ group.orgUrl }}">{{ group.org }}</a>
         <span class="label-meta">{{ group.countLabel }}</span>
