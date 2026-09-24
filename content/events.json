@@ -1,0 +1,29 @@
+[
+  {
+    "start": "2026-09-15",
+    "title": "Lawn Lake Trail",
+    "place": "Rocky Mountain National Park",
+    "detail": "12.6 miles round trip with about 2,500 ft of climbing. Without the dog on this one."
+  },
+  {
+    "start": "2026-09-26",
+    "end": "2026-09-27",
+    "when": "Weekend of September 26, 2026",
+    "title": "South Mount Hawkins",
+    "place": "San Gabriel Mountains",
+    "detail": "Without the dog on this one."
+  },
+  {
+    "start": "2026-10-01",
+    "end": "2026-10-04",
+    "title": "San Diego, 100 miles in four days",
+    "detail": "Thursday is a custom 50 mile route that starts and ends downtown, then 20 miles on Friday, 20 on Saturday and 10 on Sunday."
+  },
+  {
+    "year": 2027,
+    "when": "2027",
+    "title": "Stacks conference",
+    "detail": "Sometime in 2027, somewhere still to be decided.",
+    "url": "https://stacksjs.com"
+  }
+]

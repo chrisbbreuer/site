@@ -3,11 +3,16 @@ const fs = require('node:fs')
 const path = require('node:path')
 const { readingStats } = require(path.join(process.cwd(), 'resources/utils/reading-stats.ts'))
 const { longPostDate } = require(path.join(process.cwd(), 'resources/utils/post-date.ts'))
+const { homeEvents } = require(path.join(process.cwd(), 'resources/utils/events.ts'))
 
 const title = 'Chris Breuer - Software engineer, founder & ultra skyrunner'
 const description = 'Chris Breuer builds developer and agentic tooling, plus the apps on top of it: Stacks, HQ.training, Wildloop. Skyrunner. Notes on both.'
 const activeNav = ''
 const pagePath = '/'
+
+// Coming up and recently: runs, races and trips, from content/events.json.
+// Split by date on every render, so a finished one moves down by itself.
+const { upcoming, recent } = homeEvents()
 
 // Read post frontmatter straight from content/blog (same source /blog renders).
 const blogDir = path.join(process.cwd(), 'content/blog')
@@ -68,6 +73,30 @@ const posts = fs.readdirSync(blogDir)
       <span class="entry-desc">Trail discovery and GPS recording, with a territory game underneath: close a loop and the ground inside it is yours.</span>
     </li>
   </ul>
+
+  @if (upcoming.length > 0)
+    <h2 class="section-label">Coming up</h2>
+    <ul class="entry-list">
+      @foreach (upcoming as event)
+        <li>
+          <span class="entry-name">@if (event.url)<a href="{{ event.url }}">{{ event.title }}</a>@else{{ event.title }}@endif</span>
+          <span class="entry-desc">@if (event.place){{ event.place }}. @endif{{ event.detail }} <span class="entry-meta">{{ event.whenLabel }}</span></span>
+        </li>
+      @endforeach
+    </ul>
+  @endif
+
+  @if (recent.length > 0)
+    <h2 class="section-label">Recently</h2>
+    <ul class="entry-list">
+      @foreach (recent as event)
+        <li>
+          <span class="entry-name">@if (event.url)<a href="{{ event.url }}">{{ event.title }}</a>@else{{ event.title }}@endif</span>
+          <span class="entry-desc">@if (event.place){{ event.place }}. @endif{{ event.detail }} <span class="entry-meta">{{ event.whenLabel }}</span></span>
+        </li>
+      @endforeach
+    </ul>
+  @endif
 
   <h2 class="section-label">Writing</h2>
   @if (posts.length > 0)
