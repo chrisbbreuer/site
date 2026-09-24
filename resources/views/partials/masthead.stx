@@ -11,5 +11,6 @@
     <a href="/projects"@if (activeNav === 'projects') aria-current="page"@endif>Projects</a>
   </nav>
   <a class="icon-btn" href="https://github.com/chrisbbreuer" rel="me" aria-label="GitHub" title="GitHub"><span class="i-hugeicons-github" aria-hidden="true"></span></a>
+  <a class="icon-btn" href="https://www.instagram.com/somebuddyspecial/" rel="me" aria-label="Instagram" title="Instagram"><span class="i-hugeicons-instagram" aria-hidden="true"></span></a>
   <button class="theme-btn icon-btn" type="button" onclick="siteTheme()" aria-label="Toggle theme">◐</button>
 </header>
