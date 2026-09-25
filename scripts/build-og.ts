@@ -26,7 +26,7 @@ const cards: Card[] = [
     slug: 'about',
     path: '~/about',
     title: 'About',
-    desc: 'Obsessed with developer tooling and long days in the mountains. Los Angeles based.',
+    desc: 'Obsessed with developer and agentic tooling, and steep trails. Los Angeles based, usually on a trail with the dogs.',
   },
   {
     slug: 'apps',
@@ -38,7 +38,7 @@ const cards: Card[] = [
     slug: 'goals',
     path: '~/goals',
     title: 'Goals',
-    desc: 'A billion downloads a month, an open unicorn, the Pacific Crest Trail, and every US national park.',
+    desc: 'A billion npm downloads a month, an open unicorn, Stacks v1.0, the Pacific Crest Trail, and every US national park.',
   },
   {
     slug: 'projects',
@@ -56,7 +56,7 @@ const cards: Card[] = [
     slug: 'blog',
     path: '~/blog',
     title: 'Blog',
-    desc: 'Notes on developer tooling, TypeScript, Bun, and building Stacks.',
+    desc: 'Both halves: developer and agentic tooling, and long days in the mountains. Mostly where those turn out to be the same problem.',
   },
 ]
 
