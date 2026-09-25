@@ -440,6 +440,17 @@ main { padding: 3.5rem 0 2rem; }
   min-height: 1.2em;
 }
 
+/* ── Navigation progress ─────────────────────────────────────────────── */
+/* The router's bar, in the site's own ink rather than its default cyan glow.
+ * `html >` outranks the rule the router injects at runtime (it lands after
+ * this file), and the colour comes from the theme tokens, so it is black on
+ * light and near-white on dark. The option for it takes a literal colour
+ * only; a var() would be stripped. */
+html > #stx-router-progress {
+  background: var(--text-1);
+  box-shadow: none;
+}
+
 /* ── Footer ─────────────────────────────────────────────────────────────── */
 /* The rule above the footer is a ridgeline (see partials/footer.stx): same
  * hairline weight and colour as every other divider, it just isn't flat. The
