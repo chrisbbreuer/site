@@ -6,7 +6,7 @@ const { longPostDate } = require(path.join(process.cwd(), 'resources/utils/post-
 const { homeEvents } = require(path.join(process.cwd(), 'resources/utils/events.ts'))
 
 const title = 'Chris Breuer - Software engineer, founder & ultra skyrunner'
-const description = 'Chris Breuer builds developer and agentic tooling, plus the apps on top of it: Stacks, HQ.training, Wildloop. Skyrunner. Notes on both.'
+const description = 'Chris Breuer builds developer and agentic tooling, plus the apps on top of it: Stacks, HQ.training, Wildloop. Ultra skyrunner and dog person. Notes on both.'
 const activeNav = ''
 const pagePath = '/'
 
