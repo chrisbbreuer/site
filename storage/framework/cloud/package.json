@@ -57,7 +57,7 @@
   },
   "devDependencies": {
     "@stacksjs/cli": "^0.75.5",
-    "better-dx": "^0.2.16",
+    "better-dx": "^0.2.25",
     "@stacksjs/env": "^0.75.5"
   }
 }

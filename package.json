@@ -71,14 +71,14 @@
     "sqlite": "^3.47.2"
   },
   "dependencies": {
-    "@stacksjs/ts-avif": "^0.1.4",
+    "@stacksjs/ts-avif": "^0.1.5",
     "@stacksjs/ts-cloud": "^0.16.11",
-    "@stacksjs/ts-webp": "^0.1.3",
+    "@stacksjs/ts-webp": "^0.1.6",
     "stacks": "^0.75.5"
   },
   "devDependencies": {
     "better-dx": "^0.2.25",
-    "ts-images": "^0.2.20"
+    "ts-images": "^0.2.21"
   },
   "workspaces": [
     "storage/framework",
