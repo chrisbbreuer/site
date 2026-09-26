@@ -15,6 +15,12 @@ import { response, route } from '@stacksjs/router'
 // Your custom routes go here:
 route.get('/', () => response.text('hello world'))
 
+// Reader comments on blog posts, served at /api/blog/{slug}/comments. The
+// form on the post page posts here without JavaScript, so it carries no CSRF
+// token, and there is nothing for a forged request to borrow: commenting is
+// anonymous, no session is involved. The action rate-limits and honeypots.
+route.post('/blog/{slug}/comments', 'Actions/Blog/CommentStoreAction').skipCsrf()
+
 // `/coming-soon` is served as an STX view from
 // `storage/framework/defaults/resources/views/coming-soon.stx`. The
 // view auto-resolves through stx-serve, so no route registration is

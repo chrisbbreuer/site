@@ -229,6 +229,123 @@ main { padding: 3.5rem 0 2rem; }
   color: var(--text-3);
 }
 
+/* ── Comments ───────────────────────────────────────────────────────────── */
+.comments {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--divider);
+}
+.comments h2 {
+  margin: 0 0 1rem;
+  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+.comment-list { list-style: none; margin: 0 0 2rem; padding: 0; }
+.comment {
+  padding: 1rem 0;
+  border-top: 1px solid var(--divider);
+}
+.comment:first-child { border-top: 0; padding-top: 0; }
+/* The anchor a posted comment lands on: a brief tint so the eye finds it. */
+.comment:target { animation: comment-arrive 2.4s ease-out; }
+@keyframes comment-arrive {
+  from { background: var(--bg-soft); }
+  to { background: transparent; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .comment:target { animation: none; }
+}
+.comment-meta {
+  margin: 0 0 0.35rem;
+  font-size: 0.8rem;
+  color: var(--text-3);
+}
+.comment-author { font-weight: 600; color: var(--text-1); }
+.comment-body {
+  margin: 0;
+  color: var(--text-2);
+  line-height: 1.65;
+  /* Keep the reader's line breaks; the text itself is escaped. */
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+.comment-empty { margin: 0 0 2rem; color: var(--text-3); font-size: 0.95rem; }
+.comment-note {
+  margin: 0 0 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-2);
+}
+.comment-note.is-error { color: var(--text-1); }
+
+.comment-form h3 {
+  margin: 0 0 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 650;
+}
+.comment-form label { display: block; margin-bottom: 0.8rem; }
+.comment-form label > span {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-2);
+}
+.comment-form label small { font-weight: 400; color: var(--text-3); }
+.comment-fields { display: grid; gap: 0 0.8rem; }
+@media (min-width: 640px) {
+  .comment-fields { grid-template-columns: 1fr 1fr; }
+}
+.comment-form input,
+.comment-form textarea {
+  display: block;
+  width: 100%;
+  padding: 0.55rem 0.8rem;
+  font: inherit;
+  /* 16px floor: anything smaller makes iOS Safari zoom the page on focus */
+  font-size: 1rem;
+  color: var(--text-1);
+  background: var(--bg);
+  border: 1px solid var(--divider);
+  border-radius: 6px;
+}
+.comment-form textarea { resize: vertical; min-height: 7.5rem; line-height: 1.6; }
+.comment-form input:focus,
+.comment-form textarea:focus {
+  outline: 2px solid var(--text-1);
+  outline-offset: 1px;
+  border-color: var(--text-1);
+}
+/* Off-screen rather than display:none, which some bots skip filling in. */
+.comment-form .comment-honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.comment-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1rem;
+}
+.comment-actions button {
+  padding: 0.55rem 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--bg);
+  background: var(--text-1);
+  border: 1px solid var(--text-1);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.comment-actions button:hover { opacity: 0.85; }
+.comment-actions button:active { transform: translateY(1px); }
+.comment-hint { margin: 0; font-size: 0.8rem; color: var(--text-3); }
+
 .section-label {
   display: flex;
   align-items: baseline;

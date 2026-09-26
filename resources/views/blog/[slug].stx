@@ -4,6 +4,8 @@ const path = require('node:path')
 const { parseMarkdownWithFrontmatter } = require('@stacksjs/ts-md')
 const { readingStats } = require(path.join(process.cwd(), 'resources/utils/reading-stats.ts'))
 const { longPostDate } = require(path.join(process.cwd(), 'resources/utils/post-date.ts'))
+const { approvedComments, COMMENT_LIMITS } = require(path.join(process.cwd(), 'resources/utils/blog-comments.ts'))
+const blogConfig = require(path.join(process.cwd(), 'config/blog.ts')).default
 
 // Dynamic route: /blog/<slug> → content/blog/<slug>.md, rendered with our
 // homegrown @stacksjs/ts-md. `params.slug` is threaded in from the request.
@@ -23,6 +25,23 @@ if (slug && fs.existsSync(file)) {
   }
   post.longDate = post.date ? longPostDate(post.date) : ''
 }
+
+// Reader comments, stored through the Post model's commentable trait (see
+// resources/utils/blog-comments.ts). The form posts to the API, which sends
+// the browser back here with `?comment=<outcome>`.
+const commentsOn = Boolean(post && blogConfig.enableComments)
+const comments = commentsOn ? await approvedComments(slug) : []
+const commentsHeading = comments.length === 1 ? '1 comment' : comments.length > 1 ? `${comments.length} comments` : 'Comments'
+const commentOutcome = typeof query === 'object' && query ? String(query.comment || '') : ''
+const commentPosted = commentOutcome === 'posted'
+const commentError = {
+  name: `Add a name between ${COMMENT_LIMITS.name.min} and ${COMMENT_LIMITS.name.max} characters.`,
+  body: `Comments run ${COMMENT_LIMITS.body.min} to ${COMMENT_LIMITS.body.max} characters.`,
+  email: 'That email does not look right. It is optional, so you can leave it out.',
+  links: `Keep it to ${COMMENT_LIMITS.links} links or fewer.`,
+  slow: 'That is a lot of comments in a short time. Give it a few minutes.',
+}[commentOutcome] || ''
+const limits = COMMENT_LIMITS
 
 const title = post ? `${post.title} - Chris Breuer` : 'Not found - Chris Breuer'
 const description = post ? (post.excerpt || `${post.title}, by Chris Breuer`) : 'Post not found.'
@@ -48,6 +67,56 @@ const ogArticle = post && post.date ? { published: post.date } : null
       <div class="prose post-body">
         {!! post.html !!}
       </div>
+
+      @if (commentsOn)
+        <section class="comments" id="comments" aria-labelledby="comments-heading">
+          <h2 id="comments-heading">{{ commentsHeading }}</h2>
+          @if (commentPosted)
+            <p class="comment-note" role="status">Thanks, your comment is up.</p>
+          @endif
+          @if (comments.length > 0)
+            <ol class="comment-list">
+              @foreach (comments as comment)
+                <li class="comment" id="comment-{{ comment.id }}">
+                  <p class="comment-meta"><span class="comment-author">{{ comment.name }}</span> · <time datetime="{{ comment.date }}">{{ comment.longDate }}</time></p>
+                  <p class="comment-body">{{ comment.body }}</p>
+                </li>
+              @endforeach
+            </ol>
+          @else
+            <p class="comment-empty">No comments yet. Say something.</p>
+          @endif
+
+          <form class="comment-form" id="respond" action="/api/blog/{{ slug }}/comments" method="POST">
+            <h3>Leave a comment</h3>
+            @if (commentError)
+              <p class="comment-note is-error" role="alert">{{ commentError }}</p>
+            @endif
+            <div class="comment-fields">
+              <label>
+                <span>Name</span>
+                <input type="text" name="name" required minlength="{{ limits.name.min }}" maxlength="{{ limits.name.max }}" autocomplete="name">
+              </label>
+              <label>
+                <span>Email <small>optional, never shown</small></span>
+                <input type="email" name="email" maxlength="{{ limits.email.max }}" autocomplete="email">
+              </label>
+            </div>
+            <label class="comment-honeypot" aria-hidden="true">
+              Leave this empty
+              <input type="text" name="website" tabindex="-1" autocomplete="off">
+            </label>
+            <label>
+              <span>Comment</span>
+              <textarea name="body" rows="5" required minlength="{{ limits.body.min }}" maxlength="{{ limits.body.max }}"></textarea>
+            </label>
+            <div class="comment-actions">
+              <button type="submit">Post comment</button>
+              <p class="comment-hint">Plain text, line breaks kept. Be kind.</p>
+            </div>
+          </form>
+        </section>
+      @endif
     </article>
   @else
     <h1 class="page-title">Not found</h1>

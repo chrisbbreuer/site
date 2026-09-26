@@ -38,7 +38,7 @@ const config: BlogConfig = {
   title: 'Chris Breuer',
   description: 'Notes on developer tooling, TypeScript, Bun, and building Stacks.',
   postsPerPage: 10,
-  enableComments: false,
+  enableComments: true,
   enableRss: true,
   enableSitemap: true,
   enableSearch: false,
