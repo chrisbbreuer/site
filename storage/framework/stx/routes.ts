@@ -9,6 +9,7 @@ export const routes = [
   { pattern: '/goals', filePath: 'resources/views/goals.stx', isDynamic: false, params: [] },
   { pattern: '/projects', filePath: 'resources/views/projects.stx', isDynamic: false, params: [] },
   { pattern: '/uses', filePath: 'resources/views/uses.stx', isDynamic: false, params: [] },
+  { pattern: '/wip', filePath: 'resources/views/wip.stx', isDynamic: false, params: [] },
   { pattern: '/blog/:slug', filePath: 'resources/views/blog/[slug].stx', isDynamic: true, params: ["slug"] },
 ] as const
 

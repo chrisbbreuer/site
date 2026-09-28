@@ -8,6 +8,7 @@ declare module '@stacksjs/stx' {
     '/goals': {  }
     '/projects': {  }
     '/uses': {  }
+    '/wip': {  }
     '/blog/:slug': { slug: string }
   }
 }
