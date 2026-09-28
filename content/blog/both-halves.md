@@ -52,6 +52,24 @@ Both punish optimism that is not backed by evidence. Both reward the boring midd
 
 The clearest version of this: a training plan says twenty-eight hours this week, but what you actually get is decided by what your body absorbs, not by what the schedule asks for. Every fourth week comes down on purpose. Skip those recovery weeks because you feel good and you will find out why they were there. I have watched engineers do the identical thing with a codebase, and I have been that engineer: a pace that looks impressive for six weeks and is unrecoverable by month four.
 
+Written down, both halves run the same loop:
+
+```ts
+// One loop for a training block and for a codebase.
+for (let week = 1; !done(); week++) {
+  const planned = plan.thisWeek()  // 28 hours, or 12 tickets
+  const absorbed = reality()       // what you actually got
+
+  if (absorbed < planned)
+    plan.adjust()                  // evidence beats optimism
+
+  if (week % 4 === 0)
+    recover()                      // comes down on purpose, even when you feel good
+
+  bank(absorbed)                   // the boring middle, compounding
+}
+```
+
 ## What this is for
 
 This is where I write about both. Developer and agentic tooling, TypeScript, Bun, and what I learn building a framework in the open. And the training: the mountains, the PCT, the days it goes well and the days it does not.
