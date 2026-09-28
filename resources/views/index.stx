@@ -46,16 +46,15 @@ const posts = fs.readdirSync(blogDir)
 @endpush
 
 @section('content')
-  <h1 class="page-title">Software engineer, <br class="title-break">founder, ultra skyrunner.</h1>
+  <h1 class="page-title">Software engineer, <br class="title-break">founder, ultra runner.</h1>
   <p class="page-lead">
-    And a big dog person... Anyways, I build developer tooling. <a href="https://stacksjs.com">Stacks</a>, a TypeScript
-    framework and the ecosystem around it, and increasingly agentic tooling: the things
-    engineers reach for, and the things their agents reach for. Plus the apps that run on top
-    of all of it. All of it aims to be as fast and as energy efficient as software can be:
-    in the age of AI, well-built abstractions are one way to scale AI sustainably.
-    The other half of my life is spent skyrunning: long days in the mountains, usually with Mo (Kengal)
-    somewhere ahead of me on the trail. The two halves keep pointing at each other. This is where
-    I write about both.
+    I build developer tooling: <a href="https://stacksjs.com">Stacks</a>, a TypeScript framework and the
+    ecosystem around it, and increasingly agentic tooling, for engineers and for their agents. Plus the
+    apps that run on top of it all. Every piece aims to be as fast and energy efficient as software can
+    be, because well-built abstractions are one way to scale AI sustainably.
+    The other half of my life is skyrunning: long days in the mountains with Mo, my Kangal, usually
+    somewhere ahead of me on the trail. Big dog person, if that wasn't clear. The two halves keep
+    pointing at each other. This is where I write about both.
   </p>
 
   <h2 class="section-label">Building</h2>

@@ -3,7 +3,7 @@ const fs = require('node:fs')
 const path = require('node:path')
 
 const title = 'About - Chris Breuer'
-const description = 'I\'m Chris Breuer, a software engineer obsessed over developer and agentic tooling, and a ultra skyrunner. Building Stacks, HQ.training and Wildloop. Los Angeles based.'
+const description = 'I\'m Chris Breuer, a software engineer obsessed with developer and agentic tooling, and an ultra skyrunner. Building Stacks, HQ.training and Wildloop. Based in Los Angeles.'
 const activeNav = 'about'
 const pagePath = '/about'
 
@@ -64,73 +64,71 @@ const elsewhere = [
       <h1 class="page-title">Obsessed with developer tooling and steep trails.</h1>
       <div class="prose">
         <p>
-          Ever since I was young, I've loved to explore, learn, and create, especially
-          while using tech. When I was 12 years old, I wrote my first SaaS app, and to
-          my surprise it turned out quite successful and brought in several hundred
-          dollars monthly via Google AdSense.
+          Ever since I was young, I've loved to explore, learn and build, mostly with
+          tech. At 12 I wrote my first SaaS app, and to my surprise it brought in
+          several hundred dollars a month through Google AdSense.
         </p>
         <p>
           The only thing I loved more than computers as a kid was sports and the
-          outdoors. That took me to university in Hawaii, where I played NCAA soccer.
-          Almost 20 years later, not much has changed. It just got steeper.
-          These days it is skyrunning: long days in the mountains, on trails that go
-          up far more than they go along, with my dog setting the pace. It is still
-          the one thing that reliably peels me away from my desk.
+          outdoors. That took me to university in Hawaii to play NCAA soccer. Almost
+          20 years later not much has changed, it just got steeper. These days it is
+          skyrunning: long days on trails that go up far more than they go along,
+          with Mo, my Kangal, setting the pace. It is still the one thing that
+          reliably pulls me away from my desk.
         </p>
         <p>
           I am not really a runner, though. I have been an athlete most of my life,
-          but running never brought me much joy, and I have never done it
-          professionally. The point is less the running than showing that a strong
-          mind with a clear goal can get you almost anywhere. It is also good for
-          the dog.
+          but running on its own never brought me much joy, and I have never done it
+          professionally. I know I will never be the fastest one on the mountain. I
+          also know I will not quit. The point was never the running. It is showing
+          that a strong mind with a clear goal can get you almost anywhere. It is
+          also good for the dog.
         </p>
         <p>
-          Next up is the Pacific Crest Trail, northbound: 2,650 miles, aiming to
-          average 60 a day. I do not know yet if that pace holds, and finding out is
-          half the reason to try. After that I want to start racing, pinning on a
-          number at mountain races to see where I stand. I will share how both go
-          here, including the days that do not go to plan.
+          Next up is the Pacific Crest Trail, northbound: 2,650 miles at an average
+          of 60 a day. I do not know yet if that pace holds, and finding out is half
+          the reason to go. After that I want to start racing, pinning on a number at
+          mountain races to see where I stand. I will share both here, including the
+          days that do not go to plan.
         </p>
         <p>
-          I spent the last 15+ years working on personal and private projects, ranging
-          from small apps to large enterprise services, which caused my obsession with
-          building scalable systems. I dove deep into data storage and
-          transfer, and distributed and decentralized compute techniques. That was a
-          core reason I started working on Stacks.
+          For the last 15+ years I have built personal and private projects, from
+          small apps to large enterprise services, which is where my obsession with
+          scalable systems comes from. I went deep on data storage and transfer, and
+          on distributed and decentralized compute. That is a big part of why I
+          started Stacks.
         </p>
         <p>
-          The goal behind all of it is software that is as fast and as energy
-          efficient as it can be. In the age of AI that matters more than ever:
-          every request an agent makes runs on real hardware and real power, and
-          most of it passes through ordinary code on the way. Good abstractions are
-          one of the few levers that scale. Get the defaults right once, in
-          something like Stacks, and every app built on top of it does less work
-          for the same result.
+          The goal behind all of it is software that is as fast and energy efficient
+          as it can be. In the age of AI that matters more than ever: every request an
+          agent makes runs on real hardware and real power, and most of it passes
+          through ordinary code on the way. Good abstractions are one of the few
+          levers that scale. Get the defaults right once, in something like Stacks,
+          and every app built on top does less work for the same result.
         </p>
         <p>
-          The thing that has never changed is where the work comes from. Every
-          project I have started began as something I, my team, or the community
-          around us actually needed, where the paid tools were the only ones
-          doing it well and nothing open source came close enough to compete.
-          Stacks because I kept rewriting the same infrastructure
-          underneath every app, the athlete software because I wanted to use it
-          myself. It is a narrow filter for deciding what to build, and it is
-          the reason any of it gets finished.
+          What has never changed is where the work comes from. Every project I have
+          started began as something I, my team or the community around us actually
+          needed, where only paid tools did it well and nothing open source came
+          close. Stacks, because I kept rewriting the same infrastructure under every
+          app. The athlete software, because I wanted to use it myself. It is a
+          narrow filter for what to build, and it is the reason any of it gets
+          finished.
         </p>
         <p>
           The two halves feed each other more than you would think. A long day in the
-          mountains is mostly about pacing, small decisions compounding, and being
-          honest with yourself about what is actually working, which is also a
-          fair description of shipping software.
+          mountains is mostly pacing, small decisions compounding, and being honest
+          with yourself about what is actually working. That is also a fair
+          description of shipping software. So is refusing to quit.
         </p>
         <p>
-          Today that is <a href="https://stacksjs.com">Stacks</a> and its broader ecosystem,
-          and a growing amount of agentic tooling. The tools engineers use are quickly
-          becoming the tools their agents use, and that changes what a good one looks like.
-          On top of it sit the apps. Lately that means
+          Today that means <a href="https://stacksjs.com">Stacks</a> and its broader
+          ecosystem, and a growing amount of agentic tooling. The tools engineers use
+          are quickly becoming the tools their agents use, and that changes what a
+          good one looks like. On top of it sit the apps, lately
           <a href="https://hq.training">HQ.training</a> and
-          <a href="https://wildloop.org">Wildloop</a>: athlete software I wrote because I
-          needed it to exist. Follow along on
+          <a href="https://wildloop.org">Wildloop</a>: athlete software I wrote because
+          I needed it to exist. Follow along on
           <a href="https://github.com/chrisbbreuer">GitHub</a> for the latest.
         </p>
       </div>
