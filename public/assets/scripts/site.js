@@ -111,9 +111,37 @@
     warmLink(e.target && e.target.closest && e.target.closest('a[href^="/"]'))
   }, { passive: true, capture: true })
 
+  // <hq-activity-chart> (on /wip) is HQ.training's web component. Its script
+  // comes from the HQ.training origin in the element's `api` attribute, and
+  // only once a page actually has one, which is why it is loaded from here
+  // rather than pushed by the page: a pushed script does not run on
+  // client-side navigation.
+  function loadActivityCharts() {
+    if (window.customElements && window.customElements.get('hq-activity-chart')) return
+    var chart = document.querySelector('hq-activity-chart')
+    if (!chart || document.querySelector('script[data-hq-activity]')) return
+    var script = document.createElement('script')
+    script.src = (chart.getAttribute('api') || 'https://hq.training').replace(/\/$/, '') + '/assets/scripts/hq-activity-chart.js'
+    script.defer = true
+    script.setAttribute('data-hq-activity', '')
+    document.head.appendChild(script)
+  }
+
+  // A contribution graph wider than the column opens on its latest weeks,
+  // as GitHub's does. Once per render, so a reader's own scroll is kept.
+  function scrollGraphsToLatest() {
+    var graphs = document.querySelectorAll('.gh-scroll:not([data-scrolled])')
+    for (var i = 0; i < graphs.length; i++) {
+      graphs[i].scrollLeft = graphs[i].scrollWidth
+      graphs[i].setAttribute('data-scrolled', '')
+    }
+  }
+
   function init() {
     updateNav()
     initProjectFilter()
+    loadActivityCharts()
+    scrollGraphsToLatest()
     scheduleWarm()
   }
   window.__siteChromeInit = init

@@ -938,3 +938,188 @@ body.lightbox-open { overflow: hidden; }
   .lightbox-stage .lb-full { transition: none; }
   .lightbox-stage.is-loading .lb-spinner { animation: none; }
 }
+
+/* --- /wip: two contribution graphs, drawn as GitHub draws them ------------
+ * GitHub's own measurements and Primer colours (github.com, Sept 2026), in
+ * both themes. The GitHub graph is green with GitHub's blue year list; the
+ * HQ.training one (<hq-activity-chart>, styled through its custom
+ * properties) is HQ blue, with #114CFE as level 3. Sans-serif on purpose:
+ * this is GitHub's UI, not the site's. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.wip-graph {
+  --gh-text: #1f2328;
+  --gh-muted: #59636e;
+  --gh-border: #d1d9e0;
+  --gh-accent: #0969da;
+  --gh-hover: rgba(129, 139, 152, 0.12);
+  --gh-edge: rgba(31, 35, 40, 0.05);
+  --gh-tip: #25292e;
+  --gh-l0: #eff2f5;
+  --gh-l1: #aceebb;
+  --gh-l2: #4ac26b;
+  --gh-l3: #2da44e;
+  --gh-l4: #116329;
+  /* Wider than the text column: GitHub's graph is 723px before its year list. */
+  width: min(calc(100vw - 2rem), 56rem);
+  margin: 0 0 2.5rem calc(50% - min(calc(50vw - 1rem), 28rem));
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+:root[data-theme='dark'] .wip-graph {
+  --gh-text: #f0f6fc;
+  --gh-muted: #9198a1;
+  --gh-border: #3d444d;
+  --gh-accent: #1f6feb;
+  --gh-edge: rgba(1, 4, 9, 0.05);
+  --gh-tip: #3d444d;
+  --gh-l0: #151b23;
+  --gh-l1: #033a16;
+  --gh-l2: #196c2e;
+  --gh-l3: #2ea043;
+  --gh-l4: #56d364;
+}
+.wip-graph hq-activity-chart {
+  --hq-activity-text: var(--gh-text);
+  --hq-activity-muted: var(--gh-muted);
+  --hq-activity-border: var(--gh-border);
+  --hq-activity-edge: var(--gh-edge);
+  --hq-activity-l0: var(--gh-l0);
+  --hq-activity-l1: #c9dbff;
+  --hq-activity-l2: #719eff;
+  --hq-activity-l3: #114cfe;
+  --hq-activity-l4: #0229b1;
+}
+:root[data-theme='dark'] .wip-graph hq-activity-chart {
+  --hq-activity-l1: #0b2466;
+  --hq-activity-l2: #0f38aa;
+  --hq-activity-l3: #114cfe;
+  --hq-activity-l4: #76a2ff;
+}
+.gh-contrib {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  color: var(--gh-text);
+}
+.gh-main { flex: 1 1 auto; min-width: 0; }
+.gh-heading {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--gh-text);
+}
+.gh-box {
+  /* Its natural width, like the HQ chart's, so the two frames line up. */
+  width: max-content;
+  max-width: 100%;
+  border: 1px solid var(--gh-border);
+  border-radius: 6px;
+  padding: 12px 0 8px;
+}
+.gh-scroll { overflow-x: auto; overflow-y: hidden; padding: 0 16px; }
+.gh-grid {
+  position: relative;
+  border-collapse: separate;
+  border-spacing: 3px;
+  font-size: 12px;
+  line-height: 18px;
+}
+.gh-grid td { padding: 0; }
+.gh-grid thead td { height: 13px; }
+.gh-label-col { position: relative; width: 28px; min-width: 28px; }
+.gh-month { position: relative; }
+.gh-month span,
+.gh-weekday {
+  position: absolute;
+  left: 0;
+  top: -4px;
+  white-space: nowrap;
+  color: var(--gh-text);
+}
+.gh-day {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--gh-l0);
+  outline: 1px solid var(--gh-edge);
+  outline-offset: -1px;
+}
+.gh-day[data-level='1'] { background: var(--gh-l1); }
+.gh-day[data-level='2'] { background: var(--gh-l2); }
+.gh-day[data-level='3'] { background: var(--gh-l3); }
+.gh-day[data-level='4'] { background: var(--gh-l4); }
+/* Primer's tooltip, in CSS: below the day for the top rows and pinned to the
+ * ends of the graph, so it never leaves the scroller. */
+.gh-day[data-tip]:hover { outline-color: var(--gh-muted); }
+.gh-day[data-tip]:hover::after {
+  content: attr(data-tip);
+  position: absolute;
+  z-index: 5;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: var(--gh-tip);
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 1.625;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.gh-day[data-below]:hover::after { top: calc(100% + 4px); bottom: auto; }
+.gh-day[data-edge='start']:hover::after { left: 0; transform: none; }
+.gh-day[data-edge='end']:hover::after { left: auto; right: 0; transform: none; }
+.gh-canvas { width: max-content; margin: 0 auto; }
+/* Spans the squares, not the weekday column, like GitHub's. */
+.gh-footer {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+  padding: 0 3px 0 34px;
+  font-size: 12px;
+  color: var(--gh-muted);
+}
+.gh-footer a { color: var(--gh-muted); text-decoration: none; }
+.gh-footer a:hover { color: var(--gh-accent); text-decoration: underline; }
+.gh-legend { display: inline-flex; align-items: center; gap: 4px; }
+.gh-legend .gh-day { display: inline-block; }
+.gh-years {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.gh-years a {
+  display: block;
+  min-width: 72px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--gh-muted);
+  text-decoration: none;
+}
+.gh-years a:hover { background: var(--gh-hover); color: var(--gh-text); }
+.gh-years a[aria-current] { background: var(--gh-accent); color: #ffffff; }
+@media (max-width: 860px) {
+  /* Stacked, the graph takes the column's width and scrolls inside it. */
+  .gh-contrib { flex-direction: column-reverse; align-items: stretch; }
+  .gh-years { flex-direction: row; flex-wrap: wrap; }
+}
