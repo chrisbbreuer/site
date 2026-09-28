@@ -1036,6 +1036,9 @@ body.lightbox-open { overflow: hidden; }
   padding: 12px 0 0;
 }
 .gh-scroll { overflow-x: auto; overflow-y: hidden; padding: 0 16px 12px; }
+/* A year on its way (site.js swaps it in): the old graph stays, dimmed. */
+.gh-box { transition: opacity 0.15s; }
+.gh-contrib[aria-busy='true'] .gh-box { opacity: 0.5; }
 .gh-grid {
   position: relative;
   border-collapse: separate;

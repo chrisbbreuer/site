@@ -141,8 +141,9 @@ const ghYears = github.years.map((year, index) => ({
           </div></div>
         </div>
       </div>
-      <!-- Year links load the page in full (data-no-router): the SPA router
-           drops the query string when it stays on /wip. -->
+      <!-- site.js swaps a year's graph in place. data-no-router keeps the
+           SPA router out of it: the router drops the query string when it
+           stays on /wip, and it would re-render the whole page. -->
       <ul class="gh-years" aria-label="Contribution year">
         @foreach (ghYears as item)
           <li><a href="{{ item.href }}" data-no-router@if (item.current) aria-current="true"@endif>{{ item.year }}</a></li>

@@ -84,6 +84,8 @@
   function warmLink(a) {
     var router = window.__stxRouter
     if (!router || typeof router.prefetch !== 'function' || !a) return
+    // The router never navigates to these, so its copy would go unused.
+    if (a.hasAttribute('data-no-router')) return
     var href = a.getAttribute('href')
     // Same-site pages only: not feeds, files, or the page already showing.
     if (!href || href.charAt(0) !== '/' || href.charAt(1) === '/') return
@@ -136,6 +138,65 @@
       graphs[i].setAttribute('data-scrolled', '')
     }
   }
+
+  // The GitHub graph's year links switch it in place, as the HQ.training
+  // chart does: the year's page is fetched (warmed on hover or touch, kept
+  // for the visit) and only its graph is swapped in, with the address
+  // following along. Replaced rather than pushed, because the router would
+  // take a back to /wip?year= as its own navigation and drop the year. With
+  // this script missing or a fetch failing, the link loads the page as usual.
+  var yearPages = {}
+  var yearRequest = 0
+
+  function yearPage(href) {
+    if (!yearPages[href]) {
+      yearPages[href] = fetch(href, { credentials: 'same-origin' }).then(function (res) {
+        if (!res.ok) throw new Error(String(res.status))
+        return res.text()
+      })
+      yearPages[href].catch(function () { delete yearPages[href] })
+    }
+    return yearPages[href]
+  }
+
+  function yearLink(target) {
+    return target && target.closest ? target.closest('.gh-years a[href]') : null
+  }
+
+  function warmYear(e) {
+    var link = yearLink(e.target)
+    if (link) yearPage(link.getAttribute('href')).catch(function () {})
+  }
+  document.addEventListener('mouseover', warmYear, { passive: true })
+  document.addEventListener('touchstart', warmYear, { passive: true })
+  document.addEventListener('focusin', warmYear)
+
+  document.addEventListener('click', function (e) {
+    var link = yearLink(e.target)
+    if (!link || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return
+    var graph = link.closest('.gh-contrib')
+    if (!graph) return
+    e.preventDefault()
+    var href = link.getAttribute('href')
+    // Pressed at once, and the graph dimmed until its year arrives.
+    var links = graph.querySelectorAll('.gh-years a')
+    for (var i = 0; i < links.length; i++) {
+      if (links[i] === link) links[i].setAttribute('aria-current', 'true')
+      else links[i].removeAttribute('aria-current')
+    }
+    graph.setAttribute('aria-busy', 'true')
+    var request = ++yearRequest
+    yearPage(href).then(function (html) {
+      if (request !== yearRequest) return
+      var next = new DOMParser().parseFromString(html, 'text/html').querySelector('.gh-contrib')
+      if (!next || !graph.isConnected) throw new Error('no graph')
+      graph.replaceWith(document.adoptNode(next))
+      scrollGraphsToLatest()
+      history.replaceState(history.state, '', href)
+    }).catch(function () {
+      if (request === yearRequest) location.href = href
+    })
+  })
 
   function init() {
     updateNav()
