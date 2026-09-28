@@ -32,7 +32,6 @@ const github = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'content/gith
 const requestedYear = typeof query === 'object' && query ? String(query.year || '') : ''
 const ghKey = github.calendars[requestedYear] ? requestedYear : 'last'
 const ghCalendar = github.calendars[ghKey]
-const ghToday = new Date().toISOString().slice(0, 10)
 
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 const WEEKDAYS = [['Sunday', ''], ['Monday', 'Mon'], ['Tuesday', ''], ['Wednesday', 'Wed'], ['Thursday', ''], ['Friday', 'Fri'], ['Saturday', '']]
@@ -50,8 +49,9 @@ const ghRows = WEEKDAYS.map(([name, short], row) => ({ name, short, row, days: A
 ghCalendar.weeks.forEach((week, column) => {
   for (const [date, count, level] of week) {
     // A calendar year's first week starts on whatever day 1 January is.
+    // The rest of the current year stays in as empty days, as GitHub draws
+    // it, so every month keeps its columns.
     const row = new Date(`${date}T00:00:00Z`).getUTCDay()
-    if (date > ghToday) continue
     const when = `${MONTHS[Number(date.slice(5, 7)) - 1]} ${ordinal(Number(date.slice(8, 10)))}`
     ghRows[row].days[column] = {
       date,

@@ -1030,7 +1030,8 @@ body.lightbox-open { overflow: hidden; }
   max-width: 100%;
   border: 1px solid var(--gh-border);
   border-radius: 6px;
-  padding: 12px 0 8px;
+  /* 161px tall in all, as on github.com and in the HQ chart's SVG. */
+  padding: 12px 0;
 }
 .gh-scroll { overflow-x: auto; overflow-y: hidden; padding: 0 16px; }
 .gh-grid {
@@ -1044,14 +1045,17 @@ body.lightbox-open { overflow: hidden; }
 .gh-grid thead td { height: 13px; }
 .gh-label-col { position: relative; width: 28px; min-width: 28px; }
 .gh-month { position: relative; }
+/* Placed as github.com places them: month names 18px and "Mon" 45px below
+   the box's top edge, with the first row of squares at 35px. */
 .gh-month span,
 .gh-weekday {
   position: absolute;
   left: 0;
-  top: -4px;
   white-space: nowrap;
   color: var(--gh-text);
 }
+.gh-month span { top: 0; }
+.gh-weekday { top: -5px; }
 .gh-day {
   position: relative;
   width: 10px;
