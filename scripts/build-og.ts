@@ -70,7 +70,11 @@ function titleSize(t: string): number {
     return 132
   if (t.length <= 9)
     return 120
-  return 96
+  if (t.length <= 16)
+    return 96
+  // Lilex is about 0.6em a character, and the title has ~1040px: past 16
+  // characters 96px wraps ("South Mount Hawkins" is 19).
+  return Math.max(56, Math.floor(1040 / (t.length * 0.62)))
 }
 
 function html(c: Card): string {

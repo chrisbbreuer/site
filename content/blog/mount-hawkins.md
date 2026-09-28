@@ -1,12 +1,12 @@
 ---
-title: Mount Hawkins
-description: A weekend up Mount Hawkins with Mo, 500 pushups and a couple of interval runs near the top, a bulldozer on the summit, and the one thing to plan around before you go, which is water.
+title: South Mount Hawkins
+description: A weekend up South Mount Hawkins with Mo, 500 pushups and a couple of interval runs near the top, a bulldozer on the summit, and the one thing to plan around before you go, which is water.
 date: 2026-09-27
 author: Chris Breuer
 authorBio: Software engineer, founder of Stacks, ultra skyrunner. Los Angeles based.
 ---
 
-We just got back from Mount Hawkins in the San Gabriels. Mo came along, and I turned the top of the mountain into a gym for a while.
+We just got back from South Mount Hawkins in the San Gabriels. Mo came along, and I turned the top of the mountain into a gym for a while.
 
 ![Late sunlight turning the high ridge to the east orange, with a pine and a bush of yellow wildflowers lit up in the foreground](/images/blog/mount-hawkins/img-6412-lg.avif)
 
