@@ -1123,3 +1123,8 @@ body.lightbox-open { overflow: hidden; }
   .gh-contrib { flex-direction: column-reverse; align-items: stretch; }
   .gh-years { flex-direction: row; flex-wrap: wrap; }
 }
+/* Years on top at every width: a row of compact tabs above the graph, so the
+   whole thing is only as wide as the graph (the /wip page's yearsPosition). */
+.gh-contrib--years-top { flex-direction: column-reverse; align-items: stretch; gap: 8px; }
+.gh-contrib--years-top .gh-years { flex-direction: row; flex-wrap: wrap; gap: 4px; }
+.gh-contrib--years-top .gh-years a { min-width: 0; padding: 2px 10px; }
