@@ -1,6 +1,6 @@
 ---
 title: South Mount Hawkins
-description: A weekend up South Mount Hawkins with Mo, 500 pushups and a couple of interval runs near the top, a bulldozer on the summit, and the one thing to plan around before you go, which is water.
+description: A weekend up South Mount Hawkins with Mo, 500 pushups and interval runs near the top, a bulldozer on the summit, the Harvest Moon, and the one thing to plan around, which is water.
 date: 2026-09-27
 author: Chris Breuer
 authorBio: Software engineer, founder of Stacks, ultra skyrunner. Los Angeles based.
@@ -16,11 +16,19 @@ The funny part first: up on top, there is a bulldozer. Somebody has been working
 
 The views have not changed, and they did not need to. They are just great, and they get better the longer you stay.
 
-![A sky of red and orange cloud bands over the dark silhouettes of the surrounding peaks at sunset](/images/blog/mount-hawkins/img-6444-lg.avif)
+## The Harvest Moon
 
-![The moon low over the range at dusk, above pines and wildflowers on the summit](/images/blog/mount-hawkins/img-6458-lg.webp)
+Then the moon came up, and it was extremely pretty.
 
-![A golden moon rising through haze into a pink sky, between two forested ridges](/images/blog/mount-hawkins/img-4753-lg.webp)
+It was the Harvest Moon, the full moon closest to the autumn equinox, and it was full that very day. It rose at 6:37 PM, four minutes before sunset, almost exactly opposite the sun in the east, so for a few minutes the sky had the sun going down on one side and the moon coming up on the other.
+
+That is why it came up gold. Low on the horizon, its light crosses so much air that most of the blue is scattered away, the same reason a sunset is red. The golden one below is from six minutes after it rose, when it was less than a degree above the ridge. Half an hour later it had climbed clear of the haze and gone white over the range.
+
+![A sky of red and orange cloud bands over the dark silhouettes of the surrounding peaks at sunset](/images/blog/mount-hawkins/img-6444-lg.avif "6:54 PM, the other side of the sky")
+
+![The full moon low over the range at dusk, above pines and wildflowers on the summit](/images/blog/mount-hawkins/img-6458-lg.webp "7:13 PM, half an hour up")
+
+![The golden Harvest Moon rising through haze into a pink sky, between two forested ridges](/images/blog/mount-hawkins/img-4753-lg.webp "6:43 PM, six minutes after moonrise")
 
 ## Training up there
 
