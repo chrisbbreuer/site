@@ -3,7 +3,7 @@ const fs = require('node:fs')
 const path = require('node:path')
 
 const title = 'WIP - Chris Breuer'
-const description = 'Work in progress: the HQ.training fitness activity chart, next to the GitHub contribution graph it is modelled on.'
+const description = 'A progress page for both halves: fitness from HQ.training and work from GitHub, one square a day for the last year.'
 const activeNav = 'wip'
 const pagePath = '/wip'
 
@@ -78,24 +78,25 @@ const ghYears = github.years.map((year, index) => ({
 @section('content')
   <h1 class="page-title">WIP.</h1>
   <p class="page-lead">
-    Things that are not finished yet. First up: a GitHub-style activity chart
-    for training, from <a href="https://hq.training">HQ.training</a>, drawn the
-    way GitHub draws contributions, in HQ's blue.
+    Me, as a work in progress. This page tracks both halves the same way: one
+    square a day for the last year, darker the more that day held. Fitness is
+    everything I train, from <a href="https://hq.training">HQ.training</a>.
+    Work is everything I ship, from <a href="https://github.com/chrisbbreuer">GitHub</a>.
+    Gaps show, which is the point.
   </p>
 
-  <h2 class="section-label">Training</h2>
+  <h2 class="section-label">Fitness</h2>
   <div class="wip-graph">
     @if (hqToken)
       <hq-activity-chart token="{{ hqToken }}" api="{{ hqApi }}" years></hq-activity-chart>
     @else
       <p class="empty-note">
-        The chart shows up here once <code>HQ_ACTIVITY_TOKEN</code> holds an
-        embed token from HQ.training (Profile, Fitness activity, Embed).
+        The fitness chart is not connected yet. It will be back shortly.
       </p>
     @endif
   </div>
 
-  <h2 class="section-label">Code</h2>
+  <h2 class="section-label">Work</h2>
   <div class="gh-contrib wip-graph">
     <div class="gh-main">
       <h3 class="gh-heading">{{ ghHeading }}</h3>
