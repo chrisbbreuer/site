@@ -1030,10 +1030,12 @@ body.lightbox-open { overflow: hidden; }
   max-width: 100%;
   border: 1px solid var(--gh-border);
   border-radius: 6px;
-  /* 161px tall in all, as on github.com and in the HQ chart's SVG. */
-  padding: 12px 0;
+  /* 161px tall in all, as on github.com and in the HQ chart's SVG. The
+     bottom padding is the scroller's, so a scrollbar runs along the box's
+     edge, as the HQ chart's does, not across the legend. */
+  padding: 12px 0 0;
 }
-.gh-scroll { overflow-x: auto; overflow-y: hidden; padding: 0 16px; }
+.gh-scroll { overflow-x: auto; overflow-y: hidden; padding: 0 16px 12px; }
 .gh-grid {
   position: relative;
   border-collapse: separate;
@@ -1137,3 +1139,7 @@ body.lightbox-open { overflow: hidden; }
 .gh-contrib--years-top { flex-direction: column-reverse; align-items: stretch; gap: 8px; }
 .gh-contrib--years-top .gh-years { flex-direction: row; flex-wrap: wrap; gap: 4px; }
 .gh-contrib--years-top .gh-years a { min-width: 0; padding: 2px 10px; }
+/* On a touchscreen the tabs are GitHub's full 34px height, big enough to hit. */
+@media (pointer: coarse) {
+  .gh-contrib--years-top .gh-years a { padding: 8px 12px; }
+}
