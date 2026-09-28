@@ -53,8 +53,8 @@ const posts = fs.readdirSync(blogDir)
     apps that run on top of it all. Every piece aims to be as fast and energy efficient as software can
     be, because well-built abstractions are one way to scale AI sustainably.
     The other half of my life is skyrunning: long days in the mountains with Mo, my Kangal, usually
-    somewhere ahead of me on the trail. Big dog person, if that wasn't clear. The two halves keep
-    pointing at each other. This is where I write about both.
+    somewhere ahead of me on the trail. Big dog person, if that wasn't clear. And these two halves keep
+    pointing at each other. So, this is where I write about them.
   </p>
 
   <h2 class="section-label">Building</h2>
