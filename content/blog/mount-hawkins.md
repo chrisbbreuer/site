@@ -12,7 +12,7 @@ We just got back from Mount Hawkins in the San Gabriels. Mo came along, and I tu
 
 ## A bulldozer on the summit
 
-The funny part first: up on top, there is a bulldozer. Somebody has been working on the trail recently. I have been up here before and have not seen it like this, and it shows: the trail is in better shape than I remember.
+The funny part first: up on top, there is a bulldozer. Somebody has been working on the trail recently. I have been up here many times before and have not seen it like this, and it shows: the trail is in better shape than I remember.
 
 The views have not changed, and they did not need to. They are just great, and they get better the longer you stay.
 
@@ -26,11 +26,11 @@ The views have not changed, and they did not need to. They are just great, and t
 
 Getting up was only half the point. Once we were on top, I trained: 500 pushups, a couple of interval runs, and whatever else seemed like a good idea at the time.
 
-A mountain is a better place for this than a gym, because nothing about it is controlled. The ground is uneven, the air is thinner, and you start every set already tired from getting there. That is a lot closer to what a hundred miles in four days asks for, which is San Diego starting Thursday, and to what 60 miles a day on the Pacific Crest Trail will ask for later.
+A mountain can be a better place for this than a gym, because nothing about it is controlled. The ground is uneven, the air is thinner, and you start every set already tired from getting there. That is a lot closer to what a hundred miles in four days asks for, which is San Diego starting Thursday, and to what 60 miles a day on the Pacific Crest Trail will ask for later.
 
 ## Mo
 
-Mo had a great time. Somewhere ahead of me on the trail, as usual, entirely unbothered by my pushups, and happiest anywhere there was water to stand in.
+Mo had a great time. Somewhere ahead of me on the trail, as usual, entirely unbothered by my workouts, and happiest anywhere there was water to stand in.
 
 ![Mo in a black harness, standing in a shallow creek among granite boulders with tongue out](/images/blog/mount-hawkins/img-6346-lg.avif)
 
