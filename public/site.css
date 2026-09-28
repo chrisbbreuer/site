@@ -1005,10 +1005,15 @@ body.lightbox-open { overflow: hidden; }
   --hq-activity-l3: #114cfe;
   --hq-activity-l4: #76a2ff;
 }
+/* Sized to the graph and centred in the wide band, like the HQ chart
+   (align="center"), still scrolling when the band is narrower. */
 .gh-contrib {
   display: flex;
   gap: 16px;
   align-items: flex-start;
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
   color: var(--gh-text);
 }
 .gh-main { flex: 1 1 auto; min-width: 0; }
