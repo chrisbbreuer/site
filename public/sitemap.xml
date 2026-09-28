@@ -3,12 +3,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://chrisbreuer.me/</loc>
-    <lastmod>2026-09-23</lastmod>
+    <lastmod>2026-09-25</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://chrisbreuer.me/about</loc>
-    <lastmod>2026-09-23</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -18,7 +18,7 @@
   </url>
   <url>
     <loc>https://chrisbreuer.me/blog</loc>
-    <lastmod>2026-09-22</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -27,13 +27,18 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://chrisbreuer.me/blog/mount-hawkins</loc>
+    <lastmod>2026-09-27</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://chrisbreuer.me/goals</loc>
-    <lastmod>2026-09-23</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://chrisbreuer.me/projects</loc>
-    <lastmod>2026-09-23</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
