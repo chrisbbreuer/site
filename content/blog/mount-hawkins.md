@@ -39,3 +39,9 @@ Mo had a great time. Somewhere ahead of me on the trail, as usual, entirely unbo
 Which is the part worth knowing before you go. There is one water source on the way up, about 2 miles before the peak, and that is it.
 
 So bring plenty. Carry what you need for the whole day from the start, and if a dog is coming with you, carry theirs too. They will drink more than you expect.
+
+## The route
+
+Straight off my watch: 10.5 miles out and back, 2,001 ft of climbing, and a night on top.
+
+[https://hq.training/a/mount-hawkins](https://hq.training/a/mount-hawkins)
