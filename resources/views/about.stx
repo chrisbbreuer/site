@@ -171,7 +171,7 @@ const elsewhere = [
 
     <aside class="portrait-col">
       <img src="/images/chris.jpg" alt="Chris Breuer" width="480" height="480">
-      <p class="portrait-note">Los Angeles based. Usually on a trail with the dogs when I'm not at the keyboard.</p>
+      <p class="portrait-note">Los Angeles based. Usually on a trail with the dog when I'm not at the keyboard.</p>
     </aside>
 
     <div class="photo-masonry" aria-label="Photographs">
