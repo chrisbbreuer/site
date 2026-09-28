@@ -2,6 +2,10 @@
 const fs = require('node:fs')
 const path = require('node:path')
 const { parseMarkdownWithFrontmatter } = require('@stacksjs/ts-md')
+// Figures, image grids sized from the files in public/, lazy loading,
+// click-to-zoom and embeds for bare links: the Stacks default for post bodies,
+// built on ts-medium-editor's article renderer.
+const { renderPostHtml, articleHead, articleScript } = require('@stacksjs/cms/article')
 const { readingStats } = require(path.join(process.cwd(), 'resources/utils/reading-stats.ts'))
 const { longPostDate } = require(path.join(process.cwd(), 'resources/utils/post-date.ts'))
 const { approvedComments, COMMENT_LIMITS } = require(path.join(process.cwd(), 'resources/utils/blog-comments.ts'))
@@ -20,7 +24,7 @@ if (slug && fs.existsSync(file)) {
     title: data.title || slug,
     date: typeof data.date === 'string' ? data.date : '',
     excerpt: data.excerpt || data.description || '',
-    html,
+    html: renderPostHtml(html),
     stats: readingStats(raw).label,
   }
   post.longDate = post.date ? longPostDate(post.date) : ''
@@ -53,6 +57,15 @@ const ogArticle = post && post.date ? { published: post.date } : null
 </script>
 
 @layout('layouts/site')
+
+@if (post)
+  @push('head')
+    {!! articleHead() !!}
+  @endpush
+  @push('scripts')
+    {!! articleScript() !!}
+  @endpush
+@endif
 
 @section('content')
   @if (post)
