@@ -21,6 +21,11 @@ route.get('/', () => response.text('hello world'))
 // anonymous, no session is involved. The action rate-limits and honeypots.
 route.post('/blog/{slug}/comments', 'Actions/Blog/CommentStoreAction').skipCsrf()
 
+// The HQ.training charts on /wip, script and SVG, kept for a day. The page
+// sets each chart's `api` to /api/hq, so these mirror HQ.training's paths.
+route.get('/hq/assets/scripts/{file}', 'Actions/Hq/HqEmbedAction')
+route.get('/hq/api/embed/{kind}/{file}', 'Actions/Hq/HqEmbedAction')
+
 // `/coming-soon` is served as an STX view from
 // `storage/framework/defaults/resources/views/coming-soon.stx`. The
 // view auto-resolves through stx-serve, so no route registration is

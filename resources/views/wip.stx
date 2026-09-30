@@ -11,9 +11,11 @@ const pagePath = '/wip'
 //
 // The <hq-activity-chart> web component, the embed HQ.training gives every
 // athlete. site.js loads its script from `api` when the element is on the
-// page. The token comes from the environment rather than this file so a new
-// one (HQ.training > Profile > Fitness activity > Embed) is a config change.
-const hqApi = String(process.env.HQ_ACTIVITY_API || 'https://hq.training').replace(/\/$/, '')
+// page. `api` is this site's /api/hq (app/Actions/Hq/HqEmbedAction.ts), which
+// fetches from HQ.training and keeps each chart for a day. The token comes
+// from the environment rather than this file so a new one (HQ.training >
+// Profile > Fitness activity > Embed) is a config change.
+const hqApi = '/api/hq'
 const hqToken = String(process.env.HQ_ACTIVITY_TOKEN || '')
 // <hq-weight-chart>: body weight from the Withings scale, through HQ.training
 // (Profile > Weight > Embed). Its own token, so the activity chart's never
