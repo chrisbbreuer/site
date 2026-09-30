@@ -28,7 +28,7 @@ export default new Action({
       ? null
       : response.redirect(`/blog/${slug}?comment=${query}#${anchor}`, 303)
 
-    const fail = (reason: string, status: number) =>
+    const fail = (reason: string, status: 422 | 429) =>
       back(reason, 'respond') ?? response.json({ message: reason }, status)
 
     const post = blog.enableComments ? publishedPost(slug) : null
