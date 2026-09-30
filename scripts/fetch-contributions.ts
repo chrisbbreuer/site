@@ -29,9 +29,21 @@ const LEVELS: Record<string, number> = {
   FOURTH_QUARTILE: 4,
 }
 
-function graphql(query: string): any {
-  const out = execFileSync('gh', ['api', 'graphql', '-f', `query=${query}`], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 })
-  return JSON.parse(out).data
+// GitHub's GraphQL answers a slow query with a 502, and a busy year is slow.
+// A few tries, a few seconds apart, before giving up on the run.
+function graphql(query: string, tries = 4): any {
+  for (let attempt = 1; ; attempt++) {
+    try {
+      const out = execFileSync('gh', ['api', 'graphql', '-f', `query=${query}`], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024, stdio: ['ignore', 'pipe', 'pipe'] })
+      return JSON.parse(out).data
+    }
+    catch (error) {
+      if (attempt >= tries)
+        throw error
+      console.warn(`GitHub did not answer (attempt ${attempt} of ${tries}), retrying.`)
+      Bun.sleepSync(attempt * 5000)
+    }
+  }
 }
 
 function calendarFrom(collection: any): Calendar {
@@ -48,12 +60,12 @@ const latest = graphql(`query { user(login: "${LOGIN}") { contributionsCollectio
 const years: number[] = latest.user.contributionsCollection.contributionYears
 const calendars: Record<string, Calendar> = { last: calendarFrom(latest.user.contributionsCollection) }
 
-// One aliased field per year, so every year comes back in a single request.
-const perYear = graphql(`query { user(login: "${LOGIN}") { ${years.map(year =>
-  `y${year}: contributionsCollection(from: "${year}-01-01T00:00:00Z", to: "${year}-12-31T23:59:59Z") { contributionCalendar { totalContributions ${DAYS} } }`,
-).join(' ')} } }`)
-for (const year of years)
-  calendars[String(year)] = calendarFrom(perYear.user[`y${year}`])
+// One request per year: all of them in one query takes GitHub past its own
+// timeout.
+for (const year of years) {
+  const data = graphql(`query { user(login: "${LOGIN}") { contributionsCollection(from: "${year}-01-01T00:00:00Z", to: "${year}-12-31T23:59:59Z") { contributionCalendar { totalContributions ${DAYS} } } } }`)
+  calendars[String(year)] = calendarFrom(data.user.contributionsCollection)
+}
 
 const out = { login: LOGIN, fetchedAt: new Date().toISOString(), years, calendars }
 writeFileSync(join(import.meta.dir, '..', 'content/github-contributions.json'), `${JSON.stringify(out)}\n`)

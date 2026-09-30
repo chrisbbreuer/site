@@ -1,8 +1,9 @@
 name: Sync projects
 
-# Star counts and npm downloads are rendered from content/projects.json at
-# build time, so "daily" means a daily commit to that file — which is also a
-# daily deploy. 11:00 UTC is 4am in Los Angeles, the quietest hour to spend a
+# Star counts and npm downloads (content/projects.json) and the GitHub
+# contribution graph on /wip (content/github-contributions.json) are rendered
+# at build time, so "daily" means a daily commit to those files, which is also
+# a daily deploy: each is at most a day old. 11:00 UTC is 4am in Los Angeles, the quietest hour to spend a
 # release on.
 on:
   schedule:
@@ -74,14 +75,35 @@ jobs:
             exit 1
           fi
 
+      # The graph counts private contributions because the profile shows them
+      # to everyone, so GITHUB_TOKEN sees the same totals as a signed-in me.
+      - name: Regenerate content/github-contributions.json
+        env:
+          GH_TOKEN: ${{ secrets.PROJECTS_TOKEN || secrets.GITHUB_TOKEN }}
+        run: bun scripts/fetch-contributions.ts
+
+      # A year moves by a day's worth at a time. Losing years, or half the
+      # last year's total, means GitHub answered with less than it has (the
+      # private counts hidden from the token, say), so keep yesterday's graph.
+      - name: Sanity-check the contributions
+        run: |
+          summary='const d = JSON.parse(TEXT); console.log(d.years.length, d.calendars.last.total)'
+          read -r years total < <(bun -e "${summary/TEXT/await Bun.file('content/github-contributions.json').text()}")
+          read -r wasYears wasTotal < <(git show HEAD:content/github-contributions.json | bun -e "${summary/TEXT/await Bun.stdin.text()}")
+          echo "years: ${wasYears} -> ${years}, last year: ${wasTotal} -> ${total}"
+          if [ "$years" -lt "$wasYears" ] || [ $(( total * 2 )) -lt "$wasTotal" ]; then
+            echo "::error::contributions shrank more than a day can explain; keeping the committed graph"
+            exit 1
+          fi
+
       - name: Commit if anything moved
         run: |
-          if git diff --quiet -- content/projects.json; then
+          if git diff --quiet -- content/projects.json content/github-contributions.json; then
             echo "no change"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add content/projects.json
-          git commit -m "chore(projects): resync stars and npm downloads"
+          git add content/projects.json content/github-contributions.json
+          git commit -m "chore(projects): resync stars, npm downloads and contributions"
           git push
