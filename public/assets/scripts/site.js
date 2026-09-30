@@ -113,20 +113,22 @@
     warmLink(e.target && e.target.closest && e.target.closest('a[href^="/"]'))
   }, { passive: true, capture: true })
 
-  // <hq-activity-chart> (on /wip) is HQ.training's web component. Its script
-  // comes from the HQ.training origin in the element's `api` attribute, and
-  // only once a page actually has one, which is why it is loaded from here
-  // rather than pushed by the page: a pushed script does not run on
-  // client-side navigation.
-  function loadActivityCharts() {
-    if (window.customElements && window.customElements.get('hq-activity-chart')) return
-    var chart = document.querySelector('hq-activity-chart')
-    if (!chart || document.querySelector('script[data-hq-activity]')) return
-    var script = document.createElement('script')
-    script.src = (chart.getAttribute('api') || 'https://hq.training').replace(/\/$/, '') + '/assets/scripts/hq-activity-chart.js'
-    script.defer = true
-    script.setAttribute('data-hq-activity', '')
-    document.head.appendChild(script)
+  // <hq-activity-chart> and <hq-weight-chart> (on /wip) are HQ.training's web
+  // components. Each one's script comes from the HQ.training origin in the
+  // element's `api` attribute, and only once a page actually has one, which
+  // is why it is loaded from here rather than pushed by the page: a pushed
+  // script does not run on client-side navigation.
+  function loadHqCharts() {
+    ['hq-activity-chart', 'hq-weight-chart'].forEach(function (tag) {
+      if (window.customElements && window.customElements.get(tag)) return
+      var chart = document.querySelector(tag)
+      if (!chart || document.querySelector('script[data-' + tag + ']')) return
+      var script = document.createElement('script')
+      script.src = (chart.getAttribute('api') || 'https://hq.training').replace(/\/$/, '') + '/assets/scripts/' + tag + '.js'
+      script.defer = true
+      script.setAttribute('data-' + tag, '')
+      document.head.appendChild(script)
+    })
   }
 
   // A contribution graph wider than the column opens on its latest weeks,
@@ -201,7 +203,7 @@
   function init() {
     updateNav()
     initProjectFilter()
-    loadActivityCharts()
+    loadHqCharts()
     scrollGraphsToLatest()
     scheduleWarm()
   }

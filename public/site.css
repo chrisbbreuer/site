@@ -1005,6 +1005,19 @@ body.lightbox-open { overflow: hidden; }
   --hq-activity-l3: #114cfe;
   --hq-activity-l4: #76a2ff;
 }
+/* <hq-weight-chart>: drawn at its element's width, so it is held to the
+   activity chart's (GitHub's 757px box) and centred with it. Same text and
+   frame colours as both graphs; theme="class" follows data-theme for the
+   rest. The whole section waits for the first weigh-in (hide-empty). */
+.wip-graph hq-weight-chart {
+  max-width: 757px;
+  margin-inline: auto;
+  --hq-weight-text: var(--gh-text);
+  --hq-weight-muted: var(--gh-muted);
+  --hq-weight-border: var(--gh-border);
+}
+.wip-weight:has(hq-weight-chart[hidden]) { display: none; }
+
 /* Sized to the graph and centred in the wide band, like the HQ chart
    (align="center"), still scrolling when the band is narrower. */
 .gh-contrib {

@@ -15,6 +15,10 @@ const pagePath = '/wip'
 // one (HQ.training > Profile > Fitness activity > Embed) is a config change.
 const hqApi = String(process.env.HQ_ACTIVITY_API || 'https://hq.training').replace(/\/$/, '')
 const hqToken = String(process.env.HQ_ACTIVITY_TOKEN || '')
+// <hq-weight-chart>: body weight from the Withings scale, through HQ.training
+// (Profile > Weight > Embed). Its own token, so the activity chart's never
+// publishes weight. `hide-empty` keeps it off the page until a weigh-in syncs.
+const hqWeightToken = String(process.env.HQ_WEIGHT_TOKEN || '')
 
 // Where both charts put their year list: 'top' (a row of tabs above the
 // chart, so the page stays as narrow as the graphs) or 'side' (GitHub's own
@@ -101,6 +105,15 @@ const ghYears = github.years.map((year, index) => ({
       </p>
     @endif
   </div>
+
+  @if (hqWeightToken)
+    <section class="wip-weight">
+      <h2 class="section-label">Weight</h2>
+      <div class="wip-graph">
+        <hq-weight-chart token="{{ hqWeightToken }}" api="{{ hqApi }}" ranges theme="class" align="center" hide-empty></hq-weight-chart>
+      </div>
+    </section>
+  @endif
 
   <h2 class="section-label">Work</h2>
   <div class="wip-graph">
