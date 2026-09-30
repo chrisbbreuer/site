@@ -87,9 +87,14 @@ jobs:
       # private counts hidden from the token, say), so keep yesterday's graph.
       - name: Sanity-check the contributions
         run: |
-          summary='const d = JSON.parse(TEXT); console.log(d.years.length, d.calendars.last.total)'
-          read -r years total < <(bun -e "${summary/TEXT/await Bun.file('content/github-contributions.json').text()}")
-          read -r wasYears wasTotal < <(git show HEAD:content/github-contributions.json | bun -e "${summary/TEXT/await Bun.stdin.text()}")
+          read -r years total < <(bun -e '
+            const d = JSON.parse(await Bun.file("content/github-contributions.json").text())
+            console.log(d.years.length, d.calendars.last.total)
+          ')
+          read -r wasYears wasTotal < <(git show HEAD:content/github-contributions.json | bun -e '
+            const d = JSON.parse(await Bun.stdin.text())
+            console.log(d.years.length, d.calendars.last.total)
+          ')
           echo "years: ${wasYears} -> ${years}, last year: ${wasTotal} -> ${total}"
           if [ "$years" -lt "$wasYears" ] || [ $(( total * 2 )) -lt "$wasTotal" ]; then
             echo "::error::contributions shrank more than a day can explain; keeping the committed graph"
