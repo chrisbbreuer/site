@@ -89,31 +89,11 @@ const ghYears = github.years.map((year, index) => ({
   <h1 class="page-title">WIP.</h1>
   <p class="page-lead">
     Me, as a work in progress. This page tracks both halves the same way: one
-    square a day for the last year, darker the more that day held. Fitness is
-    everything I train, from <a href="https://hq.training">HQ.training</a>.
-    Work is everything I ship, from <a href="https://github.com/chrisbbreuer">GitHub</a>.
+    square a day for the last year, darker the more that day held. Work is
+    everything I ship, from <a href="https://github.com/chrisbbreuer">GitHub</a>.
+    Fitness is everything I train, from <a href="https://hq.training">HQ.training</a>.
     Gaps show, which is the point.
   </p>
-
-  <h2 class="section-label">Fitness</h2>
-  <div class="wip-graph">
-    @if (hqToken)
-      <hq-activity-chart token="{{ hqToken }}" api="{{ hqApi }}" years="{{ yearsPosition }}" align="center"></hq-activity-chart>
-    @else
-      <p class="empty-note">
-        The fitness chart is not connected yet. It will be back shortly.
-      </p>
-    @endif
-  </div>
-
-  @if (hqWeightToken)
-    <section class="wip-weight">
-      <h2 class="section-label">Weight</h2>
-      <div class="wip-graph">
-        <hq-weight-chart token="{{ hqWeightToken }}" api="{{ hqApi }}" ranges theme="class" align="center" hide-empty></hq-weight-chart>
-      </div>
-    </section>
-  @endif
 
   <h2 class="section-label">Work</h2>
   <div class="wip-graph">
@@ -164,4 +144,24 @@ const ghYears = github.years.map((year, index) => ({
       </ul>
     </div>
   </div>
+
+  <h2 class="section-label">Fitness</h2>
+  <div class="wip-graph">
+    @if (hqToken)
+      <hq-activity-chart token="{{ hqToken }}" api="{{ hqApi }}" years="{{ yearsPosition }}" align="center"></hq-activity-chart>
+    @else
+      <p class="empty-note">
+        The fitness chart is not connected yet. It will be back shortly.
+      </p>
+    @endif
+  </div>
+
+  @if (hqWeightToken)
+    <section class="wip-weight">
+      <h2 class="section-label">Weight</h2>
+      <div class="wip-graph">
+        <hq-weight-chart token="{{ hqWeightToken }}" api="{{ hqApi }}" ranges theme="class" align="center" hide-empty></hq-weight-chart>
+      </div>
+    </section>
+  @endif
 @endsection
