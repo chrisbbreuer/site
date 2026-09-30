@@ -164,4 +164,16 @@ const ghYears = github.years.map((year, index) => ({
       </div>
     </section>
   @endif
+
+  <h2 class="section-label">Coach</h2>
+  <div class="prose">
+    <p>
+      My coach is <a href="https://paweldregan.com/">Pawel Dregan</a>, one of
+      my best friends and one of the best ultra runners I know. He is an
+      incredible athlete with an even stronger mind, and he always leads the
+      way. If you want to be trained, go to
+      <a href="https://paweldregan.com/">paweldregan.com</a> and tell him I
+      sent you.
+    </p>
+  </div>
 @endsection
