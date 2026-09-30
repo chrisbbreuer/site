@@ -148,7 +148,7 @@ const ghYears = github.years.map((year, index) => ({
   <h2 class="section-label">Fitness</h2>
   <div class="wip-graph">
     @if (hqToken)
-      <hq-activity-chart token="{{ hqToken }}" api="{{ hqApi }}" years="{{ yearsPosition }}" align="center"></hq-activity-chart>
+      <hq-activity-chart token="{{ hqToken }}" api="{{ hqApi }}" years="{{ yearsPosition }}" align="center" source="Garmin"></hq-activity-chart>
     @else
       <p class="empty-note">
         The fitness chart is not connected yet. It will be back shortly.
@@ -160,7 +160,7 @@ const ghYears = github.years.map((year, index) => ({
     <section class="wip-weight">
       <h2 class="section-label">Weight</h2>
       <div class="wip-graph">
-        <hq-weight-chart token="{{ hqWeightToken }}" api="{{ hqApi }}" ranges theme="class" align="center" hide-empty></hq-weight-chart>
+        <hq-weight-chart token="{{ hqWeightToken }}" api="{{ hqApi }}" ranges theme="class" align="center" hide-empty source="Withings"></hq-weight-chart>
       </div>
     </section>
   @endif
