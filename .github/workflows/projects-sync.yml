@@ -17,6 +17,8 @@ concurrency:
 
 permissions:
   contents: write
+  # To start deploy.yml once the sync has pushed (see the last step).
+  actions: write
 
 jobs:
   sync:
@@ -102,6 +104,7 @@ jobs:
           fi
 
       - name: Commit if anything moved
+        id: commit
         run: |
           if git diff --quiet -- content/projects.json content/github-contributions.json; then
             echo "no change"
@@ -112,3 +115,13 @@ jobs:
           git add content/projects.json content/github-contributions.json
           git commit -m "chore(projects): resync stars, npm downloads and contributions"
           git push
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+
+      # A push made with GITHUB_TOKEN starts no workflows, so deploy.yml never
+      # saw these commits and each sync waited for someone's next push to go
+      # live. workflow_dispatch is the one trigger that token may fire.
+      - name: Deploy the new numbers
+        if: steps.commit.outputs.pushed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run deploy.yml --ref main
