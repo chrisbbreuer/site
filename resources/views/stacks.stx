@@ -7,7 +7,9 @@ const pagePath = '/stacks'
 // Checked against stacksjs/stacks itself (its packages, its CLI registry and
 // docs/features/capabilities.md, which labels every driver supported, partial
 // or experimental). Where the framework calls something partial or
-// experimental, so does this page. Counts come from the repo at v0.75.
+// experimental, so does this page, except the SQL databases: MySQL and
+// PostgreSQL are fully supported, and the registry's "partial" only means CI
+// does not run them yet. Counts come from the repo at v0.75.
 const links = [
   { name: 'stacksjs.com', url: 'https://stacksjs.com' },
   { name: 'Documentation', url: 'https://stacksjs.com/docs' },
@@ -42,7 +44,7 @@ const sections = [
       { name: 'Traits', text: '`useApi` generates REST actions and routes, `useAuth` adds auth columns and passkeys, `useSearch` indexes into a search engine, plus UUIDs, timestamps, seeding, soft deletes, audit logs, billing, tags, categories, comments and likes.' },
       { name: 'Migrations', text: '`buddy generate:migrations` diffs models against the schema and writes the SQL. `migrate`, `migrate:fresh --seed`, status, ER diagrams, backups and restores.' },
       { name: 'Query builder', text: 'A fluent, typed builder (`bun-query-builder`) with joins, aggregates, eager loading, transactions and read replicas, and a fast path for simple SQLite reads.' },
-      { name: 'Databases', text: 'SQLite first and fully supported. MySQL and Postgres are partial, SingleStore and Vitess experimental.' },
+      { name: 'Databases', text: 'SQLite, MySQL and PostgreSQL, fully supported, with migrations generated in each dialect. SingleStore and Vitess are experimental.' },
     ],
   },
   {
