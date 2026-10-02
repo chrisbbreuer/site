@@ -21,9 +21,10 @@ route.get('/', () => response.text('hello world'))
 // anonymous, no session is involved. The action rate-limits and honeypots.
 route.post('/blog/{slug}/comments', 'Actions/Blog/CommentStoreAction').skipCsrf()
 
-// The HQ.training charts on /wip, script and SVG, kept for a day. The page
-// sets each chart's `api` to /api/hq, so these mirror HQ.training's paths.
-route.get('/hq/assets/scripts/{file}', 'Actions/Hq/HqEmbedAction')
+// The HQ.training charts on /wip, code and SVG, cached (an SVG for a day).
+// The page sets each chart's `api` to /api/hq, so these mirror HQ.training's
+// paths: /assets/scripts and the /assets/elements modules they import.
+route.get('/hq/assets/{folder}/{file}', 'Actions/Hq/HqEmbedAction')
 route.get('/hq/api/embed/{kind}/{file}', 'Actions/Hq/HqEmbedAction')
 
 // `/coming-soon` is served as an STX view from
