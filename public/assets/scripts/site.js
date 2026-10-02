@@ -131,6 +131,22 @@
     })
   }
 
+  // The Apple Music player on /wip takes its theme from the URL, not from the
+  // page, so its src is set here with the site's own: rendered without one,
+  // it would follow the OS and clash with a visitor who flipped the toggle.
+  // Changing it reloads the player, so only when the theme really changed.
+  function syncPlayers() {
+    var theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+    var players = document.querySelectorAll('iframe[data-src^="https://embed.music.apple.com/"]')
+    for (var i = 0; i < players.length; i++) {
+      var src = players[i].getAttribute('data-src') + '?theme=' + theme
+      if (players[i].getAttribute('src') !== src) players[i].setAttribute('src', src)
+    }
+  }
+  if (window.MutationObserver) {
+    new MutationObserver(syncPlayers).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+  }
+
   // A contribution graph wider than the column opens on its latest weeks,
   // as GitHub's does. Once per render, so a reader's own scroll is kept.
   function scrollGraphsToLatest() {
@@ -204,6 +220,7 @@
     updateNav()
     initProjectFilter()
     loadHqCharts()
+    syncPlayers()
     scrollGraphsToLatest()
     scheduleWarm()
   }

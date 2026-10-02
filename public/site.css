@@ -1018,6 +1018,19 @@ body.lightbox-open { overflow: hidden; }
 }
 .wip-weight:has(hq-weight-chart[hidden]) { display: none; }
 
+/* The Apple Music player: Apple's own size (450px tall, at most 660px wide),
+   rounded like its artwork, on the soft background while it loads. */
+.wip-playlist iframe {
+  display: block;
+  width: 100%;
+  max-width: 660px;
+  height: 450px;
+  border: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-soft);
+}
+
 /* Sized to the graph and centred in the wide band, like the HQ chart
    (align="center"), still scrolling when the band is narrower. */
 .gh-contrib {
