@@ -33,6 +33,12 @@ const codeFolders = new Set(['scripts', 'elements'])
 interface Entry { body: ArrayBuffer, type: string, fetchedAt: number }
 const cache = new Map<string, Entry>()
 
+// Never kept anywhere: Cloudflare gives an answer with no Cache-Control four
+// hours in the browser, and a 404 kept that long outlives the reason for it.
+function fail(message: string, status: number): Response {
+  return new Response(message, { status, headers: { 'Cache-Control': 'no-store' } })
+}
+
 function reply(entry: Entry, ttl: number): Response {
   const age = Math.floor((Date.now() - entry.fetchedAt) / 1000)
   return new Response(entry.body, {
@@ -63,7 +69,7 @@ export default new Action({
   async handle(request: RequestInstance) {
     const target = upstream(request)
     if (!target)
-      return new Response('Not found', { status: 404 })
+      return fail('Not found', 404)
 
     const { path, ttl } = target
     const url = `${origin}${path}${new URL(request.url).search}`
@@ -90,7 +96,7 @@ export default new Action({
       return reply(entry, ttl)
     }
     catch {
-      return cached ? reply(cached, ttl) : new Response('HQ.training is unavailable', { status: 502 })
+      return cached ? reply(cached, ttl) : fail('HQ.training is unavailable', 502)
     }
   },
 })
