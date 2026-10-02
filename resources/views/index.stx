@@ -64,6 +64,10 @@ const posts = fs.readdirSync(blogDir)
       <span class="entry-desc">A TypeScript framework, and the open-source ecosystem that grew around it.</span>
     </li>
     <li>
+      <span class="entry-name"><a href="https://home-lang.org">Home</a></span>
+      <span class="entry-desc">A language for JavaScript and TypeScript, with the runtime of Node and Bun built in and a drop-in tsc that type-checks your project many times faster.</span>
+    </li>
+    <li>
       <span class="entry-name"><a href="https://hq.training">HQ.training</a></span>
       <span class="entry-desc">An operating system for gyms, coaches and athletes: memberships, scheduling and billing, sitting next to the training data.</span>
     </li>
