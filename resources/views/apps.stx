@@ -38,7 +38,7 @@ const devApps = [
   <h1 class="page-title">Apps.</h1>
   <p class="page-lead">
     The products, as opposed to the packages. Most of them run on
-    <a href="https://stacksjs.com">Stacks</a>, which is the other half of the
+    <a href="/stacks">Stacks</a>, which is the other half of the
     story. That half lives on <a href="/projects">projects</a>.
   </p>
 
@@ -64,7 +64,7 @@ const devApps = [
 
   <h2 class="section-label">The tooling underneath</h2>
   <p class="empty-note">
-    <a href="https://stacksjs.com">Stacks</a> is the TypeScript framework all of
+    <a href="/stacks">Stacks</a> is the TypeScript framework all of
     this is built on, and by now an ecosystem more than a framework, because
     most of what it needs got written along the way:
     a templating engine, a query builder, a deploy tool, a CSS engine, image and

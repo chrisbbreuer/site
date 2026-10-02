@@ -28,7 +28,7 @@ const gallery = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'content/gal
 // GitHub API. HQ.training and Wildloop are here because they are where the two
 // halves of the bio meet: athlete software written by someone who needs it.
 const building = [
-  { name: 'Stacks', url: 'https://stacksjs.com', text: 'A TypeScript framework, and the open-source ecosystem that grew around it.' },
+  { name: 'Stacks', url: '/stacks', text: 'A TypeScript framework, and the open-source ecosystem that grew around it.' },
   { name: 'HQ.training', url: 'https://hq.training', text: 'An operating system for gyms, coaches and athletes.' },
   { name: 'Wildloop', url: 'https://wildloop.org', text: 'Trails and GPS recording. Close a loop and you claim the ground inside it.' },
   // OpenFarm is hidden for now, to match /apps where it is commented out the
@@ -123,7 +123,7 @@ const elsewhere = [
           description of shipping software. So is refusing to quit.
         </p>
         <p>
-          Today that means <a href="https://stacksjs.com">Stacks</a> and its broader
+          Today that means <a href="/stacks">Stacks</a> and its broader
           ecosystem, and a growing amount of agentic tooling. The tools engineers use
           are quickly becoming the tools their agents use, and that changes what a
           good one looks like. On top of it sit the apps, lately

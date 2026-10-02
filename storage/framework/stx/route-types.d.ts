@@ -6,7 +6,9 @@ declare module '@stacksjs/stx' {
     '/apps': {  }
     '/blog': {  }
     '/goals': {  }
+    '/home': {  }
     '/projects': {  }
+    '/stacks': {  }
     '/uses': {  }
     '/wip': {  }
     '/blog/:slug': { slug: string }

@@ -1,0 +1,200 @@
+<script server>
+const title = 'Stacks - Chris Breuer'
+const description = 'Stacks is a full-stack TypeScript framework on Bun: stx templates, an ORM with model-driven migrations, auth with passkeys, queues, mail, AI, commerce and a CMS, and deploys to AWS, Hetzner or a box you own.'
+const activeNav = ''
+const pagePath = '/stacks'
+
+// Checked against stacksjs/stacks itself (its packages, its CLI registry and
+// docs/features/capabilities.md, which labels every driver supported, partial
+// or experimental). Where the framework calls something partial or
+// experimental, so does this page. Counts come from the repo at v0.75.
+const links = [
+  { name: 'stacksjs.com', url: 'https://stacksjs.com' },
+  { name: 'Documentation', url: 'https://stacksjs.com/docs' },
+  { name: 'GitHub', url: 'https://github.com/stacksjs/stacks' },
+  { name: 'Discord', url: 'https://stacksjs.com/discord' },
+]
+
+// `code` in backticks renders as <code>; everything else is escaped.
+function rich(text) {
+  return String(text)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+}
+
+const sections = [
+  {
+    title: 'Frontend',
+    intro: 'Pages are `.stx` files: HTML with Blade-style directives, rendered on the server and hydrated in the browser.',
+    items: [
+      { name: 'stx', text: 'Templates with `@if`, `@foreach`, layouts, sections and components, server-side data in `<script server>`, scoped styles, and signals (`state`, `derived`, `effect`) for what changes in the browser.' },
+      { name: 'Routing', text: 'File-based: a file in `resources/views` is a page. Nested layouts, typed params, middleware and SPA navigation that swaps only the content.' },
+      { name: 'Composables', text: 'Around 150 auto-imported `use*` composables for state, the DOM, sensors, storage, fetching and motion, plus `toast`, `modal` and stores.' },
+      { name: 'Crosswind', text: 'A Tailwind-compatible utility engine written in TypeScript, with no runtime dependencies. CSS is generated per page and cached.' },
+      { name: 'Components', text: 'A UI library (dialogs, comboboxes, a command palette, tables, steppers, transitions), and `build:web-components` to ship your own as framework-agnostic custom elements.' },
+    ],
+  },
+  {
+    title: 'Data',
+    intro: 'Laravel-shaped, with one difference that matters: migrations are derived from your models. Describe the schema once and Stacks diffs it against the database.',
+    items: [
+      { name: 'Models', text: '`defineModel()` holds attributes, validation, factories and relationships (has one, has many, belongs to, many to many, through) in one place.' },
+      { name: 'Traits', text: '`useApi` generates REST actions and routes, `useAuth` adds auth columns and passkeys, `useSearch` indexes into a search engine, plus UUIDs, timestamps, seeding, soft deletes, audit logs, billing, tags, categories, comments and likes.' },
+      { name: 'Migrations', text: '`buddy generate:migrations` diffs models against the schema and writes the SQL. `migrate`, `migrate:fresh --seed`, status, ER diagrams, backups and restores.' },
+      { name: 'Query builder', text: 'A fluent, typed builder (`bun-query-builder`) with joins, aggregates, eager loading, transactions and read replicas, and a fast path for simple SQLite reads.' },
+      { name: 'Databases', text: 'SQLite first and fully supported. MySQL and Postgres are partial, SingleStore and Vitess experimental.' },
+    ],
+  },
+  {
+    title: 'Backend',
+    intro: 'Logic lives in actions, small classes a route points at by name. Anything the framework ships can be overridden by creating the same path under `app/`.',
+    items: [
+      { name: 'Routing and API', text: '`route.get(\'/products\', \'Actions/ProductIndexAction\')`, with groups, middleware, route model binding, signed URLs, rate limits and security headers. OpenAPI specs and a typed client are generated from it.' },
+      { name: 'Auth', text: 'Passkeys, TOTP two-factor, magic links, password resets, API tokens with abilities, sessions, gates, policies, roles and teams. Sign in with Apple, GitHub, Google, Bluesky, Mastodon and five more.' },
+      { name: 'OAuth server', text: 'A full OAuth 2 authorization server, with PKCE, consent, introspection and revocation, for when your app is the identity provider.' },
+      { name: 'Queues', text: 'Jobs on the database or Redis, with batches, a dead-letter queue, a circuit breaker, idempotency, quarantine for poison jobs and progress reporting.' },
+      { name: 'Scheduler and events', text: 'Cron-style schedules in `app/Scheduler.ts` with overlap protection and timezones, and a typed event bus with wildcard listeners and model events.' },
+      { name: 'Cache, storage, search', text: 'Memory and Redis caching. Local and S3 storage with signed URLs. Search through Meilisearch, Algolia, Typesense or OpenSearch.' },
+      { name: 'Realtime', text: 'WebSocket channels with auth, heartbeats, a replay buffer and backpressure.' },
+      { name: 'Validation and errors', text: 'Schema validation on every model attribute, and a `Result` type for errors that have to be handled rather than thrown.' },
+    ],
+  },
+  {
+    title: 'Communication',
+    intro: 'Every way an app talks to people, behind one notification API.',
+    items: [
+      { name: 'Email', text: 'SES, SendGrid, Mailgun, Mailtrap or SMTP, with stx templates, CSS inlining, inbound parsing, suppression lists and one-click unsubscribe.' },
+      { name: 'Mail server', text: 'Its own mail server: a local catcher with webmail in development (`buddy mail:dev`), and the same binary in production. One parser, one Maildir, one UI, from a laptop to production.' },
+      { name: 'SMS, voice, push, chat', text: 'Twilio and Vonage, Amazon Connect for phone, Expo, FCM and Web Push, and Slack, Discord and Teams.' },
+      { name: 'Notifications', text: 'One notification sent over email, SMS, push, chat, the database or a broadcast, with user preferences and delivery tracking. Newsletters too.' },
+    ],
+  },
+  {
+    title: 'Commerce and content',
+    intro: 'Optional modules for the things most products end up needing.',
+    items: [
+      { name: 'Payments', text: 'Stripe charges, subscriptions, checkout, invoices, the billing portal, webhooks and Stripe Connect for marketplaces.' },
+      { name: 'Commerce', text: 'Products and variants, carts, orders, customers, coupons, gift cards, shipping zones and rates, tax, waitlists, auctions and printed receipts. `buddy commerce:install` adds it.' },
+      { name: 'CMS', text: 'Posts, pages, authors, categories, tags, comments, menus, revisions and redirects, with RSS and sitemaps.' },
+      { name: 'Dashboard', text: 'An admin dashboard of more than a hundred views: your models, commerce, content, queues, logs, mailboxes, deployments, servers, DNS and analytics.' },
+      { name: 'And', text: 'Forms, feature flags, multi-site tenancy, i18n, analytics, error tracking and log streaming.' },
+    ],
+  },
+  {
+    title: 'AI',
+    intro: 'AI as a framework feature, and a framework built to be written by agents.',
+    items: [
+      { name: 'Models', text: 'Anthropic, OpenAI, Ollama, AWS Bedrock and the Claude Agent SDK behind one API: `ask`, `summarize`, image generation and analysis, sentiment, classification and recommendations.' },
+      { name: 'RAG and MCP', text: 'Embeddings, a vector index, chunking and retrieval, and MCP clients over stdio and HTTP.' },
+      { name: 'Built for agents', text: 'Ships 115 agent skills and an `AGENTS.md`, `buddy setup:ai` for Claude Code, Codex, Cursor, Copilot and Gemini, and `buddy ai:context` for a compact picture of the project. Models write the intent, the framework supplies the glue.' },
+    ],
+  },
+  {
+    title: 'Cloud and deploy',
+    intro: 'Imagine Vercel, Vapor and Forge unified, and open source. `buddy deploy` takes the app from a laptop to production, infrastructure included.',
+    items: [
+      { name: 'AWS', text: 'Server mode on EC2 behind a load balancer, or serverless on Lambda, API Gateway, CloudFront and S3, provisioned through CloudFormation, with optional WAF, alarms, caches and a jump box.' },
+      { name: 'Hetzner', text: 'Provisions a server and deploys over SSH with systemd and the rpx gateway. Several projects can share one box. Experimental, and what this site runs on.' },
+      { name: 'Your own box', text: 'Any host you can SSH into, down to a Raspberry Pi on your desk, with TLS from its own CA on a LAN. Experimental.' },
+      { name: 'Operations', text: 'Dry runs, rollbacks, infrastructure diffs, cache invalidation, deploy hooks, and container images built without a Docker daemon.' },
+      { name: 'Domains and DNS', text: 'DNS records declared in config and synced to Route 53, Cloudflare, Porkbun or GoDaddy, plus domain purchase and WHOIS.' },
+    ],
+  },
+  {
+    title: 'Beyond the web',
+    intro: 'The same codebase, built for other places.',
+    items: [
+      { name: 'Desktop', text: 'Native windows and system tray apps through Craft, packaged for macOS, Linux and Windows. Experimental: builds are not signed yet.' },
+      { name: 'Mobile', text: 'iOS and Android through Craft, with haptics, location, the camera, sharing, secure storage, health data and Live Activities.' },
+      { name: 'Browser extensions', text: 'Manifest V3 extensions for Chrome, Firefox and Safari, published to each store from the CLI.' },
+      { name: 'Libraries and CLIs', text: 'Component and function libraries published to npm, and your own command-line tools compiled to a single binary.' },
+    ],
+  },
+  {
+    title: 'Developer experience',
+    intro: 'Convention over configuration, while staying wholly configurable. No more boilerplate.',
+    items: [
+      { name: 'buddy', text: 'One CLI with more than 300 commands: `dev`, `build`, `deploy`, `migrate`, `test`, `tinker`, `doctor`, and `make:*` for every kind of file.' },
+      { name: 'Dev server', text: '`buddy dev` starts the frontend, API, docs and dashboard behind pretty HTTPS URLs with locally trusted certificates. `buddy share` opens a public tunnel.' },
+      { name: 'Testing', text: 'Bun\'s test runner with database refreshes, factories, fakes for events and mail, feature tests, `actingAs` and time travel.' },
+      { name: 'Encrypted env', text: '`.env` values encrypted with X25519 and AES-256-GCM, so production secrets can live in the repository.' },
+      { name: 'Tooling', text: 'Linting and formatting with pickier, git hooks, conventional commits, releases and changelogs, documentation with BunPress, and toolchains and services installed by pantry.' },
+      { name: 'Honest labels', text: 'Every driver is labelled supported, partial, experimental or unsupported, and choosing an unsupported one fails loudly instead of quietly doing nothing.' },
+    ],
+  },
+]
+
+// The libraries Stacks is assembled from. Each one is its own repo and works
+// on its own, which is how "a framework" became an ecosystem.
+const ecosystem = [
+  { name: 'stx', url: 'https://github.com/stacksjs/stx', text: 'The UI framework and template engine.' },
+  { name: 'Crosswind', url: 'https://github.com/cwcss/crosswind', text: 'A utility-first CSS engine, like Tailwind or UnoCSS.' },
+  { name: 'bun-query-builder', url: 'https://github.com/stacksjs/bun-query-builder', text: 'A fast, typed SQL query builder.' },
+  { name: 'bun-router', url: 'https://github.com/stacksjs/bun-router', text: 'A fast, type-safe router for Bun.' },
+  { name: 'bun-queue', url: 'https://github.com/stacksjs/bun-queue', text: 'A Redis-backed job queue built for Bun.' },
+  { name: 'ts-cloud', url: 'https://github.com/stacksjs/ts-cloud', text: 'Infrastructure as code for AWS, Hetzner and SSH hosts.' },
+  { name: 'rpx', url: 'https://github.com/stacksjs/rpx', text: 'A reverse proxy for pretty local and production URLs.' },
+  { name: 'tlsx', url: 'https://github.com/stacksjs/tlsx', text: 'TLS certificates, automated.' },
+  { name: 'pantry', url: 'https://github.com/pantry-pm/pantry', text: 'A package and toolchain manager.' },
+  { name: 'pickier', url: 'https://github.com/pickier/pickier', text: 'Linting and formatting in a fraction of a second.' },
+  { name: 'BunPress', url: 'https://github.com/stacksjs/bunpress', text: 'A documentation engine.' },
+  { name: 'Craft', url: 'https://github.com/craft-native/craft', text: 'Desktop and mobile apps from web languages.' },
+  { name: 'dtsx', url: 'https://github.com/stacksjs/dtsx', text: 'Fast `.d.ts` generation.' },
+  { name: 'buddy-bot', url: 'https://github.com/stacksjs/buddy-bot', text: 'Dependency updates, like Renovate and Dependabot.' },
+]
+</script>
+
+@layout('layouts/site')
+
+@section('content')
+  <h1 class="page-title">Stacks.</h1>
+  <p class="page-lead">
+    A full-stack TypeScript framework on Bun, for frontends, backends and the
+    clouds they run on. Think Laravel and Vapor, or Next and Vercel, wholly open
+    source, plus more. Most of what it needed got written along the way, so by
+    now it is an ecosystem more than a framework, and everything I build runs
+    on it, this site included.
+  </p>
+  <ul class="project-links">
+    @foreach (links as link)
+      <li><a href="{{ link.url }}">{{ link.name }}</a></li>
+    @endforeach
+  </ul>
+
+  <h2 class="section-label">Try it</h2>
+  <p class="project-intro">
+    Stacks is in active development and usable today, on macOS, Linux and WSL.
+    pantry installs the toolchain, then buddy creates the project:
+  </p>
+  <pre class="snippet"><code>curl -fsSL https://pantry.dev | bash
+pantry bootstrap
+panx @stacksjs/buddy new my-project
+cd my-project &amp;&amp; ./buddy dev</code></pre>
+
+  @foreach (sections as section)
+    <h2 class="section-label">{{ section.title }}</h2>
+    <p class="project-intro">{!! rich(section.intro) !!}</p>
+    <ul class="entry-list">
+      @foreach (section.items as item)
+        <li>
+          <span class="entry-name">{{ item.name }}</span>
+          <span class="entry-desc">{!! rich(item.text) !!}</span>
+        </li>
+      @endforeach
+    </ul>
+  @endforeach
+
+  <h2 class="section-label">The ecosystem</h2>
+  <p class="project-intro">
+    Stacks is assembled from libraries that each stand on their own. A few of
+    them, and every other public repo is on <a href="/projects">projects</a>.
+  </p>
+  <ul class="entry-list">
+    @foreach (ecosystem as lib)
+      <li>
+        <span class="entry-name"><a href="{{ lib.url }}">{{ lib.name }}</a></span>
+        <span class="entry-desc">{!! rich(lib.text) !!}</span>
+      </li>
+    @endforeach
+  </ul>
+@endsection

@@ -1,0 +1,143 @@
+<script server>
+const title = 'Home - Chris Breuer'
+const description = 'Home is a language for JavaScript and TypeScript: a drop-in tsc that type-checks many times faster, a Bun and Node compatible runtime, and a native language with no garbage collector, all in one Zig toolchain.'
+const activeNav = ''
+const pagePath = '/home'
+
+// Everything on this page is checked against home-lang/home's own status
+// documents (PARITY-STATUS.md, CAPABILITY_MATRIX.md, TS_PERFORMANCE.md),
+// which are conservative on purpose. Where they say a thing is still maturing,
+// so does this page. Update the numbers from those files, not from memory.
+const links = [
+  { name: 'home-lang.org', url: 'https://home-lang.org' },
+  { name: 'Documentation', url: 'https://home-lang.org/docs' },
+  { name: 'Parity status', url: 'https://home-lang.org/docs/PARITY-STATUS' },
+  { name: 'GitHub', url: 'https://github.com/home-lang/home' },
+]
+
+// `code` in backticks renders as <code>; everything else is escaped.
+function rich(text) {
+  return String(text)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+}
+
+const sections = [
+  {
+    title: 'A drop-in tsc',
+    intro: 'The part most people will meet first. Swap the command and keep everything else: the same tsconfig.json, the same flags, the same TSxxxx diagnostics and the same exit codes.',
+    items: [
+      { name: 'Same interface', text: 'Reads your existing `tsconfig.json` and accepts tsc\'s flags, from `--noEmit` and `--strict` to `--paths`, `--declaration`, `--sourceMap` and `@response` files. Exit codes match tsc: 0, 1 for type errors, 2 for config errors.' },
+      { name: 'Literally tsc', text: 'Run under the name `tsc` (or `home-tsc`) and the `home` binary behaves exactly like tsc, so a symlink is enough for every script and tool that already calls it.' },
+      { name: 'Faster', text: 'On its published benchmark suite, `home tsc --noEmit` type-checks 1.6x to 11.9x faster than native TypeScript 7 (tsgo) and 4.7x to 19x faster than tsc, with the lowest time on all 20 workloads. Startup is 3.9 ms against tsgo\'s 45.8 ms.' },
+      { name: 'Measured honestly', text: 'Checked against TypeScript\'s own conformance corpus rather than tests written for Home: all 5,907 diagnostic families pass, and 98.4% match byte for byte in the slice revalidated so far. Every benchmark run has to reproduce exact diagnostics before its timing counts.' },
+      { name: 'Watch and build', text: '`--watch` rebuilds incrementally from a persistent on-disk cache. `-b` builds project references in dependency order, with cycle detection, `--dry`, `--force` and `--verbose`.' },
+      { name: 'Emit', text: 'JavaScript output with downlevelling (optional chaining, async, private fields, legacy decorators, CommonJS interop), every JSX mode, `.d.ts` declarations and source maps. Stage 3 decorators and generator downlevelling are still maturing.' },
+    ],
+  },
+  {
+    title: 'A Bun and Node compatible runtime',
+    intro: 'Home carries Bun\'s Zig engine on its own JavaScriptCore realm, so the toolchain that checks your TypeScript can also run, test and bundle it. This half is in active development: the core works, and the API surface grows every week.',
+    items: [
+      { name: 'Run', text: '`home run server.ts` runs JavaScript, TypeScript and HTML entrypoints, CommonJS and ESM, plus `home eval` and a REPL. Bare `home app.ts` works too.' },
+      { name: 'Node APIs', text: 'Partial but broad: `fs`, `path`, `process`, `buffer`, `events`, `crypto` hashing, `child_process`, `os`, `url`, `util`, `zlib`, `timers`, `stream` and more, plus `fetch`, `URL` and `TextEncoder`. N-API addons pass the conformance suite.' },
+      { name: 'Bun APIs', text: '`Bun.file`, `Bun.write`, `Bun.spawn` (Bun\'s own spawn tests pass on macOS), `Bun.hash`, `Bun.inspect`, `Bun.which`, `Bun.sleep` and friends. `Bun.serve`, `Bun.$` and `Bun.SQLite` are not in yet.' },
+      { name: 'Test', text: '`home test` runs bun:test suites (describe, test, expect, lifecycle hooks, snapshots) on Home\'s own VM.' },
+      { name: 'Bundle', text: '`home build app.ts` bundles the module graph into a standalone executable, for browser, Bun or Node targets, as ESM, CommonJS or IIFE, with source maps.' },
+      { name: 'Packages', text: '`home install`, `add`, `remove`, `update`, `outdated` and `audit`, plus native ports of `pack`, `publish` and the `pm` utilities.' },
+    ],
+  },
+  {
+    title: 'A native language',
+    intro: 'The other half: `.home` files that read like TypeScript and compile to native binaries, with no garbage collector and no runtime shipped beside them. The speed of Zig, the safety of Rust, the joy of TypeScript.',
+    items: [
+      { name: 'Familiar syntax', text: '`let`, `let mut` and `const`, string interpolation, ranges, structs, enums with payloads, `match` and `if` as expressions.' },
+      { name: 'Safety', text: 'Exhaustive matching (every case, or it does not compile), `Result` with `?` propagation, and null-safety operators like `?.` and `??`.' },
+      { name: 'Memory', text: 'Lifetimes settled by ownership and borrowing instead of a collector. The ownership and borrow checkers are being built now.' },
+      { name: 'Compile time', text: 'Generics, traits, macros and `comptime` functions: compile time is just code.' },
+      { name: 'Native output', text: 'Its own x86-64 and arm64 backends write Mach-O and ELF directly, and `--kernel` emits freestanding code. A tree-walking interpreter runs everything today while the backends mature.' },
+      { name: 'C interop', text: 'Call C through `extern "C"`, and describe package APIs with `.d.hm` declaration files.' },
+    ],
+  },
+  {
+    title: 'Tooling',
+    intro: 'One binary, one cache, one set of diagnostics for a repository that mixes both languages.',
+    items: [
+      { name: 'Language server', text: '`home lsp --stdio` is one server for TypeScript, JavaScript and `.home` files, reading your `tsconfig.json`.' },
+      { name: 'Editor', text: 'A VS Code extension with grammar, snippets and a debug adapter, now covering TypeScript too.' },
+      { name: 'Everyday commands', text: '`home init`, `check`, `lint --fix`, `fmt`, `docs`, `doctor`, `explain` for any diagnostic code, and shell completions.' },
+      { name: 'Built with', text: 'Zig, in about 136 packages, under the MIT license.' },
+    ],
+  },
+]
+
+const projects = [
+  { name: 'home-os', url: 'https://github.com/home-lang/home-os', text: 'An open-source operating system written entirely in Home. Early bring-up: a Home-compiled kernel boots in QEMU.' },
+  { name: 'Generals', url: 'https://github.com/home-lang/generals', text: 'Command & Conquer: Generals, Zero Hour, rewritten in Home. Games are where a systems language proves itself.' },
+]
+</script>
+
+@layout('layouts/site')
+
+@section('content')
+  <h1 class="page-title">Home.</h1>
+  <p class="page-lead">
+    A language for JavaScript and TypeScript, built from one Zig toolchain. It
+    is a drop-in replacement for tsc that type-checks your project many times
+    faster, a runtime with Node and Bun built in, and a native language that
+    reads like TypeScript and compiles without a garbage collector. There is no
+    language like Home.
+  </p>
+  <ul class="project-links">
+    @foreach (links as link)
+      <li><a href="{{ link.url }}">{{ link.name }}</a></li>
+    @endforeach
+  </ul>
+
+  <h2 class="section-label">Try it</h2>
+  <p class="project-intro">
+    Home is under active development and has no tagged release yet, so for now
+    it builds from source. Then swap the command:
+  </p>
+  <pre class="snippet"><code>git clone https://github.com/home-lang/home &amp;&amp; cd home
+pantry install &amp;&amp; ./pantry/.bin/zig build
+
+home tsc -p tsconfig.json --noEmit   # instead of npx tsc
+home tsc --watch                     # incremental rebuilds
+home lsp --stdio                     # one language server for TS and .home
+home run server.ts                   # run TypeScript directly</code></pre>
+
+  @foreach (sections as section)
+    <h2 class="section-label">{{ section.title }}</h2>
+    <p class="project-intro">{!! rich(section.intro) !!}</p>
+    <ul class="entry-list">
+      @foreach (section.items as item)
+        <li>
+          <span class="entry-name">{{ item.name }}</span>
+          <span class="entry-desc">{!! rich(item.text) !!}</span>
+        </li>
+      @endforeach
+    </ul>
+  @endforeach
+
+  <h2 class="section-label">A taste</h2>
+  <pre class="snippet"><code>fn fib(n: int): int {
+  if (n &lt;= 1) { return n }
+  return fib(n - 1) + fib(n - 2)
+}
+
+fn main() {
+  let result = fib(10)
+  print("Fibonacci(10) = {result}")
+}</code></pre>
+
+  <h2 class="section-label">Built in Home</h2>
+  <ul class="entry-list">
+    @foreach (projects as project)
+      <li>
+        <span class="entry-name"><a href="{{ project.url }}">{{ project.name }}</a></span>
+        <span class="entry-desc">{{ project.text }}</span>
+      </li>
+    @endforeach
+  </ul>
+@endsection

@@ -172,6 +172,7 @@ main { padding: 3.5rem 0 2rem; }
 }
 .page-lead a,
 .prose a,
+.project-intro a,
 .entry-list .entry-desc a {
   color: var(--text-1);
   text-decoration: underline;
@@ -180,6 +181,7 @@ main { padding: 3.5rem 0 2rem; }
 }
 .page-lead a:hover,
 .prose a:hover,
+.project-intro a:hover,
 .entry-list .entry-desc a:hover { text-decoration-color: var(--text-1); }
 
 .prose p { margin: 0 0 1.1rem; color: var(--text-2); }
@@ -1171,4 +1173,45 @@ body.lightbox-open { overflow: hidden; }
 /* On a touchscreen the tabs are GitHub's full 34px height, big enough to hit. */
 @media (pointer: coarse) {
   .gh-contrib--years-top .gh-years a { padding: 8px 12px; }
+}
+
+/* ── Project pages (/stacks, /home) ─────────────────────────────────────── */
+/* The project's own links, under the lead: site, docs, source. */
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin: -1.25rem 0 2.25rem;
+  padding: 0;
+  list-style: none;
+  font-size: 0.85rem;
+}
+.project-links a {
+  color: var(--text-1);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--text-3);
+}
+.project-links a:hover { text-decoration-color: var(--text-1); }
+/* Sections are long, so each opens with a sentence of context before its rows. */
+.project-intro { margin: 0 0 0.5rem; max-width: 38rem; color: var(--text-2); font-size: 0.95rem; }
+/* Commands and code, the same block the blog uses. */
+.snippet {
+  margin: 0.75rem 0 1.5rem;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  background: var(--code-bg);
+  border: 1px solid var(--divider);
+  border-radius: 8px;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--text-1);
+}
+.entry-list .entry-desc code,
+.project-intro code {
+  padding: 0.05rem 0.3rem;
+  background: var(--code-bg);
+  border-radius: 4px;
+  font-size: 0.88em;
+  white-space: nowrap;
 }
