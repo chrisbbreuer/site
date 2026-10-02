@@ -113,6 +113,11 @@ await withNativeFeedback(() => saveActivity())
 The runtime is browser-safe. Craft-backed operations use the native bridge;
 supported web APIs provide fallback behavior outside a native host.
 
+For a run or ride, `createRouteRecorder({ location, onUpdate })` starts, pauses,
+resumes and stops the native recording, re-attaches to one that outlived the
+app (`attach()`), and reports live distance and pace from `routeStats(fixes)`,
+which ignores GPS drift, inaccurate fixes and the ground crossed during a pause.
+
 ## STX components
 
 - `<NativeAppShell>` applies iOS safe-area insets and reserves tab-bar space.
@@ -122,15 +127,53 @@ supported web APIs provide fallback behavior outside a native host.
 - `<NativeNetworkBanner>` reflects native connectivity changes and announces offline state accessibly.
 - `<NativePermissionButton>` wraps permission status, requests, haptics, and the native Settings escape hatch.
 - `<NativeHealthButton>` requests the minimal Apple Health or Android Health Connect grants.
+- `<NativeNavBar>` is the iOS navigation bar: a large title that collapses into
+  the bar as the page scrolls, a back button (`back="/parent"`) that goes back
+  through history when the app pushed the screen, and `leading` / `actions`
+  slots. Pass `:large="false"` on a pushed screen; `title` is reactive.
+- `<NativePullToRefresh @refresh="reload">` refreshes the page when pulled from
+  its top. The event carries `done()`: call it when the new data is in.
+- `<NativeSegmentedControl :options="[...]" v-model:value="range">` switches
+  between views of one screen, with selection haptics.
+- `<NativeSheet v-model:open="editing" title="…">` raises a bottom sheet for a
+  task that belongs to the screen, above the tab bar.
+- `<NativeProgressRing :value="percent" :size="176">` fills a ring as something
+  completes (sets done, a countdown running out), with its content in the
+  slot. Colours follow `--native-ring` and `--native-ring-track`.
+- A screen that is a task of its own (a workout player, a composer) marks an
+  element `data-native-hide-tab-bar`, and the tab bar steps away while it is
+  shown, its reserved space with it.
+- `<Video :src="current.url">` is the framework's player (ts-video-player):
+  YouTube, Vimeo, HLS, DASH or a file. `src` is reactive, so one player in a
+  sheet can show whichever video is chosen; clearing it pauses the player.
+  Craft lets an https iframe load inside the app, so embeds play inline.
+
+`<NativeTabItem match="/m/workout">` keeps a tab lit on the detail screens
+opened from it. A tab bar is a `<nav>`, where a link is otherwise current only
+on its own page.
 
 Use Iconify classes for tab icons. Keep native operations inside reusable
 components or TypeScript composables, never through `window.*` in an STX
 script.
 
+## Appearance and navigation
+
+`ios.appearance: 'system'` follows the phone's Light/Dark setting (and the
+page's `prefers-color-scheme` with it), with a status bar that reads on either;
+`'light'` and `'dark'` pin one. `ios.backgroundColorDark` colours the launch
+screen and webview in Dark Mode. `ios.swipeNavigation: true` lets an edge swipe
+go back through the page's history, pushed routes included.
+
+Decide native-only chrome with `await whenNativeMobile()`, not
+`isNativeMobile()` at setup: Craft installs its bridge after the page starts.
+
 ## Health and watch surfaces
 
 Enable `healthKit` on iOS or `healthConnect` on Android, then use the shared
-`health` service to request only the record types the product needs. Completed
+`health` service to request only the record types the product needs. On iOS,
+`health.getWorkouts()` lists Apple Health workouts (keyed on HealthKit's UUID)
+and `health.getDailyStatistics(type)` returns one value per day for steps,
+energy, distance, heart rate, resting heart rate, HRV, weight and sleep. Completed
 recordings can be written back with `health.saveWorkout(...)`; treat permission
 revocation as a normal runtime state and never block saving the application's
 own activity when a health write fails.
