@@ -1,11 +1,10 @@
-import type { BuddyBotConfig } from 'buddy-bot'
+import type { BuddyConfig } from '@buddysh/buddy'
 
 export default {
   repository: {
-    owner: 'stacksjs',
-    name: 'stacks',
+    owner: 'chrisbbreuer',
+    name: 'site',
     provider: 'github',
-    // token: process.env.BUDDY_BOT_TOKEN,
   },
   dashboard: {
     enabled: true,
@@ -34,4 +33,4 @@ export default {
     ],
   },
   verbose: false,
-} satisfies BuddyBotConfig
+} satisfies BuddyConfig
