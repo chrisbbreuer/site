@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-10-04",
+  "generatedAt": "2026-10-05",
   "repos": [
     {
       "name": "stacks",
       "org": "stacksjs",
       "description": "Modern, performant, optimized for DX/AX. Develop powerful apps, clouds & framework-agnostic libraries, faster.",
-      "stars": 631,
+      "stars": 630,
       "url": "https://github.com/stacksjs/stacks",
       "tags": [
         "TypeScript",
@@ -16,23 +16,23 @@
         "Library",
         "Mobile"
       ],
-      "downloads": 38989,
+      "downloads": 41072,
       "pkg": "stacks",
-      "allDownloads": 4538319,
+      "allDownloads": 4659897,
       "pkgCount": 91
     },
     {
       "name": "dtsx",
       "org": "stacksjs",
       "description": "Extremely fast, smart & configurable DTS emitter.",
-      "stars": 177,
+      "stars": 176,
       "url": "https://github.com/stacksjs/dtsx",
       "tags": [
         "TypeScript"
       ],
-      "downloads": 146422,
+      "downloads": 146124,
       "pkg": "@stacksjs/dtsx",
-      "allDownloads": 295488,
+      "allDownloads": 294718,
       "pkgCount": 5
     },
     {
@@ -46,9 +46,9 @@
         "Bun",
         "Library"
       ],
-      "downloads": 27780,
+      "downloads": 28429,
       "pkg": "ts-spreadsheets",
-      "allDownloads": 27780,
+      "allDownloads": 28429,
       "pkgCount": 1
     },
     {
@@ -62,24 +62,24 @@
         "Bun",
         "Queue"
       ],
-      "downloads": 23951,
+      "downloads": 23708,
       "pkg": "@stacksjs/bun-queue",
-      "allDownloads": 23964,
+      "allDownloads": 23721,
       "pkgCount": 2
     },
     {
       "name": "tlsx",
       "org": "stacksjs",
       "description": "A modern & lightweight TLS library & CLI. Built for automation, HTTPS by default. Similar to mkcert.",
-      "stars": 47,
+      "stars": 46,
       "url": "https://github.com/stacksjs/tlsx",
       "tags": [
         "TypeScript",
         "Library"
       ],
-      "downloads": 34399,
+      "downloads": 33651,
       "pkg": "@stacksjs/tlsx",
-      "allDownloads": 34535,
+      "allDownloads": 33778,
       "pkgCount": 2
     },
     {
@@ -92,9 +92,9 @@
         "TypeScript",
         "Laravel"
       ],
-      "downloads": 50863,
+      "downloads": 52954,
       "pkg": "ts-collect",
-      "allDownloads": 50863,
+      "allDownloads": 52954,
       "pkgCount": 1
     },
     {
@@ -107,27 +107,10 @@
         "TypeScript",
         "Proxy"
       ],
-      "downloads": 47,
+      "downloads": 51,
       "pkg": "vite-plugin-local",
-      "allDownloads": 47,
+      "allDownloads": 51,
       "pkgCount": 1
-    },
-    {
-      "name": "rpx",
-      "org": "stacksjs",
-      "description": "A modern, smart reverse proxy. For a pretty and powerful local DX.",
-      "stars": 31,
-      "url": "https://github.com/stacksjs/rpx",
-      "tags": [
-        "TypeScript",
-        "Bun",
-        "CLI",
-        "Proxy"
-      ],
-      "downloads": 31591,
-      "pkg": "@stacksjs/rpx",
-      "allDownloads": 34629,
-      "pkgCount": 3
     },
     {
       "name": "bun-plugin-dtsx",
@@ -141,6 +124,23 @@
       ]
     },
     {
+      "name": "rpx",
+      "org": "stacksjs",
+      "description": "A modern, smart reverse proxy. For a pretty and powerful local DX.",
+      "stars": 30,
+      "url": "https://github.com/stacksjs/rpx",
+      "tags": [
+        "TypeScript",
+        "Bun",
+        "CLI",
+        "Proxy"
+      ],
+      "downloads": 30921,
+      "pkg": "@stacksjs/rpx",
+      "allDownloads": 33615,
+      "pkgCount": 3
+    },
+    {
       "name": "localtunnels",
       "org": "stacksjs",
       "description": "A simple and smart tunneling alternative. Without or with self-hosting.",
@@ -150,25 +150,25 @@
         "TypeScript",
         "Tunneling"
       ],
-      "downloads": 61499,
+      "downloads": 62991,
       "pkg": "localtunnels",
-      "allDownloads": 61499,
+      "allDownloads": 62991,
       "pkgCount": 1
     },
     {
       "name": "ts-rate-limiter",
       "org": "stacksjs",
       "description": "A high-performance, flexible rate limiting library for TypeScript.",
-      "stars": 21,
+      "stars": 20,
       "url": "https://github.com/stacksjs/ts-rate-limiter",
       "tags": [
         "TypeScript",
         "Bun",
         "Library"
       ],
-      "downloads": 47893,
+      "downloads": 47690,
       "pkg": "ts-rate-limiter",
-      "allDownloads": 47893,
+      "allDownloads": 47690,
       "pkgCount": 1
     },
     {
@@ -184,10 +184,10 @@
         "CSS",
         "Templating"
       ],
-      "downloads": 235717,
+      "downloads": 237351,
       "pkg": "@stacksjs/stx",
-      "allDownloads": 1332918,
-      "pkgCount": 9
+      "allDownloads": 1368863,
+      "pkgCount": 10
     },
     {
       "name": "bun-git-hooks",
@@ -201,9 +201,9 @@
         "CLI",
         "Library"
       ],
-      "downloads": 114848,
+      "downloads": 114311,
       "pkg": "bun-git-hooks",
-      "allDownloads": 114848,
+      "allDownloads": 114311,
       "pkgCount": 1
     },
     {
@@ -230,9 +230,9 @@
         "Config",
         "Library"
       ],
-      "downloads": 208161,
+      "downloads": 209955,
       "pkg": "bunfig",
-      "allDownloads": 208161,
+      "allDownloads": 209955,
       "pkgCount": 1
     },
     {
@@ -244,9 +244,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 22480,
+      "downloads": 22230,
       "pkg": "ts-qr-codes",
-      "allDownloads": 22571,
+      "allDownloads": 22313,
       "pkgCount": 2
     },
     {
@@ -259,9 +259,9 @@
         "TypeScript",
         "Bun"
       ],
-      "downloads": 41,
+      "downloads": 42,
       "pkg": "bun-plugin-unocss",
-      "allDownloads": 41,
+      "allDownloads": 42,
       "pkgCount": 1
     },
     {
@@ -274,9 +274,9 @@
         "TypeScript",
         "Bun"
       ],
-      "downloads": 195209,
+      "downloads": 195252,
       "pkg": "@stacksjs/bunpress",
-      "allDownloads": 195351,
+      "allDownloads": 195393,
       "pkgCount": 2
     },
     {
@@ -291,9 +291,9 @@
         "Library",
         "Zig"
       ],
-      "downloads": 196953,
+      "downloads": 198970,
       "pkg": "@stacksjs/clapp",
-      "allDownloads": 196953,
+      "allDownloads": 198970,
       "pkgCount": 1
     },
     {
@@ -306,9 +306,9 @@
         "TypeScript",
         "Bun"
       ],
-      "downloads": 2052,
+      "downloads": 2040,
       "pkg": "bun-plugin-dotenvx",
-      "allDownloads": 2052,
+      "allDownloads": 2040,
       "pkgCount": 1
     },
     {
@@ -321,9 +321,9 @@
         "TypeScript",
         "Vue"
       ],
-      "downloads": 14,
+      "downloads": 15,
       "pkg": "@stacksjs/table",
-      "allDownloads": 14,
+      "allDownloads": 15,
       "pkgCount": 1
     },
     {
@@ -335,9 +335,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 204054,
+      "downloads": 204786,
       "pkg": "ts-images",
-      "allDownloads": 206314,
+      "allDownloads": 206969,
       "pkgCount": 2
     },
     {
@@ -349,6 +349,22 @@
       "tags": []
     },
     {
+      "name": "buddy",
+      "org": "stacksjs",
+      "description": "AI code review and dependency updates in one teammate. Reviews PRs and local changes, answers @buddy comments, gates merges, repairs CI, and keeps deps current. Runs on your CI, with your keys.",
+      "stars": 11,
+      "url": "https://github.com/stacksjs/buddy",
+      "tags": [
+        "TypeScript",
+        "PHP",
+        "Zig"
+      ],
+      "downloads": 8922,
+      "pkg": "@buddysh/buddy",
+      "allDownloads": 8922,
+      "pkgCount": 1
+    },
+    {
       "name": "bun-plugin-auto-imports",
       "org": "stacksjs",
       "description": "Auto Imports support for Bun.",
@@ -358,9 +374,9 @@
         "TypeScript",
         "Bun"
       ],
-      "downloads": 29207,
+      "downloads": 29769,
       "pkg": "bun-plugin-auto-imports",
-      "allDownloads": 29207,
+      "allDownloads": 29769,
       "pkgCount": 1
     },
     {
@@ -375,24 +391,6 @@
       ]
     },
     {
-      "name": "ts-cache",
-      "org": "stacksjs",
-      "description": "A fast, type-safe, and feature-rich caching library for modern applications.",
-      "stars": 11,
-      "url": "https://github.com/stacksjs/ts-cache",
-      "tags": [
-        "TypeScript",
-        "Bun",
-        "Cache",
-        "Library",
-        "Node"
-      ],
-      "downloads": 40323,
-      "pkg": "@stacksjs/ts-cache",
-      "allDownloads": 40323,
-      "pkgCount": 1
-    },
-    {
       "name": "ts-starter",
       "org": "stacksjs",
       "description": "Quickly bootstrap your next TypeScript / Bun project.",
@@ -404,9 +402,9 @@
         "CLI",
         "Testing"
       ],
-      "downloads": 26,
+      "downloads": 25,
       "pkg": "bun-ts-starter",
-      "allDownloads": 26,
+      "allDownloads": 25,
       "pkgCount": 1
     },
     {
@@ -418,25 +416,42 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 474,
+      "downloads": 381,
       "pkg": "vite-plugin-dotenvx",
-      "allDownloads": 474,
+      "allDownloads": 381,
       "pkgCount": 1
     },
     {
-      "name": "buddy",
+      "name": "bumpx",
       "org": "stacksjs",
-      "description": "AI code review and dependency updates in one teammate. Reviews PRs and local changes, answers @buddy comments, gates merges, repairs CI, and keeps deps current. Runs on your CI, with your keys.",
+      "description": "Bump your package.json versions & dependencies automatically.",
       "stars": 10,
-      "url": "https://github.com/stacksjs/buddy",
+      "url": "https://github.com/stacksjs/bumpx",
       "tags": [
         "TypeScript",
-        "PHP",
         "Zig"
       ],
-      "downloads": 7674,
-      "pkg": "@buddysh/buddy",
-      "allDownloads": 7674,
+      "downloads": 128390,
+      "pkg": "@stacksjs/bumpx",
+      "allDownloads": 128785,
+      "pkgCount": 2
+    },
+    {
+      "name": "ts-cache",
+      "org": "stacksjs",
+      "description": "A fast, type-safe, and feature-rich caching library for modern applications.",
+      "stars": 10,
+      "url": "https://github.com/stacksjs/ts-cache",
+      "tags": [
+        "TypeScript",
+        "Bun",
+        "Cache",
+        "Library",
+        "Node"
+      ],
+      "downloads": 40372,
+      "pkg": "@stacksjs/ts-cache",
+      "allDownloads": 40372,
       "pkgCount": 1
     },
     {
@@ -463,25 +478,10 @@
         "React",
         "Vue"
       ],
-      "downloads": 10921,
+      "downloads": 11087,
       "pkg": "ts-maps",
-      "allDownloads": 10921,
+      "allDownloads": 11087,
       "pkgCount": 1
-    },
-    {
-      "name": "bumpx",
-      "org": "stacksjs",
-      "description": "Bump your package.json versions & dependencies automatically.",
-      "stars": 9,
-      "url": "https://github.com/stacksjs/bumpx",
-      "tags": [
-        "TypeScript",
-        "Zig"
-      ],
-      "downloads": 129002,
-      "pkg": "@stacksjs/bumpx",
-      "allDownloads": 129553,
-      "pkgCount": 2
     },
     {
       "name": "bun-router",
@@ -494,9 +494,9 @@
         "Bun",
         "Laravel"
       ],
-      "downloads": 41709,
+      "downloads": 41185,
       "pkg": "@stacksjs/bun-router",
-      "allDownloads": 41709,
+      "allDownloads": 41185,
       "pkgCount": 1
     },
     {
@@ -511,20 +511,6 @@
       ]
     },
     {
-      "name": "logsmith",
-      "org": "stacksjs",
-      "description": "Forge beautiful changelogs from your commits.",
-      "stars": 9,
-      "url": "https://github.com/stacksjs/logsmith",
-      "tags": [
-        "TypeScript"
-      ],
-      "downloads": 119452,
-      "pkg": "@stacksjs/logsmith",
-      "allDownloads": 119661,
-      "pkgCount": 2
-    },
-    {
       "name": "ts-datetime",
       "org": "stacksjs",
       "description": "Modern datetime tooling. A Carbon-like API for TypeScript.",
@@ -534,9 +520,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 14,
+      "downloads": 15,
       "pkg": "@stacksjs/ts-datetime",
-      "allDownloads": 14,
+      "allDownloads": 15,
       "pkgCount": 1
     },
     {
@@ -549,10 +535,24 @@
         "TypeScript",
         "Vue"
       ],
-      "downloads": 234,
+      "downloads": 230,
       "pkg": "vite-plugin-layouts",
-      "allDownloads": 234,
+      "allDownloads": 230,
       "pkgCount": 1
+    },
+    {
+      "name": "logsmith",
+      "org": "stacksjs",
+      "description": "Forge beautiful changelogs from your commits.",
+      "stars": 8,
+      "url": "https://github.com/stacksjs/logsmith",
+      "tags": [
+        "TypeScript"
+      ],
+      "downloads": 123397,
+      "pkg": "@stacksjs/logsmith",
+      "allDownloads": 123620,
+      "pkgCount": 2
     },
     {
       "name": "ts-audio",
@@ -566,25 +566,10 @@
         "CLI",
         "Library"
       ],
-      "downloads": 19142,
+      "downloads": 18850,
       "pkg": "@ts-audio/core",
-      "allDownloads": 102217,
+      "allDownloads": 102860,
       "pkgCount": 6
-    },
-    {
-      "name": "ts-security",
-      "org": "stacksjs",
-      "description": "Modern cryptography primitives & utilities with a focus on type safety, security, performance & best practices.",
-      "stars": 8,
-      "url": "https://github.com/stacksjs/ts-security",
-      "tags": [
-        "TypeScript",
-        "Library"
-      ],
-      "downloads": 23,
-      "pkg": "ts-security",
-      "allDownloads": 205,
-      "pkgCount": 12
     },
     {
       "name": "ts-gif",
@@ -595,9 +580,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 140726,
+      "downloads": 146436,
       "pkg": "ts-gif",
-      "allDownloads": 140726,
+      "allDownloads": 146436,
       "pkgCount": 1
     },
     {
@@ -613,8 +598,23 @@
       ],
       "downloads": 8,
       "pkg": "@stacksjs/httx-dashboard",
-      "allDownloads": 27091,
+      "allDownloads": 26886,
       "pkgCount": 2
+    },
+    {
+      "name": "ts-security",
+      "org": "stacksjs",
+      "description": "Modern cryptography primitives & utilities with a focus on type safety, security, performance & best practices.",
+      "stars": 7,
+      "url": "https://github.com/stacksjs/ts-security",
+      "tags": [
+        "TypeScript",
+        "Library"
+      ],
+      "downloads": 25,
+      "pkg": "ts-security",
+      "allDownloads": 219,
+      "pkgCount": 12
     },
     {
       "name": "ts-slug",
@@ -628,9 +628,9 @@
         "Library",
         "Node"
       ],
-      "downloads": 27630,
+      "downloads": 28437,
       "pkg": "ts-slug",
-      "allDownloads": 27630,
+      "allDownloads": 28437,
       "pkgCount": 1
     },
     {
@@ -646,9 +646,9 @@
         "Library",
         "Testing"
       ],
-      "downloads": 32,
+      "downloads": 34,
       "pkg": "besting",
-      "allDownloads": 32,
+      "allDownloads": 34,
       "pkgCount": 1
     },
     {
@@ -662,9 +662,9 @@
         "macOS",
         "Swift"
       ],
-      "downloads": 12,
+      "downloads": 17,
       "pkg": "hushapp",
-      "allDownloads": 12,
+      "allDownloads": 17,
       "pkgCount": 1
     },
     {
@@ -699,9 +699,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 1091,
+      "downloads": 1093,
       "pkg": "ts-punycode",
-      "allDownloads": 1091,
+      "allDownloads": 1093,
       "pkgCount": 1
     },
     {
@@ -714,9 +714,9 @@
         "TypeScript",
         "Laravel"
       ],
-      "downloads": 66398,
+      "downloads": 67588,
       "pkg": "@stacksjs/ts-validation",
-      "allDownloads": 66398,
+      "allDownloads": 67588,
       "pkgCount": 1
     },
     {
@@ -728,9 +728,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 23,
+      "downloads": 24,
       "pkg": "action-releaser",
-      "allDownloads": 23,
+      "allDownloads": 24,
       "pkgCount": 1
     },
     {
@@ -743,9 +743,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 188241,
+      "downloads": 190119,
       "pkg": "@stacksjs/clarity",
-      "allDownloads": 188241,
+      "allDownloads": 190119,
       "pkgCount": 1
     },
     {
@@ -768,9 +768,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 4011,
+      "downloads": 4817,
       "pkg": "ts-medium-editor",
-      "allDownloads": 4011,
+      "allDownloads": 4817,
       "pkgCount": 1
     },
     {
@@ -784,9 +784,9 @@
         "Desktop",
         "Mobile"
       ],
-      "downloads": 15,
+      "downloads": 14,
       "pkg": "@stacksjs/vite-plugin-tauri",
-      "allDownloads": 15,
+      "allDownloads": 14,
       "pkgCount": 1
     },
     {
@@ -799,9 +799,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 683,
+      "downloads": 706,
       "pkg": "ts-clone",
-      "allDownloads": 683,
+      "allDownloads": 706,
       "pkgCount": 1
     },
     {
@@ -814,23 +814,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 8768,
+      "downloads": 9324,
       "pkg": "ts-countries",
-      "allDownloads": 8768,
-      "pkgCount": 1
-    },
-    {
-      "name": "ts-numbers",
-      "org": "stacksjs",
-      "description": "Currencies, weights, and phone numbers. Localized & lightweight.",
-      "stars": 4,
-      "url": "https://github.com/stacksjs/ts-numbers",
-      "tags": [
-        "TypeScript"
-      ],
-      "downloads": 32,
-      "pkg": "ts-numbers",
-      "allDownloads": 32,
+      "allDownloads": 9324,
       "pkgCount": 1
     },
     {
@@ -853,9 +839,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 28,
+      "downloads": 31,
       "pkg": "ts-vat",
-      "allDownloads": 28,
+      "allDownloads": 31,
       "pkgCount": 1
     },
     {
@@ -869,9 +855,9 @@
         "CLI",
         "Library"
       ],
-      "downloads": 18604,
+      "downloads": 19088,
       "pkg": "ts-videos",
-      "allDownloads": 51864,
+      "allDownloads": 53944,
       "pkgCount": 4
     },
     {
@@ -904,9 +890,9 @@
         "TypeScript",
         "Bun"
       ],
-      "downloads": 61452,
+      "downloads": 64208,
       "pkg": "dynamodb-tooling",
-      "allDownloads": 61452,
+      "allDownloads": 64208,
       "pkgCount": 1
     },
     {
@@ -928,9 +914,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 25871,
+      "downloads": 26569,
       "pkg": "@stacksjs/gitit",
-      "allDownloads": 25871,
+      "allDownloads": 26569,
       "pkgCount": 1
     },
     {
@@ -945,9 +931,9 @@
         "Library",
         "Linting"
       ],
-      "downloads": 113189,
+      "downloads": 112479,
       "pkg": "@stacksjs/gitlint",
-      "allDownloads": 113189,
+      "allDownloads": 112479,
       "pkgCount": 1
     },
     {
@@ -969,9 +955,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 52,
+      "downloads": 53,
       "pkg": "ts-inputs",
-      "allDownloads": 85,
+      "allDownloads": 87,
       "pkgCount": 2
     },
     {
@@ -983,9 +969,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 145694,
+      "downloads": 147242,
       "pkg": "ts-jpeg",
-      "allDownloads": 145694,
+      "allDownloads": 147242,
       "pkgCount": 1
     },
     {
@@ -998,9 +984,23 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 24,
+      "downloads": 25,
       "pkg": "ts-ndarray",
-      "allDownloads": 24,
+      "allDownloads": 25,
+      "pkgCount": 1
+    },
+    {
+      "name": "ts-numbers",
+      "org": "stacksjs",
+      "description": "Currencies, weights, and phone numbers. Localized & lightweight.",
+      "stars": 3,
+      "url": "https://github.com/stacksjs/ts-numbers",
+      "tags": [
+        "TypeScript"
+      ],
+      "downloads": 33,
+      "pkg": "ts-numbers",
+      "allDownloads": 33,
       "pkgCount": 1
     },
     {
@@ -1013,9 +1013,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 141114,
+      "downloads": 146813,
       "pkg": "@stacksjs/ts-png",
-      "allDownloads": 141114,
+      "allDownloads": 146813,
       "pkgCount": 1
     },
     {
@@ -1427,7 +1427,7 @@
       "name": "home",
       "org": "home-lang",
       "description": "There is no language like Home.",
-      "stars": 20,
+      "stars": 23,
       "url": "https://github.com/home-lang/home",
       "tags": [
         "Zig",
@@ -1455,9 +1455,9 @@
         "TypeScript",
         "Zig"
       ],
-      "downloads": 156842,
+      "downloads": 157955,
       "pkg": "ts-pantry",
-      "allDownloads": 156842,
+      "allDownloads": 157955,
       "pkgCount": 1
     },
     {
@@ -1483,9 +1483,9 @@
         "CLI",
         "Library"
       ],
-      "downloads": 64292,
+      "downloads": 66265,
       "pkg": "@stacksjs/mail",
-      "allDownloads": 64292,
+      "allDownloads": 66265,
       "pkgCount": 1
     },
     {
@@ -1507,9 +1507,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 11359,
+      "downloads": 16463,
       "pkg": "@bughq/sdk",
-      "allDownloads": 15657,
+      "allDownloads": 20931,
       "pkgCount": 5
     },
     {
@@ -1526,7 +1526,7 @@
       "name": "fonts",
       "org": "national-park-service",
       "description": "United States National Park Service inspired Open Source fonts.",
-      "stars": 77,
+      "stars": 78,
       "url": "https://github.com/national-park-service/fonts",
       "tags": [
         "TypeScript",
@@ -1545,9 +1545,9 @@
         "JavaScript",
         "TypeScript"
       ],
-      "downloads": 134913,
+      "downloads": 137465,
       "pkg": "craft-native",
-      "allDownloads": 151683,
+      "allDownloads": 158562,
       "pkgCount": 8
     },
     {
