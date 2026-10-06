@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-10-05",
+  "generatedAt": "2026-10-06",
   "repos": [
     {
       "name": "stacks",
       "org": "stacksjs",
       "description": "Modern, performant, optimized for DX/AX. Develop powerful apps, clouds & framework-agnostic libraries, faster.",
-      "stars": 630,
+      "stars": 631,
       "url": "https://github.com/stacksjs/stacks",
       "tags": [
         "TypeScript",
@@ -25,7 +25,7 @@
       "name": "dtsx",
       "org": "stacksjs",
       "description": "Extremely fast, smart & configurable DTS emitter.",
-      "stars": 176,
+      "stars": 177,
       "url": "https://github.com/stacksjs/dtsx",
       "tags": [
         "TypeScript"
@@ -71,7 +71,7 @@
       "name": "tlsx",
       "org": "stacksjs",
       "description": "A modern & lightweight TLS library & CLI. Built for automation, HTTPS by default. Similar to mkcert.",
-      "stars": 46,
+      "stars": 47,
       "url": "https://github.com/stacksjs/tlsx",
       "tags": [
         "TypeScript",
@@ -113,21 +113,10 @@
       "pkgCount": 1
     },
     {
-      "name": "bun-plugin-dtsx",
-      "org": "stacksjs",
-      "description": "Automatically generate your TypeScript .d.ts files, using Bun's bundler. Very fast.",
-      "stars": 30,
-      "url": "https://github.com/stacksjs/bun-plugin-dtsx",
-      "tags": [
-        "TypeScript",
-        "Bun"
-      ]
-    },
-    {
       "name": "rpx",
       "org": "stacksjs",
       "description": "A modern, smart reverse proxy. For a pretty and powerful local DX.",
-      "stars": 30,
+      "stars": 31,
       "url": "https://github.com/stacksjs/rpx",
       "tags": [
         "TypeScript",
@@ -139,6 +128,17 @@
       "pkg": "@stacksjs/rpx",
       "allDownloads": 33615,
       "pkgCount": 3
+    },
+    {
+      "name": "bun-plugin-dtsx",
+      "org": "stacksjs",
+      "description": "Automatically generate your TypeScript .d.ts files, using Bun's bundler. Very fast.",
+      "stars": 30,
+      "url": "https://github.com/stacksjs/bun-plugin-dtsx",
+      "tags": [
+        "TypeScript",
+        "Bun"
+      ]
     },
     {
       "name": "localtunnels",
@@ -159,7 +159,7 @@
       "name": "ts-rate-limiter",
       "org": "stacksjs",
       "description": "A high-performance, flexible rate limiting library for TypeScript.",
-      "stars": 20,
+      "stars": 21,
       "url": "https://github.com/stacksjs/ts-rate-limiter",
       "tags": [
         "TypeScript",
@@ -391,6 +391,24 @@
       ]
     },
     {
+      "name": "ts-cache",
+      "org": "stacksjs",
+      "description": "A fast, type-safe, and feature-rich caching library for modern applications.",
+      "stars": 11,
+      "url": "https://github.com/stacksjs/ts-cache",
+      "tags": [
+        "TypeScript",
+        "Bun",
+        "Cache",
+        "Library",
+        "Node"
+      ],
+      "downloads": 40372,
+      "pkg": "@stacksjs/ts-cache",
+      "allDownloads": 40372,
+      "pkgCount": 1
+    },
+    {
       "name": "ts-starter",
       "org": "stacksjs",
       "description": "Quickly bootstrap your next TypeScript / Bun project.",
@@ -435,24 +453,6 @@
       "pkg": "@stacksjs/bumpx",
       "allDownloads": 128785,
       "pkgCount": 2
-    },
-    {
-      "name": "ts-cache",
-      "org": "stacksjs",
-      "description": "A fast, type-safe, and feature-rich caching library for modern applications.",
-      "stars": 10,
-      "url": "https://github.com/stacksjs/ts-cache",
-      "tags": [
-        "TypeScript",
-        "Bun",
-        "Cache",
-        "Library",
-        "Node"
-      ],
-      "downloads": 40372,
-      "pkg": "@stacksjs/ts-cache",
-      "allDownloads": 40372,
-      "pkgCount": 1
     },
     {
       "name": "ts-dns",
@@ -511,6 +511,20 @@
       ]
     },
     {
+      "name": "logsmith",
+      "org": "stacksjs",
+      "description": "Forge beautiful changelogs from your commits.",
+      "stars": 9,
+      "url": "https://github.com/stacksjs/logsmith",
+      "tags": [
+        "TypeScript"
+      ],
+      "downloads": 123397,
+      "pkg": "@stacksjs/logsmith",
+      "allDownloads": 123620,
+      "pkgCount": 2
+    },
+    {
       "name": "ts-datetime",
       "org": "stacksjs",
       "description": "Modern datetime tooling. A Carbon-like API for TypeScript.",
@@ -541,20 +555,6 @@
       "pkgCount": 1
     },
     {
-      "name": "logsmith",
-      "org": "stacksjs",
-      "description": "Forge beautiful changelogs from your commits.",
-      "stars": 8,
-      "url": "https://github.com/stacksjs/logsmith",
-      "tags": [
-        "TypeScript"
-      ],
-      "downloads": 123397,
-      "pkg": "@stacksjs/logsmith",
-      "allDownloads": 123620,
-      "pkgCount": 2
-    },
-    {
       "name": "ts-audio",
       "org": "stacksjs",
       "description": "Powerful audio processing for your media workflows.",
@@ -570,6 +570,21 @@
       "pkg": "@ts-audio/core",
       "allDownloads": 102860,
       "pkgCount": 6
+    },
+    {
+      "name": "ts-security",
+      "org": "stacksjs",
+      "description": "Modern cryptography primitives & utilities with a focus on type safety, security, performance & best practices.",
+      "stars": 8,
+      "url": "https://github.com/stacksjs/ts-security",
+      "tags": [
+        "TypeScript",
+        "Library"
+      ],
+      "downloads": 25,
+      "pkg": "ts-security",
+      "allDownloads": 219,
+      "pkgCount": 12
     },
     {
       "name": "ts-gif",
@@ -600,21 +615,6 @@
       "pkg": "@stacksjs/httx-dashboard",
       "allDownloads": 26886,
       "pkgCount": 2
-    },
-    {
-      "name": "ts-security",
-      "org": "stacksjs",
-      "description": "Modern cryptography primitives & utilities with a focus on type safety, security, performance & best practices.",
-      "stars": 7,
-      "url": "https://github.com/stacksjs/ts-security",
-      "tags": [
-        "TypeScript",
-        "Library"
-      ],
-      "downloads": 25,
-      "pkg": "ts-security",
-      "allDownloads": 219,
-      "pkgCount": 12
     },
     {
       "name": "ts-slug",
@@ -820,6 +820,20 @@
       "pkgCount": 1
     },
     {
+      "name": "ts-numbers",
+      "org": "stacksjs",
+      "description": "Currencies, weights, and phone numbers. Localized & lightweight.",
+      "stars": 4,
+      "url": "https://github.com/stacksjs/ts-numbers",
+      "tags": [
+        "TypeScript"
+      ],
+      "downloads": 33,
+      "pkg": "ts-numbers",
+      "allDownloads": 33,
+      "pkgCount": 1
+    },
+    {
       "name": "ts-starter-monorepo",
       "org": "stacksjs",
       "description": "Same as our `ts-starter` but optimized for workspaces / monorepos.",
@@ -987,20 +1001,6 @@
       "downloads": 25,
       "pkg": "ts-ndarray",
       "allDownloads": 25,
-      "pkgCount": 1
-    },
-    {
-      "name": "ts-numbers",
-      "org": "stacksjs",
-      "description": "Currencies, weights, and phone numbers. Localized & lightweight.",
-      "stars": 3,
-      "url": "https://github.com/stacksjs/ts-numbers",
-      "tags": [
-        "TypeScript"
-      ],
-      "downloads": 33,
-      "pkg": "ts-numbers",
-      "allDownloads": 33,
       "pkgCount": 1
     },
     {
