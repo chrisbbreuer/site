@@ -573,5 +573,49 @@
     "smWidth": 460,
     "smHeight": 613,
     "hash": "be2Fqh42WILFIjcUa7VIaA=="
+  },
+  {
+    "sm": "/images/gallery/note-62-sm.avif",
+    "lg": "/images/gallery/note-62-lg.avif",
+    "xl": "/images/gallery/note-62-xl.avif",
+    "alt": "La Jolla Cove, San Diego, California. Early October, mid-morning under the marine layer, a pile of sea lions asleep on the sandstone above the surf.",
+    "width": 1600,
+    "height": 1200,
+    "smWidth": 460,
+    "smHeight": 345,
+    "hash": "oe9Rpd2uaIwWnfeV1QKKOA=="
+  },
+  {
+    "sm": "/images/gallery/note-63-sm.avif",
+    "lg": "/images/gallery/note-63-lg.avif",
+    "xl": "/images/gallery/note-63-xl.avif",
+    "alt": "San Diego, California. Early October, a turtle hauled out on a log among the reeds, sunning itself in the middle of the day.",
+    "width": 1600,
+    "height": 2133,
+    "smWidth": 460,
+    "smHeight": 613,
+    "hash": "kdIhUeIFR4xaYiJB8Jk1ZA=="
+  },
+  {
+    "sm": "/images/gallery/note-64-sm.avif",
+    "lg": "/images/gallery/note-64-lg.webp",
+    "xl": "/images/gallery/note-64-xl.webp",
+    "alt": "Torrey Pines State Beach, San Diego, California. Early October, early afternoon, the sun nearly overhead and the Torrey Pines bluffs ahead along the coast path.",
+    "width": 1600,
+    "height": 2133,
+    "smWidth": 460,
+    "smHeight": 613,
+    "hash": "feyxciH1WJimXgjWVyvZZA=="
+  },
+  {
+    "sm": "/images/gallery/note-65-sm.avif",
+    "lg": "/images/gallery/note-65-lg.avif",
+    "xl": "/images/gallery/note-65-xl.avif",
+    "alt": "Mission Beach, San Diego, California, at sea level. Early October, late afternoon at the end of a 15 mile run down the coast, La Jolla and Mount Soledad on the hill behind.",
+    "width": 1600,
+    "height": 1200,
+    "smWidth": 460,
+    "smHeight": 345,
+    "hash": "jcyBmdqmmJKGnfRWmK1NDg=="
   }
 ]

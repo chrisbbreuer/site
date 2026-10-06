@@ -15,9 +15,11 @@
   },
   {
     "start": "2026-10-01",
-    "end": "2026-10-04",
-    "title": "San Diego, 100 miles in four days",
-    "detail": "Thursday is a custom 50 mile route that starts and ends downtown, then 20 miles on Friday, 20 on Saturday and 10 on Sunday."
+    "end": "2026-10-02",
+    "title": "San Diego",
+    "place": "La Jolla and the coast",
+    "detail": "65 miles in two days: 39.8 from downtown up to La Jolla and back, then 25.3 to Mission Beach. Home two days early, with the rest made up at TriFit.",
+    "url": "/blog/san-diego"
   },
   {
     "year": 2027,
