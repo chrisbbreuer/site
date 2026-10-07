@@ -3,7 +3,7 @@ title: Two Days in San Diego
 description: The plan was 100 miles in four days. It became 65 miles in two, from a downtown warmup before 7 AM to Mission Beach in the afternoon heat, and the two things I learned on the way.
 date: 2026-10-05
 author: Chris Breuer
-authorBio: Software engineer, founder of Stacks, ultra skyrunner. Los Angeles based.
+authorBio: Software engineer, founder of Stacks, ultra runner. Los Angeles based.
 ---
 
 The plan was 100 miles in San Diego over four days. Plans changed a little. I came home two days early, and I have been making up the difference at TriFit in Santa Monica since.
@@ -54,7 +54,7 @@ Sun protection is very important. Not a nice-to-have, not something for the beac
 
 UC San Diego is huge. Plan your route through it, and plan for it to take longer than it looks.
 
-And carry Vaseline.
+And carry Vaseline!
 
 ## The totals
 

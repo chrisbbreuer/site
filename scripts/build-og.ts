@@ -38,7 +38,7 @@ const cards: Card[] = [
     slug: 'goals',
     path: '~/goals',
     title: 'Goals',
-    desc: 'A billion npm downloads a month, an open unicorn, Stacks v1.0, the Pacific Crest Trail, and every US national park.',
+    desc: 'A billion npm downloads a month, Stacks v1.0, the Pacific Crest Trail, and every US national park.',
   },
   {
     slug: 'projects',

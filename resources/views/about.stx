@@ -3,7 +3,7 @@ const fs = require('node:fs')
 const path = require('node:path')
 
 const title = 'About - Chris Breuer'
-const description = 'I\'m Chris Breuer, a software engineer obsessed with developer and agentic tooling, and an ultra skyrunner. Building Stacks, HQ.training and Wildloop. Based in Los Angeles.'
+const description = 'I\'m Chris Breuer, a software engineer obsessed with developer and agentic tooling, and an ultra runner. Building Stacks, HQ.training and Wildloop. Based in Los Angeles.'
 const activeNav = 'about'
 const pagePath = '/about'
 
@@ -120,7 +120,8 @@ const elsewhere = [
           The two halves feed each other more than you would think. A long day in the
           mountains is mostly pacing, small decisions compounding, and being honest
           with yourself about what is actually working. That is also a fair
-          description of shipping software. So is refusing to quit.
+          description of shipping software. So is refusing to quit,
+          especially when it comes to Open Source.
         </p>
         <p>
           Today that means <a href="/stacks">Stacks</a> and its broader

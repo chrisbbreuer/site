@@ -3,7 +3,7 @@ const fs = require('node:fs')
 const path = require('node:path')
 
 const title = 'Goals - Chris Breuer'
-const description = 'What I am working toward: a billion npm downloads a month, an open unicorn, Stacks v1.0, the Pacific Crest Trail, and every US national park.'
+const description = 'What I am working toward: a billion npm downloads a month, Stacks v1.0, the Pacific Crest Trail, and every US national park.'
 const activeNav = 'goals'
 const pagePath = '/goals'
 

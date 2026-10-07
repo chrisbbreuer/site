@@ -5,8 +5,8 @@ const { readingStats } = require(path.join(process.cwd(), 'resources/utils/readi
 const { longPostDate } = require(path.join(process.cwd(), 'resources/utils/post-date.ts'))
 const { homeEvents } = require(path.join(process.cwd(), 'resources/utils/events.ts'))
 
-const title = 'Chris Breuer - Software engineer, founder & ultra skyrunner'
-const description = 'Chris Breuer builds developer and agentic tooling, plus the apps on top of it: Stacks, HQ.training, Wildloop. Ultra skyrunner and dog person. Notes on both.'
+const title = 'Chris Breuer - Software engineer, founder & ultra runner'
+const description = 'Chris Breuer builds developer and agentic tooling, plus the apps on top of it: Stacks, HQ.training, Wildloop. ultra runner and dog person. Notes on both.'
 const activeNav = ''
 const pagePath = '/'
 

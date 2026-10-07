@@ -3,7 +3,7 @@ title: South Mount Hawkins
 description: A weekend up South Mount Hawkins with Mo, 500 pushups and interval runs near the top, a bulldozer on the summit, the Harvest Moon, and the one thing to plan around, which is water.
 date: 2026-09-27
 author: Chris Breuer
-authorBio: Software engineer, founder of Stacks, ultra skyrunner. Los Angeles based.
+authorBio: Software engineer, founder of Stacks, ultra runner. Los Angeles based.
 ---
 
 We just got back from South Mount Hawkins in the San Gabriels. Mo came along, and I turned the top of the mountain into a gym for a while.
