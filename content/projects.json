@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-07",
+  "generatedAt": "2026-10-08",
   "repos": [
     {
       "name": "stacks",
@@ -480,8 +480,8 @@
       ],
       "downloads": 11087,
       "pkg": "ts-maps",
-      "allDownloads": 11087,
-      "pkgCount": 1
+      "allDownloads": 11194,
+      "pkgCount": 2
     },
     {
       "name": "bun-router",
