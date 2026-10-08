@@ -38,7 +38,9 @@ It was hot. I left at 1:20 in the afternoon and went straight down to Torrey Pin
 
 ![The coast path at Torrey Pines State Beach, a railing running ahead toward the bluffs, surf on the right and the sun high in a deep blue sky](/images/blog/san-diego/img-6592-lg.webp "1:45 PM, Torrey Pines State Beach")
 
-From there it was up the Torrey Pines grade, the high point of the day at about 450 ft, past UC San Diego again, which is still huge, then down through La Jolla Shores and La Jolla Cove, along Bird Rock and Pacific Beach, and onto the sand at Mission Beach.
+That is the Del Mar end of it, and standing there I had a question. The beach keeps going south under the cliffs, and I wondered if I could just jog along the water the whole way without getting wet. I was not sure, and I did not feel like finding out the soggy way, so I went up the hill instead.
+
+No regrets. Up the Torrey Pines grade, the high point of the day at about 450 ft, was a really nice run, and then past UC San Diego again, which is still huge, and down through La Jolla Shores and La Jolla Cove, along Bird Rock and Pacific Beach, and onto the sand at Mission Beach.
 
 ![Mission Beach in late afternoon light, wide sand with tracks across it, a few people at the waterline and La Jolla on the hill in the distance](/images/blog/san-diego/img-6610-lg.avif "4:50 PM, Mission Beach")
 
@@ -55,6 +57,8 @@ Sun protection is very important. Not a nice-to-have, not something for the beac
 UC San Diego is huge. Plan your route through it, and plan for it to take longer than it looks.
 
 And carry Vaseline!
+
+One question I still have: can you run the beach from Del Mar down under the Torrey Pines cliffs without getting your feet wet, or does the tide get you? If you know, leave a comment below. Next time I might take the low road.
 
 ## The totals
 
