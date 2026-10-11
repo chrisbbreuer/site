@@ -3,22 +3,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://chrisbreuer.me/</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-11</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://chrisbreuer.me/about</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-11</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://chrisbreuer.me/apps</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://chrisbreuer.me/blog</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-11</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -32,33 +32,43 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://chrisbreuer.me/blog/open-source-isnt-dead-yet</loc>
+    <lastmod>2026-10-10</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://chrisbreuer.me/blog/san-diego</loc>
+    <lastmod>2026-10-05</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://chrisbreuer.me/goals</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://chrisbreuer.me/home</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://chrisbreuer.me/projects</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://chrisbreuer.me/stacks</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://chrisbreuer.me/uses</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-09-21</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://chrisbreuer.me/wip</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <priority>0.8</priority>
   </url>
 </urlset>
