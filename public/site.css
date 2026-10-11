@@ -32,7 +32,7 @@
   --bg-soft: #f0f0f0;
   --text-1: #111111;
   --text-2: #444444;
-  --text-3: #767676;
+  --text-3: #6b6b6b;
   --divider: #e4e4e4;
   --code-bg: #efefef;
 }
@@ -43,7 +43,7 @@
   --bg-soft: #161616;
   --text-1: #ededed;
   --text-2: #a8a8a8;
-  --text-3: #6f6f6f;
+  --text-3: #8a8a8a;
   --divider: #242424;
   --code-bg: #1a1a1a;
 }
@@ -75,6 +75,20 @@ body {
 }
 
 a { color: var(--text-1); }
+
+a:focus-visible,
+button:focus-visible { outline: 2px solid var(--text-1); outline-offset: 4px; }
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 1.25rem;
+  z-index: 20;
+  padding: 0.5rem 0.75rem;
+  background: var(--bg);
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: none; }
 
 /* ── Masthead ───────────────────────────────────────────────────────────── */
 .masthead {
@@ -170,6 +184,15 @@ main { padding: 3.5rem 0 2rem; }
   max-width: 38rem;
   color: var(--text-2);
 }
+
+.home-lead { margin-bottom: 1.25rem; }
+.home-links { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; margin-bottom: 2.5rem; font-size: 0.85rem; }
+.home-links a { text-underline-offset: 4px; }
+.post-deck { margin: 0 0 1rem; color: var(--text-2); }
+.post-navigation { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; border-top: 1px solid var(--divider); padding-top: 1.25rem; margin-top: 2.5rem; }
+.post-navigation a { display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.9rem; text-decoration: none; }
+.post-navigation a:hover > span:last-child { text-decoration: underline; text-underline-offset: 3px; }
+.post-nav-label { font-size: 0.75rem; color: var(--text-3); }
 .page-lead a,
 .prose a,
 .project-intro a,
@@ -360,7 +383,7 @@ main { padding: 3.5rem 0 2rem; }
 
 .section-label {
   display: flex;
-  align-items: baseline;
+  align-items: flex-start;
   gap: 0.75rem;
   margin: 2.75rem 0 0.75rem;
   font-family: var(--font-mono);
@@ -400,7 +423,10 @@ main { padding: 3.5rem 0 2rem; }
   text-decoration: none;
   color: var(--text-1);
 }
-.post-list .post-title { font-weight: 550; line-height: 1.4; }
+.post-list .post-title { margin: 0; font-size: inherit; font-weight: 550; line-height: 1.4; }
+.post-list .post-excerpt { margin: 0.25rem 0; color: var(--text-2); font-size: 0.85rem; line-height: 1.65; }
+.post-index .post-title { font-size: 1.1rem; }
+.post-index a { padding: 1.25rem 0; }
 /* Reading stats sit under the title, on /blog and on the home page. */
 .post-list .post-main { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
 .post-list .post-stats {
@@ -442,6 +468,8 @@ main { padding: 3.5rem 0 2rem; }
 
 @media (max-width: 640px) {
   .entry-list li { grid-template-columns: 1fr; gap: 0.15rem; }
+  .post-list a { flex-direction: column; gap: 0.25rem; }
+  .post-navigation { grid-template-columns: 1fr; }
 }
 
 .empty-note {

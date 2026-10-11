@@ -8,6 +8,7 @@ const { parseMarkdownWithFrontmatter } = require('@stacksjs/ts-md')
 const { renderPostHtml, articleHead, articleScript } = require('@stacksjs/cms/article')
 const { readingStats } = require(path.join(process.cwd(), 'resources/utils/reading-stats.ts'))
 const { longPostDate } = require(path.join(process.cwd(), 'resources/utils/post-date.ts'))
+const { blogPosts, adjacentPosts } = require(path.join(process.cwd(), 'resources/utils/blog-posts.ts'))
 const { approvedComments, COMMENT_LIMITS } = require(path.join(process.cwd(), 'resources/utils/blog-comments.ts'))
 const blogConfig = require(path.join(process.cwd(), 'config/blog.ts')).default
 
@@ -24,17 +25,29 @@ if (slug && fs.existsSync(file)) {
     title: data.title || slug,
     date: typeof data.date === 'string' ? data.date : '',
     excerpt: data.excerpt || data.description || '',
+    author: data.author || 'Chris Breuer',
     html: renderPostHtml(html),
     stats: readingStats(raw).label,
   }
   post.longDate = post.date ? longPostDate(post.date) : ''
 }
+const adjacent = adjacentPosts(blogPosts(), slug)
 
 // Reader comments, stored through the Post model's commentable trait (see
 // resources/utils/blog-comments.ts). The form posts to the API, which sends
 // the browser back here with `?comment=<outcome>`.
 const commentsOn = Boolean(post && blogConfig.enableComments)
-const comments = commentsOn ? await approvedComments(slug) : []
+let comments = []
+let commentsAvailable = true
+if (commentsOn) {
+  try {
+    comments = await approvedComments(slug)
+  }
+  catch {
+    commentsAvailable = false
+    console.warn('[blog] Comments could not be loaded')
+  }
+}
 const commentsHeading = comments.length === 1 ? '1 comment' : comments.length > 1 ? `${comments.length} comments` : 'Comments'
 const commentOutcome = typeof query === 'object' && query ? String(query.comment || '') : ''
 const commentPosted = commentOutcome === 'posted'
@@ -73,17 +86,38 @@ const ogArticle = post && post.date ? { published: post.date } : null
       <header class="post-header">
         <a class="post-back" href="/blog">← Writing</a>
         <h1 class="page-title">{{ post.title }}</h1>
+        @if (post.excerpt)<p class="post-deck">{{ post.excerpt }}</p>@endif
         @if (post.date)
-          <p class="post-meta"><time datetime="{{ post.date }}">{{ post.longDate }}</time> · {{ post.stats }}</p>
+          <p class="post-meta">{{ post.author }} · <time datetime="{{ post.date }}">{{ post.longDate }}</time> · {{ post.stats }}</p>
         @endif
       </header>
       <div class="prose post-body">
         {!! post.html !!}
       </div>
 
+      @if (adjacent.older || adjacent.newer)
+        <nav class="post-navigation" aria-label="More writing">
+          @if (adjacent.older)
+            <a href="/blog/{{ adjacent.older.slug }}" rel="prev">
+              <span class="post-nav-label">Earlier</span>
+              <span>{{ adjacent.older.title }}</span>
+            </a>
+          @endif
+          @if (adjacent.newer)
+            <a href="/blog/{{ adjacent.newer.slug }}" rel="next">
+              <span class="post-nav-label">Later</span>
+              <span>{{ adjacent.newer.title }}</span>
+            </a>
+          @endif
+        </nav>
+      @endif
+
+      @include('../partials/subscribe.stx')
+
       @if (commentsOn)
         <section class="comments" id="comments" aria-labelledby="comments-heading">
           <h2 id="comments-heading">{{ commentsHeading }}</h2>
+          @if (commentsAvailable)
           @if (commentPosted)
             <p class="comment-note" role="status">Thanks, your comment is up.</p>
           @endif
@@ -128,6 +162,9 @@ const ogArticle = post && post.date ? { published: post.date } : null
               <p class="comment-hint">Plain text, line breaks kept. Be kind.</p>
             </div>
           </form>
+          @else
+            <p class="comment-empty">Comments are temporarily unavailable. You can <a href="mailto:hi@chrisbreuer.me">email me</a> instead.</p>
+          @endif
         </section>
       @endif
     </article>

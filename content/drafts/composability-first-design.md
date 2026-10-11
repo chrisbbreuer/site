@@ -7,15 +7,15 @@ authorBio: Software engineer and founder of Stacks. Passionately obsessed over d
 featured: true
 ---
 
-What is the Composability-First Design pattern? Also known as "Atomic-First Design," read along for an explanation and to learn more about how these design principles improve your development experience (DX).
+Composability-First Design, also called "Atomic-First Design," starts with components and functions that can be reused across projects. The work includes how those pieces are styled, tested, documented, and distributed.
 
 ![Illustration of Atomic UI & FX Design](/images/diagram.png)
 
-## The Why
+## Why reuse takes work
 
 Building complex components is oftentimes difficult using traditional development and design approaches. In addition to the already many questions a developer has to answer: _should I use Vue? React? Svelte, Solid, or Angular? How do I distribute it via a package manager, like npm?_ Over time, questions like these become exhausting to answer, while trying to find "the best tech stack."
 
-It is interesting to note that this is not necessarily due to the complexity of the development tasks required, but rather due to the sheer amount of moving pieces required to build and engineer truly composable libraries. You may have already asked yourself one or many of the following questions:
+Much of the work is in the infrastructure around the library. Before someone else can use it, you need to settle questions such as:
 
 - Which code style should be followed?
 - Code formatting setup _(e.g. ESLint, Prettier, etc.)_
@@ -27,17 +27,17 @@ It is interesting to note that this is not necessarily due to the complexity of 
 
 No matter which component or function library you are building, these concerns all have to be, and should be, addressed one way or another.
 
-## What is a Composable / Atomic Library
+## What makes a library composable
 
 Have you ever needed to reuse one of your components from Project A in Project B? Or have you ever needed to access a project-specific function from Project B? How about a beautiful, working modal experience? Or calendar components?
 
-In concept, you can characterize a "composable library" as a collection of components and/or functions that is broken down to its core, in order to be optimized for reusability. This allows anyone to require them (components and/or functions) into anyone's projects.
+A composable library separates components and functions into reusable units that other projects can import. Each piece has a clear purpose and a boundary that lets you use it independently.
 
 > Think of Lodash for "functions," and minimal HTML for the "components."
 
-## How do I know if it's right for me
+## Questions to settle first
 
-When wanting to adopt the "Composability-First Design" pattern, you will want to ask the following questions to identify whether or not this design pattern is a fit for you:
+Before adopting this approach, decide who will use the library and how:
 
 - Are you developing a UI component library or a function library? Or both?
 - How is the library styled, if styling is required at all?
@@ -48,9 +48,9 @@ When wanting to adopt the "Composability-First Design" pattern, you will want to
 
 _Both components and functions should be designed with reusability (composability) in mind._
 
-## The Atomic Core
+## The atomic core
 
-As you can see in the "Atomic Design" diagram above, there are two core atomic engines:
+I split the work into two engines:
 
 1. The Atomic UI engine
 2. The Atomic FX engine
@@ -71,4 +71,4 @@ Much has been written about atomic CSS engines, in particular because CSS is "no
 
 Maintainability concerns are a major reason and inspiration for a composable atomic UI/FX engine. When every piece of your stack is broken down to its smallest reusable unit, maintaining and evolving the whole becomes dramatically simpler. This idea became a core reason I started working on Stacks, where composability-first thinking is applied to the entire framework, not just the UI layer.
 
-If you have any questions or comments, feel free to reach out on Twitter or via email.
+If you have questions, [email me](mailto:hi@chrisbreuer.me).

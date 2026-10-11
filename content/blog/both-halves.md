@@ -1,6 +1,7 @@
 ---
 title: Both Halves
 description: Fifteen years of building developer and agentic tooling, two years of planning to run 2,650 miles, and why those turn out to be the same problem.
+excerpt: Building Stacks, training for 2,650 miles on the Pacific Crest Trail, and learning to pace both.
 date: 2026-09-22
 author: Chris Breuer
 authorBio: Software engineer, founder of Stacks, ultra runner. Los Angeles based.
@@ -10,19 +11,19 @@ This is the post that should have existed first, so it is the one I have been pu
 
 ## It started with AdSense
 
-I was twelve when I shipped my first SaaS app. I did not call it that. Nobody called it that yet, and I did not know what I was doing. It made a few hundred dollars a month through Google AdSense. The money was not the interesting part. The interesting part was that I had written something down and strangers were using it.
+I was twelve when I shipped my first SaaS app. I did not call it that, and I did not know what I was doing. It made a few hundred dollars a month through Google AdSense. What interested me most was that I had built something and strangers were using it.
 
-That is still the thing. Everything since has been a longer version of it.
+That still keeps me at the keyboard.
 
 ## Fifteen years of the same problem
 
 I spent the next decade and a half on other people's problems and my own: small apps, then larger private ones, then enterprise services where the failure modes are measured in hours of downtime rather than a broken page. Somewhere in there I got interested in the unglamorous layer: how data is stored and moved, how work is spread across machines that do not trust each other, what happens at the boundaries.
 
-That interest is where [Stacks](https://stacksjs.com) comes from. A full-stack TypeScript framework on Bun, plus the ecosystem that turned out to be necessary to make it real: a templating engine, a query builder, a deploy tool, a CSS engine, image and video codecs. None of that was the plan. Each piece exists because I needed it and the thing that should have existed did not, or existed and was slow.
+That interest led to [Stacks](https://stacksjs.com), a full-stack TypeScript framework on Bun. Building it also meant building a templating engine, a query builder, a deploy tool, a CSS engine, and image and video codecs. None of that was the plan. Each piece exists because I needed it and the thing that should have existed did not, or existed and was slow.
 
 Slow bothers me more every year. The goal behind all of it is software that is as fast and as energy efficient as it can be, and in the age of AI that stops being a matter of taste. Every request an agent makes runs on real hardware and real power, and most of it passes through ordinary code on the way. Good abstractions are one of the few levers that scale: get the defaults right once, in something like Stacks, and every app built on top of it does less work for the same result.
 
-Increasingly it is agentic tooling too. The tools engineers reach for are quickly becoming the tools their agents reach for, and that changes what a good one looks like. Machine-readable output stops being a nicety. A confusing error message costs more than it used to. "It works if you already know the trick" stops working at all. [buddy](https://github.com/stacksjs/buddy) is the clearest example: AI code review and dependency updates as one teammate rather than two bolted-on integrations.
+Increasingly I build agentic tooling too. As agents use more of engineers' tools, machine-readable output and clear errors matter more. Undocumented tricks become harder to work around. [buddy](https://github.com/stacksjs/buddy) is the clearest example: one teammate for AI code review and dependency updates.
 
 That is around two hundred published packages now, and roughly eight million npm downloads a month across them. My goal is a billion a month. I keep a [public list of goals](/goals) so the unreasonable ones have somewhere to sit where other people can see them.
 
@@ -36,7 +37,7 @@ These days it is skyrunning: long days in the mountains, on trails that go up co
 
 I am not really a runner, though. I have been an athlete most of my life, but running never brought me much joy, and I have never done it professionally. The point is less the running than showing that a strong mind with a clear goal can get you almost anywhere. But... the dog is a big fan!
 
-Next up is the Pacific Crest Trail, northbound: 2,650 miles, aiming to average 60 a day. I do not know yet if that pace holds, and finding out is half the reason to try. I have two years to build toward it, at twenty to forty hours of training a week. After that I want to start racing, pinning on a number at mountain races to see where I stand.
+Next up is the Pacific Crest Trail, northbound: 2,650 miles, aiming to average 60 a day. I do not know yet if that pace holds, and finding out is half the reason to try. I have two years to build toward it, at twenty to forty hours of training a week. After that I want to pin on a number at mountain races and see where I stand.
 
 That plan is [public](https://hq.training/share/chris), on the app I build for everyone else, pointed at my own weeks. It seemed dishonest to sell coaches software for tracking athletes and keep my own training in a spreadsheet.
 
@@ -44,7 +45,7 @@ That plan is [public](https://hq.training/share/chris), on the app I build for e
 
 People tend to treat these as two separate biographies, the desk half and the mountain half. I understand why. It has never felt that way from the inside.
 
-A long day in the mountains is mostly pacing. It is small decisions compounding, for better or worse, over hours. It is being honest about what is working, rather than what you expected to work when you planned it at a table. Go out too hard because the first climb feels easy, and you pay for it in the last three hours.
+A long day in the mountains is mostly pacing. Small decisions compound, for better or worse, over hours. You have to be honest about what is working, even when it disagrees with the plan you made at a table. Go out too hard because the first climb feels easy, and you pay for it in the last three hours.
 
 That is also a fair description of shipping software.
 

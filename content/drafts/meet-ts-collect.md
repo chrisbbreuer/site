@@ -6,7 +6,7 @@ author: Chris Breuer
 authorBio: Software engineer and founder of Stacks. Passionately obsessed over developer tooling.
 ---
 
-Laravel's collections are one of the best APIs in any framework: a fluent, chainable wrapper over arrays that makes data transformation read like a sentence. `ts-collect` brings that API to TypeScript, with full type inference.
+Laravel's collections are one of the best APIs in any framework: a fluent wrapper over arrays that lets you compose data transformations. `ts-collect` brings that API to TypeScript, with full type inference.
 
 ## The shape
 
@@ -25,7 +25,7 @@ const topSpenders = collect(orders)
   .toArray()
 ```
 
-Every step is typed. Rename a property in your model and the chain lights up with errors exactly where it should.
+The chain retains the types of your data, so the editor can catch a renamed property where you use it.
 
 ## Why not just array methods
 

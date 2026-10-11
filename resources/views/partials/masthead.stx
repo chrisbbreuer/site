@@ -4,7 +4,7 @@
     chris breuer
   </a>
   <nav aria-label="Site">
-    <a href="/blog">Blog</a>
+    <a href="/blog"@if (activeNav === 'blog') aria-current="page"@endif>Blog</a>
     <a href="/about"@if (activeNav === 'about') aria-current="page"@endif>About</a>
     <a href="/apps"@if (activeNav === 'apps') aria-current="page"@endif>Apps</a>
     <a href="/goals"@if (activeNav === 'goals') aria-current="page"@endif>Goals</a>

@@ -24,8 +24,8 @@ await startLocalTunnel({ port: 5173 })
 
 ## Self-hosting is the point
 
-Hosted tunnel services are convenient until you care about where your traffic flows. localtunnels ships the server side too, so you can run the tunnel endpoint on your own box and domain. Your webhooks, your infrastructure, your logs.
+localtunnels also ships the server side. Run the tunnel endpoint on your own box and domain when you want control over where your traffic flows and where its logs live.
 
-It is TypeScript end to end, configured via [bunfig](/blog/meet-bunfig)-style config files, and small enough to read in an afternoon.
+It is TypeScript end to end and uses bunfig-style configuration files. The client and server are in the same repository.
 
 Grab it at [github.com/stacksjs/localtunnels](https://github.com/stacksjs/localtunnels).

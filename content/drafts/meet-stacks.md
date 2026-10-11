@@ -6,7 +6,7 @@ author: Chris Breuer
 authorBio: Software engineer and founder of Stacks. Passionately obsessed over developer tooling.
 ---
 
-Stacks is the project I have spent the last years building: a full-stack TypeScript framework that runs on Bun, for people who want to ship whole products instead of wiring together forty tools.
+Stacks is the project I have spent the last years building: a full-stack TypeScript framework that runs on Bun, for building a product's frontend, backend, and deployment in one codebase.
 
 ## One codebase, every surface
 
@@ -19,8 +19,12 @@ If you have used Laravel, the shape will feel familiar: expressive routing, an E
 The part I am most proud of: you describe your schema once, in the model. Validation, migrations, seeders, REST endpoints, and search indexing are all derived from that single definition.
 
 ```ts
+import { defineModel } from '@stacksjs/orm'
+import { schema } from '@stacksjs/validation'
+
 export default defineModel({
   name: 'Product',
+  table: 'products',
   traits: {
     useApi: { uri: 'products', routes: ['index', 'store', 'show'] },
     useSearch: { searchable: ['name'] },
@@ -36,10 +40,10 @@ export default defineModel({
 })
 ```
 
-Run `buddy generate:migrations` and Stacks diffs your models against the database and writes the SQL for you. No hand-written migrations unless you want them.
+Run `buddy generate:migrations` to generate SQL from the model changes. Review the SQL, then apply it with `buddy migrate`. The model snapshot tracks the schema history; hand-written migrations are still available when you need them.
 
 ## Own the stack
 
-Most frameworks are a thin layer of glue over hundreds of transitive dependencies. We made a different bet: if a piece is core to the developer experience, we build and maintain it ourselves. The linter, the formatter, the type generator, the templating engine, the CSS engine, the query builder: all ours. The only dependencies that remain are TypeScript and Bun.
+We build and maintain the tools at the core of the Stacks developer experience: the linter, formatter, declaration emitter, templating engine, CSS engine, and query builder. They share conventions and are used by the framework itself. Stacks also integrates external packages and services where the application needs them.
 
 Check it out at [stacksjs.com](https://stacksjs.com) or star the repo at [github.com/stacksjs/stacks](https://github.com/stacksjs/stacks). This site runs on it.

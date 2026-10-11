@@ -1,6 +1,7 @@
 ---
 title: South Mount Hawkins
 description: A weekend up South Mount Hawkins with Mo, 500 pushups and interval runs near the top, a bulldozer on the summit, the Harvest Moon, and the one thing to plan around, which is water.
+excerpt: A night on South Mount Hawkins with Mo, 500 pushups near the summit, and a golden Harvest Moon.
 date: 2026-09-27
 author: Chris Breuer
 authorBio: Software engineer, founder of Stacks, ultra runner. Los Angeles based.
@@ -12,17 +13,17 @@ We just got back from South Mount Hawkins in the San Gabriels. Mo came along, an
 
 ## A bulldozer on the summit
 
-The funny part first: up on top, there is a bulldozer. Somebody has been working on the trail recently. I have been up here many times before and have not seen it like this, and it shows: the trail is in better shape than I remember.
+There is a bulldozer on the summit. Somebody has been working on the trail recently, and it shows. I have been up here many times before; the trail is in better shape than I remember.
 
-The views have not changed, and they did not need to. They are just great, and they get better the longer you stay.
+The views are as good as I remember, and they get better the longer you stay.
 
 ## The Harvest Moon
 
-Then the moon came up, and it was extremely pretty.
+Then the moon came up gold.
 
 It was the Harvest Moon, the full moon closest to the autumn equinox, and it was full that very day. It rose at 6:37 PM, four minutes before sunset, almost exactly opposite the sun in the east, so for a few minutes the sky had the sun going down on one side and the moon coming up on the other.
 
-That is why it came up gold. Low on the horizon, its light crosses so much air that most of the blue is scattered away, the same reason a sunset is red. The golden one below is from six minutes after it rose, when it was less than a degree above the ridge. Half an hour later it had climbed clear of the haze and gone white over the range.
+Low on the horizon, its light crosses so much air that most of the blue is scattered away, the same reason a sunset is red. The golden one below is from six minutes after it rose, when it was less than a degree above the ridge. Half an hour later it had climbed clear of the haze and gone white over the range.
 
 ![A sky of red and orange cloud bands over the dark silhouettes of the surrounding peaks at sunset](/images/blog/mount-hawkins/img-6444-lg.avif "6:54 PM, the other side of the sky")
 
@@ -38,13 +39,13 @@ A mountain can be a better place for this than a gym, because nothing about it i
 
 ## Mo
 
-Mo had a great time. Somewhere ahead of me on the trail, as usual, entirely unbothered by my workouts, and happiest anywhere there was water to stand in.
+Mo had a great time, somewhere ahead of me on the trail as usual. My workouts did not bother him. He was happiest anywhere there was water to stand in.
 
 ![Mo in a black harness, standing in a shallow creek among granite boulders with tongue out](/images/blog/mount-hawkins/img-6346-lg.avif)
 
 ## Bring your own water
 
-Which is the part worth knowing before you go. There is one water source on the way up, about 2 miles before the peak, and that is it.
+There is one water source on the way up, about 2 miles before the peak, and that is it.
 
 So bring plenty. Carry what you need for the whole day from the start, and if a dog is coming with you, carry theirs too. They will drink more than you expect.
 
@@ -52,4 +53,4 @@ So bring plenty. Carry what you need for the whole day from the start, and if a 
 
 Straight off my watch: 10.5 miles out and back, 2,001 ft of climbing, and a night on top.
 
-[https://hq.training/a/mount-hawkins](https://hq.training/a/mount-hawkins)
+[View the route and activity on HQ.training](https://hq.training/a/mount-hawkins)

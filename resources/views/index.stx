@@ -1,8 +1,6 @@
 <script server>
-const fs = require('node:fs')
 const path = require('node:path')
-const { readingStats } = require(path.join(process.cwd(), 'resources/utils/reading-stats.ts'))
-const { longPostDate } = require(path.join(process.cwd(), 'resources/utils/post-date.ts'))
+const { blogPosts } = require(path.join(process.cwd(), 'resources/utils/blog-posts.ts'))
 const { homeEvents } = require(path.join(process.cwd(), 'resources/utils/events.ts'))
 
 const title = 'Chris Breuer - Software engineer, founder & ultra runner'
@@ -14,29 +12,7 @@ const pagePath = '/'
 // Split by date on every render, so a finished one moves down by itself.
 const { upcoming, recent } = homeEvents()
 
-// Read post frontmatter straight from content/blog (same source /blog renders).
-const blogDir = path.join(process.cwd(), 'content/blog')
-const posts = fs.readdirSync(blogDir)
-  .filter(f => f.endsWith('.md'))
-  .map((f) => {
-    const raw = fs.readFileSync(path.join(blogDir, f), 'utf-8')
-    const match = raw.match(/^---\n([\s\S]*?)\n---/)
-    const fm = {}
-    if (match) {
-      for (const line of match[1].split('\n')) {
-        const i = line.indexOf(':')
-        if (i === -1)
-          continue
-        let val = line.slice(i + 1).trim()
-        if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith('\'') && val.endsWith('\'')))
-          val = val.slice(1, -1)
-        fm[line.slice(0, i).trim()] = val
-      }
-    }
-    return { slug: f.replace(/\.md$/, ''), title: fm.title, date: fm.date, longDate: fm.date ? longPostDate(fm.date) : '', stats: readingStats(raw).label }
-  })
-  .filter(p => p.title && p.date)
-  .sort((a, b) => b.date.localeCompare(a.date))
+const posts = blogPosts()
 </script>
 
 @layout('layouts/site')
@@ -47,21 +23,17 @@ const posts = fs.readdirSync(blogDir)
 
 @section('content')
   <h1 class="page-title">Software engineer, <br class="title-break">founder, ultra runner.</h1>
-  <p class="page-lead">
-    I build developer tooling: <a href="/stacks">Stacks</a>, a TypeScript framework and the
-    ecosystem around it, and increasingly agentic tooling, for engineers and for their agents. Plus the
-    apps that run on top of it all. Every piece aims to be as fast and energy efficient as software can
-    be, because well-built abstractions are one way to scale AI sustainably.
-    The other half of my life is skyrunning: long days in the mountains with Mo, my Kangal, usually
-    somewhere ahead of me on the trail. Big dog person, if that wasn't clear. And since these two halves keep
-    pointing at each other, this is where I write about them.
-  </p>
+  <p class="page-lead home-lead">I build open-source developer tools and write about software, skyrunning, and life with Mo, my Kangal.</p>
+  <div class="home-links">
+    <a href="/blog">Read the blog <span aria-hidden="true">→</span></a>
+    <a href="/projects">Explore the projects <span aria-hidden="true">→</span></a>
+  </div>
 
   <h2 class="section-label">Building</h2>
   <ul class="entry-list">
     <li>
       <span class="entry-name"><a href="/stacks">Stacks</a></span>
-      <span class="entry-desc">A TypeScript framework, and the open-source ecosystem that grew around it.</span>
+      <span class="entry-desc">A full-stack TypeScript framework on Bun, and the open-source tools behind it.</span>
     </li>
     <li>
       <span class="entry-name"><a href="/home">Home</a></span>
@@ -69,11 +41,11 @@ const posts = fs.readdirSync(blogDir)
     </li>
     <li>
       <span class="entry-name"><a href="https://hq.training">HQ.training</a></span>
-      <span class="entry-desc">An operating system for gyms, coaches and athletes: memberships, scheduling and billing, sitting next to the training data.</span>
+      <span class="entry-desc">Memberships, scheduling and billing for gyms and coaches, alongside athletes' training data.</span>
     </li>
     <li>
       <span class="entry-name"><a href="https://wildloop.org">Wildloop</a></span>
-      <span class="entry-desc">Trail discovery and GPS recording, with a territory game underneath: close a loop and the ground inside it is yours.</span>
+      <span class="entry-desc">Trail discovery and GPS recording, with a territory game: close a loop to claim the ground inside it.</span>
     </li>
   </ul>
 
@@ -109,6 +81,7 @@ const posts = fs.readdirSync(blogDir)
           <a href="/blog/{{ post.slug }}">
             <span class="post-main">
               <span class="post-title">{{ post.title }}</span>
+              @if (post.excerpt)<span class="post-excerpt">{{ post.excerpt }}</span>@endif
               <span class="post-stats">{{ post.stats }}</span>
             </span>
             <time class="post-date" datetime="{{ post.date }}">{{ post.longDate }}</time>

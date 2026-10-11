@@ -1,14 +1,15 @@
 ---
 title: Two Days in San Diego
 description: The plan was 100 miles in four days. It became 65 miles in two, from a downtown warmup before 7 AM to Mission Beach in the afternoon heat, and the two things I learned on the way.
+excerpt: 65 miles in two days, from downtown San Diego to La Jolla and Mission Beach, with a few lessons along the way.
 date: 2026-10-05
 author: Chris Breuer
 authorBio: Software engineer, founder of Stacks, ultra runner. Los Angeles based.
 ---
 
-The plan was 100 miles in San Diego over four days. Plans changed a little. I came home two days early, and I have been making up the difference at TriFit in Santa Monica since.
+I planned to run 100 miles in San Diego over four days. I came home two days early, and I have been making up the difference at TriFit in Santa Monica since.
 
-The two days I did get were good ones: 65 miles between them, most of it along the coast. And I count all of it. The miles before a run, the ones the watch missed, the treadmill at the hotel: they flow into one another, so the numbers here are the day, not just the GPS file.
+The two days I did get were good ones: 65 miles between them, most of it along the coast. I count the whole day, including the miles before a run, the ones the watch missed, and the treadmill at the hotel. The numbers here include all of that, beyond what is in each GPS file.
 
 ## Day one: downtown, La Jolla, and back
 
@@ -22,9 +23,9 @@ At La Jolla Cove the marine layer was still sitting on the water, and the sea li
 
 ![Sea lions asleep in a pile on pale sandstone above the surf at La Jolla Cove, under a grey marine layer](/images/blog/san-diego/img-6564-lg.avif "Mid-morning, La Jolla Cove")
 
-Then UC San Diego. I knew it was a big campus. I did not know it was this big. You run into it expecting to be out the other side in a few minutes, and it keeps going: buildings, roads, paths, and then more of all three.
+Then UC San Diego. I knew it was a big campus, but I expected to be out the other side in a few minutes. It keeps going: buildings, roads, paths, and then more of all three.
 
-The only real problem all day, besides a small blister, was chafing. It bothered me a lot between miles 30 and 40. That one is on me: heading out for a day that long without Vaseline ready is a rookie mistake, and not one I plan to make twice.
+Besides a small blister, the only real problem all day was chafing. It bothered me a lot between miles 30 and 40. That one is on me: heading out for a day that long without Vaseline ready is a rookie mistake, and not one I plan to make twice.
 
 ![A turtle hauled out on a log in a reedy pond, sunning itself in bright midday light](/images/blog/san-diego/img-6576-lg.avif "Somebody who had the sun figured out")
 
@@ -52,7 +53,7 @@ Then dinner, and the Padres doing their part.
 
 ## What I learned
 
-Sun protection is very important. Not a nice-to-have, not something for the beach day after. Hours on an exposed coast in October are their own kind of load, and the sun takes something out of you whether or not you notice it happening. Sunscreen before, sunscreen again during, a hat, glasses. The turtle had it right.
+Hours on an exposed coast in October take something out of you, whether or not you notice it happening. Sun protection matters on the run itself: sunscreen before, sunscreen again during, a hat, glasses. The turtle had it right.
 
 UC San Diego is huge. Plan your route through it, and plan for it to take longer than it looks.
 

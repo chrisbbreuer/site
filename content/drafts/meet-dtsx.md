@@ -6,13 +6,13 @@ author: Chris Breuer
 authorBio: Software engineer and founder of Stacks. Passionately obsessed over developer tooling.
 ---
 
-If you publish TypeScript libraries, you know the pain: generating `.d.ts` files with `tsc` is the slowest part of the build. `dtsx` replaces that step with a fast, focused declaration emitter.
+When generating `.d.ts` files becomes the slow part of a library build, `dtsx` can replace that step. It is a declaration emitter built around TypeScript's isolated declarations.
 
 ## The isolated declarations bet
 
-TypeScript's `isolatedDeclarations` mode requires you to annotate your public API explicitly, so declarations can be emitted from each file independently, without whole-program type checking. That trade unlocks enormous speed: no cross-file inference, no waiting on the type checker.
+TypeScript's `isolatedDeclarations` mode requires you to annotate your public API explicitly, so declarations can be emitted from each file independently, without whole-program type checking. Those annotations let the emitter work without cross-file inference or waiting on the type checker.
 
-dtsx leans into this. Annotate your exports, and it emits declarations in a fraction of the time a full `tsc --emitDeclarationOnly` run takes.
+That is the trade dtsx makes: you annotate the exports, and it focuses on emitting their declarations.
 
 ## Usage
 

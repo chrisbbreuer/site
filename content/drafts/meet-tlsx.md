@@ -12,16 +12,12 @@ authorBio: Software engineer and founder of Stacks. Passionately obsessed over d
 
 tlsx creates a local certificate authority, trusts it in your system keychain, and mints leaf certificates for any domain you develop against:
 
-```ts
-import { generateCertificate } from '@stacksjs/tlsx'
-
-const cert = await generateCertificate({
-  domain: 'my-app.localhost',
-  rootCA: { organization: 'Local Development CA' },
-})
+```bash
+bunx @stacksjs/tlsx install
+bunx @stacksjs/tlsx secure my-app.localhost
 ```
 
-No OpenSSL incantations, no browser warnings, no "proceed anyway" clicks. Browsers see a chain they already trust.
+Once the local CA is installed in the system trust store, browsers can verify the certificates it issues. tlsx provides the trust-store integration as well as certificate generation.
 
 ## Why it matters
 

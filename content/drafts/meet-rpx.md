@@ -10,7 +10,7 @@ authorBio: Software engineer and founder of Stacks. Passionately obsessed over d
 
 ## The problem
 
-Every local project ends up on a different port. `localhost:3000`, `localhost:5173`, `localhost:8080`. Cookies collide, HTTPS is missing, and OAuth callbacks break. The classic fix is hand-rolling an nginx or Caddy config, which nobody enjoys for a throwaway dev setup.
+Every local project ends up on a different port. `localhost:3000`, `localhost:5173`, `localhost:8080`. Cookies collide, HTTPS is missing, and OAuth callbacks break. The usual fix is writing an nginx or Caddy config for a local setup.
 
 ## What rpx does
 
@@ -25,7 +25,7 @@ export default {
 }
 ```
 
-That gets you `https://my-app.localhost` with a locally-trusted certificate, automatically. Under the hood, rpx pairs with [tlsx](/blog/meet-tlsx) to mint and trust the local CA, and `*.localhost` names resolve on macOS without touching `/etc/hosts`.
+That gets you `https://my-app.localhost` with a locally-trusted certificate, automatically. Under the hood, rpx pairs with tlsx to mint and trust the local CA, and `*.localhost` names resolve on macOS without touching `/etc/hosts`.
 
 ## Not just for dev
 

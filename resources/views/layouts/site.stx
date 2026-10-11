@@ -111,10 +111,11 @@ const ogPublished = ogType === 'article' ? String(ogArticleValue.published || ''
   <link rel="stylesheet" href="{{ asset('/site.css') }}">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <div class="shell">
     @include('../partials/masthead.stx')
 
-    <main>
+    <main id="main-content" tabindex="-1">
       @yield('content')
     </main>
 
