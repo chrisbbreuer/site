@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-10-12",
+  "generatedAt": "2026-10-13",
   "repos": [
     {
       "name": "stacks",
       "org": "stacksjs",
       "description": "Modern, performant, optimized for DX/AX. Develop powerful apps, clouds & framework-agnostic libraries, faster.",
-      "stars": 631,
+      "stars": 632,
       "url": "https://github.com/stacksjs/stacks",
       "tags": [
         "TypeScript",
@@ -55,7 +55,7 @@
       "name": "bun-queue",
       "org": "stacksjs",
       "description": "A modern & powerful Queue / Messaging system. Optimized for Bun usage. UI coming soon.",
-      "stars": 70,
+      "stars": 69,
       "url": "https://github.com/stacksjs/bun-queue",
       "tags": [
         "TypeScript",
@@ -144,7 +144,7 @@
       "name": "ts-rate-limiter",
       "org": "stacksjs",
       "description": "A high-performance, flexible rate limiting library for TypeScript.",
-      "stars": 22,
+      "stars": 23,
       "url": "https://github.com/stacksjs/ts-rate-limiter",
       "tags": [
         "TypeScript",
