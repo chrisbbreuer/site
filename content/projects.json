@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-10-13",
+  "generatedAt": "2026-10-15",
   "repos": [
     {
       "name": "stacks",
       "org": "stacksjs",
       "description": "Modern, performant, optimized for DX/AX. Develop powerful apps, clouds & framework-agnostic libraries, faster.",
-      "stars": 632,
+      "stars": 633,
       "url": "https://github.com/stacksjs/stacks",
       "tags": [
         "TypeScript",
@@ -16,9 +16,9 @@
         "Library",
         "Mobile"
       ],
-      "downloads": 51713,
+      "downloads": 53093,
       "pkg": "stacks",
-      "allDownloads": 6220004,
+      "allDownloads": 6443312,
       "pkgCount": 91
     },
     {
@@ -30,9 +30,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 151146,
+      "downloads": 150469,
       "pkg": "@stacksjs/dtsx",
-      "allDownloads": 303831,
+      "allDownloads": 302425,
       "pkgCount": 5
     },
     {
@@ -46,9 +46,9 @@
         "Bun",
         "Library"
       ],
-      "downloads": 33425,
+      "downloads": 34506,
       "pkg": "ts-spreadsheets",
-      "allDownloads": 33425,
+      "allDownloads": 34506,
       "pkgCount": 1
     },
     {
@@ -62,9 +62,9 @@
         "Bun",
         "Queue"
       ],
-      "downloads": 25164,
+      "downloads": 25517,
       "pkg": "@stacksjs/bun-queue",
-      "allDownloads": 25181,
+      "allDownloads": 25534,
       "pkgCount": 2
     },
     {
@@ -77,9 +77,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 37535,
+      "downloads": 38324,
       "pkg": "@stacksjs/tlsx",
-      "allDownloads": 37653,
+      "allDownloads": 38429,
       "pkgCount": 2
     },
     {
@@ -92,9 +92,9 @@
         "TypeScript",
         "Laravel"
       ],
-      "downloads": 67464,
+      "downloads": 70190,
       "pkg": "ts-collect",
-      "allDownloads": 67464,
+      "allDownloads": 70190,
       "pkgCount": 1
     },
     {
@@ -107,9 +107,9 @@
         "TypeScript",
         "Proxy"
       ],
-      "downloads": 58,
+      "downloads": 57,
       "pkg": "vite-plugin-local",
-      "allDownloads": 58,
+      "allDownloads": 57,
       "pkgCount": 1
     },
     {
@@ -124,9 +124,9 @@
         "CLI",
         "Proxy"
       ],
-      "downloads": 35690,
+      "downloads": 36549,
       "pkg": "@stacksjs/rpx",
-      "allDownloads": 39101,
+      "allDownloads": 39957,
       "pkgCount": 3
     },
     {
@@ -151,9 +151,9 @@
         "Bun",
         "Library"
       ],
-      "downloads": 55230,
+      "downloads": 57222,
       "pkg": "ts-rate-limiter",
-      "allDownloads": 55230,
+      "allDownloads": 57222,
       "pkgCount": 1
     },
     {
@@ -166,16 +166,16 @@
         "TypeScript",
         "Tunneling"
       ],
-      "downloads": 81573,
+      "downloads": 84912,
       "pkg": "localtunnels",
-      "allDownloads": 81573,
+      "allDownloads": 84912,
       "pkgCount": 1
     },
     {
       "name": "stx",
       "org": "stacksjs",
       "description": "A performant & powerful UI templating language.",
-      "stars": 19,
+      "stars": 20,
       "url": "https://github.com/stacksjs/stx",
       "tags": [
         "TypeScript",
@@ -184,9 +184,9 @@
         "CSS",
         "Templating"
       ],
-      "downloads": 268768,
+      "downloads": 276499,
       "pkg": "@stacksjs/stx",
-      "allDownloads": 6039934,
+      "allDownloads": 6958131,
       "pkgCount": 220
     },
     {
@@ -201,9 +201,9 @@
         "CLI",
         "Library"
       ],
-      "downloads": 124895,
+      "downloads": 125699,
       "pkg": "bun-git-hooks",
-      "allDownloads": 124895,
+      "allDownloads": 125699,
       "pkgCount": 1
     },
     {
@@ -230,9 +230,9 @@
         "Config",
         "Library"
       ],
-      "downloads": 236935,
+      "downloads": 240962,
       "pkg": "bunfig",
-      "allDownloads": 236935,
+      "allDownloads": 240962,
       "pkgCount": 1
     },
     {
@@ -244,9 +244,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 25228,
+      "downloads": 25924,
       "pkg": "ts-qr-codes",
-      "allDownloads": 25315,
+      "allDownloads": 25999,
       "pkgCount": 2
     },
     {
@@ -259,9 +259,9 @@
         "TypeScript",
         "Bun"
       ],
-      "downloads": 57,
+      "downloads": 58,
       "pkg": "bun-plugin-unocss",
-      "allDownloads": 57,
+      "allDownloads": 58,
       "pkgCount": 1
     },
     {
@@ -274,9 +274,9 @@
         "TypeScript",
         "Bun"
       ],
-      "downloads": 210438,
+      "downloads": 211161,
       "pkg": "@stacksjs/bunpress",
-      "allDownloads": 211065,
+      "allDownloads": 211777,
       "pkgCount": 2
     },
     {
@@ -291,9 +291,9 @@
         "Library",
         "Zig"
       ],
-      "downloads": 228799,
+      "downloads": 234029,
       "pkg": "@stacksjs/clapp",
-      "allDownloads": 228799,
+      "allDownloads": 234029,
       "pkgCount": 1
     },
     {
@@ -306,9 +306,9 @@
         "TypeScript",
         "Bun"
       ],
-      "downloads": 2149,
+      "downloads": 2193,
       "pkg": "bun-plugin-dotenvx",
-      "allDownloads": 2149,
+      "allDownloads": 2193,
       "pkgCount": 1
     },
     {
@@ -321,9 +321,9 @@
         "TypeScript",
         "Vue"
       ],
-      "downloads": 14,
+      "downloads": 13,
       "pkg": "@stacksjs/table",
-      "allDownloads": 14,
+      "allDownloads": 13,
       "pkgCount": 1
     },
     {
@@ -335,9 +335,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 224681,
+      "downloads": 226757,
       "pkg": "ts-images",
-      "allDownloads": 226966,
+      "allDownloads": 229180,
       "pkgCount": 2
     },
     {
@@ -359,9 +359,9 @@
         "PHP",
         "Zig"
       ],
-      "downloads": 15066,
+      "downloads": 17465,
       "pkg": "@buddysh/buddy",
-      "allDownloads": 15066,
+      "allDownloads": 17465,
       "pkgCount": 1
     },
     {
@@ -374,9 +374,9 @@
         "TypeScript",
         "Bun"
       ],
-      "downloads": 34128,
+      "downloads": 35092,
       "pkg": "bun-plugin-auto-imports",
-      "allDownloads": 34128,
+      "allDownloads": 35092,
       "pkgCount": 1
     },
     {
@@ -403,9 +403,9 @@
         "Library",
         "Node"
       ],
-      "downloads": 49539,
+      "downloads": 51487,
       "pkg": "@stacksjs/ts-cache",
-      "allDownloads": 49539,
+      "allDownloads": 51487,
       "pkgCount": 1
     },
     {
@@ -420,9 +420,9 @@
         "CLI",
         "Testing"
       ],
-      "downloads": 38,
+      "downloads": 36,
       "pkg": "bun-ts-starter",
-      "allDownloads": 38,
+      "allDownloads": 36,
       "pkgCount": 1
     },
     {
@@ -434,9 +434,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 340,
+      "downloads": 356,
       "pkg": "vite-plugin-dotenvx",
-      "allDownloads": 340,
+      "allDownloads": 356,
       "pkgCount": 1
     },
     {
@@ -449,9 +449,9 @@
         "TypeScript",
         "Zig"
       ],
-      "downloads": 136614,
+      "downloads": 137243,
       "pkg": "@stacksjs/bumpx",
-      "allDownloads": 137457,
+      "allDownloads": 138029,
       "pkgCount": 2
     },
     {
@@ -478,9 +478,9 @@
         "React",
         "Vue"
       ],
-      "downloads": 16565,
+      "downloads": 17315,
       "pkg": "ts-maps",
-      "allDownloads": 19720,
+      "allDownloads": 20482,
       "pkgCount": 8
     },
     {
@@ -494,9 +494,9 @@
         "Bun",
         "Laravel"
       ],
-      "downloads": 47812,
+      "downloads": 49419,
       "pkg": "@stacksjs/bun-router",
-      "allDownloads": 47812,
+      "allDownloads": 49419,
       "pkgCount": 1
     },
     {
@@ -519,9 +519,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 131243,
+      "downloads": 132220,
       "pkg": "@stacksjs/logsmith",
-      "allDownloads": 131849,
+      "allDownloads": 132817,
       "pkgCount": 2
     },
     {
@@ -549,9 +549,9 @@
         "TypeScript",
         "Vue"
       ],
-      "downloads": 240,
+      "downloads": 243,
       "pkg": "vite-plugin-layouts",
-      "allDownloads": 240,
+      "allDownloads": 243,
       "pkgCount": 1
     },
     {
@@ -566,9 +566,9 @@
         "CLI",
         "Library"
       ],
-      "downloads": 19448,
+      "downloads": 19676,
       "pkg": "@ts-audio/core",
-      "allDownloads": 109849,
+      "allDownloads": 111190,
       "pkgCount": 6
     },
     {
@@ -581,9 +581,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 32,
+      "downloads": 33,
       "pkg": "ts-security",
-      "allDownloads": 249,
+      "allDownloads": 253,
       "pkgCount": 12
     },
     {
@@ -595,9 +595,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 159307,
+      "downloads": 162509,
       "pkg": "ts-gif",
-      "allDownloads": 159307,
+      "allDownloads": 162509,
       "pkgCount": 1
     },
     {
@@ -611,9 +611,9 @@
         "CLI",
         "Library"
       ],
-      "downloads": 7,
+      "downloads": 8,
       "pkg": "@stacksjs/httx-dashboard",
-      "allDownloads": 31107,
+      "allDownloads": 31980,
       "pkgCount": 2
     },
     {
@@ -628,9 +628,9 @@
         "Library",
         "Node"
       ],
-      "downloads": 33063,
+      "downloads": 34044,
       "pkg": "ts-slug",
-      "allDownloads": 33063,
+      "allDownloads": 34044,
       "pkgCount": 1
     },
     {
@@ -646,9 +646,9 @@
         "Library",
         "Testing"
       ],
-      "downloads": 53,
+      "downloads": 47,
       "pkg": "besting",
-      "allDownloads": 53,
+      "allDownloads": 47,
       "pkgCount": 1
     },
     {
@@ -699,9 +699,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 1012,
+      "downloads": 998,
       "pkg": "ts-punycode",
-      "allDownloads": 1012,
+      "allDownloads": 998,
       "pkgCount": 1
     },
     {
@@ -714,9 +714,9 @@
         "TypeScript",
         "Laravel"
       ],
-      "downloads": 85226,
+      "downloads": 88369,
       "pkg": "@stacksjs/ts-validation",
-      "allDownloads": 85226,
+      "allDownloads": 88369,
       "pkgCount": 1
     },
     {
@@ -728,9 +728,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 22,
+      "downloads": 14,
       "pkg": "action-releaser",
-      "allDownloads": 22,
+      "allDownloads": 14,
       "pkgCount": 1
     },
     {
@@ -743,9 +743,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 220235,
+      "downloads": 225217,
       "pkg": "@stacksjs/clarity",
-      "allDownloads": 220235,
+      "allDownloads": 225217,
       "pkgCount": 1
     },
     {
@@ -768,9 +768,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 10395,
+      "downloads": 11226,
       "pkg": "ts-medium-editor",
-      "allDownloads": 10395,
+      "allDownloads": 11226,
       "pkgCount": 1
     },
     {
@@ -784,9 +784,9 @@
         "Desktop",
         "Mobile"
       ],
-      "downloads": 11,
+      "downloads": 9,
       "pkg": "@stacksjs/vite-plugin-tauri",
-      "allDownloads": 11,
+      "allDownloads": 9,
       "pkgCount": 1
     },
     {
@@ -799,9 +799,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 710,
+      "downloads": 699,
       "pkg": "ts-clone",
-      "allDownloads": 710,
+      "allDownloads": 699,
       "pkgCount": 1
     },
     {
@@ -814,9 +814,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 10174,
+      "downloads": 10106,
       "pkg": "ts-countries",
-      "allDownloads": 10174,
+      "allDownloads": 10106,
       "pkgCount": 1
     },
     {
@@ -828,9 +828,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 38,
+      "downloads": 39,
       "pkg": "ts-numbers",
-      "allDownloads": 38,
+      "allDownloads": 39,
       "pkgCount": 1
     },
     {
@@ -869,9 +869,9 @@
         "CLI",
         "Library"
       ],
-      "downloads": 19152,
+      "downloads": 19454,
       "pkg": "ts-videos",
-      "allDownloads": 57141,
+      "allDownloads": 58106,
       "pkgCount": 4
     },
     {
@@ -904,9 +904,9 @@
         "TypeScript",
         "Bun"
       ],
-      "downloads": 82685,
+      "downloads": 86032,
       "pkg": "dynamodb-tooling",
-      "allDownloads": 82685,
+      "allDownloads": 86032,
       "pkgCount": 1
     },
     {
@@ -928,9 +928,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 30625,
+      "downloads": 31504,
       "pkg": "@stacksjs/gitit",
-      "allDownloads": 30625,
+      "allDownloads": 31504,
       "pkgCount": 1
     },
     {
@@ -945,9 +945,9 @@
         "Library",
         "Linting"
       ],
-      "downloads": 114784,
+      "downloads": 114439,
       "pkg": "@stacksjs/gitlint",
-      "allDownloads": 114784,
+      "allDownloads": 114439,
       "pkgCount": 1
     },
     {
@@ -969,9 +969,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 46,
+      "downloads": 45,
       "pkg": "ts-inputs",
-      "allDownloads": 80,
+      "allDownloads": 79,
       "pkgCount": 2
     },
     {
@@ -983,9 +983,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 168157,
+      "downloads": 171292,
       "pkg": "ts-jpeg",
-      "allDownloads": 168157,
+      "allDownloads": 171292,
       "pkgCount": 1
     },
     {
@@ -998,9 +998,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 25,
+      "downloads": 26,
       "pkg": "ts-ndarray",
-      "allDownloads": 25,
+      "allDownloads": 26,
       "pkgCount": 1
     },
     {
@@ -1013,9 +1013,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 167683,
+      "downloads": 170826,
       "pkg": "@stacksjs/ts-png",
-      "allDownloads": 167683,
+      "allDownloads": 170826,
       "pkgCount": 1
     },
     {
@@ -1328,7 +1328,7 @@
       "name": "laravel-media-converter",
       "org": "meemalabs",
       "description": "This package allows you to easily integrate with AWS MediaConvert.",
-      "stars": 57,
+      "stars": 56,
       "url": "https://github.com/meemalabs/laravel-media-converter",
       "tags": [
         "PHP",
@@ -1455,9 +1455,9 @@
         "TypeScript",
         "Zig"
       ],
-      "downloads": 177160,
+      "downloads": 183797,
       "pkg": "ts-pantry",
-      "allDownloads": 177160,
+      "allDownloads": 183797,
       "pkgCount": 1
     },
     {
@@ -1483,9 +1483,9 @@
         "CLI",
         "Library"
       ],
-      "downloads": 75413,
+      "downloads": 76469,
       "pkg": "@stacksjs/mail",
-      "allDownloads": 75413,
+      "allDownloads": 76469,
       "pkgCount": 1
     },
     {
@@ -1507,9 +1507,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 39655,
+      "downloads": 42682,
       "pkg": "@bughq/sdk",
-      "allDownloads": 45320,
+      "allDownloads": 48459,
       "pkgCount": 5
     },
     {
@@ -1537,7 +1537,7 @@
       "name": "craft",
       "org": "craft-native",
       "description": "Performant, native desktop & mobile apps with web languages.",
-      "stars": 19,
+      "stars": 20,
       "url": "https://github.com/craft-native/craft",
       "tags": [
         "Zig",
@@ -1545,9 +1545,9 @@
         "JavaScript",
         "TypeScript"
       ],
-      "downloads": 164309,
+      "downloads": 171140,
       "pkg": "craft-native",
-      "allDownloads": 200146,
+      "allDownloads": 222100,
       "pkgCount": 8
     },
     {
