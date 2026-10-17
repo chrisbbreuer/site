@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-15",
+  "generatedAt": "2026-10-17",
   "repos": [
     {
       "name": "stacks",
@@ -25,7 +25,7 @@
       "name": "dtsx",
       "org": "stacksjs",
       "description": "Extremely fast, smart & configurable DTS emitter.",
-      "stars": 177,
+      "stars": 178,
       "url": "https://github.com/stacksjs/dtsx",
       "tags": [
         "TypeScript"
@@ -1537,7 +1537,7 @@
       "name": "craft",
       "org": "craft-native",
       "description": "Performant, native desktop & mobile apps with web languages.",
-      "stars": 20,
+      "stars": 21,
       "url": "https://github.com/craft-native/craft",
       "tags": [
         "Zig",
