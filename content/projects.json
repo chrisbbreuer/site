@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-10-18",
+  "generatedAt": "2026-10-20",
   "repos": [
     {
       "name": "stacks",
       "org": "stacksjs",
       "description": "Modern, performant, optimized for DX/AX. Develop powerful apps, clouds & framework-agnostic libraries, faster.",
-      "stars": 633,
+      "stars": 634,
       "url": "https://github.com/stacksjs/stacks",
       "tags": [
         "TypeScript",
@@ -16,9 +16,9 @@
         "Library",
         "Mobile"
       ],
-      "downloads": 51451,
+      "downloads": 58456,
       "pkg": "stacks",
-      "allDownloads": 6574858,
+      "allDownloads": 7818153,
       "pkgCount": 91
     },
     {
@@ -30,9 +30,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 144134,
+      "downloads": 153932,
       "pkg": "@stacksjs/dtsx",
-      "allDownloads": 289607,
+      "allDownloads": 309237,
       "pkgCount": 5
     },
     {
@@ -46,9 +46,9 @@
         "Bun",
         "Library"
       ],
-      "downloads": 35723,
+      "downloads": 41044,
       "pkg": "ts-spreadsheets",
-      "allDownloads": 35723,
+      "allDownloads": 41044,
       "pkgCount": 1
     },
     {
@@ -62,9 +62,9 @@
         "Bun",
         "Queue"
       ],
-      "downloads": 25103,
+      "downloads": 28100,
       "pkg": "@stacksjs/bun-queue",
-      "allDownloads": 25120,
+      "allDownloads": 28115,
       "pkgCount": 2
     },
     {
@@ -77,9 +77,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 39027,
+      "downloads": 43782,
       "pkg": "@stacksjs/tlsx",
-      "allDownloads": 39123,
+      "allDownloads": 43878,
       "pkgCount": 2
     },
     {
@@ -92,9 +92,9 @@
         "TypeScript",
         "Laravel"
       ],
-      "downloads": 72005,
+      "downloads": 76362,
       "pkg": "ts-collect",
-      "allDownloads": 72005,
+      "allDownloads": 76362,
       "pkgCount": 1
     },
     {
@@ -107,9 +107,9 @@
         "TypeScript",
         "Proxy"
       ],
-      "downloads": 48,
+      "downloads": 44,
       "pkg": "vite-plugin-local",
-      "allDownloads": 48,
+      "allDownloads": 44,
       "pkgCount": 1
     },
     {
@@ -124,9 +124,9 @@
         "CLI",
         "Proxy"
       ],
-      "downloads": 37486,
+      "downloads": 42217,
       "pkg": "@stacksjs/rpx",
-      "allDownloads": 40629,
+      "allDownloads": 45675,
       "pkgCount": 3
     },
     {
@@ -151,9 +151,9 @@
         "Bun",
         "Library"
       ],
-      "downloads": 58431,
+      "downloads": 68386,
       "pkg": "ts-rate-limiter",
-      "allDownloads": 58431,
+      "allDownloads": 68386,
       "pkgCount": 1
     },
     {
@@ -166,9 +166,9 @@
         "TypeScript",
         "Tunneling"
       ],
-      "downloads": 87038,
+      "downloads": 106642,
       "pkg": "localtunnels",
-      "allDownloads": 87038,
+      "allDownloads": 106642,
       "pkgCount": 1
     },
     {
@@ -184,9 +184,9 @@
         "CSS",
         "Templating"
       ],
-      "downloads": 272325,
+      "downloads": 309023,
       "pkg": "@stacksjs/stx",
-      "allDownloads": 7253388,
+      "allDownloads": 8335297,
       "pkgCount": 220
     },
     {
@@ -201,9 +201,9 @@
         "CLI",
         "Library"
       ],
-      "downloads": 121539,
+      "downloads": 132595,
       "pkg": "bun-git-hooks",
-      "allDownloads": 121539,
+      "allDownloads": 132595,
       "pkgCount": 1
     },
     {
@@ -230,9 +230,9 @@
         "Config",
         "Library"
       ],
-      "downloads": 236560,
+      "downloads": 271271,
       "pkg": "bunfig",
-      "allDownloads": 236560,
+      "allDownloads": 271271,
       "pkgCount": 1
     },
     {
@@ -244,9 +244,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 26007,
+      "downloads": 26904,
       "pkg": "ts-qr-codes",
-      "allDownloads": 26065,
+      "allDownloads": 26960,
       "pkgCount": 2
     },
     {
@@ -259,9 +259,9 @@
         "TypeScript",
         "Bun"
       ],
-      "downloads": 61,
+      "downloads": 56,
       "pkg": "bun-plugin-unocss",
-      "allDownloads": 61,
+      "allDownloads": 56,
       "pkgCount": 1
     },
     {
@@ -274,9 +274,9 @@
         "TypeScript",
         "Bun"
       ],
-      "downloads": 204401,
+      "downloads": 231442,
       "pkg": "@stacksjs/bunpress",
-      "allDownloads": 205005,
+      "allDownloads": 232354,
       "pkgCount": 2
     },
     {
@@ -291,9 +291,9 @@
         "Library",
         "Zig"
       ],
-      "downloads": 232975,
+      "downloads": 268839,
       "pkg": "@stacksjs/clapp",
-      "allDownloads": 232975,
+      "allDownloads": 268839,
       "pkgCount": 1
     },
     {
@@ -306,9 +306,9 @@
         "TypeScript",
         "Bun"
       ],
-      "downloads": 2013,
+      "downloads": 1847,
       "pkg": "bun-plugin-dotenvx",
-      "allDownloads": 2013,
+      "allDownloads": 1847,
       "pkgCount": 1
     },
     {
@@ -321,9 +321,9 @@
         "TypeScript",
         "Vue"
       ],
-      "downloads": 14,
+      "downloads": 11,
       "pkg": "@stacksjs/table",
-      "allDownloads": 14,
+      "allDownloads": 11,
       "pkgCount": 1
     },
     {
@@ -335,9 +335,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 220983,
+      "downloads": 250308,
       "pkg": "ts-images",
-      "allDownloads": 223346,
+      "allDownloads": 252690,
       "pkgCount": 2
     },
     {
@@ -359,9 +359,9 @@
         "PHP",
         "Zig"
       ],
-      "downloads": 20895,
+      "downloads": 26881,
       "pkg": "@buddysh/buddy",
-      "allDownloads": 20895,
+      "allDownloads": 26881,
       "pkgCount": 1
     },
     {
@@ -374,9 +374,9 @@
         "TypeScript",
         "Bun"
       ],
-      "downloads": 36268,
+      "downloads": 41575,
       "pkg": "bun-plugin-auto-imports",
-      "allDownloads": 36268,
+      "allDownloads": 41575,
       "pkgCount": 1
     },
     {
@@ -403,9 +403,9 @@
         "Library",
         "Node"
       ],
-      "downloads": 53213,
+      "downloads": 64025,
       "pkg": "@stacksjs/ts-cache",
-      "allDownloads": 53213,
+      "allDownloads": 64025,
       "pkgCount": 1
     },
     {
@@ -420,9 +420,9 @@
         "CLI",
         "Testing"
       ],
-      "downloads": 50,
+      "downloads": 62,
       "pkg": "bun-ts-starter",
-      "allDownloads": 50,
+      "allDownloads": 62,
       "pkgCount": 1
     },
     {
@@ -434,9 +434,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 359,
+      "downloads": 371,
       "pkg": "vite-plugin-dotenvx",
-      "allDownloads": 359,
+      "allDownloads": 371,
       "pkgCount": 1
     },
     {
@@ -449,9 +449,9 @@
         "TypeScript",
         "Zig"
       ],
-      "downloads": 134293,
+      "downloads": 146973,
       "pkg": "@stacksjs/bumpx",
-      "allDownloads": 135070,
+      "allDownloads": 148086,
       "pkgCount": 2
     },
     {
@@ -478,9 +478,9 @@
         "React",
         "Vue"
       ],
-      "downloads": 18879,
+      "downloads": 23208,
       "pkg": "ts-maps",
-      "allDownloads": 22065,
+      "allDownloads": 31649,
       "pkgCount": 8
     },
     {
@@ -494,9 +494,9 @@
         "Bun",
         "Laravel"
       ],
-      "downloads": 50905,
+      "downloads": 60763,
       "pkg": "@stacksjs/bun-router",
-      "allDownloads": 50905,
+      "allDownloads": 60763,
       "pkgCount": 1
     },
     {
@@ -519,9 +519,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 129706,
+      "downloads": 131562,
       "pkg": "@stacksjs/logsmith",
-      "allDownloads": 130299,
+      "allDownloads": 132153,
       "pkgCount": 2
     },
     {
@@ -534,9 +534,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 17,
+      "downloads": 15,
       "pkg": "@stacksjs/ts-datetime",
-      "allDownloads": 17,
+      "allDownloads": 15,
       "pkgCount": 1
     },
     {
@@ -549,9 +549,9 @@
         "TypeScript",
         "Vue"
       ],
-      "downloads": 178,
+      "downloads": 163,
       "pkg": "vite-plugin-layouts",
-      "allDownloads": 178,
+      "allDownloads": 163,
       "pkgCount": 1
     },
     {
@@ -566,9 +566,9 @@
         "CLI",
         "Library"
       ],
-      "downloads": 19358,
+      "downloads": 21299,
       "pkg": "@ts-audio/core",
-      "allDownloads": 109446,
+      "allDownloads": 117223,
       "pkgCount": 6
     },
     {
@@ -581,9 +581,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 39,
+      "downloads": 41,
       "pkg": "ts-security",
-      "allDownloads": 269,
+      "allDownloads": 255,
       "pkgCount": 12
     },
     {
@@ -606,9 +606,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 160218,
+      "downloads": 165246,
       "pkg": "ts-gif",
-      "allDownloads": 160218,
+      "allDownloads": 165246,
       "pkgCount": 1
     },
     {
@@ -622,9 +622,9 @@
         "CLI",
         "Library"
       ],
-      "downloads": 11,
+      "downloads": 8,
       "pkg": "@stacksjs/httx-dashboard",
-      "allDownloads": 33107,
+      "allDownloads": 34483,
       "pkgCount": 2
     },
     {
@@ -639,9 +639,9 @@
         "Library",
         "Node"
       ],
-      "downloads": 35196,
+      "downloads": 40358,
       "pkg": "ts-slug",
-      "allDownloads": 35196,
+      "allDownloads": 40358,
       "pkgCount": 1
     },
     {
@@ -657,9 +657,9 @@
         "Library",
         "Testing"
       ],
-      "downloads": 52,
+      "downloads": 53,
       "pkg": "besting",
-      "allDownloads": 52,
+      "allDownloads": 53,
       "pkgCount": 1
     },
     {
@@ -673,9 +673,9 @@
         "macOS",
         "Swift"
       ],
-      "downloads": 26,
+      "downloads": 28,
       "pkg": "hushapp",
-      "allDownloads": 26,
+      "allDownloads": 28,
       "pkgCount": 1
     },
     {
@@ -699,9 +699,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 910,
+      "downloads": 864,
       "pkg": "ts-punycode",
-      "allDownloads": 910,
+      "allDownloads": 864,
       "pkgCount": 1
     },
     {
@@ -714,9 +714,9 @@
         "TypeScript",
         "Laravel"
       ],
-      "downloads": 90324,
+      "downloads": 110635,
       "pkg": "@stacksjs/ts-validation",
-      "allDownloads": 90324,
+      "allDownloads": 110635,
       "pkgCount": 1
     },
     {
@@ -728,9 +728,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 19,
+      "downloads": 17,
       "pkg": "action-releaser",
-      "allDownloads": 19,
+      "allDownloads": 17,
       "pkgCount": 1
     },
     {
@@ -743,9 +743,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 220760,
+      "downloads": 256321,
       "pkg": "@stacksjs/clarity",
-      "allDownloads": 220760,
+      "allDownloads": 256321,
       "pkgCount": 1
     },
     {
@@ -768,9 +768,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 12005,
+      "downloads": 15079,
       "pkg": "ts-medium-editor",
-      "allDownloads": 12005,
+      "allDownloads": 15079,
       "pkgCount": 1
     },
     {
@@ -784,9 +784,9 @@
         "Desktop",
         "Mobile"
       ],
-      "downloads": 8,
+      "downloads": 4,
       "pkg": "@stacksjs/vite-plugin-tauri",
-      "allDownloads": 8,
+      "allDownloads": 4,
       "pkgCount": 1
     },
     {
@@ -799,9 +799,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 644,
+      "downloads": 667,
       "pkg": "ts-clone",
-      "allDownloads": 644,
+      "allDownloads": 667,
       "pkgCount": 1
     },
     {
@@ -814,9 +814,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 9793,
+      "downloads": 10087,
       "pkg": "ts-countries",
-      "allDownloads": 9793,
+      "allDownloads": 10087,
       "pkgCount": 1
     },
     {
@@ -828,9 +828,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 33,
+      "downloads": 29,
       "pkg": "ts-numbers",
-      "allDownloads": 33,
+      "allDownloads": 29,
       "pkgCount": 1
     },
     {
@@ -853,9 +853,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 33,
+      "downloads": 31,
       "pkg": "ts-vat",
-      "allDownloads": 33,
+      "allDownloads": 31,
       "pkgCount": 1
     },
     {
@@ -869,9 +869,9 @@
         "CLI",
         "Library"
       ],
-      "downloads": 19269,
+      "downloads": 21254,
       "pkg": "ts-videos",
-      "allDownloads": 57645,
+      "allDownloads": 61802,
       "pkgCount": 4
     },
     {
@@ -904,9 +904,9 @@
         "TypeScript",
         "Bun"
       ],
-      "downloads": 88375,
+      "downloads": 108923,
       "pkg": "dynamodb-tooling",
-      "allDownloads": 88375,
+      "allDownloads": 108923,
       "pkgCount": 1
     },
     {
@@ -928,9 +928,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 32648,
+      "downloads": 34011,
       "pkg": "@stacksjs/gitit",
-      "allDownloads": 32648,
+      "allDownloads": 34011,
       "pkgCount": 1
     },
     {
@@ -945,9 +945,9 @@
         "Library",
         "Linting"
       ],
-      "downloads": 109699,
+      "downloads": 117290,
       "pkg": "@stacksjs/gitlint",
-      "allDownloads": 109699,
+      "allDownloads": 117290,
       "pkgCount": 1
     },
     {
@@ -969,9 +969,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 35,
+      "downloads": 33,
       "pkg": "ts-inputs",
-      "allDownloads": 65,
+      "allDownloads": 61,
       "pkgCount": 2
     },
     {
@@ -983,9 +983,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 169010,
+      "downloads": 195471,
       "pkg": "ts-jpeg",
-      "allDownloads": 169010,
+      "allDownloads": 195471,
       "pkgCount": 1
     },
     {
@@ -1013,9 +1013,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 168513,
+      "downloads": 194963,
       "pkg": "@stacksjs/ts-png",
-      "allDownloads": 168513,
+      "allDownloads": 194963,
       "pkgCount": 1
     },
     {
@@ -1134,16 +1134,6 @@
       "tags": []
     },
     {
-      "name": "zig-regex",
-      "org": "zig-utils",
-      "description": "A modern, performant regular expression library for Zig.",
-      "stars": 32,
-      "url": "https://github.com/zig-utils/zig-regex",
-      "tags": [
-        "Zig"
-      ]
-    },
-    {
       "name": "zig-js",
       "org": "zig-utils",
       "description": "A JavaScript engine in pure Zig.",
@@ -1155,6 +1145,27 @@
       ]
     },
     {
+      "name": "zig-regex",
+      "org": "zig-utils",
+      "description": "A modern, performant regular expression library for Zig.",
+      "stars": 31,
+      "url": "https://github.com/zig-utils/zig-regex",
+      "tags": [
+        "Zig"
+      ]
+    },
+    {
+      "name": "zig-test-framework",
+      "org": "zig-utils",
+      "description": "A modern, feature-rich testing framework for Zig inspired by Jest, Vitest, and Bun's test runner.",
+      "stars": 8,
+      "url": "https://github.com/zig-utils/zig-test-framework",
+      "tags": [
+        "Zig",
+        "Bun"
+      ]
+    },
+    {
       "name": "zig-config",
       "org": "zig-utils",
       "description": "A zero-dependency, smart configuration loader for Zig.",
@@ -1163,17 +1174,6 @@
       "tags": [
         "Zig",
         "Config"
-      ]
-    },
-    {
-      "name": "zig-test-framework",
-      "org": "zig-utils",
-      "description": "A modern, feature-rich testing framework for Zig inspired by Jest, Vitest, and Bun's test runner.",
-      "stars": 7,
-      "url": "https://github.com/zig-utils/zig-test-framework",
-      "tags": [
-        "Zig",
-        "Bun"
       ]
     },
     {
@@ -1273,6 +1273,16 @@
       ]
     },
     {
+      "name": "zig-camera",
+      "org": "zig-utils",
+      "description": "Native Zig camera capture for Raspberry Pi 5 with libcamera, explicit frame leases and low-copy image access.",
+      "stars": 1,
+      "url": "https://github.com/zig-utils/zig-camera",
+      "tags": [
+        "Zig"
+      ]
+    },
+    {
       "name": "zig-changelog",
       "org": "zig-utils",
       "description": "A Zig library and CLI tool for generating beautiful changelogs from conventional commits.",
@@ -1320,16 +1330,6 @@
       "description": "A small, lenient, allocation-light XML/HTML tokenizer for Zig with HTML5 entity decoding.",
       "stars": 1,
       "url": "https://github.com/zig-utils/zig-xml",
-      "tags": [
-        "Zig"
-      ]
-    },
-    {
-      "name": "zig-camera",
-      "org": "zig-utils",
-      "description": "Native Zig camera capture for Raspberry Pi 5 with libcamera, explicit frame leases and low-copy image access.",
-      "stars": 0,
-      "url": "https://github.com/zig-utils/zig-camera",
       "tags": [
         "Zig"
       ]
@@ -1465,9 +1465,9 @@
         "TypeScript",
         "Zig"
       ],
-      "downloads": 182779,
+      "downloads": 209960,
       "pkg": "ts-pantry",
-      "allDownloads": 182779,
+      "allDownloads": 209960,
       "pkgCount": 1
     },
     {
@@ -1493,9 +1493,9 @@
         "CLI",
         "Library"
       ],
-      "downloads": 76911,
+      "downloads": 82606,
       "pkg": "@stacksjs/mail",
-      "allDownloads": 76911,
+      "allDownloads": 82606,
       "pkgCount": 1
     },
     {
@@ -1517,9 +1517,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 45521,
+      "downloads": 62094,
       "pkg": "@bughq/sdk",
-      "allDownloads": 51378,
+      "allDownloads": 68426,
       "pkgCount": 5
     },
     {
@@ -1555,9 +1555,9 @@
         "JavaScript",
         "TypeScript"
       ],
-      "downloads": 175260,
+      "downloads": 208338,
       "pkg": "craft-native",
-      "allDownloads": 255430,
+      "allDownloads": 317195,
       "pkgCount": 8
     },
     {
