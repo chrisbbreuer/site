@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-10-20",
+  "generatedAt": "2026-10-21",
   "repos": [
     {
       "name": "stacks",
       "org": "stacksjs",
       "description": "Modern, performant, optimized for DX/AX. Develop powerful apps, clouds & framework-agnostic libraries, faster.",
-      "stars": 634,
+      "stars": 636,
       "url": "https://github.com/stacksjs/stacks",
       "tags": [
         "TypeScript",
@@ -1279,6 +1279,7 @@
       "stars": 1,
       "url": "https://github.com/zig-utils/zig-camera",
       "tags": [
+        "TypeScript",
         "Zig"
       ]
     },
