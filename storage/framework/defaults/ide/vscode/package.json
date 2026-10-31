@@ -74,6 +74,6 @@
     "streetsidesoftware.code-spell-checker"
   ],
   "devDependencies": {
-    "@vscode/vsce": "^4.0.0"
+    "@vscode/vsce": "^4.1.0"
   }
 }
