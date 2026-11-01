@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-31",
+  "generatedAt": "2026-11-01",
   "repos": [
     {
       "name": "stacks",
@@ -1148,7 +1148,7 @@
       "name": "zig-regex",
       "org": "zig-utils",
       "description": "A modern, performant regular expression library for Zig.",
-      "stars": 31,
+      "stars": 32,
       "url": "https://github.com/zig-utils/zig-regex",
       "tags": [
         "Zig"
@@ -1187,6 +1187,16 @@
       ]
     },
     {
+      "name": "zig-tls",
+      "org": "zig-utils",
+      "description": "Pure Zig TLS 1.3 & 1.2 implementation and more.",
+      "stars": 6,
+      "url": "https://github.com/zig-utils/zig-tls",
+      "tags": [
+        "Zig"
+      ]
+    },
+    {
       "name": "zig-benchmarks",
       "org": "zig-utils",
       "description": "A modern, performant, and beautiful benchmark framework for Zig.",
@@ -1195,16 +1205,6 @@
       "tags": [
         "Zig",
         "Testing"
-      ]
-    },
-    {
-      "name": "zig-tls",
-      "org": "zig-utils",
-      "description": "Pure Zig TLS 1.3 & 1.2 implementation and more.",
-      "stars": 5,
-      "url": "https://github.com/zig-utils/zig-tls",
-      "tags": [
-        "Zig"
       ]
     },
     {
