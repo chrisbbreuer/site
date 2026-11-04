@@ -1,5 +1,5 @@
 import { defineModel, parentOwnership } from '@stacksjs/orm'
-import { schema } from '@stacksjs/validation'
+import { schema } from '@stacksjs/validation/runtime'
 
 /**
  * Column on a kanban board (stacksjs/stacks#1846).
@@ -50,7 +50,6 @@ export default defineModel({
       order: 1,
       fillable: true,
       validation: { rule: schema.number().required() },
-      factory: () => 1,
     },
 
     name: {

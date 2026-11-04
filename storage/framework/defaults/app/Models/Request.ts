@@ -1,5 +1,5 @@
 import { defineModel } from '@stacksjs/orm'
-import { schema } from '@stacksjs/validation'
+import { schema } from '@stacksjs/validation/runtime'
 
 export default defineModel({
   name: 'Request',
@@ -28,6 +28,7 @@ export default defineModel({
   ownership: false,
 
   traits: {
+    gdpr: { basis: 'legitimate_interests', purpose: 'Request log for debugging and abuse prevention' },
     useTimestamps: true,
     useSoftDeletes: true,
     useSeeder: {
@@ -93,6 +94,7 @@ export default defineModel({
     },
 
     ip_address: {
+      personal: true,
       fillable: true,
       validation: {
         rule: schema.string(),
@@ -117,6 +119,7 @@ export default defineModel({
     },
 
     user_agent: {
+      personal: true,
       fillable: true,
       validation: {
         rule: schema.string(),
@@ -129,6 +132,7 @@ export default defineModel({
 
     error_message: {
       fillable: true,
+      type: 'text',
       validation: {
         rule: schema.string(),
         message: {

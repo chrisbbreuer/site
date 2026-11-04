@@ -1,4 +1,4 @@
-import { Action } from '@stacksjs/actions'
+import { Action } from '@stacksjs/actions/runtime'
 import { commands, hosts } from '~/config/remote'
 import { response } from '@stacksjs/router'
 
@@ -17,6 +17,9 @@ export default new Action({
         host: host.host,
         user: host.user,
         port: host.port ?? 22,
+        // Whether the host allows terminal sessions at all. Whether this
+        // user may open one is the `open-remote-terminal` gate's call.
+        terminal: host.terminal === true,
       })),
       commands: commands.map(command => ({
         key: command.key,

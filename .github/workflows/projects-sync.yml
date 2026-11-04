@@ -31,7 +31,7 @@ jobs:
 
       - uses: oven-sh/setup-bun@v2
         with:
-          bun-version: 1.3.14
+          bun-version: 1.4.4
 
       # The script reads `gh api user` and `user/orgs` to discover which owners
       # to walk. GITHUB_TOKEN represents the repository rather than a person and

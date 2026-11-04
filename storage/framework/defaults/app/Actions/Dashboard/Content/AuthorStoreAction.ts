@@ -1,5 +1,5 @@
 import type { RequestInstance } from '@stacksjs/types'
-import { Action } from '@stacksjs/actions'
+import { Action } from '@stacksjs/actions/runtime'
 import { db } from '@stacksjs/database/runtime'
 import { isUniqueViolation, transaction } from '@stacksjs/orm'
 import { response } from '@stacksjs/router'
@@ -52,6 +52,8 @@ export default new Action({
             created_at: now,
             updated_at: now,
           } as any)
+          // PostgreSQL reports no insert id without RETURNING (#3004).
+          .returningAll()
           .executeTakeFirst()
 
         const id = insertedId(result)

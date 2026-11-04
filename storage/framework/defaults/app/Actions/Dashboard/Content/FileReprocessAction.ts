@@ -1,11 +1,11 @@
 import type { RequestInstance } from '@stacksjs/types'
-import { Action } from '@stacksjs/actions'
+import { Action } from '@stacksjs/actions/runtime'
 import { response } from '@stacksjs/router'
 import { DashboardFileError, reprocessDashboardFile } from './file-manager'
 
 export default new Action({
   name: 'FileReprocessAction',
-  description: 'Re-runs the background processing for a file: image variants, video renditions, AI tags.',
+  description: 'Re-runs the background processing for a file: image variants, video renditions, AI tags, previews.',
   method: 'POST',
   async handle(request: RequestInstance) {
     try {

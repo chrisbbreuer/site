@@ -2,7 +2,7 @@ import type { Attributes } from '@stacksjs/types'
 import { defineModel, selfOwnership } from '@stacksjs/orm'
 import { makeHash } from '@stacksjs/security'
 // soon, these will be auto-imported
-import { schema } from '@stacksjs/validation'
+import { schema } from '@stacksjs/validation/runtime'
 import { PASSWORD_MAX_LENGTH, PASSWORD_MIN_LENGTH } from '../password-policy'
 
 export default defineModel({
@@ -25,6 +25,7 @@ export default defineModel({
   ownership: selfOwnership(),
 
   traits: {
+    gdpr: { erasure: 'anonymize', basis: 'contract', purpose: 'User account and sign-in' },
     useAuth: {
       usePasskey: true,
     },
@@ -40,10 +41,10 @@ export default defineModel({
     useTimestamps: true, // defaults to true, `timestampable` used as an alias
     useSocials: ['github'],
     useSearch: {
-      displayable: ['id', 'name', 'email'], // the fields to become d (defaults to all fields)
-      searchable: ['name', 'email'], // the fields to become searchable (defaults to all fields)
-      sortable: ['created_at', 'updated_at'], // the fields to become sortable (defaults to all fields)
-      filterable: [], // the fields to become filterable (defaults to all fields)
+      displayable: ['id', 'name', 'email'], // the fields a hit returns
+      searchable: ['name', 'email'], // the fields a query matches against
+      sortable: ['created_at', 'updated_at'], // the fields results can be ordered by
+      filterable: [], // the fields results can be narrowed by
       // options: {}, // you may pass options to the search engine
     },
 
@@ -72,6 +73,7 @@ export default defineModel({
 
   attributes: {
     name: {
+      personal: true,
       order: 2,
       fillable: true,
       validation: {
@@ -86,6 +88,7 @@ export default defineModel({
     },
 
     email: {
+      personal: true,
       unique: true,
       order: 1,
       fillable: true,
@@ -100,6 +103,7 @@ export default defineModel({
       factory: faker => faker.internet.email(),
     },
     password: {
+      personal: { export: false },
       order: 3,
       hidden: true,
       fillable: true,
@@ -118,6 +122,7 @@ export default defineModel({
     },
 
     avatar: {
+      personal: true,
       order: 4,
       fillable: true,
       validation: {

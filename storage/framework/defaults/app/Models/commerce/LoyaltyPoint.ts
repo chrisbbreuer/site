@@ -1,5 +1,5 @@
 import { customerOwnership, defineModel } from '@stacksjs/orm'
-import { schema } from '@stacksjs/validation'
+import { schema } from '@stacksjs/validation/runtime'
 
 export default defineModel({
   name: 'LoyaltyPoint',
@@ -81,6 +81,7 @@ export default defineModel({
     description: {
       order: 5,
       fillable: true,
+      type: 'text',
       validation: {
         rule: schema.string(),
       },

@@ -1,4 +1,4 @@
-import { Action } from '@stacksjs/actions'
+import { Action } from '@stacksjs/actions/runtime'
 import { db } from '@stacksjs/database/runtime'
 import { EmailList } from '@stacksjs/orm'
 import { dashboardOperationalError } from '../dashboard-response'
@@ -22,7 +22,7 @@ export default new Action({
         db
           .selectFrom('email_list_subscribers')
           .select(['email_list_id', 'status', db.fn.count('id').as('count')])
-          .groupBy(['email_list_id', 'status'])
+          .groupBy('email_list_id', 'status')
           .execute(),
         db
           .selectFrom('email_list_subscribers')
