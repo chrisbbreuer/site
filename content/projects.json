@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-03",
+  "generatedAt": "2026-11-05",
   "repos": [
     {
       "name": "stacks",
@@ -16,23 +16,23 @@
         "Library",
         "Mobile"
       ],
-      "downloads": 71312,
+      "downloads": 69329,
       "pkg": "stacks",
-      "allDownloads": 10429871,
+      "allDownloads": 10460223,
       "pkgCount": 91
     },
     {
       "name": "dtsx",
       "org": "stacksjs",
       "description": "Extremely fast, smart & configurable DTS emitter.",
-      "stars": 177,
+      "stars": 178,
       "url": "https://github.com/stacksjs/dtsx",
       "tags": [
         "TypeScript"
       ],
-      "downloads": 158580,
+      "downloads": 161134,
       "pkg": "@stacksjs/dtsx",
-      "allDownloads": 317450,
+      "allDownloads": 323894,
       "pkgCount": 5
     },
     {
@@ -46,40 +46,40 @@
         "Bun",
         "Library"
       ],
-      "downloads": 55965,
+      "downloads": 58328,
       "pkg": "ts-spreadsheets",
-      "allDownloads": 55965,
+      "allDownloads": 58328,
       "pkgCount": 1
     },
     {
       "name": "bun-queue",
       "org": "stacksjs",
       "description": "A modern & powerful Queue / Messaging system. Optimized for Bun usage. UI coming soon.",
-      "stars": 69,
+      "stars": 70,
       "url": "https://github.com/stacksjs/bun-queue",
       "tags": [
         "TypeScript",
         "Bun",
         "Queue"
       ],
-      "downloads": 35422,
+      "downloads": 36197,
       "pkg": "@stacksjs/bun-queue",
-      "allDownloads": 35451,
+      "allDownloads": 36229,
       "pkgCount": 2
     },
     {
       "name": "tlsx",
       "org": "stacksjs",
       "description": "A modern & lightweight TLS library & CLI. Built for automation, HTTPS by default. Similar to mkcert.",
-      "stars": 47,
+      "stars": 48,
       "url": "https://github.com/stacksjs/tlsx",
       "tags": [
         "TypeScript",
         "Library"
       ],
-      "downloads": 56223,
+      "downloads": 58508,
       "pkg": "@stacksjs/tlsx",
-      "allDownloads": 56353,
+      "allDownloads": 58634,
       "pkgCount": 2
     },
     {
@@ -92,9 +92,9 @@
         "TypeScript",
         "Laravel"
       ],
-      "downloads": 121515,
+      "downloads": 124956,
       "pkg": "ts-collect",
-      "allDownloads": 121515,
+      "allDownloads": 124956,
       "pkgCount": 1
     },
     {
@@ -107,9 +107,9 @@
         "TypeScript",
         "Proxy"
       ],
-      "downloads": 26,
+      "downloads": 28,
       "pkg": "vite-plugin-local",
-      "allDownloads": 26,
+      "allDownloads": 28,
       "pkgCount": 1
     },
     {
@@ -124,9 +124,9 @@
         "CLI",
         "Proxy"
       ],
-      "downloads": 54819,
+      "downloads": 57158,
       "pkg": "@stacksjs/rpx",
-      "allDownloads": 57838,
+      "allDownloads": 60186,
       "pkgCount": 3
     },
     {
@@ -151,9 +151,9 @@
         "Bun",
         "Library"
       ],
-      "downloads": 92400,
+      "downloads": 96264,
       "pkg": "ts-rate-limiter",
-      "allDownloads": 92400,
+      "allDownloads": 96264,
       "pkgCount": 1
     },
     {
@@ -166,16 +166,16 @@
         "TypeScript",
         "Tunneling"
       ],
-      "downloads": 146234,
+      "downloads": 149423,
       "pkg": "localtunnels",
-      "allDownloads": 146234,
+      "allDownloads": 149423,
       "pkgCount": 1
     },
     {
       "name": "stx",
       "org": "stacksjs",
       "description": "A performant & powerful UI templating language.",
-      "stars": 20,
+      "stars": 21,
       "url": "https://github.com/stacksjs/stx",
       "tags": [
         "TypeScript",
@@ -184,9 +184,9 @@
         "CSS",
         "Templating"
       ],
-      "downloads": 377149,
+      "downloads": 380498,
       "pkg": "@stacksjs/stx",
-      "allDownloads": 11623252,
+      "allDownloads": 11269602,
       "pkgCount": 220
     },
     {
@@ -201,9 +201,9 @@
         "CLI",
         "Library"
       ],
-      "downloads": 150029,
+      "downloads": 152215,
       "pkg": "bun-git-hooks",
-      "allDownloads": 150029,
+      "allDownloads": 152215,
       "pkgCount": 1
     },
     {
@@ -218,9 +218,9 @@
         "Config",
         "Library"
       ],
-      "downloads": 330796,
+      "downloads": 334897,
       "pkg": "bunfig",
-      "allDownloads": 330796,
+      "allDownloads": 334897,
       "pkgCount": 1
     },
     {
@@ -244,9 +244,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 44041,
+      "downloads": 45575,
       "pkg": "ts-qr-codes",
-      "allDownloads": 44125,
+      "allDownloads": 45676,
       "pkgCount": 2
     },
     {
@@ -259,9 +259,9 @@
         "TypeScript",
         "Bun"
       ],
-      "downloads": 116,
+      "downloads": 113,
       "pkg": "bun-plugin-unocss",
-      "allDownloads": 116,
+      "allDownloads": 113,
       "pkgCount": 1
     },
     {
@@ -274,9 +274,9 @@
         "TypeScript",
         "Bun"
       ],
-      "downloads": 269932,
+      "downloads": 274165,
       "pkg": "@stacksjs/bunpress",
-      "allDownloads": 272468,
+      "allDownloads": 276816,
       "pkgCount": 2
     },
     {
@@ -291,9 +291,9 @@
         "Library",
         "Zig"
       ],
-      "downloads": 332243,
+      "downloads": 337277,
       "pkg": "@stacksjs/clapp",
-      "allDownloads": 332243,
+      "allDownloads": 337277,
       "pkgCount": 1
     },
     {
@@ -306,9 +306,9 @@
         "TypeScript",
         "Bun"
       ],
-      "downloads": 1774,
+      "downloads": 1742,
       "pkg": "bun-plugin-dotenvx",
-      "allDownloads": 1774,
+      "allDownloads": 1742,
       "pkgCount": 1
     },
     {
@@ -327,6 +327,40 @@
       "pkgCount": 1
     },
     {
+      "name": "buddy",
+      "org": "stacksjs",
+      "description": "AI code review and dependency updates in one teammate. Reviews PRs and local changes, answers @buddy comments, gates merges, repairs CI, and keeps deps current. Runs on your CI, with your keys.",
+      "stars": 12,
+      "url": "https://github.com/stacksjs/buddy",
+      "tags": [
+        "TypeScript",
+        "PHP",
+        "Zig"
+      ],
+      "downloads": 57167,
+      "pkg": "@buddysh/buddy",
+      "allDownloads": 57167,
+      "pkgCount": 1
+    },
+    {
+      "name": "ts-cache",
+      "org": "stacksjs",
+      "description": "A fast, type-safe, and feature-rich caching library for modern applications.",
+      "stars": 12,
+      "url": "https://github.com/stacksjs/ts-cache",
+      "tags": [
+        "TypeScript",
+        "Bun",
+        "Cache",
+        "Library",
+        "Node"
+      ],
+      "downloads": 93891,
+      "pkg": "@stacksjs/ts-cache",
+      "allDownloads": 93891,
+      "pkgCount": 1
+    },
+    {
       "name": "ts-images",
       "org": "stacksjs",
       "description": "Make your images load faster. A better save for the web.",
@@ -335,10 +369,27 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 287687,
+      "downloads": 290081,
       "pkg": "ts-images",
-      "allDownloads": 289095,
+      "allDownloads": 291153,
       "pkgCount": 2
+    },
+    {
+      "name": "ts-starter",
+      "org": "stacksjs",
+      "description": "Quickly bootstrap your next TypeScript / Bun project.",
+      "stars": 12,
+      "url": "https://github.com/stacksjs/ts-starter",
+      "tags": [
+        "TypeScript",
+        "Bun",
+        "CLI",
+        "Testing"
+      ],
+      "downloads": 113,
+      "pkg": "bun-ts-starter",
+      "allDownloads": 113,
+      "pkgCount": 1
     },
     {
       "name": "awesome-stacks",
@@ -347,22 +398,6 @@
       "stars": 11,
       "url": "https://github.com/stacksjs/awesome-stacks",
       "tags": []
-    },
-    {
-      "name": "buddy",
-      "org": "stacksjs",
-      "description": "AI code review and dependency updates in one teammate. Reviews PRs and local changes, answers @buddy comments, gates merges, repairs CI, and keeps deps current. Runs on your CI, with your keys.",
-      "stars": 11,
-      "url": "https://github.com/stacksjs/buddy",
-      "tags": [
-        "TypeScript",
-        "PHP",
-        "Zig"
-      ],
-      "downloads": 53705,
-      "pkg": "@buddysh/buddy",
-      "allDownloads": 53705,
-      "pkgCount": 1
     },
     {
       "name": "bun-plugin-auto-imports",
@@ -374,9 +409,9 @@
         "TypeScript",
         "Bun"
       ],
-      "downloads": 55674,
+      "downloads": 58318,
       "pkg": "bun-plugin-auto-imports",
-      "allDownloads": 55674,
+      "allDownloads": 58318,
       "pkgCount": 1
     },
     {
@@ -391,41 +426,6 @@
       ]
     },
     {
-      "name": "ts-cache",
-      "org": "stacksjs",
-      "description": "A fast, type-safe, and feature-rich caching library for modern applications.",
-      "stars": 11,
-      "url": "https://github.com/stacksjs/ts-cache",
-      "tags": [
-        "TypeScript",
-        "Bun",
-        "Cache",
-        "Library",
-        "Node"
-      ],
-      "downloads": 90193,
-      "pkg": "@stacksjs/ts-cache",
-      "allDownloads": 90193,
-      "pkgCount": 1
-    },
-    {
-      "name": "ts-starter",
-      "org": "stacksjs",
-      "description": "Quickly bootstrap your next TypeScript / Bun project.",
-      "stars": 11,
-      "url": "https://github.com/stacksjs/ts-starter",
-      "tags": [
-        "TypeScript",
-        "Bun",
-        "CLI",
-        "Testing"
-      ],
-      "downloads": 115,
-      "pkg": "bun-ts-starter",
-      "allDownloads": 115,
-      "pkgCount": 1
-    },
-    {
       "name": "vite-plugin-dotenvx",
       "org": "stacksjs",
       "description": "A Vite plugin to seamlessly work with with dotenvx.",
@@ -434,9 +434,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 394,
+      "downloads": 463,
       "pkg": "vite-plugin-dotenvx",
-      "allDownloads": 394,
+      "allDownloads": 463,
       "pkgCount": 1
     },
     {
@@ -449,9 +449,9 @@
         "TypeScript",
         "Zig"
       ],
-      "downloads": 200530,
+      "downloads": 214439,
       "pkg": "@stacksjs/bumpx",
-      "allDownloads": 202433,
+      "allDownloads": 216677,
       "pkgCount": 2
     },
     {
@@ -478,9 +478,9 @@
         "React",
         "Vue"
       ],
-      "downloads": 31797,
+      "downloads": 33675,
       "pkg": "ts-maps",
-      "allDownloads": 44650,
+      "allDownloads": 46772,
       "pkgCount": 8
     },
     {
@@ -494,9 +494,9 @@
         "Bun",
         "Laravel"
       ],
-      "downloads": 85112,
+      "downloads": 88182,
       "pkg": "@stacksjs/bun-router",
-      "allDownloads": 85112,
+      "allDownloads": 88182,
       "pkgCount": 1
     },
     {
@@ -519,9 +519,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 190063,
+      "downloads": 203833,
       "pkg": "@stacksjs/logsmith",
-      "allDownloads": 190505,
+      "allDownloads": 204254,
       "pkgCount": 2
     },
     {
@@ -549,9 +549,9 @@
         "TypeScript",
         "Vue"
       ],
-      "downloads": 117,
+      "downloads": 105,
       "pkg": "vite-plugin-layouts",
-      "allDownloads": 117,
+      "allDownloads": 105,
       "pkgCount": 1
     },
     {
@@ -566,9 +566,9 @@
         "CLI",
         "Library"
       ],
-      "downloads": 26093,
+      "downloads": 26655,
       "pkg": "@ts-audio/core",
-      "allDownloads": 154019,
+      "allDownloads": 157829,
       "pkgCount": 6
     },
     {
@@ -581,9 +581,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 68,
+      "downloads": 69,
       "pkg": "ts-security",
-      "allDownloads": 447,
+      "allDownloads": 469,
       "pkgCount": 12
     },
     {
@@ -606,9 +606,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 238478,
+      "downloads": 241410,
       "pkg": "ts-gif",
-      "allDownloads": 238478,
+      "allDownloads": 241410,
       "pkgCount": 1
     },
     {
@@ -622,9 +622,9 @@
         "CLI",
         "Library"
       ],
-      "downloads": 14,
+      "downloads": 15,
       "pkg": "@stacksjs/httx-dashboard",
-      "allDownloads": 51560,
+      "allDownloads": 53940,
       "pkgCount": 2
     },
     {
@@ -639,9 +639,9 @@
         "Library",
         "Node"
       ],
-      "downloads": 56132,
+      "downloads": 58890,
       "pkg": "ts-slug",
-      "allDownloads": 56132,
+      "allDownloads": 58890,
       "pkgCount": 1
     },
     {
@@ -657,9 +657,9 @@
         "Library",
         "Testing"
       ],
-      "downloads": 97,
+      "downloads": 93,
       "pkg": "besting",
-      "allDownloads": 97,
+      "allDownloads": 93,
       "pkgCount": 1
     },
     {
@@ -673,9 +673,9 @@
         "macOS",
         "Swift"
       ],
-      "downloads": 43,
+      "downloads": 45,
       "pkg": "hushapp",
-      "allDownloads": 43,
+      "allDownloads": 45,
       "pkgCount": 1
     },
     {
@@ -699,9 +699,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 784,
+      "downloads": 770,
       "pkg": "ts-punycode",
-      "allDownloads": 784,
+      "allDownloads": 770,
       "pkgCount": 1
     },
     {
@@ -714,9 +714,25 @@
         "TypeScript",
         "Laravel"
       ],
-      "downloads": 154332,
+      "downloads": 161071,
       "pkg": "@stacksjs/ts-validation",
-      "allDownloads": 154332,
+      "allDownloads": 161071,
+      "pkgCount": 1
+    },
+    {
+      "name": "vite-plugin-tauri",
+      "org": "stacksjs",
+      "description": "Easily build cross-platform apps using Tauri & Vite.",
+      "stars": 6,
+      "url": "https://github.com/stacksjs/vite-plugin-tauri",
+      "tags": [
+        "TypeScript",
+        "Desktop",
+        "Mobile"
+      ],
+      "downloads": 7,
+      "pkg": "@stacksjs/vite-plugin-tauri",
+      "allDownloads": 7,
       "pkgCount": 1
     },
     {
@@ -743,9 +759,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 311647,
+      "downloads": 314482,
       "pkg": "@stacksjs/clarity",
-      "allDownloads": 311647,
+      "allDownloads": 314482,
       "pkgCount": 1
     },
     {
@@ -768,25 +784,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 27696,
+      "downloads": 28979,
       "pkg": "ts-medium-editor",
-      "allDownloads": 27696,
-      "pkgCount": 1
-    },
-    {
-      "name": "vite-plugin-tauri",
-      "org": "stacksjs",
-      "description": "Easily build cross-platform apps using Tauri & Vite.",
-      "stars": 5,
-      "url": "https://github.com/stacksjs/vite-plugin-tauri",
-      "tags": [
-        "TypeScript",
-        "Desktop",
-        "Mobile"
-      ],
-      "downloads": 7,
-      "pkg": "@stacksjs/vite-plugin-tauri",
-      "allDownloads": 7,
+      "allDownloads": 28979,
       "pkgCount": 1
     },
     {
@@ -799,9 +799,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 642,
+      "downloads": 659,
       "pkg": "ts-clone",
-      "allDownloads": 642,
+      "allDownloads": 659,
       "pkgCount": 1
     },
     {
@@ -814,9 +814,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 8725,
+      "downloads": 8649,
       "pkg": "ts-countries",
-      "allDownloads": 8725,
+      "allDownloads": 8649,
       "pkgCount": 1
     },
     {
@@ -828,9 +828,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 30,
+      "downloads": 29,
       "pkg": "ts-numbers",
-      "allDownloads": 30,
+      "allDownloads": 29,
       "pkgCount": 1
     },
     {
@@ -853,9 +853,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 48,
+      "downloads": 51,
       "pkg": "ts-vat",
-      "allDownloads": 48,
+      "allDownloads": 51,
       "pkgCount": 1
     },
     {
@@ -869,9 +869,9 @@
         "CLI",
         "Library"
       ],
-      "downloads": 26956,
+      "downloads": 27525,
       "pkg": "ts-videos",
-      "allDownloads": 80844,
+      "allDownloads": 82547,
       "pkgCount": 4
     },
     {
@@ -904,9 +904,9 @@
         "TypeScript",
         "Bun"
       ],
-      "downloads": 153945,
+      "downloads": 157838,
       "pkg": "dynamodb-tooling",
-      "allDownloads": 153945,
+      "allDownloads": 157838,
       "pkgCount": 1
     },
     {
@@ -928,9 +928,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 51004,
+      "downloads": 53388,
       "pkg": "@stacksjs/gitit",
-      "allDownloads": 51004,
+      "allDownloads": 53388,
       "pkgCount": 1
     },
     {
@@ -945,9 +945,9 @@
         "Library",
         "Linting"
       ],
-      "downloads": 122056,
+      "downloads": 124448,
       "pkg": "@stacksjs/gitlint",
-      "allDownloads": 122056,
+      "allDownloads": 124448,
       "pkgCount": 1
     },
     {
@@ -969,9 +969,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 30,
+      "downloads": 31,
       "pkg": "ts-inputs",
-      "allDownloads": 43,
+      "allDownloads": 46,
       "pkgCount": 2
     },
     {
@@ -983,9 +983,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 238843,
+      "downloads": 241697,
       "pkg": "ts-jpeg",
-      "allDownloads": 238843,
+      "allDownloads": 241697,
       "pkgCount": 1
     },
     {
@@ -998,9 +998,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 21,
+      "downloads": 24,
       "pkg": "ts-ndarray",
-      "allDownloads": 21,
+      "allDownloads": 24,
       "pkgCount": 1
     },
     {
@@ -1013,9 +1013,9 @@
         "TypeScript",
         "Library"
       ],
-      "downloads": 238568,
+      "downloads": 241431,
       "pkg": "@stacksjs/ts-png",
-      "allDownloads": 238568,
+      "allDownloads": 241431,
       "pkgCount": 1
     },
     {
@@ -1094,9 +1094,9 @@
         "TypeScript",
         "Mobile"
       ],
-      "downloads": 388,
+      "downloads": 464,
       "pkg": "very-good-adblock",
-      "allDownloads": 388,
+      "allDownloads": 464,
       "pkgCount": 1
     },
     {
@@ -1115,9 +1115,7 @@
       "description": "chrisbreuer.me",
       "stars": 2,
       "url": "https://github.com/chrisbbreuer/site",
-      "tags": [
-        "TypeScript"
-      ]
+      "tags": []
     },
     {
       "name": "averyhill",
@@ -1194,7 +1192,7 @@
       "name": "zig-tls",
       "org": "zig-utils",
       "description": "Pure Zig TLS 1.3 & 1.2 implementation and more.",
-      "stars": 6,
+      "stars": 7,
       "url": "https://github.com/zig-utils/zig-tls",
       "tags": [
         "Zig"
@@ -1489,9 +1487,9 @@
         "TypeScript",
         "Zig"
       ],
-      "downloads": 270337,
+      "downloads": 275897,
       "pkg": "ts-pantry",
-      "allDownloads": 270337,
+      "allDownloads": 275897,
       "pkgCount": 1
     },
     {
@@ -1517,9 +1515,9 @@
         "CLI",
         "Library"
       ],
-      "downloads": 49315,
+      "downloads": 50130,
       "pkg": "@stacksjs/mail",
-      "allDownloads": 49315,
+      "allDownloads": 50130,
       "pkgCount": 1
     },
     {
@@ -1541,9 +1539,9 @@
       "tags": [
         "TypeScript"
       ],
-      "downloads": 113298,
+      "downloads": 115913,
       "pkg": "@bughq/sdk",
-      "allDownloads": 120295,
+      "allDownloads": 122964,
       "pkgCount": 5
     },
     {
@@ -1579,9 +1577,9 @@
         "JavaScript",
         "TypeScript"
       ],
-      "downloads": 27912,
+      "downloads": 28710,
       "pkg": "@craft-native/ios",
-      "allDownloads": 452479,
+      "allDownloads": 460191,
       "pkgCount": 8
     },
     {
