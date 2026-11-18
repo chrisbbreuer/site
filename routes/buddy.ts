@@ -14,7 +14,6 @@ route.get('/versions', 'Actions/Buddy/VersionsAction') // your-domain.com/api/bu
 // expect these to exist; without them the dashboard renders empty
 // states. They're under /api/buddy/* so the same auth gate that
 // protects the rest of the buddy admin surface applies.
-route.get('/jobs', 'Actions/Buddy/JobsListAction')
 route.post('/jobs/{id}/retry', 'Actions/Buddy/JobRetryAction')
 route.post('/jobs/{id}/cancel', 'Actions/Buddy/JobCancelAction')
 route.get('/schedule', 'Actions/Buddy/ScheduleListAction')

@@ -71,12 +71,17 @@ const decrypted = await decrypt(encrypted, 'custom-passphrase')
 ## Password Hashing
 
 ```typescript
-import { make, check, needsRehash, info, detectAlgorithm } from '@stacksjs/security'
+import { make, makeSync, check, needsRehash, info, detectAlgorithm } from '@stacksjs/security'
 
 // Hash a password
 const hash = await make('password123')                          // bcrypt (default)
 const hash = await make('password123', { algorithm: 'argon2' })
 const hash = await make('password123', { rounds: 14 })          // bcrypt rounds
+
+// The same hash, answered in place. For a model `set:` hook, so the write it
+// belongs to stays in place. It holds the thread for the length of the hash
+// (about a quarter of a second for bcrypt at 12 rounds).
+const hashedNow = makeSync('password123')
 
 // Verify
 const valid = await check('password123', hash)  // true/false
@@ -95,6 +100,7 @@ const algo = detectAlgorithm(hash)  // 'bcrypt' | 'argon2' | 'argon2id' | ...
 - `hashNeedsRehash` = `needsRehash`
 - `hashInfo` = `info`
 - `makeHash` = `make`
+- `hashMakeSync` = `makeHashSync` = `makeSync`
 - `verifyHash` = `check`
 
 ### Algorithm-Specific Functions
@@ -183,6 +189,14 @@ import { eraseSubject, exportSubjectData, pruneRetainedData } from '@stacksjs/or
 - Base64 is encoding, not hashing. Never use `base64Encode()` for credentials.
 - MD5 and base64 password verification are intentionally absent from the main security API.
 - The firewall config is used by cloud deployment for WAF rules
+- `security.waf` configures the zig-waf web application firewall on box deploys (Hetzner, `ssh`):
+  `mode` (`off` | `detection` | `blocking`, default `detection`), `paranoiaLevel`, thresholds,
+  `maxBodyBytes`, `bypassPaths`, reviewed `exclusions` (`{ ruleId, pathPattern?, reason }`) and
+  `forward` (Guardian ingest URL and per-host token, usually from `GUARDIAN_INGEST_URL` /
+  `GUARDIAN_INGEST_TOKEN`). It becomes ts-cloud's `infrastructure.compute.waf`; an explicit
+  `compute.waf` in `config/cloud.ts` still wins field by field and the deploy warns about it.
+  Nothing ever switches to `blocking` by itself: read the detection log first. On AWS deploys the
+  zig-waf-only options are reported, not applied.
 - The firewall rate limit is per-minute per-IP at the WAF (`firewall.rateLimitPerMinute`)
 - Application rate limits (`.rateLimit()`, `rateLimit()`, the login lockout) share the Redis cache when it is configured and count per process otherwise; see `stacks-router`
 

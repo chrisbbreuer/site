@@ -175,6 +175,18 @@ component rather than duplicate it. Compile and test the actual screen bundle
 for both targets. External authorization or checkout routes may use the system
 browser with an explicit return path.
 
+A named route parameter may need to exclude website paths. Configure
+`nativeScreenConstraints` on both platforms using the exact route key, for
+example `{ '/:username': { username: { pattern: '[a-z]+', exclude: ['terms'], normalize: 'lowercase' } } }`.
+Normalization lowercases decoded parameters and excluded values independently
+of device locale; the match returns the normalized parameter. Patterns then
+match the complete value case-sensitively; use syntax shared by JavaScript,
+Foundation and Kotlin. Constraints apply before query items and preserve static
+route priority. The build requires Craft's `nativeRouteConstraints` capability
+and stops if an installed host would ignore the configuration. For application
+resolution, use the published browser-safe `craft-native/mobile`
+`matchNativePath(screens, path, constraints)` rather than copying the matcher.
+
 For the web renderer, choose a primary content source:
 
 - `url`: load the deployed Stacks application and keep server-rendered routes.
@@ -186,6 +198,14 @@ For the web renderer, choose a primary content source:
 
 Only enable capabilities the product uses. Craft turns enabled capabilities
 into native bridge availability and required iOS privacy descriptions.
+
+`ios.capabilities.notificationAttachments` explicitly opts into Craft's rich
+push notification service extension (craft-native >= 0.0.464). It requires
+`pushNotifications: true`; enabling push alone never adds this extension. The
+generated `<AppName>NotificationService.appex` uses bundle id
+`<bundleId>.notificationservice`, inherits the app's version/build and team,
+and needs its own distribution profile or automatic signing. It needs no App
+Group. Leave it unset when the app does not use notification attachments.
 
 `capabilities.shakeGesture` arms the accelerometer while the app is in front,
 on iOS and Android, and sends the page Craft's `shake` event (with its `force`
@@ -281,6 +301,19 @@ Store Connect key) also sets What to Test through the API once the build
 appears; `buddy release:notes <tag> --testflight` does it later, and
 `buddy release:notes <tag> --play` prints the 500-character Google Play text.
 The code is `@stacksjs/actions/release-notes`.
+
+Set `ios.testFlightGroups` to the names of existing internal groups (for example,
+`['Internal testers']`) to distribute processed builds to those groups.
+`release:ios --wait` confirms `IN_BETA_TESTING` and the configured memberships
+before retiring older builds; upload or `VALID` processing alone is insufficient.
+Automatic internal groups are left for Apple to assign; delivery waits for their
+observed membership instead of attempting a manual assignment during propagation.
+Without a wait, older builds stay available. Resume a tagged release with
+`buddy release:testflight <tag> --wait [minutes]`, preserving its existing
+localized notes; `--dry-run` validates the
+existing internal groups without assigning or expiring builds. This creates no
+testers, public links or external beta review submissions. `--keep-builds` retains
+that many older processed builds in addition to the newly available release.
 
 ## Device search index
 
@@ -451,6 +484,24 @@ every call answers `{ available: false }` and `onChange` never fires. Word the
 prompt with `ios.usageDescriptions.NSAppleMusicUsageDescription`. The
 simulator's Music app has nothing to play; launch a simulator build with
 `-CraftFakeMusicPlayer YES` for three made-up songs that play and skip.
+
+## Signed-out launch gate
+
+`nativeGate` in `config/mobile.ts` passes Craft's `nativeGate` (craft-native
+>= 0.0.488) to both shells: before the first frame, a signed-out launch whose
+start path is not public opens on `redirect` instead of drawing the signed-in
+home and its tabs until the app script pushes sign-in on top.
+
+```ts
+nativeGate: { token: 'auth.token', redirect: '/m/login', publicPaths: ['/m/login'] },
+ios: { /* ... */ },      // ios.nativeGate replaces the shared one whole
+android: { /* ... */ },  // so does android.nativeGate
+```
+
+`token` is the secure-storage key holding the sign-in (Craft defaults it to
+`sessionTokenKey`). Each public path admits what sits under it, and `redirect`
+must be one of them. The gate checks the start path from `url`, never a deep
+link. Craft validates every path when it generates the project.
 
 ## Crash reporting (bughq)
 
@@ -736,3 +787,39 @@ nativeFonts: {
 Craft >= 0.0.229 packages the files and licenses into both apps. iOS registers
 `UIAppFonts`; Android loads asset typefaces. The build rejects older builders,
 missing font files and invalid names. Fonts work without a network request.
+
+## Native passkeys
+
+Enable `ios.capabilities.passkeys` and a `webcredentials:<relying-party-host>`
+associated domain; the build refuses passkeys without one, since iOS fails
+every passkey request from an app its domain does not vouch for. Craft >=
+0.0.451 supplies the system AuthenticationServices sheet. Import `passkeys` from `@stacksjs/mobile`, check
+`await passkeys.isAvailable()`, then pass server-issued JSON WebAuthn options to
+`create(options)` or `get(options)`. Send the JSON credential back to the server
+for verification. The native capability never replaces the server challenge,
+origin and user-verification checks. On unsupported hosts retain another sign-in
+method and offer the installation's secure browser settings.
+
+## Owned ReviewOS application workflows
+
+Use typed `config/workflows.ts` (`WorkflowConfig` from `@stacksjs/types`) and
+`buddy workflow:setup` for checks, deployment and native acceptance on owned
+ReviewOS runners. Commit the generated `.reviewos/workflows/ci.yml`; verify
+its bytes with `buddy workflow:setup --check`. Commands in the config are argv
+arrays, including domain-specific build or acceptance hooks. Use `{artifact}`
+as a complete argument for the single downloaded simulator archive. Acceptance
+runs after upload and download, before signing. Main pipelines finish in order
+so a newer backend cannot replace the one undergoing native acceptance.
+
+Configure `release.versionFile` for the tracked JSON version/build manifest and
+all native release commands. `buddy release:ios --bump build --wait` then checks
+full exact-source workflow execution before changing a version, commits the
+metadata and notes, and atomically pushes main with its immutable release tag.
+The release pipeline checks the real Git tag before uploading and verifies
+tester availability afterward. A failed or pending preflight consumes no build.
+Xcode Cloud remains the default when a ReviewOS release is not configured.
+
+Inspect `buddy workflow:runs`, `workflow:show <number>` and
+`workflow:artifacts <number>`. These use the public metadata API, with
+`REVIEWOS_TOKEN` in CI or the installed ReviewOS CLI's normal login locally.
+Never import a forge's private database or keychain implementation into an app.
