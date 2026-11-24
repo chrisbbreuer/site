@@ -1,16 +1,12 @@
 <script server>
+const path = require('node:path')
+const { featuredMacApps } = require(path.join(process.cwd(), 'resources/utils/portfolio.ts'))
+
 const title = 'Apps - Chris Breuer'
-const description = 'The products I build: HQ.training, Wildloop, the HQ suite, and more. Separate from the open-source developer tooling.'
+const description = 'The apps Chris Breuer builds, from SystemCleaner, Scout, Hush, and Uplink on the Mac to HQ.training, Wildloop, and the HQ suite.'
 const activeNav = 'apps'
 const pagePath = '/apps'
 
-// Hand-curated rather than pulled from the GitHub API like /projects, because
-// these are products rather than repos: several are closed-source, and the
-// name people know them by is the domain, not the repository.
-//
-// Three lists, because "app" means two different things here. The first is
-// software for people, the second is software for the people who ship
-// software, and the third is the tooling underneath all of it.
 const apps = [
   { name: 'HQ.training', url: 'https://hq.training', text: 'An operating system for modern gyms, coaches and athletes: memberships, billing, scheduling and check-in, with training analysis pulled from Oura, WHOOP, Garmin, Apple Health and the rest.' },
   { name: 'Wildloop', url: 'https://wildloop.org', text: 'Trail discovery and GPS recording, with clubs, challenges and fastest known times. Underneath it is a territory game: close a loop and you claim the ground inside it.' },
@@ -20,10 +16,20 @@ const apps = [
   // is ready to be shown.
   // { name: 'CampusHQ', url: 'https://campushq.org', text: 'Event management for independent schools: the calendar, the parent volunteers, the reminders nobody has time to send, and the spring gala with its silent auction.' },
   { name: 'Very Good Adblock', url: 'https://very-good-adblock.org', text: 'A fast Manifest V3 ad blocker for Chrome, Firefox and Safari.' },
-  { name: 'System Cleaner', url: 'https://system-cleaner.app', text: 'A macOS cleaner that runs entirely on your Mac. Nothing is uploaded, no account is required, and every destructive action is reviewable first.' },
+  { name: 'Kept', url: 'https://github.com/stacksjs/library', text: 'Tasks, notes, and shareable prompt libraries on the web and Mac.' },
+  { name: 'Postline', url: 'https://github.com/stacksjs/postline', text: 'Compose once and publish across social networks, with scheduling, analytics, and a unified inbox.' },
+  { name: 'Cursio', url: 'https://github.com/stacksjs/cursio', text: 'A learning management system for running an online school.' },
+  { name: 'Buddy Wheels', url: 'https://buddywheels.org', text: 'Repairable mobility equipment for dogs, inspired by Buddy.' },
+]
+
+const macApps = [
+  ...featuredMacApps,
+  { name: 'Barista', url: 'https://github.com/stacksjs/barista', text: 'Organize the icons in your Mac menu bar.' },
+  { name: 'Pomodoro', url: 'https://github.com/stacksjs/pomodoro', text: 'A simple focus timer in the Mac menu bar.' },
 ]
 
 const devApps = [
+  { name: 'TinkerBelle', url: 'https://tinkerbelle.app', text: 'Run TypeScript against your app locally or on a server.' },
   { name: 'ReviewOS', url: 'https://reviewos.org', text: 'An open-source, self-hostable git forge built around code review.' },
   { name: 'StatusHQ', url: 'https://statushq.org', text: 'Self-hostable status pages and uptime monitoring.' },
   { name: 'BugHQ', url: 'https://bughq.org', text: 'Error tracking for people who ship.' },
@@ -37,12 +43,21 @@ const devApps = [
 @section('content')
   <h1 class="page-title">Apps.</h1>
   <p class="page-lead">
-    The products, as opposed to the packages. Most of them run on
-    <a href="/stacks">Stacks</a>, which is the other half of the
-    story. That half lives on <a href="/projects">projects</a>.
+    The apps I build for the Mac, for the web, and for people who ship software.
+    Many of them run on <a href="/stacks">Stacks</a>.
   </p>
 
-  <h2 class="section-label">For people</h2>
+  <h2 class="section-label">Mac apps</h2>
+  <ul class="entry-list">
+    @foreach (macApps as app)
+      <li>
+        <span class="entry-name"><a href="{{ app.url }}">{{ app.name }}</a></span>
+        <span class="entry-desc">{{ app.text }}</span>
+      </li>
+    @endforeach
+  </ul>
+
+  <h2 class="section-label">Web and mobile apps</h2>
   <ul class="entry-list">
     @foreach (apps as app)
       <li>
@@ -64,11 +79,7 @@ const devApps = [
 
   <h2 class="section-label">The tooling underneath</h2>
   <p class="empty-note">
-    <a href="/stacks">Stacks</a> is the TypeScript framework all of
-    this is built on, and by now an ecosystem more than a framework, because
-    most of what it needs got written along the way:
-    a templating engine, a query builder, a deploy tool, a CSS engine, image and
-    video codecs, a good few dozen more. Every public repo is listed on
-    <a href="/projects">projects</a>.
+    Browse the <a href="/projects">open-source catalog</a> for the libraries behind these apps,
+    including stx, the Bun query builder, ts-cloud, and the image and video codecs.
   </p>
 @endsection

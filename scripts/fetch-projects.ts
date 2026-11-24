@@ -7,9 +7,12 @@
  * overwritten on the next run, so removals go in EXCLUDE and forks or other
  * repos the filters would drop go in PINNED.
  */
-import { execSync } from 'node:child_process'
+import { execFile } from 'node:child_process'
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
+import { promisify } from 'node:util'
+
+const run = promisify(execFile)
 
 interface Repo {
   name: string
@@ -137,6 +140,7 @@ const ORG_ORDER = [
   'mail-os',
   'clappsh',
   'bughq',
+  'analyticshqorg',
   'national-park-service',
   'ci-on',
   'craft-native',
@@ -168,7 +172,6 @@ const EXCLUDE = new Set([
   'ow3org/cardano-stake-pool-aws',
   'ow3org/vue-starter',
   'stacksjs/bun-vue',
-  'stacksjs/post',
 ])
 
 /**
@@ -177,6 +180,14 @@ const EXCLUDE = new Set([
  */
 const PINNED: { fullName: string, description?: string }[] = [
   { fullName: 'chrisbbreuer/dotfiles', description: 'My dotfiles. Get started with your own.' },
+  { fullName: 'stacksjs/launchpad', description: 'Scout is a keyboard-first Mac launcher for apps, files, quicklinks, snippets and system commands.' },
+  { fullName: 'stacksjs/postline', description: 'Self-hosted publishing, scheduling and analytics for social media.' },
+  { fullName: 'stacksjs/system-cleaner', description: 'SystemCleaner finds what is filling your Mac and lets you review what to remove.' },
+  { fullName: 'stacksjs/ts-charts', description: 'A typed, zero-dependency reimplementation of D3 for Bun and the browser.' },
+  { fullName: 'stacksjs/ts-fonts', description: 'A TypeScript editor for OpenType, TrueType and web fonts, with variable font support.' },
+  { fullName: 'stacksjs/ts-spell-check', description: 'A zero-dependency spell checker for code, built with Bun.' },
+  { fullName: 'stacksjs/vite-plugin-routes', description: 'File-based routing for Vite projects.' },
+  { fullName: 'zig-utils/zig-sftp', description: 'An SFTP server library and CLI in Zig.' },
 ]
 
 /** Strip emoji and pictographs; the page is intentionally plain text. */
@@ -223,31 +234,28 @@ function normalizeDashes(text: string): string {
     .replace(/\s*[\u2014\u2013]\s*/g, ', ')
 }
 
-function gh(path: string): any {
+async function gh(path: string, paginate = false): Promise<any> {
+  const args = paginate ? ['api', '--paginate', '--slurp', path] : ['api', path]
   try {
-    return JSON.parse(execSync(`gh api "${path}" 2>/dev/null`, { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 }))
+    const { stdout } = await run('gh', args, { maxBuffer: 32 * 1024 * 1024 })
+    const result = JSON.parse(stdout)
+    return paginate ? result.flat() : result
   }
   catch {
     return []
   }
 }
 
-// `gh api user` and `user/orgs` need a token that represents a person. The
-// daily sync in CI may only have GITHUB_TOKEN, which represents the repo and
-// answers 403 to both, so fall back to the owners we already list by name
-// rather than silently regenerating an empty file.
-let me = 'chrisbbreuer'
-try {
-  me = execSync('gh api user --jq .login 2>/dev/null', { encoding: 'utf8' }).trim() || me
-}
-catch {}
-const orgs: string[] = gh('user/orgs?per_page=100').map((o: any) => o.login)
-const owners = orgs.length > 0 ? [...orgs, me] : ORG_ORDER
+// GITHUB_TOKEN may lack access to user/orgs. Always include the known owners
+// so a CI sync and an authenticated local sync both refresh their public repos.
+const me = 'chrisbbreuer'
+const orgs: string[] = (await gh('user/orgs?per_page=100', true)).map((o: any) => o.login)
+const owners = new Set([...ORG_ORDER, ...orgs])
 
 const repos: Repo[] = []
 for (const owner of owners) {
   const isUser = owner === me
-  const list = gh(`${isUser ? 'users' : 'orgs'}/${owner}/repos?per_page=100&type=${isUser ? 'owner' : 'public'}`)
+  const list = await gh(`${isUser ? 'users' : 'orgs'}/${owner}/repos?per_page=100&type=${isUser ? 'owner' : 'public'}`, true)
   for (const r of list) {
     if (EXCLUDE.has(r.full_name))
       continue
@@ -269,10 +277,14 @@ for (const owner of owners) {
 }
 
 for (const pin of PINNED) {
-  if (repos.some(r => `${r.org}/${r.name}` === pin.fullName))
+  const existing = repos.find(r => `${r.org}/${r.name}` === pin.fullName)
+  if (existing) {
+    if (pin.description)
+      existing.description = normalizeDashes(stripEmoji(pin.description))
     continue
-  const r = gh(`repos/${pin.fullName}`)
-  if (!r || !r.full_name)
+  }
+  const r = await gh(`repos/${pin.fullName}`)
+  if (!r.full_name || r.private || r.archived)
     continue
   repos.push({
     name: r.name,
@@ -386,11 +398,11 @@ function mainPackage(repo: Repo, packages: { name: string, downloads: number, de
  * uses. Negations are skipped and anything more exotic resolves to nothing
  * rather than being guessed at.
  */
-function workspacePackages(fullName: string): string[] {
+async function workspacePackages(fullName: string): Promise<string[]> {
   const names: string[] = []
 
-  const readManifest = (filePath: string): any => {
-    const res = gh(`repos/${fullName}/contents/${filePath}`)
+  const readManifest = async (filePath: string): Promise<any> => {
+    const res = await gh(`repos/${fullName}/contents/${filePath}`)
     if (!res || !res.content)
       return null
     try {
@@ -406,7 +418,7 @@ function workspacePackages(fullName: string): string[] {
       names.push(manifest.name)
   }
 
-  const root = readManifest('package.json')
+  const root = await readManifest('package.json')
   if (!root)
     return names
   collect(root)
@@ -423,14 +435,14 @@ function workspacePackages(fullName: string): string[] {
     if (dir === glob)
       continue
 
-    const entries = gh(`repos/${fullName}/contents/${dir}`)
+    const entries = await gh(`repos/${fullName}/contents/${dir}`)
     if (!Array.isArray(entries))
       continue
 
     for (const entry of entries) {
       if (entry.type !== 'dir')
         continue
-      collect(readManifest(`${dir}/${entry.name}/package.json`))
+      collect(await readManifest(`${dir}/${entry.name}/package.json`))
     }
   }
 
@@ -453,16 +465,18 @@ async function attachDownloads(list: Repo[]): Promise<void> {
   // Which repos list each package, so a throttled "who publishes this?"
   // lookup can still be charged to someone.
   const sources = new Map<string, Repo[]>()
-  for (const repo of list) {
-    // The repo's own name too, not only what its manifests list: stacks
-    // publishes `stacks` from a directory its root workspaces do not cover,
-    // so a manifest scan alone never found the package the repo is named for.
-    // The registry still decides ownership below, so a same-named package
-    // someone else publishes is never credited here.
-    const guesses = [repo.name, `@${repo.org}/${repo.name}`].map(name => name.toLowerCase())
-    for (const name of new Set([...workspacePackages(`${repo.org}/${repo.name}`), ...guesses]))
-      sources.set(name, [...(sources.get(name) ?? []), repo])
-  }
+  const toResolve = [...list]
+  // Limit GitHub concurrency while resolving independent repos, and keep
+  // requests within each repo in order so large workspaces do not fan out.
+  await Promise.all(Array.from({ length: 4 }, async () => {
+    for (let repo = toResolve.shift(); repo; repo = toResolve.shift()) {
+      // The registry still verifies these names against their source repo.
+      const guesses = [repo.name, `@${repo.org}/${repo.name}`].map(name => name.toLowerCase())
+      const workspace = await workspacePackages(`${repo.org}/${repo.name}`)
+      for (const name of new Set([...workspace, ...guesses]))
+        sources.set(name, [...(sources.get(name) ?? []), repo])
+    }
+  }))
   const candidates = new Set(sources.keys())
   console.log(`resolved ${candidates.size} candidate package name(s) across ${list.length} repos`)
 

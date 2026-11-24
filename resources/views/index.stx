@@ -2,9 +2,10 @@
 const path = require('node:path')
 const { blogPosts } = require(path.join(process.cwd(), 'resources/utils/blog-posts.ts'))
 const { homeEvents } = require(path.join(process.cwd(), 'resources/utils/events.ts'))
+const { featuredMacApps, featuredLibraries } = require(path.join(process.cwd(), 'resources/utils/portfolio.ts'))
 
 const title = 'Chris Breuer - Software engineer, founder & ultra runner'
-const description = 'Chris Breuer builds developer and agentic tooling, plus the apps on top of it: Stacks, HQ.training, Wildloop. ultra runner and dog person. Notes on both.'
+const description = 'Chris Breuer builds Stacks, open-source TypeScript libraries, and Mac apps including SystemCleaner, Scout, Hush, and Uplink. He writes about software and skyrunning.'
 const activeNav = ''
 const pagePath = '/'
 
@@ -23,10 +24,10 @@ const posts = blogPosts()
 
 @section('content')
   <h1 class="page-title">Software engineer, <br class="title-break">founder, ultra runner.</h1>
-  <p class="page-lead home-lead">I build open-source developer tools and write about software, skyrunning, and life with Mo, my Kangal.</p>
+  <p class="home-lead page-lead">I build open-source tools and apps. I write about software, skyrunning, and life with Mo, my Kangal.</p>
   <div class="home-links">
     <a href="/blog">Read the blog <span aria-hidden="true">→</span></a>
-    <a href="/projects">Explore the projects <span aria-hidden="true">→</span></a>
+    <a href="/apps">Explore the apps <span aria-hidden="true">→</span></a>
   </div>
 
   <h2 class="section-label">Building</h2>
@@ -45,9 +46,34 @@ const posts = blogPosts()
     </li>
     <li>
       <span class="entry-name"><a href="https://wildloop.org">Wildloop</a></span>
-      <span class="entry-desc">Trail discovery and GPS recording, with a territory game: close a loop to claim the ground inside it.</span>
+      <span class="entry-desc">Discover trails, record runs, and claim territory by closing a loop.</span>
+    </li>
+    <li>
+      <span class="entry-name"><a href="https://tinkerbelle.app">TinkerBelle</a></span>
+      <span class="entry-desc">Run TypeScript against your app locally or on a server.</span>
     </li>
   </ul>
+
+  <h2 class="section-label">Mac apps</h2>
+  <ul class="entry-list">
+    @foreach (featuredMacApps as app)
+      <li>
+        <span class="entry-name"><a href="{{ app.url }}">{{ app.name }}</a></span>
+        <span class="entry-desc">{{ app.text }}</span>
+      </li>
+    @endforeach
+  </ul>
+
+  <h2 class="section-label">Libraries and tools</h2>
+  <ul class="entry-list">
+    @foreach (featuredLibraries as library)
+      <li>
+        <span class="entry-name"><a href="{{ library.url }}">{{ library.name }}</a></span>
+        <span class="entry-desc">{{ library.text }}</span>
+      </li>
+    @endforeach
+  </ul>
+  <p class="empty-note"><a href="/projects">Browse the full open-source catalog <span aria-hidden="true">→</span></a></p>
 
   @if (upcoming.length > 0)
     <h2 class="section-label">Coming up</h2>

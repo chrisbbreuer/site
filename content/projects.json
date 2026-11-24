@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-22",
+  "generatedAt": "2026-11-24",
   "repos": [
     {
       "name": "stacks",
@@ -297,6 +297,17 @@
       "pkgCount": 1
     },
     {
+      "name": "very-happy-dom",
+      "org": "stacksjs",
+      "description": "A very performant virtual DOM implementation.",
+      "stars": 14,
+      "url": "https://github.com/stacksjs/very-happy-dom",
+      "tags": [
+        "TypeScript",
+        "Bun"
+      ]
+    },
+    {
       "name": "bun-plugin-dotenvx",
       "org": "stacksjs",
       "description": "A powerful loader for your dotenv files, powered by dotenvx.",
@@ -345,6 +356,16 @@
       "pkgCount": 1
     },
     {
+      "name": "ts-web-scraper",
+      "org": "stacksjs",
+      "description": "A powerful, type-safe web scraping library for TypeScript.",
+      "stars": 13,
+      "url": "https://github.com/stacksjs/ts-web-scraper",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
       "name": "buddy",
       "org": "stacksjs",
       "description": "AI code review and dependency updates in one teammate. Reviews PRs and local changes, answers @buddy comments, gates merges, repairs CI, and keeps deps current. Runs on your CI, with your keys.",
@@ -359,6 +380,18 @@
       "pkg": "@buddysh/buddy",
       "allDownloads": 86055,
       "pkgCount": 1
+    },
+    {
+      "name": "bun-query-builder",
+      "org": "stacksjs",
+      "description": "A safe, performant & fully-typed query builder for Bun.",
+      "stars": 12,
+      "url": "https://github.com/stacksjs/bun-query-builder",
+      "tags": [
+        "TypeScript",
+        "Bun",
+        "JavaScript"
+      ]
     },
     {
       "name": "ts-images",
@@ -604,6 +637,18 @@
       "pkgCount": 1
     },
     {
+      "name": "post",
+      "org": "stacksjs",
+      "description": "The Post. A modern mail server & utilities. Ships with a CLI, library, and UI.",
+      "stars": 7,
+      "url": "https://github.com/stacksjs/post",
+      "tags": [
+        "TypeScript",
+        "CLI",
+        "Library"
+      ]
+    },
+    {
       "name": "ts-aax",
       "org": "stacksjs",
       "description": "A library to work with Audible's .aax files. Cross-platform app coming soon.",
@@ -663,6 +708,16 @@
       "pkgCount": 1
     },
     {
+      "name": "better-dx",
+      "org": "stacksjs",
+      "description": "A better Developer Experience. Lightweight & performant.",
+      "stars": 6,
+      "url": "https://github.com/stacksjs/better-dx",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
       "name": "hush",
       "org": "stacksjs",
       "description": "Hush.app ensures your notifications are suppressed during your screen-shared meetings.",
@@ -687,6 +742,28 @@
       "tags": [
         "Swift",
         "macOS"
+      ]
+    },
+    {
+      "name": "ts-css",
+      "org": "stacksjs",
+      "description": "A Tailwind & UnoCSS-like utility-first, atomic CSS framework.",
+      "stars": 6,
+      "url": "https://github.com/stacksjs/ts-css",
+      "tags": [
+        "TypeScript",
+        "Bun",
+        "Framework"
+      ]
+    },
+    {
+      "name": "ts-error-handling",
+      "org": "stacksjs",
+      "description": "Fully typed error handling.",
+      "stars": 6,
+      "url": "https://github.com/stacksjs/ts-error-handling",
+      "tags": [
+        "TypeScript"
       ]
     },
     {
@@ -718,6 +795,16 @@
       "pkg": "@stacksjs/ts-validation",
       "allDownloads": 204549,
       "pkgCount": 1
+    },
+    {
+      "name": "ts-watches",
+      "org": "stacksjs",
+      "description": "A comprehensive TypeScript library for downloading, parsing, and analyzing data from smartwatches and fitness devices.",
+      "stars": 6,
+      "url": "https://github.com/stacksjs/ts-watches",
+      "tags": [
+        "TypeScript"
+      ]
     },
     {
       "name": "vite-plugin-tauri",
@@ -776,6 +863,36 @@
       ]
     },
     {
+      "name": "ts-faker",
+      "org": "stacksjs",
+      "description": "A performance-focused & lightweight faker / data mocking library with comprehensive locale support.",
+      "stars": 5,
+      "url": "https://github.com/stacksjs/ts-faker",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "ts-health",
+      "org": "stacksjs",
+      "description": "A comprehensive TypeScript library for health, fitness, and smartwatch data.",
+      "stars": 5,
+      "url": "https://github.com/stacksjs/ts-health",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "ts-i18n",
+      "org": "stacksjs",
+      "description": "A fully-typed i18n experience.",
+      "stars": 5,
+      "url": "https://github.com/stacksjs/ts-i18n",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
       "name": "ts-medium-editor",
       "org": "stacksjs",
       "description": "A modern, minimal & performant Medium-like rich text editor.",
@@ -788,6 +905,29 @@
       "pkg": "ts-medium-editor",
       "allDownloads": 58570,
       "pkgCount": 1
+    },
+    {
+      "name": "ts-webp",
+      "org": "stacksjs",
+      "description": "A performant TypeScript WebP encoder/decoder.",
+      "stars": 5,
+      "url": "https://github.com/stacksjs/ts-webp",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "ts-backups",
+      "org": "stacksjs",
+      "description": "Comprehensive & performant database and file backup solution.",
+      "stars": 4,
+      "url": "https://github.com/stacksjs/ts-backups",
+      "tags": [
+        "TypeScript",
+        "CLI",
+        "Database",
+        "Library"
+      ]
     },
     {
       "name": "ts-clone",
@@ -834,6 +974,16 @@
       "pkgCount": 1
     },
     {
+      "name": "ts-printers",
+      "org": "stacksjs",
+      "description": "Interact with printers using TypeScript.",
+      "stars": 4,
+      "url": "https://github.com/stacksjs/ts-printers",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
       "name": "ts-starter-monorepo",
       "org": "stacksjs",
       "description": "Same as our `ts-starter` but optimized for workspaces / monorepos.",
@@ -873,6 +1023,26 @@
       "pkg": "ts-videos",
       "allDownloads": 135351,
       "pkgCount": 4
+    },
+    {
+      "name": "ts-xml",
+      "org": "stacksjs",
+      "description": "A performant, dependency-free XML parser, builder, and validator.",
+      "stars": 4,
+      "url": "https://github.com/stacksjs/ts-xml",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "vite-plugin-routes",
+      "org": "stacksjs",
+      "description": "File-based routing for Vite projects.",
+      "stars": 4,
+      "url": "https://github.com/stacksjs/vite-plugin-routes",
+      "tags": [
+        "TypeScript"
+      ]
     },
     {
       "name": "bench-review",
@@ -961,6 +1131,39 @@
       ]
     },
     {
+      "name": "ts-broadcasting",
+      "org": "stacksjs",
+      "description": "Realtime the simple & performant way.",
+      "stars": 3,
+      "url": "https://github.com/stacksjs/ts-broadcasting",
+      "tags": [
+        "TypeScript",
+        "Bun"
+      ]
+    },
+    {
+      "name": "ts-cloud",
+      "org": "stacksjs",
+      "description": "Zero-dependency, modern infrastructure-as-code framework.",
+      "stars": 3,
+      "url": "https://github.com/stacksjs/ts-cloud",
+      "tags": [
+        "TypeScript",
+        "Cloud"
+      ]
+    },
+    {
+      "name": "ts-css-legacy",
+      "org": "stacksjs",
+      "description": "Read, walk, query, transform, or minify CSS. Performant.",
+      "stars": 3,
+      "url": "https://github.com/stacksjs/ts-css-legacy",
+      "tags": [
+        "TypeScript",
+        "CSS"
+      ]
+    },
+    {
       "name": "ts-inputs",
       "org": "stacksjs",
       "description": "Modern input masking.",
@@ -987,6 +1190,16 @@
       "pkg": "ts-jpeg",
       "allDownloads": 305755,
       "pkgCount": 1
+    },
+    {
+      "name": "ts-md",
+      "org": "stacksjs",
+      "description": "Extremely performant markdown parser & compiler.",
+      "stars": 3,
+      "url": "https://github.com/stacksjs/ts-md",
+      "tags": [
+        "TypeScript"
+      ]
     },
     {
       "name": "ts-ndarray",
@@ -1019,6 +1232,38 @@
       "pkgCount": 1
     },
     {
+      "name": "ts-sftp",
+      "org": "stacksjs",
+      "description": "A zero-dependency SFTP server for Bun: SSH transport, public key auth, and a pluggable file system.",
+      "stars": 3,
+      "url": "https://github.com/stacksjs/ts-sftp",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "ts-svg",
+      "org": "stacksjs",
+      "description": "Pure-TypeScript SVG parser, rasterizer, and PNG encoder.",
+      "stars": 3,
+      "url": "https://github.com/stacksjs/ts-svg",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "ts-syntax-highlighter",
+      "org": "stacksjs",
+      "description": "A TypeScript-native syntax highlighter with comprehensive grammar support for modern web languages. Built for performance.",
+      "stars": 3,
+      "url": "https://github.com/stacksjs/ts-syntax-highlighter",
+      "tags": [
+        "TypeScript",
+        "CLI",
+        "Library"
+      ]
+    },
+    {
       "name": "ts-tokens",
       "org": "stacksjs",
       "description": "Fungible or non-fungible. Choose your network.",
@@ -1027,6 +1272,55 @@
       "tags": [
         "TypeScript"
       ]
+    },
+    {
+      "name": "ts-video-player",
+      "org": "stacksjs",
+      "description": "A modern, framework-agnostic video player. Built for performance, accessibility, and extensibility.",
+      "stars": 3,
+      "url": "https://github.com/stacksjs/ts-video-player",
+      "tags": [
+        "TypeScript",
+        "Components"
+      ]
+    },
+    {
+      "name": "car-rental",
+      "org": "stacksjs",
+      "description": "A real car rental app, built using Stacks.",
+      "stars": 2,
+      "url": "https://github.com/stacksjs/car-rental",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "GitHarbor",
+      "org": "stacksjs",
+      "description": "The calm port for all your Git workflows. Similar to GitHub Desktop.",
+      "stars": 2,
+      "url": "https://github.com/stacksjs/GitHarbor",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "guardian",
+      "org": "stacksjs",
+      "description": "Guardian: low-memory anti-malware, host protection and web firewall for the Stacks ecosystem",
+      "stars": 2,
+      "url": "https://github.com/stacksjs/guardian",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "postline",
+      "org": "stacksjs",
+      "description": "Self-hosted publishing, scheduling and analytics for social media.",
+      "stars": 2,
+      "url": "https://github.com/stacksjs/postline",
+      "tags": []
     },
     {
       "name": "raycast",
@@ -1039,6 +1333,14 @@
       ]
     },
     {
+      "name": "system-cleaner",
+      "org": "stacksjs",
+      "description": "SystemCleaner finds what is filling your Mac and lets you review what to remove.",
+      "stars": 2,
+      "url": "https://github.com/stacksjs/system-cleaner",
+      "tags": []
+    },
+    {
       "name": "tpc-license",
       "org": "stacksjs",
       "description": "The People's Code (TPC) License.",
@@ -1047,11 +1349,109 @@
       "tags": []
     },
     {
+      "name": "ts-analytics",
+      "org": "stacksjs",
+      "description": "A privacy-first analytics toolkit for web applications, powered by DynamoDB. Includes error-tracking.",
+      "stars": 2,
+      "url": "https://github.com/stacksjs/ts-analytics",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "ts-auth",
+      "org": "stacksjs",
+      "description": "One-Time Passwords, WebAuthn, and more. Fully typed.",
+      "stars": 2,
+      "url": "https://github.com/stacksjs/ts-auth",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "ts-avif",
+      "org": "stacksjs",
+      "description": "A pure TypeScript AVIF encoder and decoder with zero native dependencies.",
+      "stars": 2,
+      "url": "https://github.com/stacksjs/ts-avif",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "ts-bmp",
+      "org": "stacksjs",
+      "description": "A performant & lightweight TypeScript BMP encoder and decoder.",
+      "stars": 2,
+      "url": "https://github.com/stacksjs/ts-bmp",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "ts-charts",
+      "org": "stacksjs",
+      "description": "A typed, zero-dependency reimplementation of D3 for Bun and the browser.",
+      "stars": 2,
+      "url": "https://github.com/stacksjs/ts-charts",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "ts-fonts",
+      "org": "stacksjs",
+      "description": "A TypeScript editor for OpenType, TrueType and web fonts, with variable font support.",
+      "stars": 2,
+      "url": "https://github.com/stacksjs/ts-fonts",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "ts-heic",
+      "org": "stacksjs",
+      "description": "A pure TypeScript HEIC/HEIF decoder with zero native dependencies.",
+      "stars": 2,
+      "url": "https://github.com/stacksjs/ts-heic",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "ts-open-api",
+      "org": "stacksjs",
+      "description": "OpenAPI TypeScript automations.",
+      "stars": 2,
+      "url": "https://github.com/stacksjs/ts-open-api",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
       "name": "white-paper",
       "org": "stacksjs",
       "description": "Stacks White Paper WIP.",
       "stars": 2,
       "url": "https://github.com/stacksjs/white-paper",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "wildloop",
+      "org": "stacksjs",
+      "description": "Find and track trails for running and hiking. Every loop you close becomes territory you hold.",
+      "stars": 2,
+      "url": "https://github.com/stacksjs/wildloop",
+      "tags": []
+    },
+    {
+      "name": "analyticshq",
+      "org": "stacksjs",
+      "description": "Privacy-first web analytics, powered by Stacks + Postgres",
+      "stars": 1,
+      "url": "https://github.com/stacksjs/analyticshq",
       "tags": [
         "TypeScript"
       ]
@@ -1065,6 +1465,151 @@
       "tags": []
     },
     {
+      "name": "drone",
+      "org": "stacksjs",
+      "description": "A Stacks framework for custom drone companion logic, simulation, and Raspberry Pi integration.",
+      "stars": 1,
+      "url": "https://github.com/stacksjs/drone",
+      "tags": []
+    },
+    {
+      "name": "dynamodb-client",
+      "org": "stacksjs",
+      "description": "DynamoDB UI & Single Table Design made easy.",
+      "stars": 1,
+      "url": "https://github.com/stacksjs/dynamodb-client",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "hq.support",
+      "org": "stacksjs",
+      "description": "Open-core customer support, messenger, knowledge, and automation built with Stacks.",
+      "stars": 1,
+      "url": "https://github.com/stacksjs/hq.support",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "launchpad",
+      "org": "stacksjs",
+      "description": "Scout is a keyboard-first Mac launcher for apps, files, quicklinks, snippets and system commands.",
+      "stars": 1,
+      "url": "https://github.com/stacksjs/launchpad",
+      "tags": [
+        "TypeScript",
+        "macOS"
+      ]
+    },
+    {
+      "name": "php-spreadsheets",
+      "org": "stacksjs",
+      "description": "CSV & xlsx from PHP. No dependencies, no zip extension. The PHP half of ts-spreadsheets.",
+      "stars": 1,
+      "url": "https://github.com/stacksjs/php-spreadsheets",
+      "tags": [
+        "PHP"
+      ]
+    },
+    {
+      "name": "the-settlers-iii-remake",
+      "org": "stacksjs",
+      "description": "A browser strategy game built with Stacks. Based on The Settlers III.",
+      "stars": 1,
+      "url": "https://github.com/stacksjs/the-settlers-iii-remake",
+      "tags": [
+        "TypeScript",
+        "Desktop",
+        "Mobile"
+      ]
+    },
+    {
+      "name": "ts-presentation",
+      "org": "stacksjs",
+      "description": "Bun-first TypeScript presentation toolkit based on Slidev",
+      "stars": 1,
+      "url": "https://github.com/stacksjs/ts-presentation",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "ts-spell-check",
+      "org": "stacksjs",
+      "description": "A zero-dependency spell checker for code, built with Bun.",
+      "stars": 1,
+      "url": "https://github.com/stacksjs/ts-spell-check",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "ts-whatsapp",
+      "org": "stacksjs",
+      "description": "A WhatsApp linked-device client in pure TypeScript: pairing, end-to-end encryption, history and media.",
+      "stars": 1,
+      "url": "https://github.com/stacksjs/ts-whatsapp",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "uplink",
+      "org": "stacksjs",
+      "description": "Text your Mac, even over satellite, and Claude Code answers.",
+      "stars": 1,
+      "url": "https://github.com/stacksjs/uplink",
+      "tags": []
+    },
+    {
+      "name": "bench",
+      "org": "stacksjs",
+      "description": "All our benchmarks.",
+      "stars": 0,
+      "url": "https://github.com/stacksjs/bench",
+      "tags": []
+    },
+    {
+      "name": "buddy-wheels",
+      "org": "stacksjs",
+      "description": "Repairable dog mobility and a native Stacks storefront, inspired by Buddy.",
+      "stars": 0,
+      "url": "https://github.com/stacksjs/buddy-wheels",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "commshq",
+      "org": "stacksjs",
+      "description": "Creator-first communications, publishing, automation, and commerce marketing platform built with Stacks.",
+      "stars": 0,
+      "url": "https://github.com/stacksjs/commshq",
+      "tags": []
+    },
+    {
+      "name": "cursio",
+      "org": "stacksjs",
+      "description": "Cursio - run your online school in one place. A Stacks-native LMS.",
+      "stars": 0,
+      "url": "https://github.com/stacksjs/cursio",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "dtsx.org",
+      "org": "stacksjs",
+      "description": "The dtsx website: TypeScript declarations, transparent benchmarks, and documentation. Built with Stacks.",
+      "stars": 0,
+      "url": "https://github.com/stacksjs/dtsx.org",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
       "name": "homebrew-tap",
       "org": "stacksjs",
       "description": "Homebrew tap for Stacks packages",
@@ -1075,11 +1620,103 @@
       ]
     },
     {
+      "name": "lessonstack",
+      "org": "stacksjs",
+      "description": "LessonStack: learn the Stacks framework. A Stacks app drawn from its Cursio academy.",
+      "stars": 0,
+      "url": "https://github.com/stacksjs/lessonstack",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "library",
+      "org": "stacksjs",
+      "description": "Kept - tasks, notes and shareable prompt libraries. Open source, on the web and the Mac.",
+      "stars": 0,
+      "url": "https://github.com/stacksjs/library",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "redline",
+      "org": "stacksjs",
+      "description": "Redline Marketing Agency.",
+      "stars": 0,
+      "url": "https://github.com/stacksjs/redline",
+      "tags": [
+        "Vue"
+      ]
+    },
+    {
+      "name": "smakelo",
+      "org": "stacksjs",
+      "description": "Smakelo - local food marketplace demo: discovery + reviews, ordering + live courier delivery, and table-QR dine-in. Built on Stacks.",
+      "stars": 0,
+      "url": "https://github.com/stacksjs/smakelo",
+      "tags": []
+    },
+    {
       "name": "sponsors",
       "org": "stacksjs",
       "description": "The Stacks backers & sponsors.",
       "stars": 0,
       "url": "https://github.com/stacksjs/sponsors",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "texts",
+      "org": "stacksjs",
+      "description": "Texts, a Mac inbox and searchable archive for Messages, WhatsApp, Slack, and Discord.",
+      "stars": 0,
+      "url": "https://github.com/stacksjs/texts",
+      "tags": []
+    },
+    {
+      "name": "texts-downloads",
+      "org": "stacksjs",
+      "description": "Signed macOS releases and updates for Texts.",
+      "stars": 0,
+      "url": "https://github.com/stacksjs/texts-downloads",
+      "tags": []
+    },
+    {
+      "name": "tinkerbelle",
+      "org": "stacksjs",
+      "description": "Run TypeScript against your real app, here or on a server.",
+      "stars": 0,
+      "url": "https://github.com/stacksjs/tinkerbelle",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "trifitla",
+      "org": "stacksjs",
+      "description": "A redesign of trifitla.com, the Santa Monica athletic club, built with Stacks.",
+      "stars": 0,
+      "url": "https://github.com/stacksjs/trifitla",
+      "tags": []
+    },
+    {
+      "name": "ts-git-lfs",
+      "org": "stacksjs",
+      "description": "Git Large File Storage for TypeScript: pointer files, the batch API, object storage and locking.",
+      "stars": 0,
+      "url": "https://github.com/stacksjs/ts-git-lfs",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "ts-ssh",
+      "org": "stacksjs",
+      "description": "The SSH protocol in TypeScript: wire format, key formats, key exchange and public key authentication.",
+      "stars": 0,
+      "url": "https://github.com/stacksjs/ts-ssh",
       "tags": [
         "TypeScript"
       ]
@@ -1284,6 +1921,16 @@
       ]
     },
     {
+      "name": "zig-anti-virus",
+      "org": "zig-utils",
+      "description": "Low-memory anti-malware engine and clamd-compatible daemon in Zig",
+      "stars": 1,
+      "url": "https://github.com/zig-utils/zig-anti-virus",
+      "tags": [
+        "Zig"
+      ]
+    },
+    {
       "name": "zig-bump",
       "org": "zig-utils",
       "description": "A simple, fast version bumping tool for Zig projects.",
@@ -1366,16 +2013,6 @@
       ]
     },
     {
-      "name": "zig-anti-virus",
-      "org": "zig-utils",
-      "description": "Low-memory anti-malware engine and clamd-compatible daemon in Zig",
-      "stars": 0,
-      "url": "https://github.com/zig-utils/zig-anti-virus",
-      "tags": [
-        "Zig"
-      ]
-    },
-    {
       "name": "zig-garmin",
       "org": "zig-utils",
       "description": "Dependency-free Garmin Bluetooth protocol, health telemetry and FIT sync in Zig",
@@ -1403,6 +2040,16 @@
       "url": "https://github.com/zig-utils/zig-oura",
       "tags": [
         "TypeScript"
+      ]
+    },
+    {
+      "name": "zig-sftp",
+      "org": "zig-utils",
+      "description": "An SFTP server library and CLI in Zig.",
+      "stars": 0,
+      "url": "https://github.com/zig-utils/zig-sftp",
+      "tags": [
+        "Zig"
       ]
     },
     {
