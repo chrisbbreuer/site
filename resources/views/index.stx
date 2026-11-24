@@ -30,6 +30,16 @@ const posts = blogPosts()
     <a href="/apps">Explore the apps <span aria-hidden="true">→</span></a>
   </div>
 
+  <h2 class="section-label">Mac apps</h2>
+  <ul class="entry-list">
+    @foreach (featuredMacApps as app)
+      <li>
+        <span class="entry-name"><a href="{{ app.url }}">{{ app.name }}</a></span>
+        <span class="entry-desc">{{ app.text }}</span>
+      </li>
+    @endforeach
+  </ul>
+
   <h2 class="section-label">Building</h2>
   <ul class="entry-list">
     <li>
@@ -52,16 +62,6 @@ const posts = blogPosts()
       <span class="entry-name"><a href="https://tinkerbelle.app">TinkerBelle</a></span>
       <span class="entry-desc">Run TypeScript against your app locally or on a server.</span>
     </li>
-  </ul>
-
-  <h2 class="section-label">Mac apps</h2>
-  <ul class="entry-list">
-    @foreach (featuredMacApps as app)
-      <li>
-        <span class="entry-name"><a href="{{ app.url }}">{{ app.name }}</a></span>
-        <span class="entry-desc">{{ app.text }}</span>
-      </li>
-    @endforeach
   </ul>
 
   <h2 class="section-label">Libraries and tools</h2>
